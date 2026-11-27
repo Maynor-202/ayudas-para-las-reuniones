@@ -3389,8 +3389,8 @@ const DATA = {
   "tipo": "Reflexión"
  },
  {
-  "descripcion": "Una persona contemplando tranquilamente su reflejo en un espejo, en un ambiente sereno y con luz natural, transmitiendo la importancia de examinar el corazón y cultivar cualidades que agraden a Jehová.",
-  "image": "img/pensamiento.jpg",
+  "descripcion": null,
+  "image": null,
   "orden": 4,
   "referencia": "1 Samuel 16:7; Proverbios 4:23.",
   "texto": "Las personas suelen fijarse en nuestra apariencia, nuestras palabras o lo que hacemos delante de ellas. Pero Jehová ve mucho más: conoce nuestras intenciones, nuestros sentimientos y los motivos que nos impulsan a actuar. Él sabe quiénes somos realmente en nuestro interior.",
@@ -3462,7 +3462,7 @@ const DATA = {
  },
  {
   "descripcion": null,
-  "image": null,
+  "image": "img/pensamiento.jpg",
   "orden": 13,
   "referencia": null,
   "texto": "«La verdadera fortaleza no consiste en nunca caer, sino en encontrar el valor para levantarse cada vez».",
