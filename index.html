@@ -119,9 +119,12 @@ a.wolmini{color:var(--accent);font-weight:700;text-decoration:none;font-size:15p
 a.wol{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px}
 #sheetSrc{font-size:13px;color:#8a8f9c}
 #sheetSrc:not(:empty){margin-top:10px}
-#hlbar{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 7px;display:none;align-items:center;gap:3px;box-shadow:0 4px 16px rgba(20,30,60,.18);min-height:40px;box-sizing:border-box;touch-action:none}
-#hlbar.open{display:flex}
-#hlbar .cdot{width:27px;height:27px;border-radius:50%;border:1px solid rgba(20,30,60,.20);cursor:pointer;padding:0;flex:none}
+#hlact{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 7px;display:none;align-items:center;gap:3px;box-shadow:0 4px 16px rgba(20,30,60,.18);min-height:40px;box-sizing:border-box;touch-action:none}
+#hlact.open{display:flex}
+#hlpal{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 8px;display:none;align-items:center;gap:5px;box-shadow:0 4px 16px rgba(20,30,60,.18);min-height:40px;box-sizing:border-box;touch-action:none}
+#hlpal.open{display:flex}
+#hlpal .cdot{width:27px;height:27px;border-radius:50%;border:1px solid rgba(20,30,60,.20);cursor:pointer;padding:0;flex:none}
+#hlpal .cdot.on{box-shadow:0 0 0 2px #fff,0 0 0 4.5px rgba(20,30,60,.55)}
 .hlcbtn{position:relative;width:44px;height:30px;background:transparent;border:0;cursor:pointer;padding:0;flex:none;border-radius:999px}
 .hlcbtn .ovl{position:absolute;top:50%;width:19px;height:19px;border-radius:50%;transform:translateY(-50%)}
 .hlcbtn .ovl.b1{left:0}
@@ -202,7 +205,8 @@ body.pubopen main{padding-bottom:180px}
 </div>
 <audio id="paud" preload="none"></audio>
 
-<div id="hlbar"></div>
+<div id="hlact"></div>
+<div id="hlpal"></div>
 
 <script src="data.js"></script>
 <script>
@@ -568,8 +572,8 @@ $("#sheetClose").addEventListener("click", closeVerse);
 /* ================= Bloques de texto y subrayado ================= */
 const BLOCKTEXT = {};
 const HL_COLORS = [
-  ["amarillo","#ffe14d"],["verde","#97e05a"],["azul","#79c7f2"],["rosa","#f78fb3"],
-  ["naranja","#ffb37c"],["morado","#b39df5"],["coral","#ff8a7a"],["cian","#5cd6dd"],["menta","#7fe3b0"]
+  ["amarillo","#f7dc6f"],["verde","#a8dd8a"],["azul","#8ecdf0"],["morado","#c3aef0"],
+  ["rosa","#f7a8c4"],["naranja","#ffb98a"],["coral","#ff9d8a"],["cian","#7fdcd2"],["menta","#a9e5bb"]
 ];
 let HL = store.get("ar1_highlights", {});
 const HEADLINE_RE = /^[A-ZÁÉÍÓÚÑ¿?¡! ,;:()«»-]+$/;
@@ -642,26 +646,32 @@ function paintBlock(el){
 function paintAllBlocks(root){
   (root || document).querySelectorAll(".blk").forEach(paintBlock);
 }
-/* Barra flotante de subrayado (§9), estilo JW Library: UNA sola píldora
-   blanca junto a la selección, con dos estados. Estado compacto: botón de
-   color con tres círculos solapados (el color actual delante y otros dos
-   asomando detrás), papelera «Quitar» (solo al editar un subrayado ya
-   puesto), botón «Copiar» y «✕». Al tocar el botón de color, la misma
-   píldora pasa al estado paleta: los 9 colores en una fila de círculos sin
-   nombres; tocar un color lo aplica y cierra la barra (también en modo
-   edición, igual que hacía la barra anterior). Los subrayados se guardan
-   por valor hex ({s, e, c} en ar1_highlights), así que renovar la paleta
-   no altera el color de los subrayados ya guardados. */
+/* Barras flotantes de subrayado, estilo JW Library: DOS píldoras blancas
+   INDEPENDIENTES junto a la selección (§2 y §4 del prompt del dueño).
+   Barra de acciones (#hlact): botón de color con tres círculos solapados
+   (el color actual delante y otros dos asomando detrás), papelera «Quitar»
+   (solo al editar un subrayado ya puesto), botón «Copiar» y «✕». Es la
+   única que aparece al seleccionar texto. Barra de paleta (#hlpal): solo
+   los 9 círculos de colores pastel en una fila, sin iconos ni textos;
+   aparece junto a la de acciones al tocar su botón de color. Tocar un
+   color lo aplica y cierra ambas barras (también en modo edición). Los
+   subrayados se guardan por valor hex ({s, e, c} en ar1_highlights), así
+   que cambiar la paleta no altera el color de los subrayados ya guardados
+   (los de colores anteriores se siguen viendo con su color exacto). */
 let pendingSel = null;
 let suppressedSel = null; // selección cerrada con ✕: no reabrir la barra para ella
-let lastColor = HL_COLORS[0][1];
+let lastColor = (() => {
+  const saved = store.get("ar1_lastcolor", "");
+  return HL_COLORS.some(([,h]) => h === saved) ? saved : HL_COLORS[0][1];
+})();
 let barMode = "new", barRect = null;
 let barState = "closed"; // closed | compact | palette
 const ICON_TRASH = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9.5 7V4.8A.8.8 0 0 1 10.3 4h3.4a.8.8 0 0 1 .8.8V7"/><path d="M6.5 7l.9 12.2A1 1 0 0 0 8.4 20h7.2a1 1 0 0 0 1-.8L17.5 7"/><path d="M10 11v5.5M14 11v5.5"/></svg>';
 const ICON_COPY = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11.5" height="11.5" rx="2"/><path d="M5.5 14.5h-1A1.5 1.5 0 0 1 3 13V5.5A1.5 1.5 0 0 1 4.5 4H12a1.5 1.5 0 0 1 1.5 1.5v1"/></svg>';
 function hlDotsHTML(){
+  const act = frontColor();
   return HL_COLORS.map(([name,hex]) =>
-    '<button class="cdot" data-act="color" data-c="' + hex + '" style="background:' + hex + '" aria-label="' + name + '"></button>').join("");
+    '<button class="cdot' + (hex === act ? " on" : "") + '" data-act="color" data-c="' + hex + '" style="background:' + hex + '" aria-label="' + name + '"></button>').join("");
 }
 function placeNear(el, cx, top){
   const w = el.offsetWidth || 0;
@@ -673,7 +683,7 @@ function placeNear(el, cx, top){
   el.style.bottom = "auto";
 }
 function placeBar(){
-  const bar = $("#hlbar");
+  const bar = $("#hlact");
   if (barRect){
     const cx = barRect.left + barRect.width / 2;
     const bh = bar.offsetHeight || 40, m = 14;
@@ -687,6 +697,30 @@ function placeBar(){
     bar.style.left = "50%"; bar.style.transform = "translateX(-50%)"; bar.style.top = "auto"; bar.style.bottom = "64px";
   }
 }
+function placePalette(){
+  const pal = $("#hlpal"), act = $("#hlact");
+  if (!pal.classList.contains("open")) return;
+  const ph = pal.offsetHeight || 40, gap = 8, m = 14;
+  const actH = act.offsetHeight || 40;
+  const actTop = parseFloat(act.style.top);
+  if (barRect && !isNaN(actTop)){
+    const cx = barRect.left + barRect.width / 2;
+    // La paleta va pegada a la barra de acciones, del lado contrario a la
+    // selección (sin taparla): si las acciones quedaron debajo del texto,
+    // la paleta va debajo de ellas; si quedaron encima, va encima. Si en
+    // ese lado no cabe, se coloca al otro lado de la selección.
+    const below = actTop >= barRect.bottom;
+    let top = below ? actTop + actH + gap : actTop - gap - ph;
+    if (top + ph > window.innerHeight - 4 || top < 4){
+      top = below ? barRect.top - m - ph : barRect.bottom + m;
+      top = Math.max(4, Math.min(top, window.innerHeight - ph - 4));
+    }
+    placeNear(pal, cx, top);
+  } else {
+    // Sin rect de selección (acciones ancladas abajo): paleta justo encima.
+    pal.style.left = "50%"; pal.style.transform = "translateX(-50%)"; pal.style.top = "auto"; pal.style.bottom = (64 + actH + gap) + "px";
+  }
+}
 function frontColor(){
   if (barMode === "edit" && pendingSel){
     const hit = (HL[pendingSel.bid] || []).find(x => x.s === pendingSel.s && x.e === pendingSel.e);
@@ -695,14 +729,14 @@ function frontColor(){
   return lastColor;
 }
 function ovlBacks(front){
-  let b1 = HL_COLORS[7][1], b2 = HL_COLORS[3][1]; // cian y rosa, como en la foto
+  let b1 = HL_COLORS[7][1], b2 = HL_COLORS[4][1]; // cian y rosa, como en la foto
   if (front === b1) b1 = HL_COLORS[0][1];
   if (front === b2) b2 = HL_COLORS[0][1];
   if (b1 === b2) b2 = HL_COLORS[1][1];
   return [b1, b2];
 }
 function renderBarCompact(){
-  const bar = $("#hlbar");
+  const bar = $("#hlact");
   const front = frontColor(), backs = ovlBacks(front);
   bar.innerHTML =
     '<button class="hlcbtn" id="hlColorBtn" data-act="palette" aria-label="Color del subrayado">' +
@@ -714,15 +748,17 @@ function renderBarCompact(){
     '<button class="hlico" id="hlCancel" data-act="cancel" aria-label="Cerrar">✕</button>';
 }
 function showPalette(){
-  const bar = $("#hlbar");
-  bar.innerHTML = hlDotsHTML();
+  const pal = $("#hlpal");
+  pal.innerHTML = hlDotsHTML();
+  pal.classList.add("open");
   barState = "palette";
-  placeBar();
+  placePalette();
 }
 function showBar(mode, rect){
   barMode = mode; barRect = rect || null; barState = "compact";
   renderBarCompact();
-  $("#hlbar").classList.add("open");
+  $("#hlpal").classList.remove("open");
+  $("#hlact").classList.add("open");
   placeBar();
 }
 function fallbackCopy(txt){
@@ -739,7 +775,7 @@ function copyPendingText(){
     navigator.clipboard.writeText(txt).then(() => hideBar(), () => { fallbackCopy(txt); hideBar(); });
   } else { fallbackCopy(txt); hideBar(); }
 }
-function hideBar(){ $("#hlbar").classList.remove("open"); pendingSel = null; barState = "closed"; barTap = null; }
+function hideBar(){ $("#hlact").classList.remove("open"); $("#hlpal").classList.remove("open"); pendingSel = null; barState = "closed"; barTap = null; }
 function cancelBar(){
   // Al cerrar con ✕: recuerda la selección y quítala, para que el chequeo
   // pendiente (mouseup/selectionchange) no vuelva a mostrar la barra al
@@ -748,7 +784,7 @@ function cancelBar(){
   const sel = window.getSelection(); if (sel) sel.removeAllRanges();
   hideBar();
 }
-/* Activación de la barra con eventos de puntero, no con «click».
+/* Activación de las barras con eventos de puntero, no con «click».
    Causa raíz del «no funciona» en Chrome Android: la barra solo escuchaba
    click y nadie hacía preventDefault al tocarla, así que (1) el toque sobre
    la píldora podía colapsar la selección nativa y (2) el chequeo de
@@ -760,25 +796,26 @@ function cancelBar(){
    botón, siempre desde la selección capturada en pendingSel, y el click
    sintético posterior se traga para que no duplique ni cierre nada. */
 let barTap = null;
-const hlbarEl = $("#hlbar");
-hlbarEl.addEventListener("pointerdown", e => {
-  e.preventDefault(); e.stopPropagation();
-  const b = e.target && e.target.closest ? e.target.closest("[data-act]") : null;
-  barTap = b ? { act: b.dataset.act, c: b.dataset.c || null } : null;
+[$("#hlact"), $("#hlpal")].forEach(barEl => {
+  barEl.addEventListener("pointerdown", e => {
+    e.preventDefault(); e.stopPropagation();
+    const b = e.target && e.target.closest ? e.target.closest("[data-act]") : null;
+    barTap = b ? { act: b.dataset.act, c: b.dataset.c || null } : null;
+  });
+  barEl.addEventListener("pointerup", e => {
+    e.preventDefault(); e.stopPropagation();
+    const t = barTap; barTap = null;
+    if (!t) return;
+    const b = e.target && e.target.closest ? e.target.closest("[data-act]") : null;
+    if (!b || b.dataset.act !== t.act) return;
+    runBarAction(t.act, t.c);
+  });
+  barEl.addEventListener("pointercancel", () => { barTap = null; });
+  barEl.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); });
 });
-hlbarEl.addEventListener("pointerup", e => {
-  e.preventDefault(); e.stopPropagation();
-  const t = barTap; barTap = null;
-  if (!t) return;
-  const b = e.target && e.target.closest ? e.target.closest("[data-act]") : null;
-  if (!b || b.dataset.act !== t.act) return;
-  runBarAction(t.act, t.c);
-});
-hlbarEl.addEventListener("pointercancel", () => { barTap = null; });
-hlbarEl.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); });
 function runBarAction(act, c){
   if (act === "palette") showPalette();
-  else if (act === "color"){ if (c){ lastColor = c; applyColor(c); } }
+  else if (act === "color"){ if (c){ lastColor = c; store.set("ar1_lastcolor", c); applyColor(c); } }
   else if (act === "remove") removeHighlight();
   else if (act === "copy") copyPendingText();
   else if (act === "cancel") cancelBar();
@@ -845,7 +882,7 @@ document.addEventListener("mouseup", scheduleCheck);
 document.addEventListener("touchend", scheduleCheck);
 document.addEventListener("click", e => {
   const t = e.target;
-  if (t.closest && t.closest("#hlbar")) return;
+  if (t.closest && (t.closest("#hlact") || t.closest("#hlpal"))) return;
   const mark = t.closest ? t.closest("mark.hl") : null;
   if (mark){
     e.preventDefault();
