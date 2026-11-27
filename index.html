@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ayudas para las Reuniones</title>
 <meta name="description" content="Prepara y consulta el contenido de las reuniones, el texto diario y las ilustraciones.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#7b2d8b">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
 :root{
   --accent:#7b2d8b; --accent-dark:#5e2170;
@@ -41,6 +47,9 @@ main{max-width:720px;margin:0 auto;padding:14px 12px 90px}
 img.cimg{display:block;width:100%;height:auto;border-radius:12px}
 figure.cfig{margin:12px 0}
 figure.cfig figcaption{font-size:13.5px;color:var(--muted);margin-top:6px}
+.jwlink{display:inline-block;padding:9px 16px;border:1.5px solid var(--accent);color:var(--accent);border-radius:999px;font-weight:600;font-size:14.5px;text-decoration:none;background:#fff}
+.jwlink:active{background:#f1e9f6}
+.imglinks{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
 .thought img.cimg{margin-bottom:12px}
 .ilthumb{width:58px;height:58px;object-fit:cover;border-radius:10px;flex:none}
 .tag{display:inline-block;background:#e8f0fe;color:#2b5aa6;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
@@ -804,6 +813,21 @@ function figHTML(src, caption, alt){
   return '<figure class="cfig"><img class="cimg" src="' + esc(src) + '" alt="' + esc(alt || "") + '" loading="' + (imgSeq === 1 ? "eager" : "lazy") + '">' +
     (caption ? "<figcaption>" + esc(caption) + "</figcaption>" : "") + "</figure>";
 }
+/* Las imágenes de data.js pueden venir como texto («img/x.jpg») o como objeto
+   {src, caption, alt, asterisk} cuando en Base44 tenían pie de foto (visible),
+   descripción (texto alternativo) o nota de asterisco (también accesible). */
+function imgSrc(e){ return typeof e === "string" ? e : e.src; }
+function imgAlt(e, fallback){
+  if (typeof e === "string") return fallback || "";
+  const a = [e.alt, e.asterisk].filter(Boolean).join(" ");
+  return a || fallback || "";
+}
+function imgFig(e, fallbackAlt){
+  if (typeof e === "string") return imgHTML(e, fallbackAlt);
+  return e.caption ? figHTML(e.src, e.caption, imgAlt(e, fallbackAlt)) : imgHTML(e.src, imgAlt(e, fallbackAlt));
+}
+/* Imagen suelta (campo image de una parte): con pie si lo trae en data.js. */
+function oneImg(src, caption, alt){ return caption ? figHTML(src, caption, alt) : imgHTML(src, alt); }
 function wkOf(wi){ return WEEKS[(wi >= 0 && wi < WEEKS.length) ? wi : 0]; }
 function wkPrefix(wi){ return wi === 0 ? "" : "w" + wi + "-"; }
 function wkSuffix(wi){ return wi === 0 ? "" : "-w" + wi; }
@@ -836,7 +860,7 @@ function tesorosHTML(wi){
   return screenBar(id, "Tesoros de la Biblia", wkRoute("tesoros", wi)) +
     head("Tesoros de la Biblia", chips([wk.range, "Lectura: " + t.reading, t.duration])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(t.title) + "</h1>" +
-    (t.image ? imgHTML(t.image, t.title) : "") +
+    (t.image ? oneImg(t.image, t.imageCaption, t.title) : "") +
     (t.objective ? "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, p + "tesoros-obj") : "") +
     "<h2 class=\"sec\">Desarrollo</h2>" + blocks(t.development, p + "tesoros-dev") +
     weeksListHTML("tesoros", wi, "📖", w2 => w2.tesoros ? w2.tesoros.title : "Sin contenido") +
@@ -886,7 +910,7 @@ function perlasHTML(wi){
   /* Imagen de encabezado de la semana (solo semanas que la traen en
      data.js): va arriba de la lista, antes del texto introductorio, con
      su pie de foto cuando la semana lo trae. */
-  if (wk.perlasImage) items += wk.perlasImageCaption ? figHTML(wk.perlasImage, wk.perlasImageCaption, "Busquemos perlas escondidas") : imgHTML(wk.perlasImage, "Busquemos perlas escondidas");
+  if (wk.perlasImage) items += wk.perlasImageCaption ? figHTML(wk.perlasImage, wk.perlasImageCaption, wk.perlasImageCaption) : imgHTML(wk.perlasImage, "Busquemos perlas escondidas");
   /* Texto introductorio de la semana (solo semanas que lo traen en data.js):
      va arriba de la lista, en la misma tarjeta .pearl. */
   if (wk.perlasIntro) items += '<div class="pearl">' + blocks(wk.perlasIntro, base + "intro") + "</div>";
@@ -914,10 +938,10 @@ function vidaHTML(wi){
   let h = screenBar(id, "Nuestra vida cristiana", wkRoute("vida", wi)) +
     head("Nuestra vida cristiana", chips([wk.range, v.subtitle, v.duration])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>";
-  if (v.image && v.imageAfterSection == null) h += imgHTML(v.image, v.title);
+  if (v.image && v.imageAfterSection == null) h += oneImg(v.image, v.imageCaption, v.imageAlt || v.title);
   h += v.sections.map((s,i) => {
     let sh = "<h2 class=\"sec\">" + esc(s.label) + "</h2>" + blocks(s.text, p + "vida-" + i);
-    if (v.image && v.imageAfterSection === i) sh += imgHTML(v.image, v.title);
+    if (v.image && v.imageAfterSection === i) sh += oneImg(v.image, v.imageCaption, v.imageAlt || v.title);
     return sh;
   }).join("");
   return h + weeksListHTML("vida", wi, "👥", w2 => w2.vida ? w2.vida.title : "Sin contenido") + noteBox(id);
@@ -977,7 +1001,7 @@ function atalayaHTML(wi){
     let h = "";
     if (p.heading) h += "<h2 class=\"sec\">" + esc(p.heading) + "</h2>";
     h += '<div class="qline">' + p.num + ". " + linkify(esc(p.q)) + "</div>";
-    if (p.image) h += figHTML(p.image, p.imageCaption, p.q);
+    if (p.image) h += figHTML(p.image, p.imageCaption, p.imageAsterisk ? (p.q ? p.q + " " + p.imageAsterisk : p.imageAsterisk) : p.q);
     h += blocks(p.a, bp + "ata-" + p.num.replace(/\s/g,"") + "-a");
     if (p.extraQ){
       h += '<div class="extrabox"><div class="k">Pregunta adicional</div>' +
@@ -1010,14 +1034,15 @@ function textoHTML(d){
   const imgs = d.images || [];
   let mainImg = "", extraImgs = "";
   if (imgs.length){
-    mainImg = imgHTML(imgs[0], d.ref);
-    if (imgs.length > 1 && d.example) extraImgs = imgs.slice(1).map(s => imgHTML(s, d.ref)).join("");
-    else if (imgs.length > 1) mainImg += imgs.slice(1).map(s => imgHTML(s, d.ref)).join("");
+    mainImg = imgFig(imgs[0], d.ref);
+    if (imgs.length > 1 && d.example) extraImgs = imgs.slice(1).map(s => imgFig(s, d.ref)).join("");
+    else if (imgs.length > 1) mainImg += imgs.slice(1).map(s => imgFig(s, d.ref)).join("");
   }
   let h = screenBar(id, "Texto diario — " + d.label, "#/texto/" + d.date) +
     head(d.label, chips([d.weekday])) +
     blocks(d.verse, id + "-verse") +
     '<div class="pref" style="font-weight:700;font-size:19px">' + linkify(esc(d.ref)) + "</div>" +
+    (d.link ? '<div style="margin:12px 0 4px"><a class="jwlink" href="' + esc(d.link) + '" target="_blank" rel="noopener">Ver en JW.org</a></div>' : "") +
     mainImg +
     "<h2 class=\"sec\">COMENTARIO</h2>" + blocks(d.comment, id + "-comment");
   if (d.example) h += "<h2 class=\"sec\">EJEMPLO</h2>" + extraImgs + blocks(d.example, id + "-example");
@@ -1027,7 +1052,7 @@ function textoHTML(d){
 function ilustracionesHTML(){
   const rows = DATA.illustrations.map((x,i) =>
     '<button class="row" data-go="#/ilustracion/' + i + '">' +
-    (x.images && x.images.length ? '<img class="ilthumb" src="' + esc(x.images[0]) + '" alt="" loading="lazy">' : '<span class="ric">🖼️</span>') +
+    (x.images && x.images.length ? '<img class="ilthumb" src="' + esc(imgSrc(x.images[0])) + '" alt="" loading="lazy">' : '<span class="ric">🖼️</span>') +
     '<span>' +
     esc((x.num ? "N.º " + x.num + " — " : "") + x.title) + "<small>" + esc(x.bibleText || "Ilustración") + '</small></span><span class="arr">›</span></button>').join("");
   return head("Ilustraciones", chips(["14 ilustraciones"])) + '<div class="card">' + rows + "</div>";
@@ -1039,12 +1064,16 @@ function ilustracionHTML(x, i){
   return screenBar(id, "Ilustración — " + x.title, "#/ilustracion/" + i) +
     head(fullTitle) +
     "<h2 class=\"sec\">TÍTULO</h2>" + blocks(fullTitle.toUpperCase(), id + "-tit") +
-    (x.images ? x.images.map(s => imgHTML(s, x.title)).join("") : "") +
+    (x.images ? x.images.map(s => imgFig(s, x.title)).join("") : "") +
     field("EJEMPLO", x.example, "eje") +
     field("EXPLICACIÓN", x.explanation, "exp") +
     field("ENSEÑANZA", x.teaching, "ens") +
     field("APLICACIÓN", x.application, "apl") +
     field("Texto bíblico", x.bibleText, "bib") +
+    ((x.link || x.source) ? '<div class="imglinks">' +
+      (x.link ? '<a class="jwlink" href="' + esc(x.link) + '" target="_blank" rel="noopener">Enlace oficial</a>' : "") +
+      (x.source ? '<a class="jwlink" href="' + esc(x.source) + '" target="_blank" rel="noopener">Fuente</a>' : "") +
+      "</div>" : "") +
     noteBox(id);
 }
 function sugerenciasHTML(){

@@ -10,7 +10,8 @@ const DATA = {
    "duration": "10 minutos",
    "objective": "Jehová eligió a Gedeón para liberar a Israel de los madianitas, a pesar de que él se sentía el más pequeño de su familia y de su tribu. Jehová vio más allá de sus debilidades y le dio la fuerza que necesitaba. Este discurso nos ayudará a ver cómo Jehová nos fortalece a nosotros también, a pesar de nuestras limitaciones.",
    "development": "1. Gedeón fue humilde y dudó de sí mismo Jueces 6:15 dice: «Jehová, ¿cómo voy a salvar a Israel? Mi clan es el más pequeño de Manasés, y yo soy el más insignificante de la casa de mi padre». Gedeón no se sentía capaz. Pero Jehová no lo eligió por su fuerza ni por su posición, sino por su corazón dispuesto. Jehová vio que Gedeón era humilde y estaba dispuesto a obedecer. Así mismo, Jehová no nos elige por nuestras habilidades, sino por nuestra disposición a servirle. (1 Sam. 16:7) Idea de aplicación: Cuando nos sintamos incapaces, recordemos que Jehová valora nuestra humildad y nuestra disposición, no nuestra perfección. Él puede usarnos a pesar de nuestras debilidades.\n\n2. Jehová le dio a Gedeón la seguridad que necesitaba Jueces 6:16 dice: «Yo estaré contigo». Jehová no le prometió a Gedeón que sería fácil, pero le aseguró que estaría con él. Gedeón pidió señales para confirmar que Jehová lo estaba guiando, y Jehová, con paciencia, se las dio (Jue. 6:36-40). Jehová entiende nuestras dudas y nos da la seguridad que necesitamos a través de su Palabra y de la oración. Idea de aplicación: Cuando tengamos dudas, oremos a Jehová y busquemos su guía en la Biblia. Él nos dará la confianza para seguir adelante, como lo hizo con Gedeón.\n\n3. Gedeón aceptó el encargo a pesar de su miedo En Jueces 6:36-40, Gedeón pidió dos veces una señal para asegurarse de que Jehová lo estaba guiando. A pesar de su miedo, Gedeón obedeció y destruyó el altar de Baal (Jue. 6:25-27). Aunque tuvo miedo, lo hizo de noche, pero lo hizo. Jehová no espera que seamos valientes sin miedo, sino que actuemos a pesar del miedo. Idea de aplicación: El valor no es la ausencia de miedo, sino actuar a pesar de él. Cuando Jehová nos pida algo difícil, podemos hacerlo con su ayuda, aunque sintamos miedo.\n\n4. Jehová redujo el ejército para demostrar su poder En Jueces 7:2, Jehová le dijo a Gedeón: «Tienes demasiada gente conmigo para que yo entregue a Madián en tus manos. Israel podría vanagloriarse contra mí y decir: \"Mi propia mano me ha salvado\"». Jehová redujo el ejército de 32.000 a 300 hombres. Esto demostró que la victoria venía de Jehová, no de la fuerza humana. Cuando dependemos de Jehová, él puede hacer grandes cosas con pocos recursos. Idea de aplicación: No necesitamos ser muchos ni tener grandes recursos para que Jehová nos use. Lo importante es confiar en él y dejar que él demuestre su poder.\n\n5. Gedeón obedeció instrucciones que parecían extrañas Jueces 7:16-18 describe cómo Gedeón dividió a los 300 hombres en tres grupos, les dio trompetas y antorchas dentro de jarras, y les dijo que hicieran lo mismo que él. Esto no parecía una estrategia militar lógica, pero Gedeón obedeció. El resultado fue una gran victoria (Jue. 7:19-22). Jehová a veces nos pide cosas que no entendemos, pero si obedecemos, veremos su bendición. Idea de aplicación: Cuando las instrucciones de Jehová no tengan sentido para nosotros, obedezcamos de todos modos. Él sabe lo que hace y nos bendecirá por nuestra obediencia.\n\nCONCLUSIÓN Gedeón era un hombre común con debilidades, dudas y miedos, pero Jehová lo usó para hacer algo extraordinario. Lo mismo puede pasar con nosotros. Si somos humildes, confiamos en Jehová y obedecemos sus instrucciones, él nos dará la fuerza que necesitamos para cumplir con nuestras asignaciones. No dejemos que nuestras debilidades nos detengan; dejemos que Jehová nos fortalezca.\n\n¿QUÉ SIGNIFICA ESTO PARA NOSOTROS? Jehová no busca personas perfectas, sino corazones dispuestos. Nuestras debilidades no son un obstáculo para Jehová; son una oportunidad para que él demuestre su poder. Cuando nos sentimos incapaces, podemos orar a Jehová y pedirle que nos dé valor y confianza. La obediencia, aun cuando no entendamos todo, trae bendiciones. Como Gedeón, podemos hacer cosas extraordinarias con la ayuda de Jehová.",
-   "image": "img/tesoros.jpg"
+   "image": "img/tesoros.jpg",
+   "imageCaption": "Sigamos orándole a Jehová con fe mientras esperamos a que él actúe."
   },
   "perlas": [
    {
@@ -359,9 +360,16 @@ const DATA = {
    "example": "Imaginemos a una hermana que está pasando por una situación familiar muy difícil. Llega a la reunión preocupada y con pocas fuerzas. Un hermano se acerca, la recibe con cariño y se interesa sinceramente por ella. No la presiona para que explique lo que le sucede, sino que la escucha con paciencia. Más tarde, un anciano la visita y, con amabilidad, le ofrece apoyo espiritual basado en la Biblia. También se asegura de que reciba la ayuda práctica que necesita. La hermana siente que no está sola y que la congregación es un lugar seguro donde puede encontrar consuelo. Así, los hermanos se convierten en un refugio, imitando las cualidades de Jehová: amor, confiabilidad y estabilidad.",
    "lessons": "1. Podemos ser un refugio emocional y espiritual para los demás. En estos tiempos difíciles, muchos hermanos llevan cargas que no siempre conocemos. Recibirlos con cariño y escucharlos con paciencia es una forma práctica de ser un refugio, como lo es Jehová. 2. Imitar a Jehová significa ser confiables. Jehová siempre cumple sus promesas y nunca abandona a sus siervos. Cuando somos constantes y cumplimos lo que prometemos, reflejamos su confiabilidad y damos estabilidad a quienes nos rodean. 3. La estabilidad espiritual se consigue fortaleciendo nuestra fe. Estudiar la Biblia con regularidad y meditar en las cualidades de Jehová nos ayuda a ser constantes en nuestro servicio, aun cuando todo a nuestro alrededor cambia. 4. Los ancianos pueden ser como un refugio protector. Si son amables, empáticos y están dispuestos a ayudar sin juzgar, los hermanos se sentirán seguros y buscarán su apoyo en momentos de necesidad. 5. La confidencialidad fortalece la confianza. Los ancianos y todos los que ayudan a otros deben tratar los asuntos personales con discreción. De ese modo, los hermanos se sentirán seguros de compartir sus problemas sin miedo a ser juzgados. 6. Los jóvenes también pueden convertirse en una fuente de estabilidad. Pueden recibir bien a los hermanos en las reuniones, escuchar con empatía y dar ánimo. Incluso los jóvenes pueden imitar a Jehová al ser amorosos y confiables. 7. Conocer mejor a Jehová nos ayuda a imitarlo. La Biblia lo describe como una Roca, un Padre, un Pastor, un Refugio y un Escudo. Cuanto más aprendamos sobre sus cualidades, mejor podremos reflejarlas en nuestra forma de tratar a los demás.",
    "images": [
-    "img/td-2026-11-27.jpg",
-    "img/td-2026-11-27-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-27.jpg",
+     "caption": "Ser un refugio para los demás imitando las cualidades de Jehová, nuestra Roca."
+    },
+    {
+     "src": "img/td-2026-11-27-2.jpg",
+     "caption": "Los ancianos son un refugio para los hermanos que están pasando por situaciones difíciles."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024442"
   },
   {
    "date": "2026-11-26",
@@ -373,8 +381,12 @@ const DATA = {
    "example": "Imaginemos que una persona tiene un dolor de muelas intenso. Al principio, toma una pastilla para aliviarlo, pero el dolor no desaparece. Sin embargo, cuando visita al dentista, este le soluciona el problema de forma definitiva. De manera similar, aunque hoy vivimos en un mundo lleno de sufrimiento, sabemos que Jesús tiene el poder de eliminar el dolor por completo.",
    "lessons": "1. Jesús se compadece de nuestro sufrimiento. Aunque no siempre comprendamos por qué sufrimos, podemos confiar en que Jesús entiende nuestro dolor y desea ayudarnos. 2. La esperanza del Reino nos fortalece. Saber que el sufrimiento terminará bajo el reinado de Jesús nos da fuerzas para seguir adelante con fe y esperanza. 3. Podemos imitar la compasión de Jesús. Si alguien sufre, no debemos ignorarlo. Podemos escuchar, ayudar y mostrar interés genuino, tal como hizo Jesús. 4. Jehová nos escucha cuando oramos. Aunque no siempre recibamos una respuesta inmediata, podemos estar seguros de que Jehová escucha nuestras oraciones y nos dará el apoyo que necesitamos. 5. El dolor no durará para siempre. Aunque hoy enfrentamos dificultades, sabemos que Jehová tiene un propósito y que un día eliminará todo sufrimiento. Esta esperanza nos ayuda a mantenernos firmes. 6. Debemos seguir confiando en Jehová. Aunque no siempre comprendamos sus decisiones, podemos confiar en que Jehová sabe lo que es mejor para nosotros y que cumplirá sus promesas.",
    "images": [
-    "img/td-2026-11-26.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-26.jpg",
+     "caption": "Los siervos ministeriales imitan a Jesús sirviendo de diferentes formas a los demás."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024642"
   },
   {
    "date": "2026-11-25",
@@ -386,8 +398,12 @@ const DATA = {
    "example": "Imaginemos que alguien recibe una carta de un amigo muy querido. Al leer el nombre del remitente, se siente feliz y seguro, porque sabe quién le escribe. De manera parecida, cuando conocemos el nombre de Jehová y lo usamos, sentimos que tenemos una relación cercana con él.",
    "lessons": "1. El nombre de Jehová nos acerca a él. Cuando usamos su nombre en oración y en nuestras conversaciones, demostramos que tenemos una relación personal con él. 2. Debemos usar el nombre de Jehová con respeto. No debemos usarlo de manera irrespetuosa ni en vano. Cuando hablamos de Jehová, debemos hacerlo con reverencia y gratitud. 3. Predicar el nombre de Jehová es un privilegio. Jehová nos ha dado la oportunidad de dar a conocer su nombre a otras personas. Esto nos permite ayudar a otros a conocer a Dios y a acercarse a él. 4. El nombre de Jehová nos da confianza. Saber que Jehová es el Altísimo nos da seguridad, porque sabemos que él tiene el poder de ayudarnos en cualquier situación. 5. Debemos defender el nombre de Jehová. Cuando alguien habla mal de Jehová o de su nombre, debemos defenderlo con respeto y con la verdad de la Biblia. 6. El nombre de Jehová nos recuerda su amor. Jehová nos ama y quiere que lo conozcamos. Su nombre es una muestra de su deseo de tener una relación cercana con nosotros. 7. Recuerda que Jehová nos ama y que su nombre debe ser santificado. Cuando oramos, debemos hacerlo con respeto, reconociendo que Jehová es santo y que su nombre merece ser honrado.",
    "images": [
-    "img/td-2026-11-25.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-25.jpg",
+     "caption": "El amor y la compasión nos impulsan a hacer todo lo que esté en nuestra mano para que las personas escuchen el mensaje."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024406"
   },
   {
    "date": "2026-11-24",
@@ -399,8 +415,16 @@ const DATA = {
    "example": "Imaginemos a un niño que se despierta en medio de la noche durante una tormenta. Tiene miedo, pero cuando corre a la cama de su papá, se siente seguro. De manera similar, cuando nos sentimos afligidos, podemos correr a Jehová en oración y encontrar consuelo en su presencia.",
    "lessons": "1. Confiar en Jehová cuando nos sentimos afligidos. Cuando enfrentemos pruebas, debemos recordar que Jehová está al tanto de lo que nos sucede y que nos da la fortaleza para seguir adelante. 2. Recordar que Jehová se acuerda de nosotros. Aunque las pruebas parezcan no tener fin, Jehová no nos olvida. Él ve nuestro sufrimiento y nos ayuda a superarlo. 3. Buscar la ayuda de Jehová en oración cuando sintamos que nuestras pruebas nos agobian. Él nos escucha y nos fortalece. 4. Aceptar que Jehová tiene un plan para nosotros, aunque no siempre lo entendamos. Proverbios 3:5, 6 nos recuerda que debemos confiar en Jehová con todo nuestro corazón y no apoyarnos en nuestro propio entendimiento. 5. Ser como David, quien en medio de sus pruebas buscó a Jehová y encontró consuelo en su presencia (Sal. 73:14). 6. Seguir el ejemplo de la viuda pobre, quien dio lo poco que tenía con todo su corazón (Mar. 12:41-44). 7. Ser como María, quien guardó las palabras de Jesús en su corazón y meditó en ellas (Luc. 2:19).",
    "images": [
-    "img/td-2026-11-24.jpg",
-    "img/td-2026-11-24-2.jpg"
+    {
+     "src": "img/td-2026-11-24.jpg",
+     "caption": "Resolver las dudas con la Biblia y recuperar la paz confiando en Jehová.",
+     "asterisk": "DESCRIPCIÓN DE LA IMAGEN: Para saber lo que Jehová opina sobre su situación, una hermana joven busca consejos en la Biblia."
+    },
+    {
+     "src": "img/td-2026-11-24-2.jpg",
+     "caption": "Tengamos siempre presentes las promesas de Jehová.",
+     "asterisk": "DESCRIPCIÓN DE LAS IMÁGENES: Un hermano se imagina en el Paraíso mientras limpia una ventana para ganar dinero para mantener a su familia."
+    }
    ]
   },
   {
@@ -426,8 +450,12 @@ const DATA = {
    "example": "Imaginemos a un hombre que es responsable de una pequeña tienda. Si no puede administrar bien su propio negocio, ¿cómo podría administrar uno más grande? De manera similar, si un hombre no puede cuidar de su familia, ¿cómo podrá cuidar de la congregación?",
    "lessons": "1. La familia es lo primero. Antes de asumir responsabilidades en la congregación, un hombre debe asegurarse de que su familia está bien atendida. 2. El ejemplo en casa es fundamental. La manera en que tratamos a nuestra familia refleja nuestra espiritualidad y nuestra capacidad para ayudar a otros. 3. Ser un buen esposo y padre es una responsabilidad. Jehová espera que los hombres cuiden de sus familias con amor y dedicación, no solo con palabras, sino con acciones. 4. La congregación necesita líderes que sean buenos ejemplos en casa. Un hombre que es buen esposo y padre está mejor preparado para ayudar a otros en la congregación. 5. No debemos descuidar a nuestra familia por las responsabilidades en la congregación. Aunque servir a Jehová es importante, nuestra familia también necesita nuestra atención y cuidado. 6. Debemos orar por sabiduría para cuidar de nuestra familia. Jehová nos dará la sabiduría que necesitamos para ser buenos esposos, padres y siervos en la congregación.",
    "images": [
-    "img/td-2026-11-22.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-22.jpg",
+     "caption": "Los cabezas de familia les enseñan a sus hijos a participar en diferentes aspectos del servicio sagrado."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024643"
   },
   {
    "date": "2026-11-21",
@@ -439,8 +467,14 @@ const DATA = {
    "example": "Imaginemos a un testigo en un juicio. Su trabajo es decir la verdad sobre lo que vio y escuchó. De manera similar, nosotros somos testigos de Jehová: hablamos de lo que hemos aprendido sobre él y de cómo ha cambiado nuestra vida.",
    "lessons": "1. Ser testigos de Jehová es un privilegio. Jehová nos ha dado la oportunidad de hablar de él y de su propósito. Esto nos permite ayudar a otros a conocer a Dios. 2. Debemos ser testigos con nuestras palabras y acciones. No basta con hablar de Jehová; también debemos demostrar con nuestra conducta que somos sus siervos. 3. La predicación es una forma de demostrar nuestro amor por Jehová. Cuando predicamos, estamos mostrando que amamos a Jehová y que queremos que otros también lo conozcan. 4. Ser testigo de Jehová requiere valentía. A veces, hablar de Jehová puede ser difícil, pero debemos recordar que él está con nosotros y nos da la fuerza para hacerlo. 5. Nuestro ejemplo puede ayudar a otros a conocer a Jehová. Las personas observan nuestra conducta y pueden sentirse motivadas a conocer a Jehová por nuestro ejemplo. 6. Debemos estar preparados para hablar de Jehová en cualquier momento. Siempre debemos estar listos para dar una respuesta sobre nuestra fe y sobre la esperanza que tenemos.",
    "images": [
-    "img/td-2026-11-21.jpg",
-    "img/td-2026-11-21-2.jpg"
+    {
+     "src": "img/td-2026-11-21.jpg",
+     "caption": "Pídale valor a Dios."
+    },
+    {
+     "src": "img/td-2026-11-21-2.jpg",
+     "caption": "El amor a Jehová y al prójimo lo ayudarán a disfrutar más de la predicación."
+    }
    ]
   },
   {
@@ -453,9 +487,16 @@ const DATA = {
    "example": "Imaginemos a un padre que está atento a su hijo pequeño. Cuando el niño lo llama, el padre deja lo que está haciendo y corre a ayudarlo. De manera similar, Jehová está atento a nuestras oraciones y siempre está dispuesto a ayudarnos.",
    "lessons": "1. Jehová escucha nuestras oraciones. No importa lo que digamos, Jehová siempre nos escucha. Podemos acudir a él en cualquier momento y confiar en que nos responderá. 2. Debemos orar con confianza. Saber que Jehová nos escucha nos da la confianza para orar con sinceridad y sin miedo. 3. La oración fortalece nuestra relación con Jehová. Cuando oramos, nos acercamos a Jehová y fortalecemos nuestra amistad con él. 4. Jehová responde a nuestras oraciones en el momento adecuado. A veces, la respuesta no llega de inmediato, pero Jehová siempre responde en el momento adecuado y de la mejor manera. 5. Debemos ser constantes en la oración. No debemos orar solo cuando tenemos problemas; debemos hacerlo todos los días, para mantenernos cerca de Jehová.",
    "images": [
-    "img/td-2026-11-20.jpg",
-    "img/td-2026-11-20-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-20.jpg",
+     "caption": "Jehová contesta nuestras oraciones dándonos fuerzas, sabiduría y paz interior."
+    },
+    {
+     "src": "img/td-2026-11-20-2.jpg",
+     "caption": "El libro de los Salmos nos asegura que Jehová está cerca de los que tienen el corazón destrozado."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024681"
   },
   {
    "date": "2026-11-19",
@@ -467,9 +508,16 @@ const DATA = {
    "example": "Imaginemos a dos amigos que no se han visto en mucho tiempo. Uno de ellos decide llamar al otro y proponerle que se encuentren. Cuando lo hacen, su amistad se fortalece. De manera similar, cuando nos acercamos a Jehová, nuestra relación con él se hace más fuerte.",
    "lessons": "1. Jehová quiere que nos acerquemos a él. No debemos pensar que Jehová está lejos o que no le importamos. Él desea tener una relación cercana con nosotros. 2. Debemos esforzarnos por conocer a Jehová. Para acercarnos a él, necesitamos estudiar su Palabra y aprender más sobre su personalidad y su propósito. 3. La oración nos ayuda a acercarnos a Jehová. Cuando oramos, hablamos con Jehová y le expresamos nuestros sentimientos. Esto fortalece nuestra amistad con él. 4. Debemos dejar atrás las malas acciones. Para acercarnos a Jehová, debemos abandonar los malos hábitos y esforzarnos por vivir de acuerdo con sus principios. 5. Jehová se acerca a quienes se acercan a él. Si nos esforzamos por acercarnos a Jehová, él también se acercará a nosotros y nos ayudará a mantenernos cerca de él.",
    "images": [
-    "img/td-2026-11-19.jpg",
-    "img/td-2026-11-19-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-19.jpg",
+     "caption": "Acercarse al Dios vivo lo ayudará a permanecer fiel."
+    },
+    {
+     "src": "img/td-2026-11-19-2.jpg",
+     "caption": "Nuestra manera de afrontar los problemas forma parte de una cuestión mucho más grande."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024441"
   },
   {
    "date": "2026-11-18",
@@ -481,9 +529,16 @@ const DATA = {
    "example": "",
    "lessons": "No nos dejemos arrastrar por nuevas ideas que contradicen los principios bíblicos. Antes de aceptar cualquier enseñanza, debemos comprobar que está de acuerdo con la Palabra de Jehová. Como dice 1 Tesalonicenses 5:21, debemos comprobar todas las cosas y aferrarnos a lo que está bien. Esto es lo que nos permite caminar con firmeza, con un corazón fortalecido por la bondad inmerecida de Jehová y no por ideas humanas. Confiemos en Jehová y sigamos firmes en su camino. (Esta entrada no muestra sección de EJEMPLO.)",
    "images": [
-    "img/td-2026-11-18.jpg",
-    "img/td-2026-11-18-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-18.jpg",
+     "caption": "Pedro entra en la casa de Cornelio."
+    },
+    {
+     "src": "img/td-2026-11-18-2.jpg",
+     "caption": "Pedro fue humilde y les dio el mérito a Jehová y a Jesús por un milagro que hizo. Nosotros también podemos demostrar humildad haciendo cosas por los demás sin esperar reconocimiento ni alabanzas."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025321"
   },
   {
    "date": "2026-11-16",
@@ -495,8 +550,13 @@ const DATA = {
    "example": "Imaginemos a un agricultor que siembra sus semillas y luego espera a que crezcan. Él hace su parte: prepara la tierra, siembra y riega. Pero sabe que el crecimiento depende de Jehová, que envía la lluvia y el sol. De manera similar, nosotros debemos hacer nuestra parte y confiar en que Jehová bendecirá nuestros esfuerzos.",
    "lessons": "1. Confiar en Jehová con nuestros planes. Antes de tomar una decisión importante, debemos orar a Jehová y pedirle que nos guíe. Esto nos ayudará a tomar mejores decisiones. 2. Reconocer que Jehová sabe lo que es mejor. A veces, nuestros planes no son los mejores para nosotros. Jehová conoce el futuro y sabe lo que nos conviene. 3. Esforzarnos y confiar en Jehová. Poner nuestros planes en manos de Jehová no significa que no debamos hacer nada. Debemos esforzarnos y, al mismo tiempo, confiar en que Jehová bendecirá nuestros esfuerzos. 4. Aceptar que los planes de Jehová son mejores que los nuestros. Cuando nuestros planes no salen como esperábamos, no debemos desanimarnos. Jehová tiene un propósito y sabe lo que hace. 5. Orar antes de tomar decisiones. La oración nos ayuda a acercarnos a Jehová y a pedirle sabiduría para tomar las decisiones correctas.",
    "images": [
-    "img/td-2026-11-16.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-16.jpg",
+     "caption": "Los matrimonios cristianos tienen en cuenta los principios bíblicos al tomar decisiones sobre su futuro.",
+     "asterisk": "DESCRIPCIÓN DE LAS IMÁGENES: Un matrimonio cristiano mantiene el contacto con su hija, que está trabajando junto a su esposo en la construcción de un Salón del Reino."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025326"
   },
   {
    "date": "2026-11-15",
@@ -508,8 +568,13 @@ const DATA = {
    "example": "Pensemos en un esposo que, al tener un desacuerdo con su esposa, podría imponer su opinión levantando la voz o usando su autoridad. Sin embargo, decide escucharla con atención, hablarle con respeto y buscar juntos una solución. Aunque tiene la responsabilidad de dirigir a su familia, no la utiliza para dominarla, sino para cuidarla y hacerla sentir amada. Así demuestra que está imitando la manera humilde y apacible en que Jesús trató a sus discípulos.",
    "lessons": "1. El amor se demuestra con el trato diario. Efesios 5:25 no solo pide a los esposos que amen a sus esposas, sino que las amen como Cristo amó a la congregación. Esto implica demostrar cariño, interés y consideración mediante las palabras y las acciones. 2. La autoridad nunca debe utilizarse para dominar. Jesús tenía autoridad sobre sus discípulos, pero jamás la usó para intimidarlos o hacerlos sentir inferiores. Los esposos pueden imitarlo tratando a sus esposas con dignidad y evitando cualquier actitud autoritaria. 3. La humildad fortalece el matrimonio. Jesús estuvo dispuesto a servir a sus discípulos. De igual manera, un esposo humilde no piensa que su esposa debe atenderlo en todo, sino que busca oportunidades para ayudarla y hacerle la vida más agradable. 4. La apacibilidad requiere autocontrol. Ser apacible no significa ser débil. Un esposo demuestra fortaleza cuando controla su enojo, evita las palabras hirientes y sabe hablar con calma incluso cuando está bajo presión. 5. Las palabras deben transmitir alivio y seguridad. Jesús invitó a las personas a acercarse a él porque era apacible y humilde. Los esposos pueden imitarlo haciendo que sus esposas se sientan escuchadas, respetadas y tranquilas al hablar con ellos.",
    "images": [
-    "img/td-2026-11-15.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-15.jpg",
+     "caption": "El esposo que es fiel se niega a ver pornografía.",
+     "asterisk": "DESCRIPCIÓN DE LA IMAGEN: Un Testigo está en su lugar de trabajo y sus compañeros intentan que mire una revista pornográfica"
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025241"
   },
   {
    "date": "2026-11-14",
@@ -521,8 +586,12 @@ const DATA = {
    "example": "Imaginemos a un imán que atrae objetos de metal. Aunque no veamos la fuerza, sabemos que está ahí porque los objetos se mueven hacia el imán. De manera similar, Jehová atrae a las personas hacia Jesús, aunque no siempre veamos cómo lo hace.",
    "lessons": "1. Jehová es quien atrae a las personas. No debemos pensar que es por nuestros esfuerzos que alguien conoce la verdad. Jehová es quien toca el corazón de las personas. 2. Debemos ser pacientes con quienes estudian la Biblia. No todas las personas aceptan la verdad de inmediato. Debemos ser pacientes y dejar que Jehová trabaje en su corazón. 3. Valorar el privilegio de conocer a Jehová. No todos tienen la oportunidad de conocer a Jehová. Debemos agradecerle por habernos atraído hacia él. 4. Orar por las personas a las que predicamos. Debemos pedirle a Jehová que toque el corazón de las personas a las que estamos predicando. 5. Confiar en que Jehová hará su parte. Nosotros hacemos nuestra parte predicando, pero Jehová es quien atrae a las personas hacia Jesús.",
    "images": [
-    "img/td-2026-11-14.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-14.jpg",
+     "caption": "Los que comen del pan y beben del vino en la Conmemoración son un grupo pequeño, pero “todo” el que demuestra fe en Jesús puede recibir vida eterna."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024684"
   },
   {
    "date": "2026-11-13",
@@ -534,8 +603,15 @@ const DATA = {
    "example": "Imaginemos a un viajero que llega a un cruce de caminos. Un camino lleva a un lugar seguro y hermoso, mientras que el otro lleva a un lugar peligroso. El viajero debe elegir qué camino tomar. De manera similar, Jehová nos pone delante dos caminos, y debemos elegir el que nos lleva a la vida.",
    "lessons": "1. Jehová nos ha dado libertad de elección. No nos obliga a servirle; nos da la oportunidad de elegir por nosotros mismos. 2. Nuestras decisiones tienen consecuencias. Lo que elegimos hoy afectará nuestro futuro y el de nuestros descendientes. Debemos elegir con sabiduría. 3. Jehová nos anima a elegir la vida. Él quiere que vivamos y que seamos felices. Por eso, nos da consejos que nos ayudan a tomar buenas decisiones. 4. Debemos pensar en las consecuencias de nuestras decisiones. Antes de tomar una decisión, debemos pensar en cómo afectará nuestra relación con Jehová y con otros. 5. Elegir la vida beneficia a nuestros descendientes. Cuando tomamos buenas decisiones, no solo nos beneficiamos nosotros, sino también nuestros hijos y nietos.",
    "images": [
-    "img/td-2026-11-13.jpg",
-    "img/td-2026-11-13-2.jpg"
+    {
+     "src": "img/td-2026-11-13.jpg",
+     "caption": "Si obedecemos a Jehová, podremos vivir en una Tierra paradisiaca no solo por cientos de años, sino por toda la eternidad."
+    },
+    {
+     "src": "img/td-2026-11-13-2.jpg",
+     "caption": "Las últimas palabras de David a Salomón nos ayudan a ver que, si obedecemos a Jehová, él nos dará sabiduría para tomar buenas decisiones.",
+     "asterisk": "DESCRIPCIÓN DE LAS IMÁGENES: Izquierda: David le da sus últimos consejos a su hijo Salomón. Derecha: Varios estudiantes se benefician de la mejor educación en la Escuela del Servicio de Precursor."
+    }
    ]
   },
   {
@@ -548,8 +624,12 @@ const DATA = {
    "example": "Imaginemos a un león que está agazapado detrás de un arbusto, esperando a su presa. Si la presa no está atenta, el león la atacará. De manera similar, el pecado está esperando el momento adecuado para atacarnos. Debemos estar vigilantes y no darle la oportunidad de dominarnos.",
    "lessons": "1. El pecado está siempre al acecho. No debemos bajar la guardia. El pecado puede aparecer en cualquier momento, incluso cuando menos lo esperamos. 2. Debemos dominar el pecado antes de que nos domine. Jehová nos da la fuerza para resistir la tentación, pero debemos esforzarnos por hacerlo. 3. La vigilancia es clave. Debemos estar atentos a nuestras debilidades y a las situaciones que podrían llevarnos a pecar. 4. Orar a Jehová nos ayuda a resistir. Cuando nos sentimos tentados, debemos orar a Jehová y pedirle que nos dé fuerzas para resistir. 5. No debemos dejar que el pecado nos controle. Si cometemos un error, debemos arrepentirnos y pedirle a Jehová que nos perdone. Él siempre está dispuesto a ayudarnos.",
    "images": [
-    "img/td-2026-11-12.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-12.jpg",
+     "caption": "Jehová razonó con Caín de forma cariñosa. Le aseguró que podía recuperar su aprobación y le advirtió del peligro de su mala conducta."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024531"
   },
   {
    "date": "2026-11-11",
@@ -561,8 +641,13 @@ const DATA = {
    "example": "Imaginemos una pequeña semilla que se siembra en la tierra. Al principio, es apenas visible, pero con el tiempo crece y se convierte en un árbol grande. De manera similar, el pueblo de Jehová puede empezar siendo pequeño, pero crecerá con la bendición de Jehová.",
    "lessons": "1. Jehová puede hacer grandes cosas con lo pequeño. No debemos subestimar lo que Jehová puede hacer con nosotros, aunque nos sintamos pequeños o insignificantes. 2. Debemos ser pacientes. Jehová cumplirá su propósito a su debido tiempo. No debemos apresurarnos ni desanimarnos si no vemos resultados de inmediato. 3. Confiar en que Jehová bendecirá nuestros esfuerzos. Cuando predicamos y ayudamos a otros, Jehová bendice nuestros esfuerzos y hace que su pueblo crezca. 4. No debemos desanimarnos por el tamaño de la congregación. Aunque la congregación sea pequeña, Jehová está con nosotros y nos ayudará a crecer. 5. Jehová acelera su propósito. Cuando llega el momento adecuado, Jehová hace que las cosas sucedan rápidamente. Debemos confiar en su tiempo perfecto.",
    "images": [
-    "img/td-2026-11-11.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-11.jpg",
+     "caption": "Los ancianos nos ayudan a confiar en las instrucciones que nos da la organización de Jehová.",
+     "asterisk": "DESCRIPCIÓN DE LAS IMÁGENES: Los ancianos se reúnen para hablar sobre las instrucciones para la predicación pública. Después, un superintendente de grupo les transmite a dos hermanas que van a predicar en el carrito la instrucción de colocarse de espaldas a una pared por seguridad."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024366"
   },
   {
    "date": "2026-11-10",
@@ -574,8 +659,13 @@ const DATA = {
    "example": "Imaginemos a un niño que mira las estrellas en una noche despejada. Se siente pequeño al ver la inmensidad del cielo, pero al mismo tiempo se siente especial porque sabe que su padre lo ama. De manera similar, aunque somos pequeños en comparación con el universo, Jehová nos ama y se ocupa de nosotros.",
    "lessons": "1. Jehová se interesa en nosotros. Aunque somos pequeños, Jehová nos ama y se preocupa por nosotros. 2. Somos valiosos para Jehová. Jehová nos ha creado con un propósito y nos ha dado la capacidad de conocerlo y servirle. 3. Debemos sentirnos agradecidos. Saber que Jehová se acuerda de nosotros nos da motivos para agradecerle por su amor y su cuidado. 4. La creación nos recuerda el poder de Jehová. Cuando miramos la naturaleza, podemos ver el poder y la sabiduría de Jehová. 5. Debemos confiar en que Jehová nos cuida. Aunque enfrentemos dificultades, podemos confiar en que Jehová está con nosotros y nos ayudará.",
    "images": [
-    "img/td-2026-11-10.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-10.jpg",
+     "caption": "No se deje engañar por las mentiras que se presentan disfrazadas de verdades.",
+     "asterisk": "DESCRIPCIÓN DE LAS IMÁGENES: Escenificación. Hace varios años, los hermanos de la antigua Unión Soviética recibieron una carta que parecía ser de la central mundial pero que en realidad venía de nuestros enemigos. Hoy en día, es posible que nuestros enemigos difundan a través de internet información sobre la organización de Jehová con la intención de engañarnos."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024481"
   },
   {
    "date": "2026-11-09",
@@ -587,10 +677,20 @@ const DATA = {
    "example": "Imaginemos a un padre que le promete a su hijo que lo llevará al parque el fin de semana. Aunque surja un imprevisto, el padre hace todo lo posible por cumplir su promesa, porque sabe que su hijo confía en él. De manera similar, debemos cumplir nuestras promesas, incluso cuando nos cueste, porque así demostramos que somos dignos de confianza.",
    "lessons": "1. Cumplir nuestras promesas muestra respeto por los demás. Cuando cumplimos lo que prometemos, demostramos que valoramos a las personas y que somos dignos de confianza. 2. Las promesas son sagradas para Jehová. Jehová siempre cumple sus promesas, y espera que nosotros hagamos lo mismo. 3. Ser hospitalarios fortalece nuestras amistades. Cuando invitamos a otros a nuestra casa y compartimos con ellos, fortalecemos nuestros lazos de amistad. 4. La generosidad imita a Jehová. Jehová es generoso con nosotros, y nosotros debemos ser generosos con otros. 5. Cumplir nuestras promesas, aunque nos cueste, demuestra integridad. A veces, cumplir una promesa puede ser difícil, pero hacerlo demuestra que somos personas íntegras.",
    "images": [
-    "img/td-2026-11-09.jpg",
-    "img/td-2026-11-09-2.jpg",
-    "img/td-2026-11-09-3.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-09.jpg",
+     "caption": "Es fácil hacer comentarios negativos sobre los demás e incluso llegar al borde de la calumnia."
+    },
+    {
+     "src": "img/td-2026-11-09-2.jpg",
+     "caption": "Cuando Felipe se lo presentó, Jesús dijo que en Natanael no había engaño. ¿Podría decir lo mismo de nosotros?"
+    },
+    {
+     "src": "img/td-2026-11-09-3.jpg",
+     "caption": "Para los israelitas de tiempos de David, la idea de ser huéspedes en la tienda de Jehová era una imagen fácil de entender."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024446"
   },
   {
    "date": "2026-11-08",
@@ -602,9 +702,16 @@ const DATA = {
    "example": "Imaginemos a un hombre que construye una casa en un lugar donde nunca ha llovido. Sus vecinos se ríen de él, pero él sigue construyendo porque confía en el pronóstico del tiempo. De manera similar, Noé construyó el arca porque confió en la palabra de Jehová, aunque nadie más le creía.",
    "lessons": "1. La fe de Noé nos enseña a perseverar. Aunque otros no nos entiendan, debemos seguir obedeciendo a Jehová. 2. La paciencia es esencial. Noé predicó durante muchos años sin ver resultados inmediatos. Nosotros también debemos ser pacientes al predicar. 3. Jehová protege a sus siervos fieles. Así como protegió a Noé y a su familia, Jehová también nos protegerá a nosotros. 4. No debemos desanimarnos por la indiferencia de otros. Aunque muchas personas ignoren el mensaje, debemos seguir predicando con confianza.",
    "images": [
-    "img/td-2026-11-08.jpg",
-    "img/td-2026-11-08-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-08.jpg",
+     "caption": "¿Qué hará Jehová con las personas que no tengan la oportunidad de escuchar las buenas noticias antes de que venga la gran tribulación?"
+    },
+    {
+     "src": "img/td-2026-11-08-2.jpg",
+     "caption": "Podemos estar seguros de que Jehová juzgará a cada persona de la mejor manera, porque él es sabio, justo y misericordioso."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024405"
   },
   {
    "date": "2026-11-07",
@@ -616,8 +723,12 @@ const DATA = {
    "example": "Imaginemos que un padre le promete a su hijo que conseguirá algo que necesita. El niño quizá no entiende cómo lo hará, pero confía en él porque conoce su capacidad y sabe que siempre ha cumplido sus promesas.",
    "lessons": "1. La mano de Jehová no es corta. Jehová tiene el poder de hacer lo que promete, aunque a nosotros nos parezca imposible. 2. La duda es normal, pero debemos superarla. Incluso Moisés, un hombre de gran fe, tuvo dudas. Lo importante es no dejar que las dudas nos impidan confiar en Jehová. 3. Jehová cumple sus promesas. Aunque no siempre veamos cómo, Jehová siempre cumple lo que promete. 4. Debemos confiar en Jehová, no en nuestra propia comprensión. A veces, no entendemos cómo Jehová hará algo, pero debemos confiar en que él puede hacerlo.",
    "images": [
-    "img/td-2026-11-07.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-07.jpg",
+     "caption": "Los matrimonios cristianos tienen en cuenta los principios bíblicos al tomar decisiones sobre su futuro."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025326"
   },
   {
    "date": "2026-11-06",
@@ -629,9 +740,16 @@ const DATA = {
    "example": "Imaginemos a una persona que pierde a un ser querido. El dolor es muy grande, pero la esperanza de la resurrección le da consuelo. Sabe que Jehová resucitará a su ser querido y que podrá verlo de nuevo.",
    "lessons": "1. La resurrección es una esperanza segura. Jehová promete que resucitará a los muertos, y podemos confiar en que cumplirá su promesa. 2. La esperanza de la resurrección nos consuela. Cuando perdemos a un ser querido, la esperanza de verlo de nuevo nos da fuerzas para seguir adelante. 3. Debemos hablar de la resurrección a otros. Muchas personas no conocen esta esperanza. Debemos compartirla con ellos para que también puedan tener esperanza. 4. La resurrección muestra el amor de Jehová. Jehová desea que vivamos para siempre, y la resurrección es una muestra de su amor por nosotros. 5. Debemos vivir con la esperanza de la resurrección en mente. Saber que Jehová resucitará a los muertos nos motiva a vivir de acuerdo con sus principios.",
    "images": [
-    "img/td-2026-11-06.jpg",
-    "img/td-2026-11-06-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-06.jpg",
+     "caption": "Formas de agradecer el amor de Jehová Ponga las actividades espirituales en primer lugar. Aumente su participación en el ministerio durante la época de la Conmemoración. Haga la lectura bíblica para la Conmemoración que se encuentra en el folleto Examinemos las Escrituras todos los días. Invite a otras personas a asistir a la Conmemoración. Salude a quienes asisten por primera vez y haga que se sientan bienvenidos."
+    },
+    {
+     "src": "img/td-2026-11-06-2.jpg",
+     "caption": "¿Qué bendiciones del Paraíso tiene más ganas de disfrutar?"
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025244"
   },
   {
    "date": "2026-11-05",
@@ -643,9 +761,16 @@ const DATA = {
    "example": "Imaginemos a un niño que se lastima y corre a los brazos de su mamá llorando. Ella lo abraza y lo consuela. De manera similar, cuando nos sentimos mal, podemos acudir a Jehová en oración y él nos consolará.",
    "lessons": "1. Jehová escucha nuestras oraciones. Cuando oramos con sinceridad, Jehová nos escucha y nos ayuda. 2. No debemos tener miedo de llorar ante Jehová. Ezequías lloró desconsoladamente, y Jehová lo escuchó. Nosotros también podemos desahogarnos con Jehová. 3. Jehová es misericordioso. Él se conmueve cuando nos ve sufrir y está dispuesto a ayudarnos. 4. La oración nos da consuelo. Cuando oramos, sentimos que Jehová está con nosotros y nos da fuerzas para seguir adelante. 5. Debemos confiar en que Jehová nos consolará. Aunque enfrentemos pruebas difíciles, Jehová nos consolará y nos dará la fortaleza que necesitamos.",
    "images": [
-    "img/td-2026-11-05.jpg",
-    "img/td-2026-11-05-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-05.jpg",
+     "caption": "El libro de los Salmos nos asegura que Jehová está cerca de los que tienen el corazón destrozado."
+    },
+    {
+     "src": "img/td-2026-11-05-2.jpg",
+     "caption": "Jehová contesta nuestras oraciones dándonos fuerzas, sabiduría y paz interior."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024681"
   },
   {
    "date": "2026-11-04",
@@ -657,8 +782,12 @@ const DATA = {
    "example": "Imaginemos a una persona que prepara una comida para un vecino enfermo. Aunque le toma tiempo y esfuerzo, se siente feliz al saber que está ayudando a alguien que lo necesita. De manera similar, cuando damos a otros, sentimos una felicidad que no podemos obtener de ninguna otra manera.",
    "lessons": "1. Dar nos hace felices. Cuando ayudamos a otros, experimentamos una felicidad que no podemos obtener recibiendo. 2. La generosidad fortalece las relaciones. Cuando damos a otros, demostramos que nos preocupamos por ellos y fortalecemos nuestra amistad. 3. Jehová bendice a los generosos. Jehová se complace en quienes dan con generosidad y los bendice. 4. Dar es una forma de imitar a Jehová. Jehová es generoso con nosotros, y nosotros debemos ser generosos con otros. 5. No debemos dar esperando algo a cambio. Debemos dar por amor, sin esperar recibir nada a cambio.",
    "images": [
-    "img/td-2026-11-04.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-04.jpg",
+     "alt": "Los siervos ministeriales imitan a Jesús sirviendo de diferentes formas a los demás."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024642"
   },
   {
    "date": "2026-11-03",
@@ -670,8 +799,13 @@ const DATA = {
    "example": "Imaginemos a un maestro que no solo enseña a sus alumnos, sino que también se interesa por ellos y les ayuda con sus problemas. Los alumnos se sienten queridos y valorados. De manera similar, cuando predicamos, debemos mostrar interés genuino por las personas.",
    "lessons": "1. Predicar con cariño. No debemos predicar solo por obligación; debemos hacerlo con amor y con interés genuino por las personas. 2. Compartir nuestra vida con otros. Predicar no es solo hablar; también es compartir nuestro tiempo y nuestra vida con otros. 3. Ser pacientes con quienes estudian la Biblia. Las personas necesitan tiempo para aprender y crecer. Debemos ser pacientes y ayudarles con amor. 4. Mostrar interés genuino. Cuando predicamos, debemos demostrar que nos preocupamos por las personas y que queremos ayudarles. 5. Imitar el ejemplo de Pablo. Pablo mostró cariño, paciencia y dedicación al predicar. Nosotros debemos hacer lo mismo.",
    "images": [
-    "img/td-2026-11-03.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-03.jpg",
+     "caption": "Un matrimonio cristiano recibe con hospitalidad a un superintendente viajante y su esposa.",
+     "asterisk": "(vea La Atalaya del 15 de octubre de 1996, página 21, párrafos 6, 7). https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=1996765"
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024643"
   },
   {
    "date": "2026-11-02",
@@ -683,8 +817,12 @@ const DATA = {
    "example": "Imaginemos a un estudiante que no entiende un problema de matemáticas. Le pide ayuda a su maestro, y el maestro le explica con paciencia y sin criticarlo. De manera similar, Jehová nos da sabiduría generosamente cuando se la pedimos.",
    "lessons": "1. Jehová da sabiduría generosamente. No debemos tener miedo de pedirle sabiduría; él nos la dará sin criticar. 2. Debemos pedir sabiduría constantemente. No debemos pedir sabiduría solo una vez; debemos hacerlo siempre que la necesitemos. 3. La sabiduría de Jehová nos ayuda a tomar buenas decisiones. Cuando pedimos sabiduría, Jehová nos guía y nos ayuda a tomar las decisiones correctas. 4. No debemos tener miedo de admitir que no sabemos algo. Jehová no nos critica por no saber; él nos ayuda a aprender. 5. Orar por sabiduría fortalece nuestra relación con Jehová. Cuando oramos, nos acercamos a Jehová y demostramos que confiamos en él.",
    "images": [
-    "img/td-2026-11-02.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-02.jpg",
+     "alt": "Puede que una persona nos dé las gracias mucho tiempo después de haber hecho algo por ella."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024567"
   },
   {
    "date": "2026-11-01",
@@ -696,8 +834,12 @@ const DATA = {
    "example": "Imaginemos a un padre cuyo hijo se aleja de casa. Aunque el hijo se ha ido, el padre siempre lo espera con los brazos abiertos. Cuando el hijo regresa, el padre lo recibe con amor y perdón. De manera similar, Jehová siempre está dispuesto a recibirnos cuando volvemos a él.",
    "lessons": "1. Jehová es leal y perdonador. Aunque cometamos errores, Jehová está dispuesto a perdonarnos si nos arrepentimos sinceramente. 2. Debemos arrepentirnos cuando cometemos errores. El arrepentimiento sincero nos acerca a Jehová y nos permite recibir su perdón. 3. Jehová no guarda rencor. Él perdona y olvida nuestros errores cuando nos arrepentimos. 4. Debemos volver a Jehová cuando nos alejamos. No importa lo lejos que nos hayamos alejado, Jehová siempre está dispuesto a recibirnos. 5. La lealtad de Jehová nos da esperanza. Saber que Jehová es leal nos da la confianza de que siempre estará con nosotros.",
    "images": [
-    "img/td-2026-11-01.jpg"
-   ]
+    {
+     "src": "img/td-2026-11-01.jpg",
+     "alt": "Cada cristiano puede utilizar su conciencia educada por la Biblia para decidir si invitará a una reunión a alguien a quien se sacó de la congregación o si le dará la bienvenida con un saludo breve cuando asista a una reunión."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024534"
   },
   {
    "date": "2026-10-31",
@@ -707,7 +849,8 @@ const DATA = {
    "verse": "Porque Jehová tu Dios es un fuego consumidor, un Dios que exige devoción exclusiva",
    "comment": "Jehová exige devoción exclusiva. Esto significa que no debemos adorar a otros dioses ni poner nada por encima de Jehová. Él es el único Dios verdadero y merece nuestra adoración exclusiva. Cuando ponemos a Jehová en primer lugar, demostramos que lo amamos y que reconocemos su posición como nuestro Creador. La devoción exclusiva no significa que no podamos disfrutar de otras cosas, sino que Jehová debe ser lo más importante en nuestra vida. w24.11 21 párr. 25.",
    "example": "Imaginemos a un esposo que ama a su esposa con todo su corazón. No divide su amor entre ella y otras personas; su amor es exclusivo para ella. De manera similar, nuestra devoción a Jehová debe ser exclusiva.",
-   "lessons": "1. Jehová merece devoción exclusiva. Él es el único Dios verdadero y merece nuestra adoración completa. 2. No debemos poner nada por encima de Jehová. Ni el dinero, ni la fama, ni el placer deben ser más importantes que Jehová. 3. La devoción exclusiva fortalece nuestra relación con Jehová. Cuando ponemos a Jehová en primer lugar, nuestra amistad con él se fortalece. 4. Debemos examinar nuestras prioridades. Si algo está ocupando el lugar de Jehová en nuestra vida, debemos hacer cambios. 5. Jehová bendice a quienes le son devotos. Cuando le damos devoción exclusiva a Jehová, él nos bendice y nos ayuda."
+   "lessons": "1. Jehová merece devoción exclusiva. Él es el único Dios verdadero y merece nuestra adoración completa. 2. No debemos poner nada por encima de Jehová. Ni el dinero, ni la fama, ni el placer deben ser más importantes que Jehová. 3. La devoción exclusiva fortalece nuestra relación con Jehová. Cuando ponemos a Jehová en primer lugar, nuestra amistad con él se fortalece. 4. Debemos examinar nuestras prioridades. Si algo está ocupando el lugar de Jehová en nuestra vida, debemos hacer cambios. 5. Jehová bendice a quienes le son devotos. Cuando le damos devoción exclusiva a Jehová, él nos bendice y nos ayuda.",
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024486"
   },
   {
    "date": "2026-10-30",
@@ -717,7 +860,8 @@ const DATA = {
    "verse": "Por lo tanto, imiten a Dios como hijos amados",
    "comment": "Jehová nos invita a imitarlo como hijos amados. Esto significa que debemos esforzarnos por ser como él: amorosos, bondadosos, pacientes y justos. Cuando imitamos a Jehová, demostramos que somos sus hijos y que lo amamos. Imitar a Jehová no es fácil, porque somos imperfectos, pero con su ayuda podemos hacerlo. Debemos estudiar su Palabra y aprender de su ejemplo. Jesús es el mejor ejemplo de cómo imitar a Jehová, porque él reflejó perfectamente la personalidad de su Padre. w24.10 19 párr. 23.",
    "example": "Imaginemos a un niño que imita a su padre. Observa cómo habla, cómo camina y cómo trata a otros, y trata de hacer lo mismo. De manera similar, nosotros debemos observar cómo es Jehová y tratar de imitarlo.",
-   "lessons": "1. Imitar a Jehová es un privilegio. Somos sus hijos, y él nos invita a ser como él. 2. Debemos estudiar la personalidad de Jehová. Para imitarlo, necesitamos conocerlo. Estudiar su Palabra nos ayuda a conocer sus cualidades. 3. Jesús es nuestro mejor ejemplo. Él imitó perfectamente a Jehová, y nosotros podemos imitarlo a él. 4. Imitar a Jehová requiere esfuerzo. No es fácil, pero con la ayuda de Jehová podemos hacerlo. 5. Cuando imitamos a Jehová, demostramos que somos sus hijos. Nuestra conducta muestra a otros que pertenecemos a Jehová."
+   "lessons": "1. Imitar a Jehová es un privilegio. Somos sus hijos, y él nos invita a ser como él. 2. Debemos estudiar la personalidad de Jehová. Para imitarlo, necesitamos conocerlo. Estudiar su Palabra nos ayuda a conocer sus cualidades. 3. Jesús es nuestro mejor ejemplo. Él imitó perfectamente a Jehová, y nosotros podemos imitarlo a él. 4. Imitar a Jehová requiere esfuerzo. No es fácil, pero con la ayuda de Jehová podemos hacerlo. 5. Cuando imitamos a Jehová, demostramos que somos sus hijos. Nuestra conducta muestra a otros que pertenecemos a Jehová.",
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024442"
   },
   {
    "date": "2026-10-29",
@@ -729,8 +873,12 @@ const DATA = {
    "example": "Imaginemos a un pozo profundo. El agua está ahí, pero no es fácil sacarla. Se necesita esfuerzo y las herramientas adecuadas. De manera similar, los pensamientos de las personas son profundos, y se necesita esfuerzo y entendimiento para sacarlos a la luz.",
    "lessons": "1. Debemos escuchar a otros con atención. Cuando escuchamos, podemos entender lo que piensan y lo que sienten. 2. El entendimiento nos ayuda a ser mejores amigos. Cuando entendemos a otros, podemos ayudarles mejor y fortalecer nuestra amistad. 3. Debemos hacer preguntas para entender a otros. A veces, necesitamos hacer preguntas para saber lo que otros piensan. 4. La paciencia es clave para entender a otros. No siempre es fácil entender a otros; necesitamos ser pacientes y escuchar con atención. 5. Entender a otros nos ayuda a predicar mejor. Cuando entendemos las necesidades de las personas, podemos ayudarles de acuerdo con sus circunstancias.",
    "images": [
-    "img/td-2026-10-29.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-29.jpg",
+     "alt": "Algo que ayudará a las parejas a conocerse mejor es participar en actividades en las que sea fácil conversar."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024401"
   },
   {
    "date": "2026-10-28",
@@ -742,8 +890,12 @@ const DATA = {
    "example": "Imaginemos a un estudiante que aprende de un gran maestro. Con el tiempo, el estudiante empieza a pensar como su maestro y a ver las cosas desde su punto de vista. De manera similar, cuando estudiamos la Palabra de Jehová y meditamos en el ejemplo de Jesús, empezamos a pensar como Cristo.",
    "lessons": "1. Tener la mente de Cristo nos ayuda a tomar buenas decisiones. Cuando pensamos como Cristo, podemos ver las situaciones con claridad. 2. El espíritu santo nos ayuda a tener la mente de Cristo. Jehová nos da su espíritu para que podamos entender su Palabra. 3. Debemos estudiar la Palabra de Jehová para tener la mente de Cristo. Estudiar y meditar en la Biblia nos ayuda a pensar como Jesús. 4. Tener la mente de Cristo nos ayuda a ser humildes. Jesús era humilde, y cuando pensamos como él, también somos humildes.",
    "images": [
-    "img/td-2026-10-28.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-28.jpg",
+     "alt": "Pedro aprendió a apoyarse en Jehová mediante la oración. Nosotros también podemos tener buen juicio pidiéndole ayuda a Jehová, en especial cuando tenemos que tomar decisiones importantes."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025321"
   },
   {
    "date": "2026-10-27",
@@ -756,7 +908,8 @@ const DATA = {
    "lessons": "1. No debemos amoldarnos al mundo. El mundo tiene normas y valores que no están de acuerdo con los principios de Jehová. Debemos resistir esa presión. 2. Renovar nuestra mente requiere esfuerzo. Debemos estudiar la Palabra de Jehová y meditar en ella para cambiar nuestra forma de pensar. 3. La voluntad de Dios es buena, agradable y perfecta. Cuando seguimos la voluntad de Jehová, somos felices y tenemos paz. 4. Debemos comprobar cuál es la voluntad de Dios. No debemos aceptar lo que el mundo dice; debemos comprobar lo que dice la Biblia. 5. Transformarnos nos ayuda a resistir la presión del mundo. Cuando renovamos nuestra mente, podemos mantenernos firmes en la verdad.",
    "images": [
     "img/td-2026-10-27.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024361"
   },
   {
    "date": "2026-10-26",
@@ -769,7 +922,8 @@ const DATA = {
    "lessons": "1. Debemos tomar decisiones basadas en la Biblia, no en lo que vemos. Aunque el mundo nos presione, debemos guiarnos por los principios bíblicos. 2. La fe nos da fuerzas para seguir adelante. Cuando enfrentamos dificultades, la fe nos ayuda a no rendirnos. 3. Podemos pedirle a Jehová buen juicio. Salmo 119:66 nos recuerda que podemos pedirle a Jehová que nos enseñe buen juicio y conocimiento. 4. Debemos mirar más allá de los resultados inmediatos. A veces, los resultados de nuestras decisiones no se ven de inmediato, pero Jehová nos ayudará a ver los beneficios a largo plazo. 5. No debemos dejar que el miedo nos controle. La fe nos ayuda a enfrentar nuestros miedos con confianza en Jehová.",
    "images": [
     "img/td-2026-10-26.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025325"
   },
   {
    "date": "2026-10-25",
@@ -782,7 +936,8 @@ const DATA = {
    "lessons": "El pecado y la muerte entraron en el mundo por medio de Adán, pero Jehová nos ha dado esperanza por medio de Jesús. Su sacrificio nos libera del pecado y nos da la oportunidad de vivir para siempre. Debemos estar agradecidos por esta esperanza y compartirla con otros. (Esta entrada muestra las lecciones prácticas como un solo párrafo, sin lista numerada.)",
    "images": [
     "img/td-2026-10-25.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025243"
   },
   {
    "date": "2026-10-24",
@@ -794,9 +949,16 @@ const DATA = {
    "example": "Imaginemos a un corredor que participa en una maratón. A mitad de la carrera, se siente cansado y quiere rendirse. Pero recuerda que al final hay una medalla esperándolo, y eso le da fuerzas para seguir. De manera similar, Jehová nos promete una recompensa, y eso nos motiva a seguir adelante.",
    "lessons": "1. Jehová nos anima a ser fuertes. Cuando enfrentamos dificultades, debemos recordar que Jehová está con nosotros y nos da fuerzas. 2. No debemos desanimarnos. Aunque las cosas sean difíciles, Jehová nos promete que nuestras obras serán recompensadas. 3. La recompensa de Jehová es segura. Jehová siempre cumple sus promesas, y nos recompensará por nuestros esfuerzos. 4. Debemos seguir adelante con fe. Aunque no veamos los resultados de inmediato, debemos confiar en que Jehová nos recompensará. 5. Servir a Jehová vale la pena. Aunque a veces sea difícil, servir a Jehová nos da felicidad y esperanza.",
    "images": [
-    "img/td-2026-10-24.jpg",
-    "img/td-2026-10-24-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-24.jpg",
+     "alt": "¿Quién está detrás de los hermosos diseños de la naturaleza?"
+    },
+    {
+     "src": "img/td-2026-10-24-2.jpg",
+     "alt": "Al hablar con los compañeros, es mejor usar razonamientos lógicos y sencillos. / DESCRIPCIÓN DE LA IMAGEN: Un joven Testigo le enseña a un compañero al que le gustan los drones un video de la serie “¿Lo diseñó alguien?”"
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024680"
   },
   {
    "date": "2026-10-23",
@@ -808,9 +970,16 @@ const DATA = {
    "example": "Imaginemos a un pastor que ve a sus ovejas perdidas y sin guía. Se preocupa por ellas y sale a buscarlas. De manera similar, Jesús se preocupó por la multitud y les enseñó, porque eran como ovejas sin pastor.",
    "lessons": "1. Jesús se compadece de las personas. Él ve nuestras necesidades y desea ayudarnos. 2. Debemos sentir compasión por otros. Cuando vemos a alguien que sufre, debemos hacer algo por él. 3. Enseñar es una forma de mostrar compasión. Jesús enseñó a la multitud porque quería ayudarles a conocer a Jehová. 4. No debemos ignorar a quienes necesitan ayuda. Cuando vemos a alguien que necesita ayuda, debemos actuar. 5. La compasión nos impulsa a predicar. Cuando sentimos compasión por otros, queremos compartir con ellos las buenas noticias.",
    "images": [
-    "img/td-2026-10-23.jpg",
-    "img/td-2026-10-23-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-23.jpg",
+     "alt": "Si ama a Jehová y desea servir a los demás, hará lo que sea necesario para ayudar dentro de la congregación. / DESCRIPCIÓN DE LAS IMÁGENES: A la izquierda, se ve a Jesús sirviendo humildemente a otros; a la derecha, se ve a un siervo ministerial ayudando a un hermano mayor de la congregación."
+    },
+    {
+     "src": "img/td-2026-10-23-2.jpg",
+     "alt": "Los ancianos pueden poner a prueba la capacidad de los hermanos bautizados encargándoles diferentes tareas."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024642"
   },
   {
    "date": "2026-10-22",
@@ -824,7 +993,8 @@ const DATA = {
    "images": [
     "img/td-2026-10-22.jpg",
     "img/td-2026-10-22-2.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024608"
   },
   {
    "date": "2026-10-21",
@@ -838,7 +1008,8 @@ const DATA = {
    "images": [
     "img/td-2026-10-21.jpg",
     "img/td-2026-10-21-2.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2025322"
   },
   {
    "date": "2026-10-20",
@@ -850,9 +1021,16 @@ const DATA = {
    "example": "Imaginemos a un estudiante que se prepara para un examen. Estudia con anticipación y está listo cuando llega el día del examen. En cambio, otro estudiante no se prepara y cuando llega el examen, no sabe qué hacer. De manera similar, debemos estar preparados espiritualmente para el día de Jehová.",
    "lessons": "1. Debemos estar preparados espiritualmente. No sabemos cuándo llegará el día de Jehová, por eso debemos estar listos en todo momento. 2. La preparación requiere esfuerzo constante. No basta con prepararse una vez; debemos mantenernos preparados siempre. 3. No debemos dejar nuestra preparación para el último momento. Cuando llegue el día de Jehová, será demasiado tarde para prepararse. 4. La fe es como el aceite de las vírgenes. Debemos mantener nuestra fe fuerte para estar preparados. 5. Debemos ayudar a otros a estar preparados. Así como ayudamos a otros a conocer a Jehová, también debemos ayudarles a estar preparados espiritualmente.",
    "images": [
-    "img/td-2026-10-20.jpg",
-    "img/td-2026-10-20-2.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-20.jpg",
+     "alt": "Es importante que todos prestemos atención a la advertencia de la parábola de las 10 vírgenes y estemos preparados, atentos y listos para aguantar hasta el fin."
+    },
+    {
+     "src": "img/td-2026-10-20-2.jpg",
+     "alt": "Jesús quiere que los ungidos demuestren que son trabajadores."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024566"
   },
   {
    "date": "2026-10-19",
@@ -864,7 +1042,10 @@ const DATA = {
    "example": "Imaginemos a una persona que prepara una comida para un vecino que está enfermo y no puede cocinar. No espera nada a cambio, pero se siente feliz al ayudar. De manera similar, cuando ayudamos a quienes no pueden devolvernos el favor, demostramos amor genuino.",
    "lessons": "1. Debemos ser generosos con quienes no pueden devolvernos el favor. La verdadera generosidad no espera recompensa. 2. Jehová recompensará nuestra generosidad. Aunque no recibamos nada a cambio en esta vida, Jehová nos recompensará en la resurrección de los justos. 3. La generosidad muestra amor genuino. Cuando ayudamos a otros sin esperar nada a cambio, demostramos que los amamos de verdad. 4. Debemos ayudar a los necesitados. Hay muchas personas que necesitan nuestra ayuda, y debemos estar dispuestos a ayudarlas. 5. No debemos buscar reconocimiento al ayudar. La verdadera generosidad no busca aplausos ni reconocimiento; nace del amor.",
    "images": [
-    "img/td-2026-10-19.jpg"
+    {
+     "src": "img/td-2026-10-19.jpg",
+     "alt": "Un matrimonio cristiano recibe con hospitalidad a un superintendente viajante y su esposa."
+    }
    ]
   },
   {
@@ -877,9 +1058,13 @@ const DATA = {
    "example": "",
    "lessons": "Cuando oramos, debemos empezar reconociendo la santidad de Jehová y de su nombre. Santificar su nombre significa vivir de una manera que lo honre y tratarlo con el respeto que merece. Cada vez que oramos «que tu nombre sea santificado», recordamos que Jehová es santo y que su nombre debe ser honrado por todos. (Esta entrada no muestra sección de EJEMPLO; las lecciones prácticas se muestran como un solo párrafo.)",
    "images": [
-    "img/td-2026-10-18.jpg",
+    {
+     "src": "img/td-2026-10-18.jpg",
+     "alt": "Le damos a Jehová nuestro poder cuando utilizamos nuestro tiempo, energías y recursos para participar en la predicación tanto como nos permiten nuestras circunstancias"
+    },
     "img/td-2026-10-18-2.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024406"
   },
   {
    "date": "2026-10-17",
@@ -891,8 +1076,12 @@ const DATA = {
    "example": "",
    "lessons": "Aunque somos imperfectos como vasos de barro, Jehová nos ha dado un tesoro valioso: el conocimiento de la verdad. No debemos desanimarnos por nuestras imperfecciones; en cambio, debemos confiar en el poder de Jehová, que es más que normal. Cuando nos sentimos débiles, recordemos que Jehová puede usarnos para hacer grandes cosas, a pesar de nuestras limitaciones. (Esta entrada no muestra sección de EJEMPLO; las lecciones prácticas se muestran como un solo párrafo.)",
    "images": [
-    "img/td-2026-10-17.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-17.jpg",
+     "alt": "El amor a Jehová y al prójimo lo ayudarán a disfrutar más de la predicación. (Vea el párrafo 15)."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024360"
   },
   {
    "date": "2026-10-16",
@@ -904,8 +1093,12 @@ const DATA = {
    "example": "Imaginemos que una persona compra un terreno porque le parece muy bonito. Tiene árboles, flores y una vista agradable. Pero antes de construir su casa, descubre que el terreno está cerca de un río que se desborda durante las lluvias. Aunque el lugar parece perfecto, si construye sin tomar en cuenta ese peligro, con el tiempo podría perder lo que tanto esfuerzo le costó levantar. EXPLICACIÓN: Algo parecido puede sucedernos al tomar decisiones. A veces algo parece atractivo, agradable o conveniente, pero no pensamos en las consecuencias que podría tener para nuestra amistad con Jehová. Proverbios 14:12 advierte que hay caminos que al hombre le parecen correctos, pero que terminan llevando a la muerte. Por eso, no debemos guiarnos únicamente por las apariencias o por lo que sentimos en el momento. ENSEÑANZA BÍBLICA: La verdadera sabiduría consiste en mirar más allá de lo que tenemos delante y analizar las consecuencias de nuestras decisiones desde el punto de vista de Jehová. Proverbios 22:3 dice que el prudente ve el peligro y se esconde. Jehová nos da sus consejos porque ve peligros que nosotros quizá todavía no alcanzamos a percibir. APLICACIÓN PRÁCTICA: Antes de tomar una decisión importante —en nuestras amistades, entretenimiento, trabajo o relaciones sentimentales— preguntémonos: «¿Estoy considerando solamente lo que me gusta ahora, o también cómo afectará mi amistad con Jehová en el futuro?». No todo lo que parece bueno nos conviene. Si un consejo bíblico nos advierte de un peligro, hagámosle caso antes de sufrir las consecuencias. Consultar la fuente oficial. (Esta ilustración no muestra un campo «Texto bíblico» separado; las citas bíblicas aparecen dentro de la Explicación y la Enseñanza.)",
    "lessons": "Pregunta para meditar: ¿Estoy protegiendo mi corazón de las influencias que podrían alejarme de Jehová? Idea principal: Nuestro corazón es como un tesoro que debemos proteger. Si lo cuidamos y seguimos los consejos de Jehová, nos mantendremos en el camino correcto y disfrutaremos de su protección y bendición.\n\n============================================================ 2. ILUSTRACIONES (https://reunion-guia-pro.base44.app/ilustraciones) ============================================================ La galería tiene 15 ilustraciones: de la N.º 2 a la N.º 12, más 3 sin número. No hay N.º 1. Cada diálogo muestra los botones «Agregar a Favoritos», «Copiar el texto» y «Compartir». Algunas ilustraciones tienen campos adicionales (descripción de la imagen, Idea clave, Idea para meditar, Ideas para profundizar) que se incluyen tal como aparecen.\n\n--- N.º 2 — EL LÁPIZ QUE NECESITA SER AFILADO --- Descripción de la imagen: «Una mano afilando un lápiz de madera, con la punta recién afilada y las virutas sobre una mesa. Qué transmite: mejorar, aceptar consejos y corregir nuestros errores». TEXTO BÍBLICO: (Proverbios 27:17). ENSEÑANZA BÍBLICA: Jehová nos ayuda a mejorar. EJEMPLO O COMPARACIÓN: Un lápiz puede escribir muchas cosas buenas, pero con el uso su punta se desgasta. Para que vuelva a escribir con precisión, necesita ser afilado. EXPLICACIÓN: De manera parecida, aunque llevemos tiempo sirviendo a Jehová, necesitamos seguir aprendiendo y aceptar consejos que nos ayuden a mejorar. APLICACIÓN PRÁCTICA: No nos ofendamos cuando recibamos una sugerencia basada en la Biblia. Veámosla como una oportunidad para mejorar nuestras cualidades y servir mejor a Jehová.\n\n--- N.º 3 — ELEGIR BIEN NUESTRAS AMISTADES --- Descripción de la imagen: «La amistad verdadera se fortalece cuando caminamos juntos, nos apoyamos y nos ayudamos a seguir adelante». TEXTO BÍBLICO: Proverbios 13:20. ENSEÑANZA: Las personas con quienes nos relacionamos pueden influir en nuestras decisiones.",
    "images": [
-    "img/td-2026-10-16.jpg"
-   ]
+    {
+     "src": "img/td-2026-10-16.jpg",
+     "alt": "Debemos evitar todo lo que nos pueda llevar a caer en la tentación."
+    }
+   ],
+   "link": "https://www.jw.org/finder?srcid=jwlshare&wtlocale=S&prefer=lang&docid=2024485"
   }
  ],
  "illustrations": [
@@ -918,7 +1111,10 @@ const DATA = {
    "explanation": "De manera parecida, aunque llevemos tiempo sirviendo a Jehová, necesitamos seguir aprendiendo y aceptar consejos que nos ayuden a mejorar.",
    "application": "No nos ofendamos cuando recibamos una sugerencia basada en la Biblia. Veámosla como una oportunidad para mejorar nuestras cualidades y servir mejor a Jehová.",
    "images": [
-    "img/il-2.jpg"
+    {
+     "src": "img/il-2.jpg",
+     "alt": "Una mano afilando un lápiz de madera, con la punta recién afilada y las virutas sobre una mesa. Qué transmite: mejorar, aceptar consejos y corregir nuestros errores."
+    }
    ]
   },
   {
@@ -930,7 +1126,10 @@ const DATA = {
    "explanation": "Algo parecido ocurre con las amistades. La compañía de personas que aman a Jehová puede animarnos a tomar buenas decisiones y a mantenernos firmes en nuestra fe.",
    "application": "Antes de acercarnos mucho a alguien, pensemos: «¿Me ayuda esta persona a acercarme a Jehová o me aleja de él?». Elegir buenas compañías nos protege espiritualmente.",
    "images": [
-    "img/il-3.jpg"
+    {
+     "src": "img/il-3.jpg",
+     "alt": "La amistad verdadera se fortalece cuando caminamos juntos, nos apoyamos y nos ayudamos a seguir adelante."
+    }
    ]
   },
   {
@@ -942,7 +1141,10 @@ const DATA = {
    "explanation": "Algo parecido sucede con la Biblia. No basta con tenerla en casa o conocer algunos versículos. Necesitamos leerla con regularidad, meditar en lo que aprendemos y obedecer sus consejos. Así demostramos que confiamos en Jehová más que en nuestro propio criterio.",
    "application": "Antes de tomar una decisión, podemos preguntarnos: «¿Qué dice la Biblia sobre esta situación? ¿Estoy buscando el consejo de Jehová o solo quiero hacer mi propia voluntad?».\n\nIdea clave: La Biblia es nuestra brújula espiritual: nos muestra el camino correcto, pero debemos seguirla con fe para que Jehová enderece nuestros pasos.",
    "images": [
-    "img/il-4.png"
+    {
+     "src": "img/il-4.png",
+     "alt": "Descripción 2: Así como una brújula guía a un viajero para que llegue a su destino, la Biblia guía nuestros pensamientos, palabras y decisiones para que andemos por el camino que agrada a Jehová."
+    }
    ]
   },
   {
@@ -954,7 +1156,10 @@ const DATA = {
    "explanation": "Algo parecido sucede en la vida. No basta con tener una Biblia o conocer algunos textos. Necesitamos leerla, meditar en ella y poner en práctica sus consejos para que ilumine nuestras decisiones.",
    "application": "Antes de tomar una decisión importante, podemos preguntarnos: «¿Qué principios bíblicos me pueden ayudar? ¿Cómo puedo demostrar que confío en la guía de Jehová?».\n\nIdea clave: La Biblia no solo nos muestra el camino correcto; necesitamos dejarnos guiar por ella para caminar con seguridad.",
    "images": [
-    "img/il-5.jpg"
+    {
+     "src": "img/il-5.jpg",
+     "alt": "Descripción 1: La Palabra de Jehová es como una lámpara que ilumina nuestro camino y nos ayuda a tomar buenas decisiones."
+    }
    ]
   },
   {
@@ -966,7 +1171,10 @@ const DATA = {
    "explanation": "Nuestra fe funciona de manera parecida. La oración, la lectura de la Biblia, las reuniones y el hablar con otros acerca de Jehová son como el agua que mantiene vivas nuestras raíces espirituales. Si descuidamos estas actividades, poco a poco nuestra fe puede debilitarse.",
    "application": "Esta semana podemos elegir un momento fijo para leer la Biblia y orar, aunque sean unos minutos. También podemos prepararnos con anticipación para las reuniones, de modo que lo que aprendamos fortalezca nuestra fe.\n\nIdea clave: Cuando nos alimentamos espiritualmente cada día, nuestra fe echa raíces profundas y puede resistir las dificultades.",
    "images": [
-    "img/il-6.jpg"
+    {
+     "src": "img/il-6.jpg",
+     "alt": "Descripción 1: Una planta pequeña que brota de una Biblia abierta representa cómo la Palabra de Jehová nutre nuestra fe. Así como una semilla necesita agua y cuidados para crecer, nosotros necesitamos leer la Biblia, orar y asistir a las reuniones para fortalecernos espiritualmente."
+    }
    ]
   },
   {
@@ -994,7 +1202,8 @@ const DATA = {
    "images": [
     "img/il-8-1.jpg",
     "img/il-8-2.jpg"
-   ]
+   ],
+   "source": "https://wol.jw.org/es/wol/d/r4/lp-s/2015734"
   },
   {
    "num": 9,
@@ -1005,7 +1214,10 @@ const DATA = {
    "explanation": "Las dificultades, las tentaciones y las presiones pueden aparecer inesperadamente. Por eso, necesitamos fortalecer nuestra espiritualidad antes de que lleguen.",
    "application": "Aprovechemos el estudio personal, las reuniones y la oración para prepararnos y mantenernos firmes ante las pruebas.",
    "images": [
-    "img/il-9.jpg"
+    {
+     "src": "img/il-9.jpg",
+     "alt": "Una persona protegida bajo un paraguas mientras llueve a su alrededor. Qué transmite: prepararse antes de que lleguen las dificultades."
+    }
    ]
   },
   {
@@ -1019,7 +1231,8 @@ const DATA = {
    "images": [
     "img/il-10-1.jpg",
     "img/il-10-2.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/es/biblioteca/revistas/wp20111101/importancia-cultivar-espiritualidad-juntos/?utm_source=chatgpt.com"
   },
   {
    "num": 11,
@@ -1031,7 +1244,8 @@ const DATA = {
    "application": "Si estamos solteros y pensamos en casarnos, preguntémonos: «¿Esta persona ama a Jehová y desea servirle de todo corazón? ¿Podremos avanzar juntos en sentido espiritual?». No debemos fijarnos solamente en los sentimientos o las cualidades personales. Elegir a alguien que también ponga a Jehová en primer lugar nos ayudará a construir un matrimonio en el que ambos puedan apoyarse y servirle unidos.",
    "images": [
     "img/il-11.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?wtlocale=S&docid=2003767&srcid=share"
   },
   {
    "num": 12,
@@ -1043,7 +1257,9 @@ const DATA = {
    "application": "Antes de iniciar un noviazgo, no pensemos solamente en cuánto nos gusta una persona o en lo bien que nos trata. Preguntémonos: «¿Ama a Jehová? ¿Tiene los mismos objetivos espirituales que yo? ¿Me ayudará a seguir sirviéndole?». Si no comparte nuestra fe, lo más sabio es no iniciar esa relación. Es mejor esperar por alguien que nos ayude a acercarnos más a Jehová, en lugar de arriesgar nuestra amistad con él por una relación sentimental.",
    "images": [
     "img/il-12.jpg"
-   ]
+   ],
+   "link": "https://www.jw.org/finder?wtlocale=S&docid=1011578&srcid=share",
+   "source": "https://www.jw.org/finder?wtlocale=S&docid=502015211&srcid=share"
   },
   {
    "num": null,
@@ -1054,9 +1270,16 @@ const DATA = {
    "explanation": "Algo parecido sucede con nuestra vida cristiana. A veces esperamos que una situación difícil cambie rápidamente, que una persona corrija sus errores o que alguien a quien estamos ayudando espiritualmente progrese más pronto. Pero no todos los cambios ocurren de inmediato. Santiago 5:7, 8 compara nuestra paciencia con la del agricultor, que espera el valioso fruto de la tierra. Nosotros también necesitamos seguir haciendo lo correcto sin desesperarnos por los resultados.",
    "application": "Cuando alguien cometa un error, cuando un estudiante de la Biblia tarde en progresar o cuando una situación no cambie tan rápido como quisiéramos, evitemos desesperarnos. Preguntémonos: «¿Estoy dando tiempo a los demás para mejorar, tal como Jehová me da tiempo a mí?». Podemos demostrar paciencia escuchando sin interrumpir, evitando responder impulsivamente y siguiendo haciendo el bien aunque todavía no veamos resultados. (Esta ilustración no muestra un campo «Texto bíblico» separado; las citas bíblicas aparecen dentro de la Explicación y la Enseñanza.)",
    "images": [
-    "img/il-paciencia-1.jpg",
-    "img/il-paciencia-2.jpg"
-   ]
+    {
+     "src": "img/il-paciencia-1.jpg",
+     "caption": "Tal como el agricultor espera con paciencia, convencido de que recogerá fruto cuando llegue el momento, nosotros también esperamos con paciencia, convencidos de que Jehová cumplirá todo lo que ha prometido a su debido tiempo. https://www.jw.org/es/biblioteca/revistas/atalaya-estudio-septiembre-2020/Que-no-descansen-tus-manos/?utm_source=chatgpt.com"
+    },
+    {
+     "src": "img/il-paciencia-2.jpg",
+     "caption": "Al igual que un agricultor, esperamos con paciencia el resultado de nuestro duro trabajo."
+    }
+   ],
+   "source": "https://www.jw.org/es/biblioteca/revistas/atalaya-estudio-agosto-2023/Seamos-siempre-pacientes/?utm_source=chatgpt.com"
   },
   {
    "num": null,
@@ -1067,8 +1290,12 @@ const DATA = {
    "explanation": "En Mateo 5:23, 24, Jesús habló de una situación muy importante para los judíos. Imaginemos que alguien estaba en el templo, listo para presentar su ofrenda a Jehová, y de repente recordaba que tenía un problema con su hermano. Jesús le dijo que dejara su ofrenda y fuera primero a reconciliarse con su hermano, y después volviera a presentar su ofrenda. Esto muestra que Jehová valora más la reconciliación que las ofrendas o los sacrificios. De manera parecida, hoy Jehová valora más que nos reconciliemos con nuestros hermanos que cualquier otra cosa que podamos hacer para él.",
    "application": "Cuando tengamos un problema con un hermano, no esperemos a que sea él quien venga a nosotros. Tomemos la iniciativa y busquemos la reconciliación. No importa quién tenga la razón; lo que importa es mantener la paz y la unidad en la congregación.\n\nIDEAS PARA PROFUNDIZAR: - Mateo 5:23, 24: Jesús nos enseña que debemos reconciliarnos con nuestro hermano antes de presentar nuestra ofrenda a Jehová. Esto demuestra la importancia de la reconciliación. - Mateo 18:15: Si un hermano peca contra nosotros, debemos ir a hablar con él a solas, para tratar de resolver el problema. - Efesios 4:26, 27: No debemos dejar que el sol se ponga estando aún enojados. Debemos resolver nuestros problemas lo antes posible para no darle oportunidad al Diablo. - Colosenses 3:13: Debemos perdonarnos unos a otros, tal como Jehová nos perdonó a nosotros. - Mateo 6:14, 15: Si perdonamos a otros, Jehová también nos perdonará. Pero si no perdonamos, Jehová tampoco nos perdonará. - 1 Pedro 4:8: El amor cubre una multitud de pecados. Cuando amamos a nuestros hermanos, estamos dispuestos a perdonar sus errores.\n\nIDEA CENTRAL: La reconciliación es más importante que tener la razón. Cuando nos reconciliamos con nuestros hermanos, demostramos que valoramos la paz y la unidad en la congregación.\n\nREFERENCIA PRINCIPAL: La Atalaya de diciembre de 2021, artículo de estudio 51 «Sigamos escuchándolo», párrafos 10-18.",
    "images": [
-    "img/il-reconciliacion.jpg"
-   ]
+    {
+     "src": "img/il-reconciliacion.jpg",
+     "asterisk": "DESCRIPCIÓN DE LA IMAGEN: A fin de hacer las paces, Jacob se inclinó varias veces delante de su hermano Esaú."
+    }
+   ],
+   "source": "https://www.jw.org/es/biblioteca/revistas/atalaya-estudio-diciembre-2021/Sigamos-escuch%C3%A1ndolo/?utm_source=chatgpt.com"
   },
   {
    "num": null,
@@ -1080,7 +1307,8 @@ const DATA = {
    "application": "Antes de tomar una decisión importante —en nuestras amistades, entretenimiento, trabajo o relaciones sentimentales— preguntémonos: «¿Estoy considerando solamente lo que me gusta ahora, o también cómo afectará mi amistad con Jehová en el futuro?». No todo lo que parece bueno nos conviene. Si un consejo bíblico nos advierte de un peligro, hagámosle caso antes de sufrir las consecuencias. Consultar la fuente oficial. (Esta ilustración no muestra un campo «Texto bíblico» separado; las citas bíblicas aparecen dentro de la Explicación y la Enseñanza.)",
    "images": [
     "img/il-no-todo.jpg"
-   ]
+   ],
+   "source": "https://www.jw.org/es/biblioteca/revistas/w20010801/Distinguimos-tanto-lo-correcto-como-lo-incorrecto/?utm_source=chatgpt.com"
   }
  ],
  "verses": {
@@ -1144,7 +1372,8 @@ const DATA = {
     "duration": "10 minutos",
     "objective": "Jehová eligió a Gedeón para liberar a Israel de los madianitas, a pesar de que él se sentía el más pequeño de su familia y de su tribu. Jehová vio más allá de sus debilidades y le dio la fuerza que necesitaba. Este discurso nos ayudará a ver cómo Jehová nos fortalece a nosotros también, a pesar de nuestras limitaciones.",
     "development": "1. Gedeón fue humilde y dudó de sí mismo Jueces 6:15 dice: «Jehová, ¿cómo voy a salvar a Israel? Mi clan es el más pequeño de Manasés, y yo soy el más insignificante de la casa de mi padre». Gedeón no se sentía capaz. Pero Jehová no lo eligió por su fuerza ni por su posición, sino por su corazón dispuesto. Jehová vio que Gedeón era humilde y estaba dispuesto a obedecer. Así mismo, Jehová no nos elige por nuestras habilidades, sino por nuestra disposición a servirle. (1 Sam. 16:7) Idea de aplicación: Cuando nos sintamos incapaces, recordemos que Jehová valora nuestra humildad y nuestra disposición, no nuestra perfección. Él puede usarnos a pesar de nuestras debilidades.\n\n2. Jehová le dio a Gedeón la seguridad que necesitaba Jueces 6:16 dice: «Yo estaré contigo». Jehová no le prometió a Gedeón que sería fácil, pero le aseguró que estaría con él. Gedeón pidió señales para confirmar que Jehová lo estaba guiando, y Jehová, con paciencia, se las dio (Jue. 6:36-40). Jehová entiende nuestras dudas y nos da la seguridad que necesitamos a través de su Palabra y de la oración. Idea de aplicación: Cuando tengamos dudas, oremos a Jehová y busquemos su guía en la Biblia. Él nos dará la confianza para seguir adelante, como lo hizo con Gedeón.\n\n3. Gedeón aceptó el encargo a pesar de su miedo En Jueces 6:36-40, Gedeón pidió dos veces una señal para asegurarse de que Jehová lo estaba guiando. A pesar de su miedo, Gedeón obedeció y destruyó el altar de Baal (Jue. 6:25-27). Aunque tuvo miedo, lo hizo de noche, pero lo hizo. Jehová no espera que seamos valientes sin miedo, sino que actuemos a pesar del miedo. Idea de aplicación: El valor no es la ausencia de miedo, sino actuar a pesar de él. Cuando Jehová nos pida algo difícil, podemos hacerlo con su ayuda, aunque sintamos miedo.\n\n4. Jehová redujo el ejército para demostrar su poder En Jueces 7:2, Jehová le dijo a Gedeón: «Tienes demasiada gente conmigo para que yo entregue a Madián en tus manos. Israel podría vanagloriarse contra mí y decir: \"Mi propia mano me ha salvado\"». Jehová redujo el ejército de 32.000 a 300 hombres. Esto demostró que la victoria venía de Jehová, no de la fuerza humana. Cuando dependemos de Jehová, él puede hacer grandes cosas con pocos recursos. Idea de aplicación: No necesitamos ser muchos ni tener grandes recursos para que Jehová nos use. Lo importante es confiar en él y dejar que él demuestre su poder.\n\n5. Gedeón obedeció instrucciones que parecían extrañas Jueces 7:16-18 describe cómo Gedeón dividió a los 300 hombres en tres grupos, les dio trompetas y antorchas dentro de jarras, y les dijo que hicieran lo mismo que él. Esto no parecía una estrategia militar lógica, pero Gedeón obedeció. El resultado fue una gran victoria (Jue. 7:19-22). Jehová a veces nos pide cosas que no entendemos, pero si obedecemos, veremos su bendición. Idea de aplicación: Cuando las instrucciones de Jehová no tengan sentido para nosotros, obedezcamos de todos modos. Él sabe lo que hace y nos bendecirá por nuestra obediencia.\n\nCONCLUSIÓN Gedeón era un hombre común con debilidades, dudas y miedos, pero Jehová lo usó para hacer algo extraordinario. Lo mismo puede pasar con nosotros. Si somos humildes, confiamos en Jehová y obedecemos sus instrucciones, él nos dará la fuerza que necesitamos para cumplir con nuestras asignaciones. No dejemos que nuestras debilidades nos detengan; dejemos que Jehová nos fortalezca.\n\n¿QUÉ SIGNIFICA ESTO PARA NOSOTROS? Jehová no busca personas perfectas, sino corazones dispuestos. Nuestras debilidades no son un obstáculo para Jehová; son una oportunidad para que él demuestre su poder. Cuando nos sentimos incapaces, podemos orar a Jehová y pedirle que nos dé valor y confianza. La obediencia, aun cuando no entendamos todo, trae bendiciones. Como Gedeón, podemos hacer cosas extraordinarias con la ayuda de Jehová.",
-    "image": "img/tesoros.jpg"
+    "image": "img/tesoros.jpg",
+    "imageCaption": "Sigamos orándole a Jehová con fe mientras esperamos a que él actúe."
    },
    "perlas": [
     {
@@ -1937,7 +2166,8 @@ const DATA = {
      }
     ],
     "image": "img/vida3.jpg",
-    "imageAfterSection": 4
+    "imageAfterSection": 4,
+    "imageCaption": "https://www.jw.org/es/biblioteca/revistas/w20031101/Cultivemos-un-esp%C3%ADritu-generoso/?utm_source=chatgpt.com"
    },
    "estudio": {
     "book": "Seamos valientes",
@@ -2067,7 +2297,8 @@ const DATA = {
       "extraQ2": "¿Qué nos enseña el ejemplo de los israelitas?",
       "extraA2": "Nos enseña que debemos obedecer a Jehová aunque eso implique riesgos o dificultades. Cuando confiamos en Jehová y obedecemos sus mandatos, él nos protege y nos bendice.",
       "image": "img/atalaya3.jpg",
-      "imageCaption": "Los israelitas obedecieron a Jehová a pesar de las posibles represalias de los egipcios (mira el párrafo 3)"
+      "imageCaption": "Los israelitas obedecieron a Jehová a pesar de las posibles represalias de los egipcios (mira el párrafo 3)",
+      "imageAsterisk": "Mira la sección “Preguntas de los lectores” de La Atalaya de agosto de 2025."
      },
      {
       "num": "4",
@@ -2461,7 +2692,8 @@ const DATA = {
      }
     ],
     "image": "img/vida4.jpg",
-    "imageAfterSection": 1
+    "imageAfterSection": 1,
+    "imageAlt": "Él sabe bien cómo estamos formados; se acuerda de que somos polvo"
    }
   },
   {
@@ -2663,7 +2895,8 @@ const DATA = {
     }
    ],
    "perlasClosing": "La idea que conecta ambos capítulos es esta: aunque las circunstancias cambien y las personas poderosas parezcan tener el control, nuestra esperanza debe estar en Jehová. Si mantenemos esa esperanza y aprendemos a estar contentos con lo que tenemos, podremos seguir sirviéndole con alegría.",
-   "perlasImage": "img/perlas-w5.jpg"
+   "perlasImage": "img/perlas-w5.jpg",
+   "perlasImageCaption": "Un siervo de la antigüedad reflexiona al amanecer mientras lee un rollo de las Escrituras en una colina."
   },
   {
    "range": "30 de noviembre al 6 de diciembre de 2026",
