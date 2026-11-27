@@ -100,7 +100,8 @@ button.primary:active{background:var(--accent-dark)}
 .hlcbtn .ovl.fr{left:50%;width:23px;height:23px;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 1px 4px rgba(20,30,60,.28)}
 .hlico{width:34px;height:30px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;color:var(--ink);cursor:pointer;padding:0;flex:none;border-radius:999px;font-size:15px}
 .hlico:active{background:#f1e9f6}
-::selection{background:rgba(123,45,139,.25)}
+::selection{background:rgba(120,120,140,.25)}
+::-moz-selection{background:rgba(120,120,140,.25)}
 </style>
 </head>
 <body>
@@ -314,9 +315,13 @@ function placeBar(){
   const bar = $("#hlbar");
   if (barRect){
     const cx = barRect.left + barRect.width / 2;
-    const bh = bar.offsetHeight || 40, m = 8;
-    if (barRect.top - m - bh >= 4) placeNear(bar, cx, barRect.top - m - bh);
-    else placeNear(bar, cx, barRect.bottom + m);
+    const bh = bar.offsetHeight || 40, m = 14;
+    // Por defecto DEBAJO de la selección, con margen claro y sin solaparla
+    // (el menú del sistema de Android aparece encima: así no chocan). Solo
+    // si no cabe debajo se coloca encima, con el mismo margen.
+    if (barRect.bottom + m + bh <= window.innerHeight - 4) placeNear(bar, cx, barRect.bottom + m);
+    else if (barRect.top - m - bh >= 4) placeNear(bar, cx, barRect.top - m - bh);
+    else placeNear(bar, cx, Math.max(4, Math.min(barRect.bottom + m, window.innerHeight - bh - 4)));
   } else {
     bar.style.left = "50%"; bar.style.transform = "translateX(-50%)"; bar.style.top = "auto"; bar.style.bottom = "64px";
   }
@@ -431,9 +436,13 @@ function checkSelection(){
   }
 }
 let selTimer = null;
-document.addEventListener("selectionchange", () => { clearTimeout(selTimer); selTimer = setTimeout(checkSelection, 350); });
-document.addEventListener("mouseup", () => setTimeout(checkSelection, 10));
-document.addEventListener("touchend", () => setTimeout(checkSelection, 80));
+// La píldora se muestra solo cuando la selección ya está quieta: cualquier
+// evento (selectionchange, mouseup, touchend) reinicia la misma espera, así
+// no aparece mientras el usuario aún arrastra los tiradores de selección.
+function scheduleCheck(){ clearTimeout(selTimer); selTimer = setTimeout(checkSelection, 260); }
+document.addEventListener("selectionchange", scheduleCheck);
+document.addEventListener("mouseup", scheduleCheck);
+document.addEventListener("touchend", scheduleCheck);
 document.addEventListener("click", e => {
   const t = e.target;
   if (t.closest && t.closest("#hlbar")) return;

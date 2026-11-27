@@ -3,7 +3,7 @@ const DATA = {
  "week": {
   "range": "23 al 29 de noviembre de 2026",
   "tesoros": {
-   "title": "Aprendamos de Gedeón, a pesar de nuestras debilidades",
+   "title": "Cuando tengamos problemas, no nos rindamos",
    "reading": "Jueces 6-7",
    "duration": "10 minutos",
    "objective": "Jehová eligió a Gedeón para liberar a Israel de los madianitas, a pesar de que él se sentía el más pequeño de su familia y de su tribu. Jehová vio más allá de sus debilidades y le dio la fuerza que necesitaba. Este discurso nos ayudará a ver cómo Jehová nos fortalece a nosotros también, a pesar de nuestras limitaciones.",
@@ -1121,7 +1121,7 @@ const DATA = {
   {
    "range": "23 al 29 de noviembre de 2026",
    "tesoros": {
-    "title": "Aprendamos de Gedeón, a pesar de nuestras debilidades",
+    "title": "Cuando tengamos problemas, no nos rindamos",
     "reading": "Jueces 6-7",
     "duration": "10 minutos",
     "objective": "Jehová eligió a Gedeón para liberar a Israel de los madianitas, a pesar de que él se sentía el más pequeño de su familia y de su tribu. Jehová vio más allá de sus debilidades y le dio la fuerza que necesitaba. Este discurso nos ayudará a ver cómo Jehová nos fortalece a nosotros también, a pesar de nuestras limitaciones.",
