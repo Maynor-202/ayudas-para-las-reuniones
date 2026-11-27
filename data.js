@@ -2,6 +2,8 @@
 const DATA = {
  "week": {
   "range": "23 al 29 de noviembre de 2026",
+  "startDate": "2026-11-23",
+  "endDate": "2026-11-29",
   "tesoros": {
    "title": "Cuando tengamos problemas, no nos rindamos",
    "reading": "Jueces 6-7",
@@ -347,6 +349,20 @@ const DATA = {
   }
  },
  "daily": [
+  {
+   "date": "2026-11-27",
+   "label": "27 de noviembre de 2026",
+   "weekday": "viernes",
+   "ref": "2 Timoteo 3:1",
+   "verse": "En los últimos días vendrán tiempos críticos y difíciles de soportar.",
+   "comment": "En estos \"últimos días\", las cosas irán de mal en peor. Así que cada vez tendremos más oportunidades de ayudarnos unos a otros. Una manera de ser un refugio es dando apoyo emocional y espiritual. Por ejemplo, podemos recibir bien a los hermanos en el Salón del Reino. Cuando los hermanos y hermanas vienen a las reuniones, deseamos que se sientan seguros y queridos. Los ancianos pueden convertirse en un refugio para los hermanos que están pasando por dificultades. Por ejemplo, cuando ocurren desastres o emergencias médicas, enseguida organizan ayuda práctica. También ofrecen apoyo espiritual. Si los hermanos saben que un anciano es amable, empático y está dispuesto a escuchar, será más probable que acudan a él para pedirle ayuda. Esas cualidades hacen que los hermanos se sientan más queridos y les resulte más fácil poner en práctica cualquier consejo que el anciano les dé con la Biblia (1 Tes. 2:7, 8, 11).",
+   "example": "Imaginemos a una hermana que está pasando por una situación familiar muy difícil. Llega a la reunión preocupada y con pocas fuerzas. Un hermano se acerca, la recibe con cariño y se interesa sinceramente por ella. No la presiona para que explique lo que le sucede, sino que la escucha con paciencia. Más tarde, un anciano la visita y, con amabilidad, le ofrece apoyo espiritual basado en la Biblia. También se asegura de que reciba la ayuda práctica que necesita. La hermana siente que no está sola y que la congregación es un lugar seguro donde puede encontrar consuelo. Así, los hermanos se convierten en un refugio, imitando las cualidades de Jehová: amor, confiabilidad y estabilidad.",
+   "lessons": "1. Podemos ser un refugio emocional y espiritual para los demás. En estos tiempos difíciles, muchos hermanos llevan cargas que no siempre conocemos. Recibirlos con cariño y escucharlos con paciencia es una forma práctica de ser un refugio, como lo es Jehová. 2. Imitar a Jehová significa ser confiables. Jehová siempre cumple sus promesas y nunca abandona a sus siervos. Cuando somos constantes y cumplimos lo que prometemos, reflejamos su confiabilidad y damos estabilidad a quienes nos rodean. 3. La estabilidad espiritual se consigue fortaleciendo nuestra fe. Estudiar la Biblia con regularidad y meditar en las cualidades de Jehová nos ayuda a ser constantes en nuestro servicio, aun cuando todo a nuestro alrededor cambia. 4. Los ancianos pueden ser como un refugio protector. Si son amables, empáticos y están dispuestos a ayudar sin juzgar, los hermanos se sentirán seguros y buscarán su apoyo en momentos de necesidad. 5. La confidencialidad fortalece la confianza. Los ancianos y todos los que ayudan a otros deben tratar los asuntos personales con discreción. De ese modo, los hermanos se sentirán seguros de compartir sus problemas sin miedo a ser juzgados. 6. Los jóvenes también pueden convertirse en una fuente de estabilidad. Pueden recibir bien a los hermanos en las reuniones, escuchar con empatía y dar ánimo. Incluso los jóvenes pueden imitar a Jehová al ser amorosos y confiables. 7. Conocer mejor a Jehová nos ayuda a imitarlo. La Biblia lo describe como una Roca, un Padre, un Pastor, un Refugio y un Escudo. Cuanto más aprendamos sobre sus cualidades, mejor podremos reflejarlas en nuestra forma de tratar a los demás.",
+   "images": [
+    "img/td-2026-11-27.jpg",
+    "img/td-2026-11-27-2.jpg"
+   ]
+  },
   {
    "date": "2026-11-26",
    "label": "26 de noviembre de 2026",
@@ -1120,6 +1136,8 @@ const DATA = {
  "weeks": [
   {
    "range": "23 al 29 de noviembre de 2026",
+   "startDate": "2026-11-23",
+   "endDate": "2026-11-29",
    "tesoros": {
     "title": "Cuando tengamos problemas, no nos rindamos",
     "reading": "Jueces 6-7",
@@ -1466,6 +1484,8 @@ const DATA = {
   },
   {
    "range": "16 al 22 de noviembre de 2026",
+   "startDate": "2026-11-16",
+   "endDate": "2026-11-22",
    "tesoros": {
     "title": "Una reacción natural ante una situación devastadora",
     "reading": "Lamentaciones 1-2",
@@ -1797,6 +1817,8 @@ const DATA = {
   },
   {
    "range": "9 al 15 de noviembre de 2026",
+   "startDate": "2026-11-09",
+   "endDate": "2026-11-15",
    "tesoros": {
     "title": "No seamos como Sedequías",
     "reading": "Jeremías 51, 52",
@@ -2190,10 +2212,13 @@ const DATA = {
       "a": "Le pediré a Jehová que me ayude a amar sus mandatos, a tener el deseo de obedecerle en todo y a discernir entre lo bueno y lo malo, tal como hizo Salomón cuando le pidió \"un corazón obediente\"."
      }
     ]
-   }
+   },
+   "perlasImage": "img/perlas-w2.jpg"
   },
   {
    "range": "2 al 8 de noviembre de 2026",
+   "startDate": "2026-11-02",
+   "endDate": "2026-11-08",
    "perlasIntro": "Esta semana, al leer sobre los juicios contra las naciones vecinas de Israel, aprendemos lecciones importantes sobre la soberanía de Jehová y la importancia de confiar en él. Las naciones que se opusieron a Jehová y a su pueblo recibieron juicios, pero Jehová también mostró que su propósito se cumpliría sin falta.",
    "perlas": [
     {
@@ -2419,10 +2444,30 @@ const DATA = {
       "extraA2": "Jehová sabe librar de prueba a"
      }
     ]
+   },
+   "perlasImage": "img/perlas-w3.jpg",
+   "vida": {
+    "title": "Nunca olviden lo que Jehová recuerda",
+    "subtitle": "Análisis con el auditorio",
+    "duration": "15 minutos",
+    "sections": [
+     {
+      "label": "Desarrollo",
+      "text": "Manda ver un vídeo: NUESTRA VIDA CRISTIANA Canción 44 7. Nunca olviden lo que Jehová recuerda (15 mins.) Análisis con el auditorio. Pon el VIDEO. Luego pregunta: ¿Qué lecciones sacamos de este video? 1. ¿Qué significa que Jehová recuerde que somos polvo? Jehová sabe que somos imperfectos, conoce nuestras debilidades y comprende nuestras limitaciones. Por eso desea mostrar misericordia y perdonar a quienes se arrepienten sinceramente. Texto: Salmo 103:14. 2. ¿Cómo se relacionan la misericordia, el perdón y el amor leal de Jehová? La misericordia impulsa a Jehová a perdonar. El perdón es una expresión de su amor leal. Jehová no perdona de mala gana, sino porque nos ama. Textos: Salmo 103:3, 4, 8. 3. ¿Cómo debemos ajustar nuestras expectativas a las limitaciones de los demás? Debemos recordar que todos somos imperfectos. Así evitaremos esperar demasiado de nuestros hermanos y seremos más comprensivos cuando cometan errores. Texto: Salmo 103:14. 4. ¿Cómo contribuimos a la paz y la unidad cuando perdonamos como Jehová? Cuando algo nos molesta, podemos preguntarnos si estamos olvidando que nuestro hermano también es imperfecto. Recordar sus limitaciones nos ayudará a no guardar resentimiento y a mostrar misericordia. Textos: Salmo 103:13; Colosenses 3:13. 5. ¿Cómo podemos ayudar a un hermano que sigue sintiéndose culpable por errores del pasado? Podemos recordarle que Jehová conoce nuestras limitaciones y desea perdonarnos. También podemos ayudarlo a comprender que Jehová no sigue reprochándole los pecados que ya le perdonó. Texto: Salmo 103:14. 6. ¿Qué nos enseña la comparación de la distancia entre el este y el oeste? Nos enseña que el perdón de Jehová tiene un alcance extraordinario. Cuando perdona nuestros pecados, los aleja completamente y no vuelve a echárnoslos en cara. Texto: Salmo 103:12."
+     },
+     {
+      "label": "Preguntas y preparación",
+      "text": "1. ¿Qué lecciones sacamos de este video?\nJehová sabe que somos imperfectos, conoce nuestras debilidades y comprende nuestras limitaciones. Por eso desea mostrar misericordia y perdonar a quienes se arrepienten sinceramente. Texto: Salmo 103:14.\n\n2. ¿Qué significa que Jehová recuerde que somos polvo?\nLa misericordia impulsa a Jehová a perdonar. El perdón es una expresión de su amor leal. Jehová no perdona de mala gana, sino porque nos ama. Textos: Salmo 103:3, 4, 8.\n\n3. ¿Cómo se relacionan la misericordia, el perdón y el amor leal de Jehová?\nDebemos recordar que todos somos imperfectos. Así evitaremos esperar demasiado de nuestros hermanos y seremos más comprensivos cuando cometan errores. Texto: Salmo 103:14.\n\n4. ¿Cómo debemos ajustar nuestras expectativas a las limitaciones de los demás?\nDebemos recordar que todos somos imperfectos. Así evitaremos esperar demasiado de nuestros hermanos y seremos más comprensivos cuando cometan errores. Texto: Salmo 103:14.\n\n5. ¿Cómo contribuimos a la paz y la unidad cuando perdonamos como Jehová?\nCuando algo nos molesta, podemos preguntarnos si estamos olvidando que nuestro hermano también es imperfecto. Recordar sus limitaciones nos ayudará a no guardar resentimiento y a mostrar misericordia. Textos: Salmo 103:13; Colosenses 3:13.\n\n6. ¿Cómo podemos ayudar a un hermano que sigue sintiéndose culpable por errores del pasado?\nPodemos recordarle que Jehová conoce nuestras limitaciones y desea perdonarnos. También podemos ayudarlo a comprender que Jehová no sigue reprochándole los pecados que ya le perdonó. Texto: Salmo 103:14.\n\n7. ¿Qué nos enseña la comparación de la distancia entre el este y el oeste?\nNos enseña que el perdón de Jehová tiene un alcance extraordinario. Cuando perdona nuestros pecados, los aleja completamente y no vuelve a echárnoslos en cara. Texto: Salmo 103:12."
+     }
+    ],
+    "image": "img/vida4.jpg",
+    "imageAfterSection": 1
    }
   },
   {
    "range": "26 de octubre al 1 de noviembre de 2026",
+   "startDate": "2026-10-26",
+   "endDate": "2026-11-01",
    "perlasIntro": "Esta semana, al leer sobre los juicios contra Filistea y Moab, podemos encontrar lecciones valiosas sobre la humildad, la obediencia y la importancia de mantener una buena relación con Jehová. Aunque los filisteos y los moabitas eran naciones poderosas que se creían seguras, la realidad es que todos dependemos de Jehová.",
    "perlas": [
     {
@@ -2506,10 +2551,14 @@ const DATA = {
      "comment": "A pesar del juicio contra Moab, Jehová prometió que reuniría a sus cautivos en el futuro. Esto me enseña que Jehová es un Dios de esperanza. Aunque ejecute juicios, siempre deja abierta la posibilidad de restauración para quienes se arrepienten y buscan su aprobación."
     }
    ],
-   "perlasClosing": "Esta semana hemos visto cómo el orgullo y la confianza en cosas humanas conducen a la destrucción, mientras que la humildad y la confianza en Jehová nos protegen. Los juicios contra Filistea y Moab nos recuerdan que debemos mantenernos leales y no dejarnos llevar por la arrogancia. Si cultivamos la humildad y confiamos en Jehová, él nos protegerá y nos dará esperanza para el futuro."
+   "perlasClosing": "Esta semana hemos visto cómo el orgullo y la confianza en cosas humanas conducen a la destrucción, mientras que la humildad y la confianza en Jehová nos protegen. Los juicios contra Filistea y Moab nos recuerdan que debemos mantenernos leales y no dejarnos llevar por la arrogancia. Si cultivamos la humildad y confiamos en Jehová, él nos protegerá y nos dará esperanza para el futuro.",
+   "perlasImage": "img/perlas-w4.jpg",
+   "perlasImageCaption": "Incluso después de que empiece la gran tribulación, puede que algunas personas se pongan de parte de Jehová."
   },
   {
    "range": "19 al 25 de octubre de 2026",
+   "startDate": "2026-10-19",
+   "endDate": "2026-10-25",
    "perlasIntro": "Esta semana aprenderemos dos lecciones importantes: no permitir que las circunstancias nos hagan buscar grandes cosas para nosotros mismos, y confiar en que Jehová puede cuidar de sus siervos incluso cuando las naciones y los gobiernos parecen tener mucho poder. Baruc necesitaba ajustar su manera de ver las cosas, y la profecía contra Egipto nos recuerda que el poder humano tiene límites.",
    "perlas": [
     {
@@ -2613,7 +2662,443 @@ const DATA = {
      "summary": true
     }
    ],
-   "perlasClosing": "La idea que conecta ambos capítulos es esta: aunque las circunstancias cambien y las personas poderosas parezcan tener el control, nuestra esperanza debe estar en Jehová. Si mantenemos esa esperanza y aprendemos a estar contentos con lo que tenemos, podremos seguir sirviéndole con alegría."
+   "perlasClosing": "La idea que conecta ambos capítulos es esta: aunque las circunstancias cambien y las personas poderosas parezcan tener el control, nuestra esperanza debe estar en Jehová. Si mantenemos esa esperanza y aprendemos a estar contentos con lo que tenemos, podremos seguir sirviéndole con alegría.",
+   "perlasImage": "img/perlas-w5.jpg"
+  },
+  {
+   "range": "30 de noviembre al 6 de diciembre de 2026",
+   "startDate": "2026-11-30",
+   "endDate": "2026-12-06",
+   "perlas": [
+    {
+     "ref": "Ezequiel 1:4",
+     "comment": "Ezequiel vio una nube enorme, fuego resplandeciente y un brillo intenso. Aquella visión debió impresionarlo profundamente y prepararlo para recibir un mensaje importante de Jehová. Esto me enseña que debemos tomar en serio la manera en que Jehová nos instruye. Cuando leemos la Biblia o recibimos orientación en las reuniones, conviene prestar atención y meditar en cómo ponerla en práctica, en vez de escuchar de manera rutinaria."
+    },
+    {
+     "ref": "Ezequiel 1:5",
+     "comment": "Ezequiel vio cuatro criaturas vivientes con apariencia humana. Su forma nos recuerda que Jehová puede utilizar a sus siervos para cumplir su voluntad. Esto me enseña que, aunque seamos imperfectos, Jehová puede usarnos si estamos dispuestos a servirle. Debemos estar listos para hacer su voluntad."
+    },
+    {
+     "ref": "Ezequiel 1:10",
+     "comment": "Cada criatura tenía cuatro rostros: de hombre, de león, de toro y de águila. Estos rostros representan cualidades como la inteligencia, el valor, la fuerza y la rapidez. Esto me enseña que Jehová tiene todas las cualidades necesarias para cumplir su propósito y que podemos confiar en su sabiduría, su poder y su amor."
+    },
+    {
+     "ref": "Ezequiel 1:12",
+     "comment": "Las criaturas se movían hacia donde las dirigía el espíritu. Esto me enseña la importancia de dejarnos guiar por el espíritu de Jehová. Cuando estudiamos la Biblia y seguimos la guía de la organización, estamos permitiendo que el espíritu nos dirija. Debemos ser dóciles y estar dispuestos a seguir su dirección."
+    },
+    {
+     "ref": "Ezequiel 1:13, 14",
+     "comment": "Las criaturas se movían con rapidez, como relámpagos, y su apariencia era como la de carbones ardientes. Esto me recuerda que Jehová es un Dios de acción y que su espíritu puede impulsarnos a actuar con rapidez cuando es necesario. También nos enseña que debemos estar alertas y listos para servir a Jehová en cualquier momento."
+    },
+    {
+     "ref": "Ezequiel 1:15-17",
+     "comment": "Ezequiel vio cuatro ruedas que se movían en cualquier dirección sin girar. Esto me enseña que Jehová puede actuar de maneras que no siempre comprendemos, pero que su propósito siempre se cumple. Debemos confiar en que Jehová sabe lo que está haciendo, incluso cuando las cosas no salen como esperamos."
+    },
+    {
+     "ref": "Ezequiel 1:18",
+     "comment": "Las ruedas estaban llenas de ojos. Esto nos recuerda que Jehová lo ve todo y que nada escapa a su atención. Esto me anima a ser honesto y a vivir de acuerdo con los principios de Jehová, sabiendo que él siempre está observando nuestras acciones y motivaciones."
+    },
+    {
+     "ref": "Ezequiel 1:19-21",
+     "comment": "Las ruedas se movían junto con las criaturas, porque el espíritu las guiaba. Esto me enseña que, cuando nos dejamos guiar por el espíritu de Jehová, nuestras acciones estarán en armonía con su voluntad. Debemos orar para recibir su espíritu y estar dispuestos a seguir su guía."
+    },
+    {
+     "ref": "Ezequiel 1:22",
+     "comment": "Sobre las cabezas de las criaturas había algo parecido a una expansión brillante, imponente como el hielo. La visión debió ayudar a Ezequiel a comprender que estaba ante algo extraordinario y sagrado. Esto me enseña que debemos mostrar reverencia y respeto cuando nos acercamos a Jehová en oración y adoración. Él es un Dios majestuoso que merece nuestro respeto."
+    },
+    {
+     "ref": "Ezequiel 1:24",
+     "comment": "El sonido de las alas de las criaturas era como el sonido de muchas aguas o como la voz del Todopoderoso. Esto me recuerda que la voz de Jehová es poderosa y que debemos escucharla con atención. Cuando leemos la Biblia, estamos escuchando la voz de Jehová, y debemos tomar en serio lo que nos dice."
+    },
+    {
+     "ref": "Ezequiel 1:26",
+     "comment": "Sobre la expansión había algo parecido a un trono de zafiro, y sobre el trono había una figura con apariencia humana. Esto me enseña que Jehová es un Rey majestuoso que gobierna desde los cielos. Debemos reconocer su soberanía y someternos a su voluntad con humildad y respeto."
+    },
+    {
+     "ref": "Ezequiel 1:28",
+     "comment": "Ezequiel vio algo parecido al arcoíris, símbolo del pacto y de la paz. Jehová utilizó ese símbolo para recordarle que, aunque el juicio era necesario, su propósito era de paz y reconciliación. Esto me enseña que, aunque Jehová ejecuta juicios, su deseo es que las personas se arrepientan y busquen su aprobación."
+    },
+    {
+     "ref": "Ezequiel 2:1, 2",
+     "comment": "Jehová le dijo a Ezequiel que se pusiera de pie y que escuchara. El espíritu entró en Ezequiel y lo puso de pie. Esto me enseña que Jehová nos da la fortaleza que necesitamos para cumplir con nuestras asignaciones. Cuando nos sentimos incapaces, podemos confiar en que su espíritu nos ayudará."
+    },
+    {
+     "ref": "Ezequiel 2:3",
+     "comment": "Jehová envió a Ezequiel a los israelitas, un pueblo rebelde. Esto me recuerda que, aunque predicar puede ser difícil, Jehová nos da el valor para hacerlo. No debemos tener miedo de hablar con otros sobre Jehová, incluso si no nos escuchan."
+    },
+    {
+     "ref": "Ezequiel 2:4",
+     "comment": "Jehová describió a los israelitas como un pueblo de rostro duro y corazón obstinado. Esto me enseña que algunas personas no querrán escuchar el mensaje, pero eso no debe desanimarnos. Debemos seguir predicando con paciencia y amor, confiando en que Jehová tocará el corazón de quienes están dispuestos a escuchar."
+    },
+    {
+     "ref": "Ezequiel 2:5",
+     "comment": "Jehová le aseguró a Ezequiel que, aunque la gente no escuchara, sabrían que hubo un profeta entre ellos. Esto me enseña que nuestro trabajo de predicación es importante, incluso si no vemos resultados inmediatos. Jehová valora nuestros esfuerzos y nos recompensará por nuestra fidelidad."
+    },
+    {
+     "ref": "Ezequiel 2:6",
+     "comment": "Jehová le dijo a Ezequiel que no tuviera miedo de la gente ni de sus palabras. Esto me recuerda que no debemos permitir que el miedo nos impida predicar. Jehová está con nosotros y nos dará el valor que necesitamos para hablar con otros sobre él."
+    },
+    {
+     "ref": "Ezequiel 2:7",
+     "comment": "Jehová le mandó a Ezequiel que hablara sus palabras, ya sea que la gente escuchara o no. Esto me enseña que debemos ser fieles en nuestro ministerio, sin importar la reacción de las personas. Nuestro objetivo es compartir el mensaje de Jehová con amor y fidelidad."
+    },
+    {
+     "ref": "Ezequiel 2:8",
+     "comment": "Jehová le advirtió a Ezequiel que no fuera rebelde como los israelitas. Esto me recuerda que debemos ser obedientes a Jehová y seguir sus instrucciones, incluso cuando sean difíciles. La obediencia nos trae bendiciones y nos ayuda a mantener una buena relación con Jehová."
+    },
+    {
+     "ref": "Ezequiel 2:9, 10",
+     "comment": "Ezequiel recibió un rollo con lamentos, gemidos y un sollozo. Esto le enseñó que su mensaje no sería fácil ni agradable, pero debía anunciarlo con fidelidad. Esto me enseña que no siempre tenemos que decir lo que la gente quiere oír. Debemos hablar con valor y fidelidad, confiando en que Jehová nos dará las fuerzas para cumplir su voluntad."
+    }
+   ]
+  },
+  {
+   "range": "7 al 13 de diciembre de 2026",
+   "startDate": "2026-12-07",
+   "endDate": "2026-12-13",
+   "perlas": [
+    {
+     "ref": "Ezequiel 3:1-3",
+     "comment": "Jehová le mandó a Ezequiel que comiera el rollo y luego hablara a Israel. El rollo era dulce como la miel en su boca. Esto me enseña que, cuando estudiamos la Palabra de Dios y la aplicamos, nos resulta dulce y agradable. Debemos saborear las enseñanzas de Jehová y compartirlas con otros."
+    },
+    {
+     "ref": "Ezequiel 3:4-7",
+     "comment": "Jehová le dijo a Ezequiel que iría a un pueblo que no querría escucharlo. Esto me recuerda que predicar no siempre es fácil, pero debemos seguir haciéndolo con paciencia. Jehová nos da la fortaleza para hablar con valor, incluso cuando la gente no quiere escuchar."
+    },
+    {
+     "ref": "Ezequiel 3:8, 9",
+     "comment": "Jehová le dio a Ezequiel una frente dura como el diamante para que no tuviera miedo. Esto me enseña que Jehová nos dará la fortaleza para enfrentar la oposición. Cuando nos encontramos con personas que se oponen al mensaje, podemos confiar en que Jehová nos ayudará a mantenernos firmes."
+    },
+    {
+     "ref": "Ezequiel 3:10",
+     "comment": "Jehová le dijo a Ezequiel que escuchara sus palabras y las guardara en su corazón. Esto me recuerda la importancia de prestar atención a la Palabra de Dios y de meditar en ella. Cuando estudiamos la Biblia con regularidad, sus enseñanzas se quedan en nuestro corazón y nos ayudan a tomar buenas decisiones."
+    },
+    {
+     "ref": "Ezequiel 3:11",
+     "comment": "Jehová le mandó a Ezequiel que hablara a los desterrados, ya sea que escucharan o no. Esto me enseña que debemos ser fieles en nuestro ministerio, sin importar la reacción de las personas. Nuestro objetivo es compartir el mensaje de Jehová con amor y fidelidad."
+    },
+    {
+     "ref": "Ezequiel 3:14",
+     "comment": "Ezequiel fue llevado por el espíritu, aunque estaba amargado y enojado. Esto me recuerda que, aunque a veces nos sintamos desanimados o frustrados, el espíritu de Jehová nos guiará. Debemos confiar en Jehová y permitir que su espíritu nos dirija."
+    },
+    {
+     "ref": "Ezequiel 3:15",
+     "comment": "Ezequiel se sentó entre los desterrados durante siete días, atónito. Esto me enseña que, cuando enfrentamos situaciones difíciles, necesitamos tiempo para reflexionar y procesar lo que está sucediendo. Jehová nos dará el tiempo y la fortaleza para adaptarnos."
+    },
+    {
+     "ref": "Ezequiel 3:17",
+     "comment": "Jehová nombró a Ezequiel atalaya para advertir al pueblo. Esto me recuerda que nosotros también somos atalayas. Debemos advertir a las personas sobre el día de Jehová y ayudarlas a entender la importancia de arrepentirse y buscar a Jehová."
+    },
+    {
+     "ref": "Ezequiel 3:18, 19",
+     "comment": "Jehová le explicó a Ezequiel su responsabilidad como atalaya. Si no advertía al malvado, su sangre sería demandada. Esto me enseña la importancia de tomar en serio nuestra responsabilidad de predicar. Debemos advertir a otros con amor y urgencia, porque sus vidas dependen de ello."
+    },
+    {
+     "ref": "Ezequiel 3:20, 21",
+     "comment": "Jehová también le habló a Ezequiel sobre el justo que se aparta de la justicia. Esto me recuerda que debemos mantenernos fieles a Jehová y no apartarnos de sus caminos. Si alguien se aparta, debemos animarlo a volver a Jehová con amor y paciencia."
+    },
+    {
+     "ref": "Ezequiel 3:22, 23",
+     "comment": "Ezequiel vio la gloria de Jehová y cayó rostro a tierra. Esto me enseña la importancia de mostrar reverencia y respeto ante Jehová. Cuando oramos o estudiamos la Biblia, debemos hacerlo con un corazón humilde y reverente."
+    },
+    {
+     "ref": "Ezequiel 3:24-26",
+     "comment": "Jehová le dijo a Ezequiel que se quedara en su casa y que no saliera. Esto me recuerda que, a veces, Jehová nos pide que esperemos y seamos pacientes. Debemos confiar en su tiempo y en su guía, incluso cuando no entendemos por qué debemos esperar."
+    },
+    {
+     "ref": "Ezequiel 3:27",
+     "comment": "Jehová le prometió a Ezequiel que le abriría la boca cuando fuera el momento de hablar. Esto me enseña que Jehová nos dará las palabras adecuadas cuando las necesitemos. Cuando predicamos, podemos confiar en que Jehová nos ayudará a expresar el mensaje con claridad."
+    },
+    {
+     "ref": "Ezequiel 4:1-3",
+     "comment": "Jehová le mandó a Ezequiel que hiciera un modelo de Jerusalén y la sitiara. Esto me recuerda que Jehová usa ilustraciones y ejemplos para enseñar lecciones importantes. Debemos prestar atención a las ilustraciones de la Biblia y aplicar sus enseñanzas en nuestra vida."
+    },
+    {
+     "ref": "Ezequiel 4:4-6",
+     "comment": "Ezequiel tuvo que acostarse sobre su lado izquierdo y luego sobre el derecho para representar los años de castigo. Esto me enseña que Jehová es paciente y que da tiempo para que las personas se arrepientan. Sin embargo, también nos recuerda que sus juicios son justos y que se cumplirán."
+    },
+    {
+     "ref": "Ezequiel 4:7",
+     "comment": "Ezequiel debía mirar hacia Jerusalén con el brazo descubierto, como señal de juicio. Esto me recuerda que Jehová no oculta sus juicios y que debemos tomar en serio sus advertencias. Debemos arrepentirnos y buscar su aprobación antes de que llegue el día de su juicio."
+    },
+    {
+     "ref": "Ezequiel 4:8",
+     "comment": "Jehová ató a Ezequiel para que no pudiera moverse. Esto me enseña que, a veces, Jehová nos pone en situaciones difíciles para enseñarnos lecciones importantes. Debemos ser pacientes y confiar en que Jehová nos ayudará a superar cualquier prueba."
+    },
+    {
+     "ref": "Ezequiel 4:9",
+     "comment": "Ezequiel debía comer pan hecho con diferentes granos. Esto me recuerda que, en tiempos difíciles, debemos ser agradecidos por lo que tenemos y confiar en que Jehová nos proveerá. No debemos quejarnos, sino confiar en su cuidado."
+    },
+    {
+     "ref": "Ezequiel 4:10, 11",
+     "comment": "Ezequiel debía comer y beber en cantidades limitadas. Esto me enseña la importancia de ser moderados y de no desperdiciar los recursos. Debemos ser agradecidos por lo que Jehová nos da y usarlo con sabiduría."
+    },
+    {
+     "ref": "Ezequiel 4:12-17",
+     "comment": "Ezequiel tuvo que cocinar su pan sobre excremento humano seco, lo cual era algo muy desagradable y humillante. Esto me enseña que Jehová a veces nos pide hacer cosas que nos resultan incómodas o difíciles, pero debemos obedecerle con humildad. También nos recuerda que, cuando enfrentamos dificultades, podemos confiar en que Jehová nos dará la fortaleza para seguir adelante."
+    }
+   ]
+  },
+  {
+   "range": "14 al 20 de diciembre de 2026",
+   "startDate": "2026-12-14",
+   "endDate": "2026-12-20",
+   "perlas": [
+    {
+     "ref": "Ezequiel 5:1-4",
+     "comment": "Ezequiel debía cortarse el cabello y la barba y dividirlos en tres partes. Esto me enseña que los juicios de Jehová son justos y que cada persona recibirá lo que merece. Debemos tomar en serio las advertencias de Jehová y arrepentirnos antes de que sea demasiado tarde."
+    },
+    {
+     "ref": "Ezequiel 5:5",
+     "comment": "Jehová puso a Jerusalén en medio de las naciones para que fuera un ejemplo. Esto me recuerda que nosotros, como pueblo de Jehová, también debemos ser un ejemplo para otros. Nuestras acciones y nuestra conducta deben reflejar las cualidades de Jehová."
+    },
+    {
+     "ref": "Ezequiel 5:6",
+     "comment": "Jerusalén se rebeló contra las leyes de Jehová. Esto me enseña que la desobediencia tiene consecuencias. Debemos obedecer a Jehová y seguir sus instrucciones, porque él sabe lo que es mejor para nosotros."
+    },
+    {
+     "ref": "Ezequiel 5:7",
+     "comment": "Jehová dijo que Jerusalén era peor que las naciones que la rodeaban. Esto me recuerda que, si conocemos a Jehová y desobedecemos, nuestra responsabilidad es mayor. Debemos esforzarnos por vivir de acuerdo con sus principios."
+    },
+    {
+     "ref": "Ezequiel 5:9",
+     "comment": "Jehová dijo que haría en Jerusalén lo que nunca había hecho antes. Esto me enseña que los juicios de Jehová son serios y que debemos tomarlos en serio. No debemos pensar que podemos desobedecer sin sufrir las consecuencias."
+    },
+    {
+     "ref": "Ezequiel 5:11",
+     "comment": "Jehová dijo que no tendría compasión de Jerusalén porque habían profanado su santuario. Esto me recuerda que Jehová es santo y que debemos tratar su adoración con respeto. No debemos profanar las cosas sagradas con nuestras acciones."
+    },
+    {
+     "ref": "Ezequiel 5:13",
+     "comment": "Jehová dijo que su furia se calmaría después de ejecutar su juicio. Esto me enseña que Jehová no se enoja sin razón; sus juicios son justos y tienen un propósito. Cuando nos disciplinamos, debemos verlo como una oportunidad para corregirnos y volver a Jehová."
+    },
+    {
+     "ref": "Ezequiel 5:15",
+     "comment": "Las naciones verían el juicio de Jehová y aprenderían de él. Esto me recuerda que nuestros errores pueden servir como lección para otros. Debemos ser cuidadosos con nuestra conducta, porque otros están observando."
+    },
+    {
+     "ref": "Ezequiel 5:17",
+     "comment": "Jehová enviaría hambre, animales salvajes y enfermedades a Jerusalén. Esto me enseña que Jehová usa diferentes medios para disciplinar a su pueblo. Debemos tomar en serio sus advertencias y arrepentirnos antes de que sea demasiado tarde."
+    },
+    {
+     "ref": "Ezequiel 6:2, 3",
+     "comment": "Jehová le mandó a Ezequiel que profetizara contra los montes de Israel. Esto me recuerda que Jehová no tolera la idolatría. Debemos mantenernos alejados de cualquier forma de idolatría y adorar solo a Jehová."
+    },
+    {
+     "ref": "Ezequiel 6:4-6",
+     "comment": "Jehová destruiría los altares y los ídolos de Israel. Esto me enseña que ningún ídolo puede protegernos. Solo Jehová merece nuestra adoración, y debemos eliminar de nuestra vida cualquier cosa que nos aleje de él."
+    },
+    {
+     "ref": "Ezequiel 6:7",
+     "comment": "Los israelitas sabrían que Jehová es el Dios verdadero cuando vieran su juicio. Esto me recuerda que, aunque algunas personas no reconozcan a Jehová ahora, llegará el día en que todos sabrán que él es el Dios verdadero."
+    },
+    {
+     "ref": "Ezequiel 6:8",
+     "comment": "Jehová dejaría un resto que escaparía de la espada. Esto me enseña que Jehová siempre preserva a un grupo de personas fieles. Aunque el mundo esté en caos, Jehová protegerá a su pueblo."
+    },
+    {
+     "ref": "Ezequiel 6:9",
+     "comment": "Los que escaparan se acordarían de Jehová y de sus pecados. Esto me recuerda que, cuando cometemos errores, debemos reflexionar sobre ellos y arrepentirnos. Jehová nos perdonará si nos arrepentimos sinceramente."
+    },
+    {
+     "ref": "Ezequiel 6:10",
+     "comment": "Los israelitas sabrían que Jehová no había hablado en vano. Esto me enseña que las palabras de Jehová siempre se cumplen. Debemos confiar en sus promesas y tomar en serio sus advertencias."
+    },
+    {
+     "ref": "Ezequiel 6:11",
+     "comment": "Jehová le mandó a Ezequiel que aplaudiera y pateara el suelo como señal de juicio. Esto me recuerda que los juicios de Jehová son justos y que debemos tomarlos en serio. No debemos alegrarnos del sufrimiento de otros, pero sí debemos reconocer la justicia de Jehová."
+    },
+    {
+     "ref": "Ezequiel 6:12",
+     "comment": "Jehová dijo que los que estuvieran lejos morirían de peste, los que estuvieran cerca caerían a espada, y los que quedaran morirían de hambre. Esto me enseña que nadie puede escapar del juicio de Jehová. Debemos arrepentirnos y buscar su aprobación antes de que sea demasiado tarde."
+    },
+    {
+     "ref": "Ezequiel 6:13",
+     "comment": "Los israelitas sabrían que Jehová es el Dios verdadero cuando vieran a sus muertos entre los ídolos. Esto me recuerda que la idolatría no ofrece protección. Solo Jehová puede salvarnos, y debemos adorarlo solo a él."
+    },
+    {
+     "ref": "Ezequiel 6:14",
+     "comment": "Jehová extendería su mano contra Israel y haría que la tierra quedara desolada. Esto me enseña que las consecuencias de la desobediencia pueden ser devastadoras. Debemos obedecer a Jehová y mantenernos cerca de él."
+    },
+    {
+     "ref": "Ezequiel 6:9, 10",
+     "comment": "Los israelitas se acordarían de Jehová y de sus pecados. Esto me enseña que, cuando cometemos errores, debemos arrepentirnos sinceramente y buscar la ayuda de Jehová. Él siempre está dispuesto a perdonarnos y a ayudarnos a cambiar. Esto me da esperanza de que, aunque hayamos fallado, podemos volver a Jehová y recibir su perdón."
+    }
+   ]
+  },
+  {
+   "range": "21 al 27 de diciembre de 2026",
+   "startDate": "2026-12-21",
+   "endDate": "2026-12-27",
+   "perlas": [
+    {
+     "ref": "Ezequiel 7:3, 4",
+     "comment": "Jehová anunció que el fin había llegado para Israel y que ejecutaría su juicio. Esto me enseña que Jehová no tolerará la maldad para siempre. Debemos tomar en serio sus advertencias y arrepentirnos antes de que llegue el día de su juicio."
+    },
+    {
+     "ref": "Ezequiel 7:5-7",
+     "comment": "Jehová dijo que vendría una calamidad tras otra. Esto me recuerda que, cuando Jehová ejecuta sus juicios, no habrá escapatoria. Debemos estar preparados espiritualmente y mantenernos cerca de Jehová."
+    },
+    {
+     "ref": "Ezequiel 7:8, 9",
+     "comment": "Jehová derramaría su furia sobre Israel y no tendría compasión. Esto me enseña que los juicios de Jehová son justos y que debemos tomarlos en serio. No debemos pensar que podemos desobedecer sin sufrir las consecuencias."
+    },
+    {
+     "ref": "Ezequiel 7:10, 11",
+     "comment": "La vara de la maldad había florecido y la arrogancia había brotado. Esto me recuerda que el orgullo y la maldad tienen consecuencias. Debemos cultivar la humildad y obedecer a Jehová."
+    },
+    {
+     "ref": "Ezequiel 7:12, 13",
+     "comment": "Jehová dijo que el tiempo de la calamidad había llegado y que nadie escaparía. Esto me enseña que no podemos confiar en las riquezas ni en las posesiones materiales para protegernos. Solo Jehová puede darnos verdadera seguridad."
+    },
+    {
+     "ref": "Ezequiel 7:19",
+     "comment": "La plata y el oro no podrían salvar a los israelitas. Esto me recuerda que las riquezas no ofrecen protección verdadera. Debemos poner nuestra confianza en Jehová y no en las cosas materiales."
+    },
+    {
+     "ref": "Ezequiel 7:20",
+     "comment": "Los israelitas usaron sus joyas para hacer ídolos. Esto me enseña que debemos tener cuidado con lo que valoramos. Si ponemos nuestra confianza en las cosas materiales, podemos terminar adorando ídolos."
+    },
+    {
+     "ref": "Ezequiel 7:23",
+     "comment": "Jehová dijo que haría cadenas para los israelitas porque la tierra estaba llena de violencia. Esto me recuerda que la violencia y la maldad tienen consecuencias. Debemos promover la paz y tratar a otros con amor y respeto."
+    },
+    {
+     "ref": "Ezequiel 7:25-27",
+     "comment": "Jehová dijo que vendría angustia y que no habría paz. Esto me enseña que, sin Jehová, no hay verdadera paz. Debemos buscar a Jehová y seguir sus principios para encontrar paz y seguridad."
+    },
+    {
+     "ref": "Ezequiel 8:3, 4",
+     "comment": "Ezequiel fue llevado en visión a Jerusalén y vio la gloria de Jehová. Esto me recuerda que Jehová está presente en su pueblo y que su gloria es majestuosa. Debemos mostrar reverencia y respeto ante Jehová."
+    },
+    {
+     "ref": "Ezequiel 8:5, 6",
+     "comment": "Jehová le mostró a Ezequiel la imagen de los celos en la entrada del altar. Esto me enseña que Jehová detesta la idolatría y que debemos mantenernos alejados de cualquier forma de adoración falsa."
+    },
+    {
+     "ref": "Ezequiel 8:7-10",
+     "comment": "Ezequiel vio un agujero en la pared y encontró imágenes de animales repugnantes. Esto me recuerda que la idolatría puede estar oculta, pero Jehová lo ve todo. Debemos examinar nuestro corazón y eliminar cualquier cosa que nos aleje de Jehová."
+    },
+    {
+     "ref": "Ezequiel 8:11, 12",
+     "comment": "Setenta ancianos estaban adorando ídolos en secreto. Esto me enseña que incluso los líderes pueden caer en la idolatría. Debemos mantenernos alertas y no seguir el ejemplo de quienes se apartan de Jehová."
+    },
+    {
+     "ref": "Ezequiel 8:13, 14",
+     "comment": "Las mujeres estaban llorando por el dios Tamuz. Esto me recuerda que las prácticas religiosas falsas pueden ser atractivas, pero no agradan a Jehová. Debemos adorar solo a Jehová y seguir sus principios."
+    },
+    {
+     "ref": "Ezequiel 8:15, 16",
+     "comment": "Veinticinco hombres estaban adorando al sol. Esto me enseña que la adoración falsa puede tomar muchas formas. Debemos mantenernos alejados de cualquier práctica que no esté basada en la Biblia."
+    },
+    {
+     "ref": "Ezequiel 8:17",
+     "comment": "Jehová dijo que los israelitas habían llenado la tierra de violencia. Esto me recuerda que la violencia y la maldad tienen consecuencias. Debemos promover la paz y tratar a otros con amor y respeto."
+    },
+    {
+     "ref": "Ezequiel 8:18",
+     "comment": "Jehová dijo que no escucharía las oraciones de los israelitas. Esto me enseña que, si practicamos la idolatría, Jehová no escuchará nuestras oraciones. Debemos mantenernos limpios espiritualmente para que Jehová escuche nuestras oraciones."
+    },
+    {
+     "ref": "Ezequiel 8:6",
+     "comment": "Jehová le preguntó a Ezequiel si había visto las cosas detestables que estaban haciendo los israelitas. Esto me enseña que Jehová ve todo lo que hacemos, incluso en secreto. Debemos vivir de manera que agrade a Jehová en todo momento."
+    },
+    {
+     "ref": "Ezequiel 8:12",
+     "comment": "Los ancianos decían que Jehová no los veía. Esto me recuerda que algunas personas piensan que pueden ocultar sus acciones de Jehová, pero él lo ve todo. Debemos ser honestos y vivir de acuerdo con sus principios."
+    },
+    {
+     "ref": "Ezequiel 8:17, 18",
+     "comment": "Jehová no escucharía las oraciones de los que practicaban idolatría. Esto me enseña que, si queremos que Jehová escuche nuestras oraciones, debemos mantenernos alejados de la idolatría y de cualquier práctica que él desaprueba. También nos recuerda que Jehová es un Dios santo que merece nuestra adoración pura."
+    }
+   ]
+  },
+  {
+   "range": "28 de diciembre de 2026 al 3 de enero de 2027",
+   "startDate": "2026-12-28",
+   "endDate": "2027-01-03",
+   "perlas": [
+    {
+     "ref": "Ezequiel 9:4",
+     "comment": "Jehová mandó que se marcara con una señal en la frente a los que suspiraban y gemían por las cosas detestables. Esto me enseña que Jehová distingue a quienes le son fieles y los protege. Debemos demostrar que somos leales a Jehová y que detestamos la maldad."
+    },
+    {
+     "ref": "Ezequiel 9:5, 6",
+     "comment": "Jehová mandó que se ejecutara juicio sobre los que no tenían la marca. Esto me recuerda que Jehová protege a sus siervos fieles, pero ejecuta juicio sobre los malvados. Debemos asegurarnos de estar entre los que Jehová protege."
+    },
+    {
+     "ref": "Ezequiel 9:3",
+     "comment": "La gloria de Jehová se movió desde el querubín hasta el umbral de la casa. Esto me enseña que la presencia de Jehová es majestuosa y que debemos mostrar reverencia ante él. Cuando oramos, debemos hacerlo con un corazón humilde y reverente."
+    },
+    {
+     "ref": "Ezequiel 9:8",
+     "comment": "Ezequiel cayó rostro a tierra y clamó a Jehová. Esto me recuerda que, cuando enfrentamos situaciones difíciles, podemos acudir a Jehová en oración. Él escucha nuestras oraciones y nos dará la ayuda que necesitamos."
+    },
+    {
+     "ref": "Ezequiel 9:9",
+     "comment": "Jehová dijo que la maldad de Israel era muy grande. Esto me enseña que Jehová no tolera la maldad y que ejecutará juicio sobre los malvados. Debemos arrepentirnos y buscar su aprobación antes de que sea demasiado tarde."
+    },
+    {
+     "ref": "Ezequiel 9:10",
+     "comment": "Jehová dijo que no tendría compasión de los malvados. Esto me recuerda que los juicios de Jehová son justos y que debemos tomarlos en serio. No debemos pensar que podemos desobedecer sin sufrir las consecuencias."
+    },
+    {
+     "ref": "Ezequiel 10:2",
+     "comment": "Jehová le mandó al hombre vestido de lino que tomara brasas de entre las ruedas. Esto me enseña que Jehová usa a sus siervos para cumplir su voluntad. Debemos estar dispuestos a servir a Jehová y a cumplir con nuestras asignaciones."
+    },
+    {
+     "ref": "Ezequiel 10:4",
+     "comment": "La gloria de Jehová llenó el templo. Esto me recuerda que la presencia de Jehová es majestuosa y que debemos mostrar reverencia ante él. Cuando asistimos a las reuniones, debemos hacerlo con un corazón reverente."
+    },
+    {
+     "ref": "Ezequiel 10:5",
+     "comment": "El sonido de las alas de los querubines era como la voz del Dios Todopoderoso. Esto me enseña que la voz de Jehová es poderosa y que debemos escucharla con atención. Cuando leemos la Biblia, estamos escuchando la voz de Jehová."
+    },
+    {
+     "ref": "Ezequiel 10:7",
+     "comment": "Un querubín tomó brasas y se las dio al hombre vestido de lino. Esto me recuerda que Jehová nos da lo que necesitamos para cumplir con nuestras asignaciones. Debemos confiar en que Jehová nos proveerá."
+    },
+    {
+     "ref": "Ezequiel 10:9, 10",
+     "comment": "Ezequiel vio cuatro ruedas que se movían en cualquier dirección. Esto me enseña que Jehová puede actuar de maneras que no siempre comprendemos, pero que su propósito siempre se cumple. Debemos confiar en Jehová y en su guía."
+    },
+    {
+     "ref": "Ezequiel 10:11",
+     "comment": "Las ruedas se movían hacia donde las dirigía el espíritu. Esto me recuerda la importancia de dejarnos guiar por el espíritu de Jehová. Cuando seguimos su guía, nuestras acciones estarán en armonía con su voluntad."
+    },
+    {
+     "ref": "Ezequiel 10:12",
+     "comment": "Las ruedas estaban llenas de ojos. Esto me enseña que Jehová lo ve todo y que nada escapa a su atención. Debemos ser honestos y vivir de acuerdo con sus principios."
+    },
+    {
+     "ref": "Ezequiel 10:13",
+     "comment": "Las ruedas fueron llamadas «la rueda que gira». Esto me recuerda que el propósito de Jehová siempre está en movimiento y que se cumplirá sin falta. Debemos confiar en que Jehová cumplirá sus promesas."
+    },
+    {
+     "ref": "Ezequiel 10:14",
+     "comment": "Cada querubín tenía cuatro rostros: de querubín, de hombre, de león y de águila. Esto me enseña que Jehová tiene todas las cualidades necesarias para cumplir su propósito. Podemos confiar en su sabiduría, su poder y su amor."
+    },
+    {
+     "ref": "Ezequiel 10:15",
+     "comment": "Los querubines se elevaron, y Ezequiel reconoció que eran las mismas criaturas que había visto antes. Esto me recuerda que las visiones de Jehová son coherentes y que su propósito no cambia. Debemos confiar en que Jehová siempre cumple su palabra."
+    },
+    {
+     "ref": "Ezequiel 10:16, 17",
+     "comment": "Las ruedas se movían junto con los querubines. Esto me enseña que, cuando nos dejamos guiar por el espíritu de Jehová, nuestras acciones estarán en armonía con su voluntad. Debemos orar para recibir su espíritu y seguir su guía."
+    },
+    {
+     "ref": "Ezequiel 10:18",
+     "comment": "La gloria de Jehová se fue del umbral del templo. Esto me recuerda que Jehová puede retirar su espíritu de quienes no le son fieles. Debemos mantenernos cerca de Jehová y obedecer sus instrucciones."
+    },
+    {
+     "ref": "Ezequiel 10:19",
+     "comment": "Los querubines se elevaron y se detuvieron a la entrada de la puerta oriental. Esto me enseña que Jehová está presente en su pueblo y que su gloria es majestuosa. Debemos mostrar reverencia y respeto ante Jehová."
+    },
+    {
+     "ref": "Ezequiel 10:20, 21",
+     "comment": "Las criaturas tenían cuatro rostros y cuatro alas, y se movían con el espíritu. Esto me enseña que Jehová tiene el control de todo y que su espíritu guía a sus siervos. También nos recuerda que debemos confiar en Jehová y en su organización, porque él siempre nos guiará por el camino correcto."
+    }
+   ]
   }
  ]
 };

@@ -90,6 +90,7 @@ button.primary:active{background:var(--accent-dark)}
 #sheet .stext{margin-top:8px;font-size:17px}
 #sheet .close{position:absolute;top:10px;right:12px;background:#eef0f5;border:0;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer}
 #sheet a.wol{display:inline-block;margin-top:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px}
+#sheet .ssrc{margin-top:10px;font-size:13px;color:#8a8f9c}
 #hlbar{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 7px;display:none;align-items:center;gap:3px;box-shadow:0 4px 16px rgba(20,30,60,.18);min-height:40px;box-sizing:border-box}
 #hlbar.open{display:flex}
 #hlbar .cdot{width:27px;height:27px;border-radius:50%;border:1px solid rgba(20,30,60,.20);cursor:pointer;padding:0;flex:none}
@@ -198,28 +199,79 @@ function linkify(escapedText){
     return '<a class="ref" data-ref="' + esc(canon) + '" data-disp="' + esc(m) + '">' + m + "</a>";
   });
 }
+function normRef(canon){
+  return String(canon == null ? "" : canon).replace(/\s+/g," ").replace(/,\s*/g,",").trim();
+}
 const VNORM = {};
-Object.keys(DATA.verses).forEach(k => { VNORM[k.replace(/\s+/g," ").replace(/,\s*/g,",").trim()] = DATA.verses[k]; });
+Object.keys(DATA.verses).forEach(k => { VNORM[normRef(k)] = DATA.verses[k]; });
 function verseLookup(canon){
-  const n = canon.replace(/\s+/g," ").replace(/,\s*/g,",").trim();
+  const n = normRef(canon);
   if (VNORM[n]) return VNORM[n];
   const m = n.match(/^(.+ \d+:\d+)[-,]/);
   if (m && VNORM[m[1]]) return VNORM[m[1]];
   return null;
 }
+/* Caché local de textos consultados en línea: misma normalización de clave que VNORM. */
+const VCACHE_KEY = "ar1_verses_cache";
+let VCACHE = store.get(VCACHE_KEY, {});
+function verseCacheGet(canon){
+  const n = normRef(canon);
+  if (VCACHE[n]) return VCACHE[n];
+  const m = n.match(/^(.+ \d+:\d+)[-,]/);
+  if (m && VCACHE[m[1]]) return VCACHE[m[1]];
+  return null;
+}
+function verseCacheSet(canon, text){
+  VCACHE[normRef(canon)] = text;
+  store.set(VCACHE_KEY, VCACHE);
+}
+let verseReqSeq = 0;
+function verseShowFallback(canon, apiUrl){
+  $("#sheetText").textContent = "Este versículo todavía no está guardado en la app.";
+  const href = apiUrl || ("https://wol.jw.org/es/wol/l/r4/lp-s?q=" + encodeURIComponent(canon));
+  $("#sheetLink").innerHTML = '<a class="wol" target="_blank" rel="noopener" href="' + esc(href) + '">Ver en JW.org</a>';
+}
+function fetchVerseOnline(canon, seq){
+  fetch("/api/texto?q=" + encodeURIComponent(canon)).then(r => {
+    return r.json().catch(() => null).then(j => ({ ok: r.ok, j: j }));
+  }).then(res => {
+    const j = res.j;
+    if (res.ok && j && j.text) verseCacheSet(canon, j.text);
+    if (seq !== verseReqSeq) return;
+    if (res.ok && j && j.text){
+      $("#sheetText").textContent = j.text;
+      $("#sheetLink").innerHTML = '<div class="ssrc">Traducción del Nuevo Mundo · JW.org</div>';
+    } else {
+      verseShowFallback(canon, j && j.url ? j.url : "");
+    }
+  }).catch(() => {
+    if (seq !== verseReqSeq) return;
+    verseShowFallback(canon, "");
+  });
+}
 function openVerse(canon, disp){
+  const seq = ++verseReqSeq;
   $("#sheetRef").textContent = disp || canon;
   const txt = verseLookup(canon);
   if (txt){
     $("#sheetText").textContent = txt;
     $("#sheetLink").innerHTML = "";
-  } else {
-    $("#sheetText").textContent = "Este versículo todavía no está guardado en la app.";
-    $("#sheetLink").innerHTML = '<a class="wol" target="_blank" rel="noopener" href="https://wol.jw.org/es/wol/l/r4/lp-s?q=' + encodeURIComponent(canon) + '">Ver en JW.org</a>';
+    $("#sheetWrap").classList.add("open");
+    return;
   }
+  const cached = verseCacheGet(canon);
+  if (cached){
+    $("#sheetText").textContent = cached;
+    $("#sheetLink").innerHTML = "";
+    $("#sheetWrap").classList.add("open");
+    return;
+  }
+  $("#sheetText").textContent = "Buscando el texto…";
+  $("#sheetLink").innerHTML = "";
   $("#sheetWrap").classList.add("open");
+  fetchVerseOnline(canon, seq);
 }
-function closeVerse(){ $("#sheetWrap").classList.remove("open"); }
+function closeVerse(){ verseReqSeq++; $("#sheetWrap").classList.remove("open"); }
 $("#sheetBg").addEventListener("click", closeVerse);
 $("#sheetClose").addEventListener("click", closeVerse);
 
@@ -505,7 +557,7 @@ const TABS = {
     ["#/atalaya","📚","Estudio de La Atalaya", W.atalaya.title]
   ]},
   mas: {label:"Más opciones", icon:"▦", rows:[
-    ["#/textos","📖","Texto diario","41 textos · 16 de octubre al 26 de noviembre de 2026"],
+    ["#/textos","📖","Texto diario","42 textos · 16 de octubre al 27 de noviembre de 2026"],
     ["#/ilustraciones","🖼️","Ilustraciones","14 ilustraciones"],
     ["#/pensamiento","💭","Un pensamiento para meditar","Reflexión"],
     ["#/sugerencias","💬","Sugerencias","Envíanos tus sugerencias"],
@@ -516,7 +568,23 @@ const TABS = {
 function homeHTML(){
   const tabs = Object.keys(TABS).map(k =>
     '<button data-tab="' + k + '"' + (homeTab === k ? ' class="on"' : "") + '><span class="tic">' + TABS[k].icon + "</span>" + TABS[k].label + "</button>").join("");
-  const rows = TABS[homeTab].rows.map(r =>
+  /* Las filas de reunión muestran la SEMANA ACTUAL según la fecha (no una
+     fija): enlazan a su ruta y toman de ella títulos y rango. Las semanas
+     futuras no aparecen en Inicio. */
+  const CW = WEEKS[CUR];
+  const wkRows = {
+    entre: [
+      [wkRoute("tesoros", CUR), "📖", "Tesoros de la Biblia", CW.tesoros ? CW.tesoros.title : "Sin contenido"],
+      [wkRoute("perlas", CUR), "💎", "Busquemos perlas escondidas", (CW.perlas ? CW.perlas.length : 0) + " perlas · " + CW.range],
+      [wkRoute("vida", CUR), "👥", "Nuestra vida cristiana", CW.vida ? CW.vida.title : "Sin contenido"],
+      [wkRoute("estudio", CUR), "🎓", "Estudio bíblico de la congregación", CW.estudio ? CW.estudio.chapter : "Sin contenido"]
+    ],
+    fin: [
+      [wkRoute("discurso", CUR), "🎤", "Discurso público", (CW.discurso && CW.discurso.title) || "Sin contenido publicado"],
+      [wkRoute("atalaya", CUR), "📚", "Estudio de La Atalaya", CW.atalaya ? CW.atalaya.title : "Sin contenido"]
+    ]
+  };
+  const rows = (homeTab === "mas" ? TABS.mas.rows : wkRows[homeTab]).map(r =>
     '<button class="row" data-go="' + r[0] + '"><span class="ric">' + r[1] + '</span><span>' + esc(r[2]) + "<small>" + esc(r[3]) + '</small></span><span class="arr">›</span></button>').join("");
   return '<div class="hero"><div class="k">✦ Ayudas para las Reuniones</div>' +
     "<p>Prepara y consulta el contenido de las reuniones, el texto diario y las ilustraciones.</p></div>" +
@@ -551,12 +619,13 @@ function wkPrefix(wi){ return wi === 0 ? "" : "w" + wi + "-"; }
 function wkSuffix(wi){ return wi === 0 ? "" : "-w" + wi; }
 function wkRoute(base, wi){ return wi === 0 ? "#/" + base : "#/" + base + "/" + wi; }
 /* Lista «Semanas anteriores» al final de cada sección de reunión: enlaza a
-   la misma sección en cada semana disponible (la primera es la actual). */
+   la misma sección en cada semana VISIBLE (las futuras no aparecen),
+   ordenadas de la más reciente a la más antigua; la primera es la actual. */
 function weeksListHTML(section, wi, icon, smallFn){
-  const rows = WEEKS.map((w2,i2) =>
-    '<button class="row" data-go="#/' + section + "/" + i2 + '"><span class="ric">' + icon + '</span><span>' + esc(w2.range) +
-    "<small>" + esc(smallFn(w2, i2)) + (i2 === 0 ? " · Semana actual" : "") + (i2 === wi ? " · Viendo ahora" : "") +
-    '</small></span><span class="arr">›</span></button>').join("");
+  const rows = VISIBLE.map(i2 => { const w2 = WEEKS[i2];
+    return '<button class="row" data-go="#/' + section + "/" + i2 + '"><span class="ric">' + icon + '</span><span>' + esc(w2.range) +
+    "<small>" + esc(smallFn(w2, i2)) + (i2 === CUR ? " · Semana actual" : "") + (i2 === wi ? " · Viendo ahora" : "") +
+    '</small></span><span class="arr">›</span></button>'; }).join("");
   return '<h2 class="sec">Semanas anteriores</h2><div class="card">' + rows + "</div>";
 }
 
@@ -571,7 +640,7 @@ function sinContenidoHTML(section, wi, icon, title, smallFn){
     noteBox(id);
 }
 function tesorosHTML(wi){
-  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  wi = resolveWi(wi);
   const wk = WEEKS[wi], t = wk.tesoros, p = wkPrefix(wi), id = "tesoros" + wkSuffix(wi);
   if (!t) return sinContenidoHTML("tesoros", wi, "📖", "Tesoros de la Biblia", w2 => w2.tesoros ? w2.tesoros.title : "Sin contenido");
   return screenBar(id, "Tesoros de la Biblia", wkRoute("tesoros", wi)) +
@@ -589,12 +658,45 @@ function tesorosHTML(wi){
    para no perder los subrayados guardados; las demás semanas usan
    «perla-w<semana>-N» para que sus subrayados no se crucen. */
 const WEEKS = (Array.isArray(DATA.weeks) && DATA.weeks.length) ? DATA.weeks : [W];
+/* ================= Fechas y visibilidad por fecha =================
+   Como en Base44: cada semana se hace visible a partir de su fecha de
+   inicio («Desde»). La «semana actual» es la cuyo rango incluye HOY
+   (fecha local del dispositivo); si hoy no cae en ninguna, la pasada más
+   reciente. Las semanas futuras NO aparecen en Inicio ni en las listas
+   «Semanas anteriores», y navegar a su ruta muestra la semana actual. */
+function todayISO(){
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+}
+const TODAY = todayISO();
+function wkVisible(w){ return !w.startDate || w.startDate <= TODAY; }
+/* Índices visibles, de la semana más reciente a la más antigua. */
+const VISIBLE = WEEKS.map((w, i) => i).filter(i => wkVisible(WEEKS[i]))
+  .sort((a, b) => (WEEKS[a].startDate || "") < (WEEKS[b].startDate || "") ? 1 : -1);
+let CUR;
+if (VISIBLE.length) CUR = VISIBLE[0];
+else { /* El dispositivo marca una fecha anterior a todas las semanas. */
+  CUR = 0;
+  WEEKS.forEach((w, i) => { if ((w.startDate || "") < (WEEKS[CUR].startDate || "")) CUR = i; });
+  VISIBLE.push(CUR);
+}
+/* Índice pedido por la ruta → índice mostrable: fuera de rango o semana
+   futura ⇒ la semana actual. Los índices visibles se respetan tal cual,
+   así los enlaces internos por índice siguen funcionando. */
+function resolveWi(wi){
+  if (wi == null || isNaN(wi) || wi < 0 || wi >= WEEKS.length) return CUR;
+  return wkVisible(WEEKS[wi]) ? wi : CUR;
+}
 function perlasHTML(wi){
-  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  wi = resolveWi(wi);
   const wk = WEEKS[wi];
   const list = wk.perlas || [];
   const base = (wi === 0 ? "perla-" : "perla-w" + wi + "-");
   let items = "";
+  /* Imagen de encabezado de la semana (solo semanas que la traen en
+     data.js): va arriba de la lista, antes del texto introductorio, con
+     su pie de foto cuando la semana lo trae. */
+  if (wk.perlasImage) items += wk.perlasImageCaption ? figHTML(wk.perlasImage, wk.perlasImageCaption, "Busquemos perlas escondidas") : imgHTML(wk.perlasImage, "Busquemos perlas escondidas");
   /* Texto introductorio de la semana (solo semanas que lo traen en data.js):
      va arriba de la lista, en la misma tarjeta .pearl. */
   if (wk.perlasIntro) items += '<div class="pearl">' + blocks(wk.perlasIntro, base + "intro") + "</div>";
@@ -616,7 +718,7 @@ function perlasHTML(wi){
     noteBox("perlas");
 }
 function vidaHTML(wi){
-  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  wi = resolveWi(wi);
   const wk = WEEKS[wi], v = wk.vida, p = wkPrefix(wi), id = "vida" + wkSuffix(wi);
   if (!v) return sinContenidoHTML("vida", wi, "👥", "Nuestra vida cristiana", w2 => w2.vida ? w2.vida.title : "Sin contenido");
   let h = screenBar(id, "Nuestra vida cristiana", wkRoute("vida", wi)) +
@@ -631,7 +733,7 @@ function vidaHTML(wi){
   return h + weeksListHTML("vida", wi, "👥", w2 => w2.vida ? w2.vida.title : "Sin contenido") + noteBox(id);
 }
 function estudioHTML(wi){
-  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  wi = resolveWi(wi);
   const wk = WEEKS[wi], e0 = wk.estudio, p = wkPrefix(wi), id = "estudio" + wkSuffix(wi);
   if (!e0) return sinContenidoHTML("estudio", wi, "🎓", "Estudio bíblico de la congregación", w2 => w2.estudio ? w2.estudio.chapter : "Sin contenido");
   const items = e0.items.map((it, i) => {
@@ -656,7 +758,7 @@ function estudioHTML(wi){
     noteBox(id);
 }
 function discursoHTML(wi){
-  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  wi = resolveWi(wi);
   const wk = WEEKS[wi], d = wk.discurso, p = wkPrefix(wi), id = "discurso" + wkSuffix(wi);
   if (!d) return sinContenidoHTML("discurso", wi, "🎤", "Discurso público", w2 => (w2.discurso && w2.discurso.title) || "Sin contenido publicado");
   const kv = (label, val) => val ? '<div class="kvrow"><span class="kvl">' + label + '</span><span class="kvv">' + esc(val) + "</span></div>" : "";
@@ -678,7 +780,7 @@ function discursoHTML(wi){
     noteBox(id);
 }
 function atalayaHTML(wi){
-  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  wi = resolveWi(wi);
   const wk = WEEKS[wi], a0 = wk.atalaya, bp = wkPrefix(wi), id = "atalaya" + wkSuffix(wi);
   if (!a0) return sinContenidoHTML("atalaya", wi, "📚", "Estudio de La Atalaya", w2 => w2.atalaya ? w2.atalaya.title : "Sin contenido");
   const ps = a0.paragraphs.map(p => {
@@ -711,7 +813,7 @@ function textosHTML(){
   const rows = DATA.daily.map(d =>
     '<button class="row" data-go="#/texto/' + d.date + '"><span class="ric">📖</span><span>' +
     esc(d.label) + "<small>" + esc(d.weekday) + " · " + esc(d.ref) + '</small></span><span class="arr">›</span></button>').join("");
-  return head("Texto diario", chips(["41 textos"])) + '<div class="card">' + rows + "</div>";
+  return head("Texto diario", chips([DATA.daily.length + " textos"])) + '<div class="card">' + rows + "</div>";
 }
 function textoHTML(d){
   const id = "texto-" + d.date;
@@ -808,12 +910,12 @@ function render(){
   const r = parts[0] || "";
   let html = "", bind = null;
   if (r === "" ) { html = homeHTML(); }
-  else if (r === "tesoros"){ const wi = parseInt(parts[1], 10) || 0; html = tesorosHTML(wi); bind = () => bindScreen("tesoros" + wkSuffix(wi),"Tesoros de la Biblia",wkRoute("tesoros", wi)); }
-  else if (r === "perlas"){ const wi = parseInt(parts[1], 10) || 0; html = perlasHTML(wi); bind = () => bindScreen("perlas","Busquemos perlas escondidas","#/perlas"); }
-  else if (r === "vida"){ const wi = parseInt(parts[1], 10) || 0; html = vidaHTML(wi); bind = () => bindScreen("vida" + wkSuffix(wi),"Nuestra vida cristiana",wkRoute("vida", wi)); }
-  else if (r === "estudio"){ const wi = parseInt(parts[1], 10) || 0; html = estudioHTML(wi); bind = () => bindScreen("estudio" + wkSuffix(wi),"Estudio bíblico de la congregación",wkRoute("estudio", wi)); }
-  else if (r === "discurso"){ const wi = parseInt(parts[1], 10) || 0; html = discursoHTML(wi); bind = () => bindScreen("discurso" + wkSuffix(wi),"Discurso público",wkRoute("discurso", wi)); }
-  else if (r === "atalaya"){ const wi = parseInt(parts[1], 10) || 0; html = atalayaHTML(wi); bind = () => bindScreen("atalaya" + wkSuffix(wi),"Estudio de La Atalaya",wkRoute("atalaya", wi)); }
+  else if (r === "tesoros"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = tesorosHTML(wi); bind = () => bindScreen("tesoros" + wkSuffix(wi),"Tesoros de la Biblia",wkRoute("tesoros", wi)); }
+  else if (r === "perlas"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = perlasHTML(wi); bind = () => bindScreen("perlas","Busquemos perlas escondidas","#/perlas"); }
+  else if (r === "vida"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = vidaHTML(wi); bind = () => bindScreen("vida" + wkSuffix(wi),"Nuestra vida cristiana",wkRoute("vida", wi)); }
+  else if (r === "estudio"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = estudioHTML(wi); bind = () => bindScreen("estudio" + wkSuffix(wi),"Estudio bíblico de la congregación",wkRoute("estudio", wi)); }
+  else if (r === "discurso"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = discursoHTML(wi); bind = () => bindScreen("discurso" + wkSuffix(wi),"Discurso público",wkRoute("discurso", wi)); }
+  else if (r === "atalaya"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = atalayaHTML(wi); bind = () => bindScreen("atalaya" + wkSuffix(wi),"Estudio de La Atalaya",wkRoute("atalaya", wi)); }
   else if (r === "textos"){ html = textosHTML(); }
   else if (r === "texto"){ const d = DATA.daily.find(x => x.date === parts[1]); html = d ? textoHTML(d) : textosHTML(); if (d) bind = () => bindScreen("texto-" + d.date, "Texto diario — " + d.label, "#/texto/" + d.date); }
   else if (r === "ilustraciones"){ html = ilustracionesHTML(); }
