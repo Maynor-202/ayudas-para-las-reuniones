@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayudas para las Reuniones</title>
+<meta name="description" content="Prepara y consulta el contenido de las reuniones, el texto diario y las ilustraciones.">
+<style>
+:root{
+  --accent:#7b2d8b; --accent-dark:#5e2170;
+  --navy:#1b2a4a; --navy2:#24365e;
+  --bg:#f2f3f7; --card:#ffffff; --ink:#1d2433;
+  --muted:#66707f; --line:#e3e6ee;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:16.5px;line-height:1.55}
+header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;gap:6px;padding:10px 12px;box-shadow:0 2px 8px rgba(10,20,40,.25)}
+header .ttl{font-weight:700;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;display:flex;align-items:center;gap:8px;cursor:pointer}
+header .ttl .home-ic{color:#cfa6e8;font-size:20px}
+header button.icobtn{background:transparent;border:0;color:#fff;font-size:21px;padding:6px 8px;cursor:pointer;border-radius:8px}
+header button.icobtn:active{background:rgba(255,255,255,.15)}
+main{max-width:720px;margin:0 auto;padding:14px 12px 90px}
+.hero{background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;border-radius:16px;padding:18px 18px 16px;margin-bottom:14px;box-shadow:0 4px 14px rgba(20,35,70,.18)}
+.hero .k{color:#cfa6e8;font-weight:700;letter-spacing:.06em;font-size:13.5px;text-transform:uppercase}
+.hero p{margin:6px 0 0;font-size:17px;color:#eef1f8}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 4px;font-size:15px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px}
+.tabs button .tic{font-size:21px}
+.tabs button.on{border-color:var(--accent);color:var(--ink);background:#fbf7fd}
+.tabs button.on .tic{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:14px}
+.row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid var(--line);padding:16px 14px;font-size:16.5px;font-weight:600;color:var(--ink);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row .ric{width:38px;height:38px;border-radius:50%;background:#f1e9f6;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.row .arr{margin-left:auto;color:#9aa3b2;font-size:20px;font-weight:400}
+.row small{display:block;font-weight:400;color:var(--muted);font-size:13.5px;margin-top:2px}
+.thought{padding:16px}
+.thought .k{color:var(--muted);font-weight:700;letter-spacing:.05em;font-size:13px;text-transform:uppercase}
+.thought .q{font-size:18.5px;font-style:italic;margin:10px 0 8px}
+.tag{display:inline-block;background:#e8f0fe;color:#2b5aa6;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
+.foot{color:var(--muted);font-size:13.5px;text-align:center;margin:18px 0 4px}
+h1.screen{font-size:23px;line-height:1.3;margin:2px 0 6px}
+h2.sec{font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin:20px 0 6px}
+h4.subh{font-size:15.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--navy);margin:16px 0 4px}
+.chip{display:inline-block;background:#eef0f5;border-radius:999px;padding:3px 11px;font-size:13.5px;color:#45506b;margin:2px 4px 2px 0;font-weight:600}
+.meta{margin:6px 0 4px}
+.blk{margin:7px 0}
+.qline{font-weight:700;margin:14px 0 4px}
+.extrabox{background:#f7f3fa;border:1px solid #e6dcf0;border-radius:12px;padding:10px 12px;margin:10px 0}
+.extrabox .k{font-weight:700;color:var(--accent-dark);font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+.pearl{border-bottom:1px solid var(--line);padding:12px 2px}
+.pearl:last-child{border-bottom:0}
+.pearl .pref{font-weight:700;font-size:17px}
+a.ref{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent);cursor:pointer}
+mark.hl{color:inherit;padding:0 .5px;border-radius:2px;cursor:pointer}
+.screenbar{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.screenbar .sp{flex:1}
+button.bmk{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14.5px;font-weight:600;cursor:pointer;color:var(--ink)}
+button.bmk.on{border-color:var(--accent);color:var(--accent);background:#fbf7fd}
+.notebox{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.notebox label{font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.notebox textarea{width:100%;border:0;resize:vertical;min-height:74px;font:inherit;font-size:15.5px;margin-top:6px;outline:none;background:transparent;color:var(--ink)}
+.notebox .saved{font-size:12.5px;color:#8a94a6}
+textarea.inp, input.inp{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+button.primary{background:var(--accent);color:#fff;border:0;border-radius:12px;padding:13px 18px;font-size:16px;font-weight:700;cursor:pointer;width:100%}
+button.primary:active{background:var(--accent-dark)}
+.swatches{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.swatch{display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink)}
+.swatch .dot{width:34px;height:34px;border-radius:50%}
+.swatch.on{border-color:var(--accent)}
+.empty{color:var(--muted);text-align:center;padding:26px 10px}
+#sheetWrap{position:fixed;inset:0;z-index:60;display:none}
+#sheetWrap.open{display:block}
+#sheetBg{position:absolute;inset:0;background:rgba(10,16,30,.5)}
+#sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:18px 18px 26px;max-height:72vh;overflow:auto;max-width:720px;margin:0 auto;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+#sheet .sref{font-weight:800;font-size:18px;color:var(--navy);padding-right:34px}
+#sheet .stext{margin-top:8px;font-size:17px}
+#sheet .close{position:absolute;top:10px;right:12px;background:#eef0f5;border:0;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer}
+#sheet a.wol{display:inline-block;margin-top:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px}
+#hlbar{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:70;background:#20293e;color:#fff;border-radius:999px;padding:9px 12px;display:none;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:96vw;flex-wrap:wrap;justify-content:center}
+#hlbar.open{display:flex}
+#hlbar .cdot{width:27px;height:27px;border-radius:50%;border:2px solid rgba(255,255,255,.65);cursor:pointer;padding:0}
+#hlbar button.txt{background:transparent;border:0;color:#fff;font-weight:700;font-size:14px;cursor:pointer;padding:4px 6px}
+::selection{background:rgba(123,45,139,.25)}
+</style>
+</head>
+<body>
+<header>
+  <button class="icobtn" id="backBtn" aria-label="Atrás" style="display:none">←</button>
+  <div class="ttl" id="ttlHome"><span class="home-ic">⌂</span><span>Ayudas para las Reuniones</span></div>
+  <button class="icobtn" id="favBtn" aria-label="Favoritos" title="Favoritos">🔖</button>
+  <button class="icobtn" id="setBtn" aria-label="Ajustes" title="Ajustes">⚙️</button>
+</header>
+<main id="app"></main>
+
+<div id="sheetWrap">
+  <div id="sheetBg"></div>
+  <div id="sheet">
+    <button class="close" id="sheetClose" aria-label="Cerrar">✕</button>
+    <div class="sref" id="sheetRef"></div>
+    <div class="stext" id="sheetText"></div>
+    <div id="sheetLink"></div>
+  </div>
+</div>
+
+<div id="hlbar"></div>
+
+<script src="data.js"></script>
+<script>
+"use strict";
+/* ================= Utilidades ================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const ACCENTS = {
+  purpura:{name:"Púrpura", a:"#7b2d8b", d:"#5e2170"},
+  azul:{name:"Azul", a:"#2471a3", d:"#1a5276"},
+  verde:{name:"Verde", a:"#1e8449", d:"#145a32"},
+  rojo:{name:"Rojo", a:"#c0392b", d:"#922b21"}
+};
+function applyAccent(){
+  const key = store.get("ar1_accent","purpura");
+  const ac = ACCENTS[key] || ACCENTS.purpura;
+  document.documentElement.style.setProperty("--accent", ac.a);
+  document.documentElement.style.setProperty("--accent-dark", ac.d);
+}
+
+/* ================= Versículos: detección y ventana flotante ================= */
+const BOOKMAP = {
+  "Génesis":["Génesis","Gén."],"Éxodo":["Éxodo","Éx."],"Levítico":["Levítico","Lev."],
+  "Números":["Números","Núm."],"Deuteronomio":["Deuteronomio","Deut."],"Josué":["Josué","Jos."],
+  "Jueces":["Jueces","Jue."],"Rut":["Rut"],
+  "1 Samuel":["1 Samuel","1 Sam."],"2 Samuel":["2 Samuel","2 Sam."],
+  "1 Reyes":["1 Reyes","1 Rey."],"2 Reyes":["2 Reyes","2 Rey."],
+  "1 Crónicas":["1 Crónicas","1 Crón."],"2 Crónicas":["2 Crónicas","2 Crón."],
+  "Esdras":["Esdras","Esd."],"Nehemías":["Nehemías","Neh."],"Ester":["Ester"],
+  "Job":["Job"],"Salmo":["Salmos","Salmo","Sal."],"Proverbios":["Proverbios","Prov."],
+  "Eclesiastés":["Eclesiastés","Ecl."],"Cantares":["Cantares","Cant."],
+  "Isaías":["Isaías","Isa."],"Jeremías":["Jeremías","Jer."],"Lamentaciones":["Lamentaciones","Lam."],
+  "Ezequiel":["Ezequiel","Ezeq."],"Daniel":["Daniel","Dan."],
+  "Oseas":["Oseas"],"Joel":["Joel"],"Amós":["Amós"],"Abdías":["Abdías"],"Jonás":["Jonás"],
+  "Miqueas":["Miqueas","Miq."],"Nahúm":["Nahúm"],"Habacuc":["Habacuc"],"Sofonías":["Sofonías"],
+  "Ageo":["Ageo"],"Zacarías":["Zacarías","Zac."],"Malaquías":["Malaquías","Mal."],
+  "Mateo":["Mateo","Mat."],"Marcos":["Marcos","Mar."],"Lucas":["Lucas","Luc."],
+  "Juan":["Juan"],"Hechos":["Hechos","Hech."],"Romanos":["Romanos","Rom."],
+  "1 Corintios":["1 Corintios","1 Cor."],"2 Corintios":["2 Corintios","2 Cor."],
+  "Gálatas":["Gálatas","Gál."],"Efesios":["Efesios","Efes."],
+  "Filipenses":["Filipenses","Filip."],"Colosenses":["Colosenses","Col."],
+  "1 Tesalonicenses":["1 Tesalonicenses","1 Tes."],"2 Tesalonicenses":["2 Tesalonicenses","2 Tes."],
+  "1 Timoteo":["1 Timoteo","1 Tim."],"2 Timoteo":["2 Timoteo","2 Tim."],
+  "Tito":["Tito"],"Filemón":["Filemón"],"Hebreos":["Hebreos","Heb."],
+  "Santiago":["Santiago","Sant."],"1 Pedro":["1 Pedro","1 Ped."],"2 Pedro":["2 Pedro","2 Ped."],
+  "1 Juan":["1 Juan"],"2 Juan":["2 Juan"],"3 Juan":["3 Juan"],"Judas":["Judas"],
+  "Apocalipsis":["Apocalipsis","Apoc."]
+};
+const REV = {}; const VARIANTS = [];
+Object.keys(BOOKMAP).forEach(canon => BOOKMAP[canon].forEach(v => { REV[v.replace(/\.$/,"")] = canon; VARIANTS.push(v); }));
+VARIANTS.sort((a,b) => b.length - a.length);
+const REF_RE = new RegExp("(?<![A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9])(" + VARIANTS.map(v => v.replace(/\./g,"\\.")).join("|") + ")\\s+(\\d+):(\\d+)(?:\\s*[-–]\\s*(?:(\\d+):)?(\\d+)|\\s*,\\s*(\\d+))?", "g");
+function canonRef(bookRaw, ch, v1, rngCh, rngV, listV){
+  const canon = REV[bookRaw.replace(/\.$/,"")] || bookRaw;
+  let r = canon + " " + ch + ":" + v1;
+  if (rngV) r += "-" + (rngCh ? rngCh + ":" : "") + rngV;
+  else if (listV) r += "," + listV;
+  return r;
+}
+function linkify(escapedText){
+  return escapedText.replace(REF_RE, (m, book, ch, v1, rngCh, rngV, listV) => {
+    const canon = canonRef(book, ch, v1, rngCh, rngV, listV);
+    return '<a class="ref" data-ref="' + esc(canon) + '" data-disp="' + esc(m) + '">' + m + "</a>";
+  });
+}
+const VNORM = {};
+Object.keys(DATA.verses).forEach(k => { VNORM[k.replace(/\s+/g," ").replace(/,\s*/g,",").trim()] = DATA.verses[k]; });
+function verseLookup(canon){
+  const n = canon.replace(/\s+/g," ").replace(/,\s*/g,",").trim();
+  if (VNORM[n]) return VNORM[n];
+  const m = n.match(/^(.+ \d+:\d+)[-,]/);
+  if (m && VNORM[m[1]]) return VNORM[m[1]];
+  return null;
+}
+function openVerse(canon, disp){
+  $("#sheetRef").textContent = disp || canon;
+  const txt = verseLookup(canon);
+  if (txt){
+    $("#sheetText").textContent = txt;
+    $("#sheetLink").innerHTML = "";
+  } else {
+    $("#sheetText").textContent = "Este versículo todavía no está guardado en la app.";
+    $("#sheetLink").innerHTML = '<a class="wol" target="_blank" rel="noopener" href="https://wol.jw.org/es/wol/l/r4/lp-s?q=' + encodeURIComponent(canon) + '">Ver en JW.org</a>';
+  }
+  $("#sheetWrap").classList.add("open");
+}
+function closeVerse(){ $("#sheetWrap").classList.remove("open"); }
+$("#sheetBg").addEventListener("click", closeVerse);
+$("#sheetClose").addEventListener("click", closeVerse);
+
+/* ================= Bloques de texto y subrayado ================= */
+const BLOCKTEXT = {};
+const HL_COLORS = [
+  ["amarillo","#ffec8b"],["verde","#b8e6b8"],["azul","#aed6f1"],["rosa","#f5b7d0"],
+  ["naranja","#ffd1a1"],["morado","#d7bde2"],["rojo","#f5b7b1"],["turquesa","#a3e4d7"],["gris","#d5d8dc"]
+];
+let HL = store.get("ar1_highlights", {});
+const HEADLINE_RE = /^[A-ZÁÉÍÓÚÑ¿?¡! ,;:()«»-]+$/;
+function blocks(text, prefix){
+  if (!text) return "";
+  const out = []; let i = 0;
+  String(text).split(/\n\n+/).forEach(chunk => {
+    chunk.split(/\n/).forEach(line => {
+      line = line.trim(); if (!line) return;
+      const bid = prefix + ":" + (i++);
+      BLOCKTEXT[bid] = line;
+      const isHead = line.length > 3 && HEADLINE_RE.test(line) && /[A-ZÁÉÍÓÚÑ]/.test(line);
+      out.push("<" + (isHead ? 'h4 class="subh blk"' : 'p class="blk"') + ' data-bid="' + bid + '">' + linkify(esc(line)) + (isHead ? "</h4>" : "</p>"));
+    });
+  });
+  return out.join("");
+}
+function textNodes(el){
+  const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const a = []; let n; while ((n = w.nextNode())) a.push(n); return a;
+}
+function wrapRange(el, s, e, color){
+  let nodes = textNodes(el), pos = 0, startNode = null, startOff = 0, endNode = null, endOff = 0;
+  for (const n of nodes){
+    const len = n.nodeValue.length;
+    if (startNode === null && s >= pos && s < pos + len){ startNode = n; startOff = s - pos; }
+    if (e > pos && e <= pos + len){ endNode = n; endOff = e - pos; break; }
+    pos += len;
+  }
+  if (!startNode || !endNode) return;
+  if (endOff < endNode.nodeValue.length) endNode.splitText(endOff);
+  if (startOff > 0) startNode = startNode.splitText(startOff);
+  nodes = textNodes(el);
+  let on = false;
+  for (const n of nodes){
+    if (n === startNode) on = true;
+    if (on){
+      const m = document.createElement("mark");
+      m.className = "hl"; m.style.background = color; m.dataset.color = color;
+      n.parentNode.replaceChild(m, n); m.appendChild(n);
+    }
+    if (n === endNode) break;
+  }
+}
+function paintBlock(el){
+  const bid = el.dataset.bid;
+  if (BLOCKTEXT[bid] == null) return;
+  el.innerHTML = linkify(esc(BLOCKTEXT[bid]));
+  const list = (HL[bid] || []).slice().sort((a,b) => a.s - b.s);
+  list.forEach(h => wrapRange(el, h.s, h.e, h.c));
+}
+function paintAllBlocks(root){
+  (root || document).querySelectorAll(".blk").forEach(paintBlock);
+}
+/* Barra flotante de colores */
+let pendingSel = null;
+function showBar(mode){
+  const bar = $("#hlbar");
+  bar.innerHTML = HL_COLORS.map(([name,hex]) =>
+    '<button class="cdot" data-c="' + hex + '" title="' + name + '" style="background:' + hex + '" aria-label="' + name + '"></button>').join("") +
+    (mode === "edit" ? '<button class="txt" id="hlRemove">Quitar</button>' : "") +
+    '<button class="txt" id="hlCancel">✕</button>';
+  bar.classList.add("open");
+  bar.querySelectorAll(".cdot").forEach(b => b.addEventListener("click", () => applyColor(b.dataset.c)));
+  const rm = $("#hlRemove"); if (rm) rm.addEventListener("click", removeHighlight);
+  $("#hlCancel").addEventListener("click", hideBar);
+}
+function hideBar(){ $("#hlbar").classList.remove("open"); pendingSel = null; }
+function saveHL(){ store.set("ar1_highlights", HL); }
+function applyColor(c){
+  if (!pendingSel) return;
+  const {bid, s, e} = pendingSel;
+  const list = (HL[bid] || []).filter(h => e <= h.s || s >= h.e);
+  list.push({s, e, c}); list.sort((a,b) => a.s - b.s);
+  HL[bid] = list; saveHL();
+  const el = document.querySelector('.blk[data-bid="' + bid + '"]');
+  if (el) paintBlock(el);
+  const sel = window.getSelection(); if (sel) sel.removeAllRanges();
+  hideBar();
+}
+function removeHighlight(){
+  if (!pendingSel) return;
+  const {bid, s, e} = pendingSel;
+  HL[bid] = (HL[bid] || []).filter(h => !(h.s === s && h.e === e));
+  if (!HL[bid].length) delete HL[bid];
+  saveHL();
+  const el = document.querySelector('.blk[data-bid="' + bid + '"]');
+  if (el) paintBlock(el);
+  hideBar();
+}
+function closestBlk(node){
+  let el = node && node.nodeType === 3 ? node.parentElement : node;
+  return el && el.closest ? el.closest(".blk") : null;
+}
+function checkSelection(){
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || sel.rangeCount === 0) return;
+  const range = sel.getRangeAt(0);
+  const b1 = closestBlk(range.startContainer), b2 = closestBlk(range.endContainer);
+  if (!b1 || b1 !== b2) return;
+  const pre = range.cloneRange();
+  pre.selectNodeContents(b1);
+  pre.setEnd(range.startContainer, range.startOffset);
+  const s = pre.toString().length, e = s + range.toString().length;
+  if (e > s){ pendingSel = {bid: b1.dataset.bid, s, e}; showBar("new"); }
+}
+let selTimer = null;
+document.addEventListener("selectionchange", () => { clearTimeout(selTimer); selTimer = setTimeout(checkSelection, 350); });
+document.addEventListener("mouseup", () => setTimeout(checkSelection, 10));
+document.addEventListener("touchend", () => setTimeout(checkSelection, 80));
+document.addEventListener("click", e => {
+  const t = e.target;
+  if (t.closest && t.closest("#hlbar")) return;
+  const mark = t.closest ? t.closest("mark.hl") : null;
+  if (mark){
+    e.preventDefault();
+    const blk = mark.closest(".blk"); if (!blk) return;
+    const pre = document.createRange();
+    pre.selectNodeContents(blk); pre.setEndBefore(mark);
+    const s = pre.toString().length;
+    pendingSel = {bid: blk.dataset.bid, s, e: s + mark.textContent.length};
+    showBar("edit");
+    return;
+  }
+  const a = t.closest ? t.closest("a.ref") : null;
+  if (a){ e.preventDefault(); openVerse(a.dataset.ref, a.dataset.disp); return; }
+  hideBar();
+});
+
+/* ================= Favoritos y notas ================= */
+let FAVS = store.get("ar1_favs", []);
+let NOTES = store.get("ar1_notes", {});
+const isFav = id => FAVS.some(f => f.id === id);
+function toggleFav(id, title, route){
+  if (isFav(id)) FAVS = FAVS.filter(f => f.id !== id);
+  else FAVS.push({id, title, route});
+  store.set("ar1_favs", FAVS);
+}
+function screenBar(id, title, route){
+  return '<div class="screenbar"><span class="sp"></span>' +
+    '<button class="bmk' + (isFav(id) ? " on" : "") + '" id="bmkBtn">' + (isFav(id) ? "🔖 Guardado" : "🔖 Guardar") + "</button></div>";
+}
+function noteBox(id){
+  return '<div class="notebox"><label for="noteTa">Mi nota</label>' +
+    '<textarea id="noteTa" placeholder="Escribe tu nota personal…">' + esc(NOTES[id] || "") + "</textarea>" +
+    '<div class="saved" id="noteSaved"></div></div>';
+}
+function bindScreen(id, title, route){
+  const b = $("#bmkBtn");
+  if (b) b.addEventListener("click", () => { toggleFav(id, title, route); b.classList.toggle("on", isFav(id)); b.textContent = isFav(id) ? "🔖 Guardado" : "🔖 Guardar"; });
+  const ta = $("#noteTa");
+  if (ta) ta.addEventListener("input", () => {
+    NOTES[id] = ta.value; store.set("ar1_notes", NOTES);
+    const sv = $("#noteSaved"); if (sv) sv.textContent = "Nota guardada ✓";
+  });
+}
+
+/* ================= Pantallas ================= */
+const W = DATA.week;
+let homeTab = store.get("ar1_tab", "entre");
+const TABS = {
+  entre: {label:"Entre semana", icon:"📖", rows:[
+    ["#/tesoros","📖","Tesoros de la Biblia", W.tesoros.title],
+    ["#/perlas","💎","Busquemos perlas escondidas","20 perlas · " + W.range],
+    ["#/vida","👥","Nuestra vida cristiana", W.vida.title],
+    ["#/estudio","🎓","Estudio bíblico de la congregación", W.estudio.chapter]
+  ]},
+  fin: {label:"Fin de semana", icon:"🗓️", rows:[
+    ["#/discurso","🎤","Discurso público", W.discurso.title],
+    ["#/atalaya","📚","Estudio de La Atalaya", W.atalaya.title]
+  ]},
+  mas: {label:"Más opciones", icon:"▦", rows:[
+    ["#/textos","📖","Texto diario","41 textos · 16 de octubre al 26 de noviembre de 2026"],
+    ["#/ilustraciones","🖼️","Ilustraciones","14 ilustraciones"],
+    ["#/sugerencias","💬","Sugerencias","Envíanos tus sugerencias"]
+  ]}
+};
+function homeHTML(){
+  const tabs = Object.keys(TABS).map(k =>
+    '<button data-tab="' + k + '"' + (homeTab === k ? ' class="on"' : "") + '><span class="tic">' + TABS[k].icon + "</span>" + TABS[k].label + "</button>").join("");
+  const rows = TABS[homeTab].rows.map(r =>
+    '<button class="row" data-go="' + r[0] + '"><span class="ric">' + r[1] + '</span><span>' + esc(r[2]) + "<small>" + esc(r[3]) + '</small></span><span class="arr">›</span></button>').join("");
+  return '<div class="hero"><div class="k">✦ Ayudas para las Reuniones</div>' +
+    "<p>Prepara y consulta el contenido de las reuniones, el texto diario y las ilustraciones.</p></div>" +
+    '<div class="tabs">' + tabs + "</div>" +
+    '<div class="card">' + rows + "</div>" +
+    '<div class="card thought"><div class="k">✦ Un pensamiento para meditar</div>' +
+    '<div class="q">«La verdadera fortaleza no consiste en nunca caer, sino en encontrar el valor para levantarse cada vez».</div>' +
+    '<span class="tag">Reflexión</span></div>' +
+    '<div class="foot">Fuentes oficiales: JW.ORG y la Biblioteca en Línea Watchtower</div>';
+}
+function head(title, sub){
+  return "<h1 class=\"screen\">" + esc(title) + "</h1>" + (sub ? '<div class="meta">' + sub + "</div>" : "");
+}
+function chips(arr){ return arr.map(c => '<span class="chip">' + c + "</span>").join(""); }
+
+function tesorosHTML(){
+  const t = W.tesoros;
+  return screenBar("tesoros","Tesoros de la Biblia","#/tesoros") +
+    head("Tesoros de la Biblia", chips([W.range, "Lectura: " + t.reading, t.duration])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(t.title) + "</h1>" +
+    "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, "tesoros-obj") +
+    "<h2 class=\"sec\">Desarrollo</h2>" + blocks(t.development, "tesoros-dev") +
+    noteBox("tesoros");
+}
+function perlasHTML(){
+  const items = W.perlas.map((p,i) =>
+    '<div class="pearl"><div class="pref">' + linkify(esc(p.ref)) + "</div>" + blocks(p.comment, "perla-" + i) + "</div>").join("");
+  return screenBar("perlas","Busquemos perlas escondidas","#/perlas") +
+    head("Busquemos perlas escondidas", chips([W.range, "20 perlas"])) + items + noteBox("perlas");
+}
+function vidaHTML(){
+  const v = W.vida;
+  return screenBar("vida","Nuestra vida cristiana","#/vida") +
+    head("Nuestra vida cristiana", chips([W.range, v.subtitle, v.duration])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>" +
+    v.sections.map((s,i) => "<h2 class=\"sec\">" + esc(s.label) + "</h2>" + blocks(s.text, "vida-" + i)).join("") +
+    noteBox("vida");
+}
+function estudioHTML(){
+  const e0 = W.estudio;
+  const items = e0.items.map(it => {
+    let h = "";
+    if (it.group) h += "<h2 class=\"sec\">" + esc(it.group) + "</h2>";
+    h += '<div class="qline">' + it.n + ". " + linkify(esc(it.q)) + "</div>";
+    if (it.extra) h += '<p class="blk" style="font-style:italic;color:var(--muted)">Investigue un poco más: ' + linkify(esc(it.extra)) + "</p>";
+    h += blocks(it.a, "est-" + it.n + "-a");
+    return h;
+  }).join("");
+  return screenBar("estudio","Estudio bíblico de la congregación","#/estudio") +
+    head("Estudio bíblico de la congregación", chips([W.range, "Lectura: " + e0.reading])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(e0.book) + " — " + esc(e0.chapter) + "</h1>" + items +
+    noteBox("estudio");
+}
+function discursoHTML(){
+  const d = W.discurso;
+  return screenBar("discurso","Discurso público","#/discurso") +
+    head("Discurso público", chips([W.range])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(d.title) + "</h1>" +
+    '<div class="meta">' + chips(["Conferencia pública n.º " + d.number, d.duration]) + "</div>" +
+    blocks("Texto bíblico: " + d.textRef, "discurso-ref") +
+    '<div class="extrabox"><div class="k">Nota</div>' + blocks(d.note, "discurso-nota") + "</div>" +
+    noteBox("discurso");
+}
+function atalayaHTML(){
+  const a0 = W.atalaya;
+  const ps = a0.paragraphs.map(p => {
+    let h = "";
+    if (p.heading) h += "<h2 class=\"sec\">" + esc(p.heading) + "</h2>";
+    h += '<div class="qline">' + p.num + ". " + linkify(esc(p.q)) + "</div>";
+    h += blocks(p.a, "ata-" + p.num.replace(/\s/g,"") + "-a");
+    if (p.extraQ){
+      h += '<div class="extrabox"><div class="k">Pregunta adicional</div>' +
+        '<div class="qline" style="margin-top:4px">' + linkify(esc(p.extraQ)) + "</div>" +
+        blocks(p.extraA, "ata-" + p.num.replace(/\s/g,"") + "-ea") + "</div>";
+    }
+    return h;
+  }).join("");
+  return screenBar("atalaya","Estudio de La Atalaya","#/atalaya") +
+    head("Estudio de La Atalaya", chips([a0.dateLabel])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(a0.title) + "</h1>" +
+    blocks(a0.themeText, "ata-tema") + ps + noteBox("atalaya");
+}
+function textosHTML(){
+  const rows = DATA.daily.map(d =>
+    '<button class="row" data-go="#/texto/' + d.date + '"><span class="ric">📖</span><span>' +
+    esc(d.label) + "<small>" + esc(d.weekday) + " · " + esc(d.ref) + '</small></span><span class="arr">›</span></button>').join("");
+  return head("Texto diario", chips(["41 textos"])) + '<div class="card">' + rows + "</div>";
+}
+function textoHTML(d){
+  const id = "texto-" + d.date;
+  let h = screenBar(id, "Texto diario — " + d.label, "#/texto/" + d.date) +
+    head(d.label, chips([d.weekday])) +
+    '<div class="pref" style="font-weight:700;font-size:19px">' + linkify(esc(d.ref)) + "</div>" +
+    blocks(d.verse, id + "-verse") +
+    "<h2 class=\"sec\">Comentario</h2>" + blocks(d.comment, id + "-comment");
+  if (d.example) h += "<h2 class=\"sec\">Ejemplo</h2>" + blocks(d.example, id + "-example");
+  h += "<h2 class=\"sec\">Lecciones prácticas</h2>" + blocks(d.lessons, id + "-lessons");
+  return h + noteBox(id);
+}
+function ilustracionesHTML(){
+  const rows = DATA.illustrations.map((x,i) =>
+    '<button class="row" data-go="#/ilustracion/' + i + '"><span class="ric">🖼️</span><span>' +
+    esc((x.num ? "N.º " + x.num + " — " : "") + x.title) + "<small>" + esc(x.bibleText || "Ilustración") + '</small></span><span class="arr">›</span></button>').join("");
+  return head("Ilustraciones", chips(["14 ilustraciones"])) + '<div class="card">' + rows + "</div>";
+}
+function ilustracionHTML(x, i){
+  const id = "ilus-" + i;
+  const field = (label, text, key) => text ? "<h2 class=\"sec\">" + label + "</h2>" + blocks(text, id + "-" + key) : "";
+  return screenBar(id, "Ilustración — " + x.title, "#/ilustracion/" + i) +
+    head((x.num ? "N.º " + x.num + " — " : "") + x.title) +
+    field("Texto bíblico", x.bibleText, "bib") +
+    field("Enseñanza", x.teaching, "ens") +
+    field("Ejemplo", x.example, "eje") +
+    field("Explicación", x.explanation, "exp") +
+    field("Aplicación práctica", x.application, "apl") +
+    noteBox(id);
+}
+function sugerenciasHTML(){
+  const sugs = store.get("ar1_sugs", []);
+  const list = sugs.length ? "<h2 class=\"sec\">Tus sugerencias guardadas</h2>" + sugs.map(s =>
+    '<div class="extrabox">' + blocks(s.text, "sug-" + s.when) + "</div>").join("") : "";
+  return head("Sugerencias") +
+    "<p>¿Tienes una sugerencia para mejorar la app? Escríbela aquí; se guardará en este dispositivo.</p>" +
+    '<textarea class="inp" id="sugTa" rows="4" placeholder="Escribe tu sugerencia…"></textarea>' +
+    '<div style="height:10px"></div><button class="primary" id="sugBtn">Guardar sugerencia</button>' +
+    '<p id="sugOk" style="color:var(--accent);font-weight:700"></p>' + list;
+}
+function favoritosHTML(){
+  if (!FAVS.length) return head("Favoritos") + '<div class="empty">Todavía no tienes favoritos.<br>Toca «Guardar» en cualquier pantalla para agregarla aquí.</div>';
+  const rows = FAVS.map(f =>
+    '<button class="row" data-go="' + esc(f.route) + '"><span class="ric">🔖</span><span>' + esc(f.title) + '</span><span class="arr">›</span></button>').join("");
+  return head("Favoritos") + '<div class="card">' + rows + "</div>";
+}
+function ajustesHTML(){
+  const cur = store.get("ar1_accent","purpura");
+  const sw = Object.keys(ACCENTS).map(k =>
+    '<button class="swatch' + (cur === k ? " on" : "") + '" data-accent="' + k + '"><span class="dot" style="background:' + ACCENTS[k].a + '"></span>' + ACCENTS[k].name + "</button>").join("");
+  return head("Ajustes") +
+    "<h2 class=\"sec\">Color principal</h2><div class=\"swatches\">" + sw + "</div>" +
+    '<p style="color:var(--muted);font-size:14.5px;margin-top:18px">Tus favoritos, notas, subrayados y sugerencias se guardan solo en este dispositivo.</p>';
+}
+
+/* ================= Enrutado ================= */
+const app = $("#app");
+function render(){
+  hideBar(); closeVerse();
+  const h = location.hash || "#/";
+  const parts = h.replace(/^#\/?/, "").split("/");
+  const r = parts[0] || "";
+  let html = "", bind = null;
+  if (r === "" ) { html = homeHTML(); }
+  else if (r === "tesoros"){ html = tesorosHTML(); bind = () => bindScreen("tesoros","Tesoros de la Biblia","#/tesoros"); }
+  else if (r === "perlas"){ html = perlasHTML(); bind = () => bindScreen("perlas","Busquemos perlas escondidas","#/perlas"); }
+  else if (r === "vida"){ html = vidaHTML(); bind = () => bindScreen("vida","Nuestra vida cristiana","#/vida"); }
+  else if (r === "estudio"){ html = estudioHTML(); bind = () => bindScreen("estudio","Estudio bíblico de la congregación","#/estudio"); }
+  else if (r === "discurso"){ html = discursoHTML(); bind = () => bindScreen("discurso","Discurso público","#/discurso"); }
+  else if (r === "atalaya"){ html = atalayaHTML(); bind = () => bindScreen("atalaya","Estudio de La Atalaya","#/atalaya"); }
+  else if (r === "textos"){ html = textosHTML(); }
+  else if (r === "texto"){ const d = DATA.daily.find(x => x.date === parts[1]); html = d ? textoHTML(d) : textosHTML(); if (d) bind = () => bindScreen("texto-" + d.date, "Texto diario — " + d.label, "#/texto/" + d.date); }
+  else if (r === "ilustraciones"){ html = ilustracionesHTML(); }
+  else if (r === "ilustracion"){ const i = parseInt(parts[1], 10); const x = DATA.illustrations[i]; html = x ? ilustracionHTML(x, i) : ilustracionesHTML(); if (x) bind = () => bindScreen("ilus-" + i, "Ilustración — " + x.title, "#/ilustracion/" + i); }
+  else if (r === "sugerencias"){ html = sugerenciasHTML(); bind = () => {
+      $("#sugBtn").addEventListener("click", () => {
+        const ta = $("#sugTa"); const txt = ta.value.trim(); if (!txt) return;
+        const sugs = store.get("ar1_sugs", []); sugs.push({text: txt, when: Date.now()});
+        store.set("ar1_sugs", sugs); render();
+        const ok = $("#sugOk"); if (ok) ok.textContent = "¡Gracias! Tu sugerencia quedó guardada.";
+      });
+    }; }
+  else if (r === "favoritos"){ html = favoritosHTML(); }
+  else if (r === "ajustes"){ html = ajustesHTML(); bind = () => {
+      app.querySelectorAll("[data-accent]").forEach(b => b.addEventListener("click", () => {
+        store.set("ar1_accent", b.dataset.accent); applyAccent(); render();
+      }));
+    }; }
+  else { html = homeHTML(); }
+  app.innerHTML = html;
+  $("#backBtn").style.display = (r === "") ? "none" : "";
+  app.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
+  app.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { homeTab = b.dataset.tab; store.set("ar1_tab", homeTab); render(); }));
+  if (bind) bind();
+  paintAllBlocks(app);
+  window.scrollTo(0, 0);
+}
+$("#backBtn").addEventListener("click", () => { if (history.length > 1) history.back(); else location.hash = "#/"; });
+$("#ttlHome").addEventListener("click", () => { location.hash = "#/"; });
+$("#favBtn").addEventListener("click", () => { location.hash = "#/favoritos"; });
+$("#setBtn").addEventListener("click", () => { location.hash = "#/ajustes"; });
+window.addEventListener("hashchange", render);
+applyAccent();
+render();
+</script>
+</body>
+</html>
