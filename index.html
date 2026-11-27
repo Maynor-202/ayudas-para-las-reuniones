@@ -131,6 +131,27 @@ a.wol{display:inline-block;background:var(--accent);color:#fff;text-decoration:n
 .hlico:active{background:#f1e9f6}
 ::selection{background:rgba(120,120,140,.25)}
 ::-moz-selection{background:rgba(120,120,140,.25)}
+/* Botón «Escuchar» de publicaciones y barra de reproductor (estilo JW.org) */
+.listenbtn{display:flex;align-items:center;gap:10px;width:100%;background:var(--navy);color:#fff;border:0;border-radius:12px;padding:13px 16px;font-size:16px;font-weight:700;cursor:pointer;margin:0 0 14px;text-align:left}
+.listenbtn svg{width:22px;height:22px;flex:none}
+.listenbtn:active{background:var(--navy2)}
+#pubbar{position:fixed;left:0;right:0;bottom:0;z-index:65;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(10,20,40,.18);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+#pubbar[hidden]{display:none}
+.pb-top{display:flex;align-items:center;gap:10px}
+#pbTitle{flex:1;font-weight:700;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pbClose{background:transparent;border:0;font-size:17px;line-height:1;color:var(--muted);cursor:pointer;padding:6px;flex:none}
+.pb-controls{display:flex;align-items:center;gap:8px;margin-top:8px}
+#pbPlay{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;padding:0}
+#pbPlay svg{width:20px;height:20px;display:block}
+#pbPlay:disabled{background:#c9cedb;cursor:default}
+.pbskip{background:#eef0f5;border:0;border-radius:999px;padding:9px 11px;font-weight:700;font-size:13.5px;color:var(--ink);cursor:pointer;flex:none}
+.pbskip:disabled{color:#a6adbb;cursor:default}
+.pbtime{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;flex:none;min-width:36px;text-align:center}
+#pbSeek{flex:1;accent-color:var(--accent);min-width:0}
+#pbSeek:disabled{opacity:.4}
+#pbMsg{display:none;color:#b03a2e;font-size:13.5px;margin-top:6px}
+#pbMsg.show{display:block}
+body.pubopen main{padding-bottom:180px}
 </style>
 </head>
 <body>
@@ -163,6 +184,23 @@ a.wol{display:inline-block;background:var(--accent);color:#fff;text-decoration:n
   </section>
 </div>
 <audio id="vaud" preload="none"></audio>
+
+<div id="pubbar" hidden role="region" aria-label="Reproductor de audio">
+  <div class="pb-top">
+    <div id="pbTitle"></div>
+    <button id="pbClose" type="button" aria-label="Cerrar el reproductor">✕</button>
+  </div>
+  <div class="pb-controls">
+    <button id="pbPlay" type="button" aria-label="Reproducir o pausar"><span id="pbIco"></span></button>
+    <button class="pbskip" id="pbBack" type="button" aria-label="Retroceder 5 segundos">−5 s</button>
+    <span class="pbtime" id="pbCur">0:00</span>
+    <input type="range" id="pbSeek" min="0" max="0" step="0.1" value="0" aria-label="Posición de la reproducción">
+    <span class="pbtime" id="pbDur">0:00</span>
+    <button class="pbskip" id="pbFwd" type="button" aria-label="Adelantar 15 segundos">+15 s</button>
+  </div>
+  <div id="pbMsg"></div>
+</div>
+<audio id="paud" preload="none"></audio>
 
 <div id="hlbar"></div>
 
@@ -341,6 +379,124 @@ vaudBtn.addEventListener("click", () => {
   try{ const p = vaud.play(); if (p && p.catch) p.catch(() => {}); }catch(e){}
 });
 audIcon();
+/* --- Reproductor de publicaciones (Guía de actividades y La Atalaya) ---
+   Audio oficial en streaming: la URL del CDN se resuelve en el momento con
+   /api/audio a partir de {pub, issue, track}; la URL nunca se guarda.
+   La barra vive fuera de las rutas: sigue sonando al cambiar de pantalla. */
+const paud = $("#paud");
+const pubbar = $("#pubbar");
+const pbTitle = $("#pbTitle"), pbMsg = $("#pbMsg"), pbPlay = $("#pbPlay"), pbIco = $("#pbIco"),
+      pbSeek = $("#pbSeek"), pbCur = $("#pbCur"), pbDur = $("#pbDur"),
+      pbBack = $("#pbBack"), pbFwd = $("#pbFwd");
+const ICO_HEADPHONES = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>';
+let pubSeq = 0;          // descarta respuestas tardías de /api/audio
+let pubReady = false;    // hay una pista cargada y lista para reproducir
+let pubSeeking = false;  // el usuario está arrastrando la barra de progreso
+function fmtTime(s){
+  if (s == null || !isFinite(s) || s < 0) return "0:00";
+  s = Math.floor(s);
+  return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+}
+function pubIcon(){ pbIco.innerHTML = paud.paused ? ICO_PLAY : ICO_PAUSE; }
+function pubControls(on){
+  pbPlay.disabled = !on; pbBack.disabled = !on; pbFwd.disabled = !on; pbSeek.disabled = !on;
+}
+function pubShowMsg(msg){
+  pbMsg.textContent = msg || "";
+  pbMsg.classList.toggle("show", !!msg);
+}
+function closePubPlayer(){
+  pubSeq++;
+  pubReady = false;
+  try{ paud.pause(); }catch(e){}
+  try{ paud.removeAttribute("src"); paud.load(); }catch(e){}
+  pubbar.hidden = true;
+  document.body.classList.remove("pubopen");
+  pubShowMsg("");
+  pubIcon();
+}
+function playPubAudio(ref, fallbackTitle){
+  if (!ref) return;
+  stopVerseAudio();            // coordinación: un solo audio a la vez
+  const seq = ++pubSeq;
+  pubbar.hidden = false;
+  document.body.classList.add("pubopen");
+  pubReady = false;
+  pubControls(false);
+  pubShowMsg("");
+  pbTitle.textContent = "Cargando…";
+  pbCur.textContent = "0:00"; pbDur.textContent = "0:00";
+  pbSeek.max = 0; pbSeek.value = 0;
+  pubIcon();
+  fetch("/api/audio?pub=" + encodeURIComponent(ref.pub) + "&issue=" + encodeURIComponent(ref.issue) + "&track=" + encodeURIComponent(ref.track))
+    .then(r => r.json().catch(() => null).then(j => ({ ok: r.ok, j: j })))
+    .then(res => {
+      if (seq !== pubSeq) return;
+      const j = res.j;
+      if (!res.ok || !j || !j.url){
+        pbTitle.textContent = fallbackTitle || "Audio";
+        pubShowMsg("No se pudo cargar el audio. Revisa tu conexión e inténtalo de nuevo.");
+        pubControls(false);
+        return;
+      }
+      pbTitle.textContent = j.title || fallbackTitle || "Audio";
+      let abs = j.url;
+      try{ abs = new URL(j.url, window.location.href).href; }catch(e){}
+      if (paud.src !== abs){
+        paud.src = j.url;
+        try{ paud.load(); }catch(e){}
+      }
+      pubReady = true;
+      pubControls(true);
+      try{ const p = paud.play(); if (p && p.catch) p.catch(() => {}); }catch(e){}
+    })
+    .catch(() => {
+      if (seq !== pubSeq) return;
+      pbTitle.textContent = fallbackTitle || "Audio";
+      pubShowMsg("No se pudo cargar el audio. Revisa tu conexión e inténtalo de nuevo.");
+      pubControls(false);
+    });
+}
+paud.addEventListener("play", () => { stopVerseAudio(); pubIcon(); });
+paud.addEventListener("pause", pubIcon);
+paud.addEventListener("ended", pubIcon);
+paud.addEventListener("loadedmetadata", () => {
+  pbDur.textContent = fmtTime(paud.duration);
+  if (isFinite(paud.duration)) pbSeek.max = paud.duration;
+});
+paud.addEventListener("timeupdate", () => {
+  if (!pubSeeking) pbSeek.value = paud.currentTime || 0;
+  pbCur.textContent = fmtTime(paud.currentTime);
+});
+paud.addEventListener("error", () => {
+  if (pubReady) pubShowMsg("Hubo un problema al reproducir el audio.");
+});
+pbPlay.addEventListener("click", () => {
+  if (!pubReady) return;
+  if (!paud.paused){ paud.pause(); return; }
+  try{ const p = paud.play(); if (p && p.catch) p.catch(() => {}); }catch(e){}
+});
+pbBack.addEventListener("click", () => {
+  if (!pubReady) return;
+  try{ paud.currentTime = Math.max(0, (paud.currentTime || 0) - 5); }catch(e){}
+});
+pbFwd.addEventListener("click", () => {
+  if (!pubReady) return;
+  try{
+    const t = (paud.currentTime || 0) + 15;
+    paud.currentTime = isFinite(paud.duration) ? Math.min(paud.duration, t) : t;
+  }catch(e){}
+});
+pbSeek.addEventListener("input", () => { pubSeeking = true; pbCur.textContent = fmtTime(parseFloat(pbSeek.value)); });
+pbSeek.addEventListener("change", () => {
+  if (pubReady){ try{ paud.currentTime = parseFloat(pbSeek.value) || 0; }catch(e){} }
+  pubSeeking = false;
+});
+$("#pbClose").addEventListener("click", closePubPlayer);
+/* Coordinación inversa: si empieza a sonar el versículo, se pausa la publicación. */
+vaud.addEventListener("play", () => { try{ paud.pause(); }catch(e){} });
+pubIcon();
+pubControls(false);
 /* --- Contenido de la tarjeta --- */
 function wolHref(canon, apiUrl){
   return apiUrl || ("https://wol.jw.org/es/wol/l/r4/lp-s?q=" + encodeURIComponent(canon));
@@ -843,12 +999,23 @@ function weeksListHTML(section, wi, icon, smallFn){
   return '<h2 class="sec">Semanas anteriores</h2><div class="card">' + rows + "</div>";
 }
 
+/* Botones «Escuchar» del reproductor de publicaciones: solo aparecen
+   cuando la semana trae la referencia de audio en data.js. */
+function guiaBtnHTML(wk, wi){
+  if (!wk.audioGuia) return "";
+  return '<button class="listenbtn" data-pubaudio="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la guía de esta semana</span></button>";
+}
+function atalayaBtnHTML(wk, wi){
+  if (!wk.audioAtalaya) return "";
+  return '<button class="listenbtn" data-pubaudio="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar el artículo</span></button>";
+}
 /* Semanas parciales: las secciones que una semana no trae en data.js
    muestran una nota sencilla, sin errores, con la lista de semanas. */
 function sinContenidoHTML(section, wi, icon, title, smallFn){
   const wk = WEEKS[wi], id = section + wkSuffix(wi);
   return screenBar(id, title, wkRoute(section, wi)) +
     head(title, chips([wk.range])) +
+    (section !== "atalaya" ? guiaBtnHTML(wk, wi) : "") +
     '<div class="empty">Sin contenido para esta semana.</div>' +
     weeksListHTML(section, wi, icon, smallFn) +
     noteBox(id);
@@ -859,6 +1026,7 @@ function tesorosHTML(wi){
   if (!t) return sinContenidoHTML("tesoros", wi, "📖", "Tesoros de la Biblia", w2 => w2.tesoros ? w2.tesoros.title : "Sin contenido");
   return screenBar(id, "Tesoros de la Biblia", wkRoute("tesoros", wi)) +
     head("Tesoros de la Biblia", chips([wk.range, "Lectura: " + t.reading, t.duration])) +
+    guiaBtnHTML(wk, wi) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(t.title) + "</h1>" +
     (t.image ? oneImg(t.image, t.imageCaption, t.title) : "") +
     (t.objective ? "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, p + "tesoros-obj") : "") +
@@ -927,7 +1095,7 @@ function perlasHTML(wi){
   /* Párrafo de cierre de la semana, al final, en la misma tarjeta .pearl. */
   if (wk.perlasClosing) items += '<div class="pearl">' + blocks(wk.perlasClosing, base + "cierre") + "</div>";
   return screenBar("perlas","Busquemos perlas escondidas","#/perlas") +
-    head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + items +
+    head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + guiaBtnHTML(wk, wi) + items +
     weeksListHTML("perlas", wi, "💎", w2 => (w2.perlas ? w2.perlas.length : 0) + " perlas") +
     noteBox("perlas");
 }
@@ -937,6 +1105,7 @@ function vidaHTML(wi){
   if (!v) return sinContenidoHTML("vida", wi, "👥", "Nuestra vida cristiana", w2 => w2.vida ? w2.vida.title : "Sin contenido");
   let h = screenBar(id, "Nuestra vida cristiana", wkRoute("vida", wi)) +
     head("Nuestra vida cristiana", chips([wk.range, v.subtitle, v.duration])) +
+    guiaBtnHTML(wk, wi) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>";
   if (v.image && v.imageAfterSection == null) h += oneImg(v.image, v.imageCaption, v.imageAlt || v.title);
   h += v.sections.map((s,i) => {
@@ -965,6 +1134,7 @@ function estudioHTML(wi){
   }).join("");
   return screenBar(id, "Estudio bíblico de la congregación", wkRoute("estudio", wi)) +
     head("Estudio bíblico de la congregación", chips([wk.range, "Lectura: " + e0.reading])) +
+    guiaBtnHTML(wk, wi) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(e0.book) + " — " + esc(e0.chapter) + "</h1>" +
     (e0.intro ? blocks(e0.intro, p + "est-intro") : "") +
     (e0.image ? imgHTML(e0.image, e0.chapter) : "") + items +
@@ -986,6 +1156,7 @@ function discursoHTML(wi){
   if (d.duration) metaChips.push(d.duration);
   return screenBar(id, "Discurso público", wkRoute("discurso", wi)) +
     head("Discurso público", chips([wk.range])) +
+    guiaBtnHTML(wk, wi) +
     (rows ? '<div class="kv">' + rows + "</div>" : "") +
     (metaChips.length ? '<div class="meta">' + chips(metaChips) + "</div>" : "") +
     (d.textRef ? blocks("Texto bíblico: " + d.textRef, p + "discurso-ref") : "") +
@@ -1019,6 +1190,7 @@ function atalayaHTML(wi){
   return screenBar(id, "Estudio de La Atalaya", wkRoute("atalaya", wi)) +
     head("Estudio de La Atalaya", chips([a0.dateLabel])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(a0.title) + "</h1>" +
+    atalayaBtnHTML(wk, wi) +
     blocks(a0.themeText, bp + "ata-tema") + ps +
     weeksListHTML("atalaya", wi, "📚", w2 => w2.atalaya ? w2.atalaya.title : "Sin contenido") +
     noteBox(id);
@@ -1159,6 +1331,12 @@ function render(){
   app.innerHTML = html;
   $("#backBtn").style.display = (r === "") ? "none" : "";
   app.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
+  app.querySelectorAll("[data-pubaudio]").forEach(b => b.addEventListener("click", () => {
+    const w2 = WEEKS[parseInt(b.dataset.wi, 10)];
+    if (!w2) return;
+    if (b.dataset.pubaudio === "atalaya") playPubAudio(w2.audioAtalaya, "La Atalaya — " + w2.range);
+    else playPubAudio(w2.audioGuia, "Guía de actividades — " + w2.range);
+  }));
   app.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { homeTab = b.dataset.tab; store.set("ar1_tab", homeTab); render(); }));
   if (bind) bind();
   paintAllBlocks(app);

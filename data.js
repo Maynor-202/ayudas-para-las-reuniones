@@ -4,6 +4,8 @@ const DATA = {
   "range": "23 al 29 de noviembre de 2026",
   "startDate": "2026-11-23",
   "endDate": "2026-11-29",
+  "audioGuia": {"pub": "mwb", "issue": "202611", "track": 4},
+  "audioAtalaya": {"pub": "w", "issue": "202609", "track": 4},
   "tesoros": {
    "title": "Cuando tengamos problemas, no nos rindamos",
    "reading": "Jueces 6-7",
@@ -1144,6 +1146,10 @@ const DATA = {
     {
      "src": "img/il-4.png",
      "alt": "Descripción 2: Así como una brújula guía a un viajero para que llegue a su destino, la Biblia guía nuestros pensamientos, palabras y decisiones para que andemos por el camino que agrada a Jehová."
+    },
+    {
+     "src": "img/il-4-2.jpg",
+     "alt": "Descripción 1: La Palabra de Jehová es como una brújula que siempre señala el camino correcto. Aunque a veces no sepamos qué decisión tomar, la Biblia nos da dirección clara y nos ayuda a no perdernos."
     }
    ]
   },
@@ -1159,6 +1165,10 @@ const DATA = {
     {
      "src": "img/il-5.jpg",
      "alt": "Descripción 1: La Palabra de Jehová es como una lámpara que ilumina nuestro camino y nos ayuda a tomar buenas decisiones."
+    },
+    {
+     "src": "img/il-5-2.jpg",
+     "alt": "Descripción 2: Así como una lámpara nos permite ver por dónde caminar en la oscuridad, la Biblia nos guía para andar por el camino que agrada a Jehová."
     }
    ]
   },
@@ -1174,6 +1184,10 @@ const DATA = {
     {
      "src": "img/il-6.jpg",
      "alt": "Descripción 1: Una planta pequeña que brota de una Biblia abierta representa cómo la Palabra de Jehová nutre nuestra fe. Así como una semilla necesita agua y cuidados para crecer, nosotros necesitamos leer la Biblia, orar y asistir a las reuniones para fortalecernos espiritualmente."
+    },
+    {
+     "src": "img/il-6-2.jpg",
+     "alt": "Descripción 2: Un árbol fuerte plantado junto a corrientes de agua representa a la persona que medita en la Palabra de Jehová día y noche. Aunque lleguen dificultades o días difíciles, su fe echa raíces profundas y puede seguir dando buenos frutos."
     }
    ]
   },
@@ -1366,6 +1380,8 @@ const DATA = {
    "range": "23 al 29 de noviembre de 2026",
    "startDate": "2026-11-23",
    "endDate": "2026-11-29",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 4},
+   "audioAtalaya": {"pub": "w", "issue": "202609", "track": 4},
    "tesoros": {
     "title": "Cuando tengamos problemas, no nos rindamos",
     "reading": "Jueces 6-7",
@@ -1715,6 +1731,8 @@ const DATA = {
    "range": "16 al 22 de noviembre de 2026",
    "startDate": "2026-11-16",
    "endDate": "2026-11-22",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 3},
+   "audioAtalaya": {"pub": "w", "issue": "202609", "track": 3},
    "tesoros": {
     "title": "Una reacción natural ante una situación devastadora",
     "reading": "Lamentaciones 1-2",
@@ -2048,6 +2066,8 @@ const DATA = {
    "range": "9 al 15 de noviembre de 2026",
    "startDate": "2026-11-09",
    "endDate": "2026-11-15",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 2},
+   "audioAtalaya": {"pub": "w", "issue": "202609", "track": 2},
    "tesoros": {
     "title": "No seamos como Sedequías",
     "reading": "Jeremías 51, 52",
@@ -2450,6 +2470,8 @@ const DATA = {
    "range": "2 al 8 de noviembre de 2026",
    "startDate": "2026-11-02",
    "endDate": "2026-11-08",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 1},
+   "audioAtalaya": {"pub": "w", "issue": "202609", "track": 1},
    "perlasIntro": "Esta semana, al leer sobre los juicios contra las naciones vecinas de Israel, aprendemos lecciones importantes sobre la soberanía de Jehová y la importancia de confiar en él. Las naciones que se opusieron a Jehová y a su pueblo recibieron juicios, pero Jehová también mostró que su propósito se cumpliría sin falta.",
    "perlas": [
     {
@@ -2700,6 +2722,7 @@ const DATA = {
    "range": "26 de octubre al 1 de noviembre de 2026",
    "startDate": "2026-10-26",
    "endDate": "2026-11-01",
+   "audioGuia": {"pub": "mwb", "issue": "202609", "track": 8},
    "perlasIntro": "Esta semana, al leer sobre los juicios contra Filistea y Moab, podemos encontrar lecciones valiosas sobre la humildad, la obediencia y la importancia de mantener una buena relación con Jehová. Aunque los filisteos y los moabitas eran naciones poderosas que se creían seguras, la realidad es que todos dependemos de Jehová.",
    "perlas": [
     {
@@ -2791,6 +2814,7 @@ const DATA = {
    "range": "19 al 25 de octubre de 2026",
    "startDate": "2026-10-19",
    "endDate": "2026-10-25",
+   "audioGuia": {"pub": "mwb", "issue": "202609", "track": 7},
    "perlasIntro": "Esta semana aprenderemos dos lecciones importantes: no permitir que las circunstancias nos hagan buscar grandes cosas para nosotros mismos, y confiar en que Jehová puede cuidar de sus siervos incluso cuando las naciones y los gobiernos parecen tener mucho poder. Baruc necesitaba ajustar su manera de ver las cosas, y la profecía contra Egipto nos recuerda que el poder humano tiene límites.",
    "perlas": [
     {
@@ -2902,6 +2926,7 @@ const DATA = {
    "range": "30 de noviembre al 6 de diciembre de 2026",
    "startDate": "2026-11-30",
    "endDate": "2026-12-06",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 5},
    "perlas": [
     {
      "ref": "Ezequiel 1:4",
@@ -2989,6 +3014,7 @@ const DATA = {
    "range": "7 al 13 de diciembre de 2026",
    "startDate": "2026-12-07",
    "endDate": "2026-12-13",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 6},
    "perlas": [
     {
      "ref": "Ezequiel 3:1-3",
@@ -3076,6 +3102,7 @@ const DATA = {
    "range": "14 al 20 de diciembre de 2026",
    "startDate": "2026-12-14",
    "endDate": "2026-12-20",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 7},
    "perlas": [
     {
      "ref": "Ezequiel 5:1-4",
@@ -3163,6 +3190,7 @@ const DATA = {
    "range": "21 al 27 de diciembre de 2026",
    "startDate": "2026-12-21",
    "endDate": "2026-12-27",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 8},
    "perlas": [
     {
      "ref": "Ezequiel 7:3, 4",
@@ -3250,6 +3278,7 @@ const DATA = {
    "range": "28 de diciembre de 2026 al 3 de enero de 2027",
    "startDate": "2026-12-28",
    "endDate": "2027-01-03",
+   "audioGuia": {"pub": "mwb", "issue": "202611", "track": 9},
    "perlas": [
     {
      "ref": "Ezequiel 9:4",
