@@ -38,6 +38,11 @@ main{max-width:720px;margin:0 auto;padding:14px 12px 90px}
 .thought{padding:16px}
 .thought .k{color:var(--muted);font-weight:700;letter-spacing:.05em;font-size:13px;text-transform:uppercase}
 .thought .q{font-size:18.5px;font-style:italic;margin:10px 0 8px}
+img.cimg{display:block;width:100%;height:auto;border-radius:12px}
+figure.cfig{margin:12px 0}
+figure.cfig figcaption{font-size:13.5px;color:var(--muted);margin-top:6px}
+.thought img.cimg{margin-bottom:12px}
+.ilthumb{width:58px;height:58px;object-fit:cover;border-radius:10px;flex:none}
 .tag{display:inline-block;background:#e8f0fe;color:#2b5aa6;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
 .foot{color:var(--muted);font-size:13.5px;text-align:center;margin:18px 0 4px}
 h1.screen{font-size:23px;line-height:1.3;margin:2px 0 6px}
@@ -123,7 +128,7 @@ button.primary:active{background:var(--accent-dark)}
 /* ================= Configuración ================= */
 const SUPPORT_WHATSAPP_LINK = "https://wa.me/527224248895"; // Enlace de WhatsApp para «Apoyo voluntario» (déjalo vacío para ocultar el botón de contacto).
 const THOUGHTS = [
-  {text:"La verdadera fortaleza no consiste en nunca caer, sino en encontrar el valor para levantarse cada vez", tag:"Reflexión"}
+  {text:"La verdadera fortaleza no consiste en nunca caer, sino en encontrar el valor para levantarse cada vez", tag:"Reflexión", image:"img/pensamiento.jpg"}
 ];
 /* ================= Utilidades ================= */
 const $ = s => document.querySelector(s);
@@ -437,7 +442,8 @@ function homeHTML(){
     "<p>Prepara y consulta el contenido de las reuniones, el texto diario y las ilustraciones.</p></div>" +
     '<div class="tabs">' + tabs + "</div>" +
     '<div class="card">' + rows + "</div>" +
-    '<div class="card thought"><div class="k">✦ Un pensamiento para meditar</div>' +
+    '<div class="card thought">' + (THOUGHTS[0].image ? imgHTML(THOUGHTS[0].image, "Un pensamiento para meditar") : "") +
+    '<div class="k">✦ Un pensamiento para meditar</div>' +
     '<div class="q">«' + esc(THOUGHTS[0].text) + '».</div>' +
     '<span class="tag">' + esc(THOUGHTS[0].tag) + '</span></div>' +
     '<div class="foot">Fuentes oficiales: JW.ORG y la Biblioteca en Línea Watchtower</div>';
@@ -447,14 +453,44 @@ function head(title, sub){
 }
 function chips(arr){ return arr.map(c => '<span class="chip">' + c + "</span>").join(""); }
 
-function tesorosHTML(){
-  const t = W.tesoros;
-  return screenBar("tesoros","Tesoros de la Biblia","#/tesoros") +
-    head("Tesoros de la Biblia", chips([W.range, "Lectura: " + t.reading, t.duration])) +
+/* ================= Imágenes de contenido y semanas =================
+   imgSeq decide el loading: la primera imagen de cada pantalla va «eager»
+   y las demás «lazy»; render() lo reinicia en cada pantalla. */
+let imgSeq = 0;
+function imgHTML(src, alt){
+  imgSeq++;
+  return '<img class="cimg" src="' + esc(src) + '" alt="' + esc(alt || "") + '" loading="' + (imgSeq === 1 ? "eager" : "lazy") + '">';
+}
+function figHTML(src, caption, alt){
+  imgSeq++;
+  return '<figure class="cfig"><img class="cimg" src="' + esc(src) + '" alt="' + esc(alt || "") + '" loading="' + (imgSeq === 1 ? "eager" : "lazy") + '">' +
+    (caption ? "<figcaption>" + esc(caption) + "</figcaption>" : "") + "</figure>";
+}
+function wkOf(wi){ return WEEKS[(wi >= 0 && wi < WEEKS.length) ? wi : 0]; }
+function wkPrefix(wi){ return wi === 0 ? "" : "w" + wi + "-"; }
+function wkSuffix(wi){ return wi === 0 ? "" : "-w" + wi; }
+function wkRoute(base, wi){ return wi === 0 ? "#/" + base : "#/" + base + "/" + wi; }
+/* Lista «Semanas anteriores» al final de cada sección de reunión: enlaza a
+   la misma sección en cada semana disponible (la primera es la actual). */
+function weeksListHTML(section, wi, icon, smallFn){
+  const rows = WEEKS.map((w2,i2) =>
+    '<button class="row" data-go="#/' + section + "/" + i2 + '"><span class="ric">' + icon + '</span><span>' + esc(w2.range) +
+    "<small>" + esc(smallFn(w2, i2)) + (i2 === 0 ? " · Semana actual" : "") + (i2 === wi ? " · Viendo ahora" : "") +
+    '</small></span><span class="arr">›</span></button>').join("");
+  return '<h2 class="sec">Semanas anteriores</h2><div class="card">' + rows + "</div>";
+}
+
+function tesorosHTML(wi){
+  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  const wk = WEEKS[wi], t = wk.tesoros, p = wkPrefix(wi), id = "tesoros" + wkSuffix(wi);
+  return screenBar(id, "Tesoros de la Biblia", wkRoute("tesoros", wi)) +
+    head("Tesoros de la Biblia", chips([wk.range, "Lectura: " + t.reading, t.duration])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(t.title) + "</h1>" +
-    "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, "tesoros-obj") +
-    "<h2 class=\"sec\">Desarrollo</h2>" + blocks(t.development, "tesoros-dev") +
-    noteBox("tesoros");
+    (t.image ? imgHTML(t.image, t.title) : "") +
+    (t.objective ? "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, p + "tesoros-obj") : "") +
+    "<h2 class=\"sec\">Desarrollo</h2>" + blocks(t.development, p + "tesoros-dev") +
+    weeksListHTML("tesoros", wi, "📖", w2 => w2.tesoros.title) +
+    noteBox(id);
 }
 /* Semanas disponibles para Perlas: si data.js trae un arreglo «weeks» se usa
    ese; si no, la semana única actual (DATA.week). La primera es la actual.
@@ -469,73 +505,92 @@ function perlasHTML(wi){
   const items = list.map((p,i) =>
     '<div class="pearl"><div class="pref">' + linkify(esc(p.ref)) + "</div>" +
     blocks(p.comment, (wi === 0 ? "perla-" : "perla-w" + wi + "-") + i) + "</div>").join("");
-  const hist = WEEKS.map((w2,i2) =>
-    '<button class="row" data-go="#/perlas/' + i2 + '"><span class="ric">💎</span><span>' + esc(w2.range) +
-    "<small>" + (w2.perlas ? w2.perlas.length : 0) + " perlas" +
-    (i2 === 0 ? " · Semana actual" : "") + (i2 === wi ? " · Viendo ahora" : "") +
-    '</small></span><span class="arr">›</span></button>').join("");
   return screenBar("perlas","Busquemos perlas escondidas","#/perlas") +
     head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + items +
-    '<h2 class="sec">Semanas anteriores</h2><div class="card">' + hist + "</div>" +
+    weeksListHTML("perlas", wi, "💎", w2 => (w2.perlas ? w2.perlas.length : 0) + " perlas") +
     noteBox("perlas");
 }
-function vidaHTML(){
-  const v = W.vida;
-  return screenBar("vida","Nuestra vida cristiana","#/vida") +
-    head("Nuestra vida cristiana", chips([W.range, v.subtitle, v.duration])) +
-    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>" +
-    v.sections.map((s,i) => "<h2 class=\"sec\">" + esc(s.label) + "</h2>" + blocks(s.text, "vida-" + i)).join("") +
-    noteBox("vida");
+function vidaHTML(wi){
+  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  const wk = WEEKS[wi], v = wk.vida, p = wkPrefix(wi), id = "vida" + wkSuffix(wi);
+  let h = screenBar(id, "Nuestra vida cristiana", wkRoute("vida", wi)) +
+    head("Nuestra vida cristiana", chips([wk.range, v.subtitle, v.duration])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>";
+  if (v.image && v.imageAfterSection == null) h += imgHTML(v.image, v.title);
+  h += v.sections.map((s,i) => {
+    let sh = "<h2 class=\"sec\">" + esc(s.label) + "</h2>" + blocks(s.text, p + "vida-" + i);
+    if (v.image && v.imageAfterSection === i) sh += imgHTML(v.image, v.title);
+    return sh;
+  }).join("");
+  return h + weeksListHTML("vida", wi, "👥", w2 => w2.vida.title) + noteBox(id);
 }
-function estudioHTML(){
-  const e0 = W.estudio;
-  const items = e0.items.map(it => {
+function estudioHTML(wi){
+  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  const wk = WEEKS[wi], e0 = wk.estudio, p = wkPrefix(wi), id = "estudio" + wkSuffix(wi);
+  const items = e0.items.map((it, i) => {
+    const key = it.n != null ? it.n : "x" + i;
     let h = "";
     if (it.group) h += "<h2 class=\"sec\">" + esc(it.group) + "</h2>";
-    h += '<div class="qline">' + it.n + ". " + linkify(esc(it.q)) + "</div>";
+    if (it.q) h += '<div class="qline">' + (it.n != null ? it.n + ". " : "") + linkify(esc(it.q)) + "</div>";
     if (it.extra) h += '<p class="blk" style="font-style:italic;color:var(--muted)">Investigue un poco más: ' + linkify(esc(it.extra)) + "</p>";
-    h += blocks(it.a, "est-" + it.n + "-a");
+    if (it.image && !it.sub) h += imgHTML(it.image, it.q || e0.chapter);
+    if (it.a) h += blocks(it.a, p + "est-" + key + "-a");
+    if (it.sub) h += it.sub.map((s, j) =>
+      '<div class="qline">' + linkify(esc(s.q)) + "</div>" + blocks(s.a, p + "est-" + key + "-s" + j)).join("");
+    if (it.image && it.sub) h += imgHTML(it.image, it.group || e0.chapter);
     return h;
   }).join("");
-  return screenBar("estudio","Estudio bíblico de la congregación","#/estudio") +
-    head("Estudio bíblico de la congregación", chips([W.range, "Lectura: " + e0.reading])) +
-    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(e0.book) + " — " + esc(e0.chapter) + "</h1>" + items +
-    noteBox("estudio");
+  return screenBar(id, "Estudio bíblico de la congregación", wkRoute("estudio", wi)) +
+    head("Estudio bíblico de la congregación", chips([wk.range, "Lectura: " + e0.reading])) +
+    "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(e0.book) + " — " + esc(e0.chapter) + "</h1>" +
+    (e0.intro ? blocks(e0.intro, p + "est-intro") : "") +
+    (e0.image ? imgHTML(e0.image, e0.chapter) : "") + items +
+    weeksListHTML("estudio", wi, "🎓", w2 => w2.estudio.chapter) +
+    noteBox(id);
 }
-function discursoHTML(){
-  const d = W.discurso;
+function discursoHTML(wi){
+  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  const wk = WEEKS[wi], d = wk.discurso, p = wkPrefix(wi), id = "discurso" + wkSuffix(wi);
   const kv = (label, val) => val ? '<div class="kvrow"><span class="kvl">' + label + '</span><span class="kvv">' + esc(val) + "</span></div>" : "";
   const rows = kv("Presidente", d.presidente || d.president) +
     kv("Canción", d.cancion || d.song) +
     kv("Oración", d.oracion || d.prayer) +
     kv("Orador", d.orador || d.speaker) +
     kv("Título del discurso", d.title);
-  return screenBar("discurso","Discurso público","#/discurso") +
-    head("Discurso público", chips([W.range])) +
+  const metaChips = [];
+  if (d.number) metaChips.push("Conferencia pública n.º " + d.number);
+  if (d.duration) metaChips.push(d.duration);
+  return screenBar(id, "Discurso público", wkRoute("discurso", wi)) +
+    head("Discurso público", chips([wk.range])) +
     (rows ? '<div class="kv">' + rows + "</div>" : "") +
-    '<div class="meta">' + chips(["Conferencia pública n.º " + d.number, d.duration]) + "</div>" +
-    (d.textRef ? blocks("Texto bíblico: " + d.textRef, "discurso-ref") : "") +
-    (d.note ? '<div class="extrabox"><div class="k">Nota</div>' + blocks(d.note, "discurso-nota") + "</div>" : "") +
-    noteBox("discurso");
+    (metaChips.length ? '<div class="meta">' + chips(metaChips) + "</div>" : "") +
+    (d.textRef ? blocks("Texto bíblico: " + d.textRef, p + "discurso-ref") : "") +
+    (d.note ? '<div class="extrabox"><div class="k">Nota</div>' + blocks(d.note, p + "discurso-nota") + "</div>" : "") +
+    weeksListHTML("discurso", wi, "🎤", w2 => w2.discurso.title || "Sin contenido publicado") +
+    noteBox(id);
 }
-function atalayaHTML(){
-  const a0 = W.atalaya;
+function atalayaHTML(wi){
+  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  const wk = WEEKS[wi], a0 = wk.atalaya, bp = wkPrefix(wi), id = "atalaya" + wkSuffix(wi);
   const ps = a0.paragraphs.map(p => {
     let h = "";
     if (p.heading) h += "<h2 class=\"sec\">" + esc(p.heading) + "</h2>";
     h += '<div class="qline">' + p.num + ". " + linkify(esc(p.q)) + "</div>";
-    h += blocks(p.a, "ata-" + p.num.replace(/\s/g,"") + "-a");
+    if (p.image) h += figHTML(p.image, p.imageCaption, p.q);
+    h += blocks(p.a, bp + "ata-" + p.num.replace(/\s/g,"") + "-a");
     if (p.extraQ){
       h += '<div class="extrabox"><div class="k">Pregunta adicional</div>' +
         '<div class="qline" style="margin-top:4px">' + linkify(esc(p.extraQ)) + "</div>" +
-        blocks(p.extraA, "ata-" + p.num.replace(/\s/g,"") + "-ea") + "</div>";
+        blocks(p.extraA, bp + "ata-" + p.num.replace(/\s/g,"") + "-ea") + "</div>";
     }
     return h;
   }).join("");
-  return screenBar("atalaya","Estudio de La Atalaya","#/atalaya") +
+  return screenBar(id, "Estudio de La Atalaya", wkRoute("atalaya", wi)) +
     head("Estudio de La Atalaya", chips([a0.dateLabel])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(a0.title) + "</h1>" +
-    blocks(a0.themeText, "ata-tema") + ps + noteBox("atalaya");
+    blocks(a0.themeText, bp + "ata-tema") + ps +
+    weeksListHTML("atalaya", wi, "📚", w2 => w2.atalaya.title) +
+    noteBox(id);
 }
 function textosHTML(){
   const rows = DATA.daily.map(d =>
@@ -545,18 +600,28 @@ function textosHTML(){
 }
 function textoHTML(d){
   const id = "texto-" + d.date;
+  const imgs = d.images || [];
+  let mainImg = "", extraImgs = "";
+  if (imgs.length){
+    mainImg = imgHTML(imgs[0], d.ref);
+    if (imgs.length > 1 && d.example) extraImgs = imgs.slice(1).map(s => imgHTML(s, d.ref)).join("");
+    else if (imgs.length > 1) mainImg += imgs.slice(1).map(s => imgHTML(s, d.ref)).join("");
+  }
   let h = screenBar(id, "Texto diario — " + d.label, "#/texto/" + d.date) +
     head(d.label, chips([d.weekday])) +
     blocks(d.verse, id + "-verse") +
     '<div class="pref" style="font-weight:700;font-size:19px">' + linkify(esc(d.ref)) + "</div>" +
+    mainImg +
     "<h2 class=\"sec\">COMENTARIO</h2>" + blocks(d.comment, id + "-comment");
-  if (d.example) h += "<h2 class=\"sec\">EJEMPLO</h2>" + blocks(d.example, id + "-example");
+  if (d.example) h += "<h2 class=\"sec\">EJEMPLO</h2>" + extraImgs + blocks(d.example, id + "-example");
   h += "<h2 class=\"sec\">LECCIONES PRÁCTICAS</h2>" + blocks(d.lessons, id + "-lessons");
   return h + noteBox(id);
 }
 function ilustracionesHTML(){
   const rows = DATA.illustrations.map((x,i) =>
-    '<button class="row" data-go="#/ilustracion/' + i + '"><span class="ric">🖼️</span><span>' +
+    '<button class="row" data-go="#/ilustracion/' + i + '">' +
+    (x.images && x.images.length ? '<img class="ilthumb" src="' + esc(x.images[0]) + '" alt="" loading="lazy">' : '<span class="ric">🖼️</span>') +
+    '<span>' +
     esc((x.num ? "N.º " + x.num + " — " : "") + x.title) + "<small>" + esc(x.bibleText || "Ilustración") + '</small></span><span class="arr">›</span></button>').join("");
   return head("Ilustraciones", chips(["14 ilustraciones"])) + '<div class="card">' + rows + "</div>";
 }
@@ -567,6 +632,7 @@ function ilustracionHTML(x, i){
   return screenBar(id, "Ilustración — " + x.title, "#/ilustracion/" + i) +
     head(fullTitle) +
     "<h2 class=\"sec\">TÍTULO</h2>" + blocks(fullTitle.toUpperCase(), id + "-tit") +
+    (x.images ? x.images.map(s => imgHTML(s, x.title)).join("") : "") +
     field("EJEMPLO", x.example, "eje") +
     field("EXPLICACIÓN", x.explanation, "exp") +
     field("ENSEÑANZA", x.teaching, "ens") +
@@ -600,7 +666,8 @@ function ajustesHTML(){
 }
 function pensamientoHTML(){
   const cards = THOUGHTS.map(t =>
-    '<div class="card thought"><div class="q">«' + esc(t.text) + '».</div>' +
+    '<div class="card thought">' + (t.image ? imgHTML(t.image, "Un pensamiento para meditar") : "") +
+    '<div class="q">«' + esc(t.text) + '».</div>' +
     (t.tag ? '<span class="tag">' + esc(t.tag) + "</span>" : "") + "</div>").join("");
   return head("Un pensamiento para meditar") + cards;
 }
@@ -620,17 +687,18 @@ function apoyoHTML(){
 const app = $("#app");
 function render(){
   hideBar(); closeVerse();
+  imgSeq = 0;
   const h = location.hash || "#/";
   const parts = h.replace(/^#\/?/, "").split("/");
   const r = parts[0] || "";
   let html = "", bind = null;
   if (r === "" ) { html = homeHTML(); }
-  else if (r === "tesoros"){ html = tesorosHTML(); bind = () => bindScreen("tesoros","Tesoros de la Biblia","#/tesoros"); }
+  else if (r === "tesoros"){ const wi = parseInt(parts[1], 10) || 0; html = tesorosHTML(wi); bind = () => bindScreen("tesoros" + wkSuffix(wi),"Tesoros de la Biblia",wkRoute("tesoros", wi)); }
   else if (r === "perlas"){ const wi = parseInt(parts[1], 10) || 0; html = perlasHTML(wi); bind = () => bindScreen("perlas","Busquemos perlas escondidas","#/perlas"); }
-  else if (r === "vida"){ html = vidaHTML(); bind = () => bindScreen("vida","Nuestra vida cristiana","#/vida"); }
-  else if (r === "estudio"){ html = estudioHTML(); bind = () => bindScreen("estudio","Estudio bíblico de la congregación","#/estudio"); }
-  else if (r === "discurso"){ html = discursoHTML(); bind = () => bindScreen("discurso","Discurso público","#/discurso"); }
-  else if (r === "atalaya"){ html = atalayaHTML(); bind = () => bindScreen("atalaya","Estudio de La Atalaya","#/atalaya"); }
+  else if (r === "vida"){ const wi = parseInt(parts[1], 10) || 0; html = vidaHTML(wi); bind = () => bindScreen("vida" + wkSuffix(wi),"Nuestra vida cristiana",wkRoute("vida", wi)); }
+  else if (r === "estudio"){ const wi = parseInt(parts[1], 10) || 0; html = estudioHTML(wi); bind = () => bindScreen("estudio" + wkSuffix(wi),"Estudio bíblico de la congregación",wkRoute("estudio", wi)); }
+  else if (r === "discurso"){ const wi = parseInt(parts[1], 10) || 0; html = discursoHTML(wi); bind = () => bindScreen("discurso" + wkSuffix(wi),"Discurso público",wkRoute("discurso", wi)); }
+  else if (r === "atalaya"){ const wi = parseInt(parts[1], 10) || 0; html = atalayaHTML(wi); bind = () => bindScreen("atalaya" + wkSuffix(wi),"Estudio de La Atalaya",wkRoute("atalaya", wi)); }
   else if (r === "textos"){ html = textosHTML(); }
   else if (r === "texto"){ const d = DATA.daily.find(x => x.date === parts[1]); html = d ? textoHTML(d) : textosHTML(); if (d) bind = () => bindScreen("texto-" + d.date, "Texto diario — " + d.label, "#/texto/" + d.date); }
   else if (r === "ilustraciones"){ html = ilustracionesHTML(); }
