@@ -163,12 +163,26 @@ a.wol{display:inline-block;background:var(--accent);color:#fff;text-decoration:n
 #pbMsg{display:none;color:#b03a2e;font-size:13.5px;margin-top:6px}
 #pbMsg.show{display:block}
 body.pubopen main{padding-bottom:180px}
+
+/* Mejoras: buscador, tamaño de letra, hoy */
+.searchbox{margin:0 0 14px}
+.searchbox input{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;font:inherit;font-size:16.5px;background:#fff;color:var(--ink);outline:none}
+.searchbox input:focus{border-color:var(--accent)}
+.sres{padding:14px}
+.sres .k{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.sres .t{font-weight:700;font-size:16px;margin-bottom:4px}
+.sres .s{font-size:14.5px;color:var(--muted);line-height:1.45}
+.fontbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.fontbtns button{flex:1;min-width:90px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 8px;font-weight:600;cursor:pointer;color:var(--ink)}
+.fontbtns button.on{border-color:var(--accent);background:#fbf7fd;color:var(--accent-dark)}
+
 </style>
 </head>
 <body>
 <header>
   <button class="icobtn" id="backBtn" aria-label="Atrás" style="display:none">←</button>
   <div class="ttl" id="ttlHome"><span class="home-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span><span class="ttl-txt">Ayudas para las Reuniones</span></div>
+  <button class="icobtn" id="searchBtn" aria-label="Buscar" title="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
   <button class="icobtn" id="favBtn" aria-label="Favoritos" title="Favoritos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg></button>
   <button class="icobtn" id="setBtn" aria-label="Ajustes" title="Ajustes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/><circle cx="12" cy="12" r="3"/></svg></button>
 </header>
@@ -256,6 +270,12 @@ function pensCardHTML(p, feat){
     "</div>";
 }
 /* ================= Utilidades ================= */
+
+function applyFontSize(){
+  const fz = store.get("ar1_fontsize","normal");
+  const sizes = {normal:"16.5px", grande:"18.5px", muygrande:"20.5px"};
+  document.body.style.fontSize = sizes[fz] || sizes.normal;
+}
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const store = {
@@ -1269,6 +1289,16 @@ function discursoHTML(wi){
   wi = resolveWi(wi);
   const wk = WEEKS[wi], d = wk.discurso, p = wkPrefix(wi), id = "discurso" + wkSuffix(wi);
   if (!d) return sinContenidoHTML("discurso", wi, "🎤", "Discurso público", w2 => (w2.discurso && w2.discurso.title) || "Sin contenido publicado");
+  const sinTitulo = !(d.title && String(d.title).trim());
+  if (sinTitulo){
+    return screenBar(id, "Discurso público", wkRoute("discurso", wi)) +
+      head("Discurso público", chips([wk.range])) +
+      guiaBtnHTML(wk, wi) +
+      '<div class="empty">El desarrollo de este discurso todavía no se ha publicado.<br>Cuando esté disponible, aparecerá aquí.</div>' +
+      (d.note ? '<div class="extrabox"><div class="k">Nota</div>' + blocks(d.note, p + "discurso-nota") + "</div>" : "") +
+      weeksListHTML("discurso", wi, "🎤", w2 => (w2.discurso && w2.discurso.title) || "Próximamente") +
+      noteBox(id);
+  }
   const kv = (label, val) => val ? '<div class="kvrow"><span class="kvl">' + label + '</span><span class="kvv">' + esc(val) + "</span></div>" : "";
   const rows = kv("Presidente", d.presidente || d.president) +
     kv("Canción", d.cancion || d.song) +
@@ -1285,7 +1315,7 @@ function discursoHTML(wi){
     (metaChips.length ? '<div class="meta">' + chips(metaChips) + "</div>" : "") +
     (d.textRef ? blocks("Texto bíblico: " + d.textRef, p + "discurso-ref") : "") +
     (d.note ? '<div class="extrabox"><div class="k">Nota</div>' + blocks(d.note, p + "discurso-nota") + "</div>" : "") +
-    weeksListHTML("discurso", wi, "🎤", w2 => (w2.discurso && w2.discurso.title) || "Sin contenido publicado") +
+    weeksListHTML("discurso", wi, "🎤", w2 => (w2.discurso && w2.discurso.title) || "Próximamente") +
     noteBox(id);
 }
 function atalayaHTML(wi){
@@ -1320,10 +1350,15 @@ function atalayaHTML(wi){
     noteBox(id);
 }
 function textosHTML(){
-  const rows = DATA.daily.map(d =>
-    '<button class="row" data-go="#/texto/' + d.date + '"><span class="ric">📖</span><span>' +
-    esc(d.label) + "<small>" + esc(d.weekday) + " · " + esc(d.ref) + '</small></span><span class="arr">›</span></button>').join("");
-  return head("Texto diario", chips([DATA.daily.length + " textos"])) + '<div class="card">' + rows + "</div>";
+  const today = TODAY;
+  const hasToday = DATA.daily.some(d => d.date === today);
+  const btnHoy = hasToday ? '<button class="primary" data-go="#/texto/' + today + '" style="margin-bottom:12px">📅 Ir al texto de hoy</button>' : '';
+  const rows = DATA.daily.map(d => {
+    const isToday = d.date === today;
+    return '<button class="row" data-go="#/texto/' + d.date + '"' + (isToday ? ' style="background:#fbf7fd;border-left:4px solid var(--accent)"' : '') + '><span class="ric">📖</span><span>' +
+      esc(d.label) + (isToday ? ' <span class="tag penswk">Hoy</span>' : '') + "<small>" + esc(d.weekday) + " · " + esc(d.ref) + '</small></span><span class="arr">›</span></button>';
+  }).join("");
+  return head("Texto diario", chips([DATA.daily.length + " textos"])) + btnHoy + '<div class="card">' + rows + "</div>";
 }
 function textoHTML(d){
   const id = "texto-" + d.date;
@@ -1376,10 +1411,12 @@ function sugerenciasHTML(){
   const sugs = store.get("ar1_sugs", []);
   const list = sugs.length ? "<h2 class=\"sec\">Tus sugerencias guardadas</h2>" + sugs.map(s =>
     '<div class="extrabox">' + blocks(s.text, "sug-" + s.when) + "</div>").join("") : "";
+  const waBtn = SUPPORT_WHATSAPP_LINK ? '<a class="wabtn" id="sugWa" href="#" style="margin-top:10px">💬 Enviar por WhatsApp</a>' : '';
   return head("Sugerencias") +
-    "<p>¿Tienes una sugerencia para mejorar la app? Escríbela aquí; se guardará en este dispositivo.</p>" +
+    "<p>¿Tienes una sugerencia para mejorar la app? Escríbela aquí; se guardará en este dispositivo. Si quieres que nos llegue, envíala también por WhatsApp.</p>" +
     '<textarea class="inp" id="sugTa" rows="4" placeholder="Escribe tu sugerencia…"></textarea>' +
     '<div style="height:10px"></div><button class="primary" id="sugBtn">Guardar sugerencia</button>' +
+    waBtn +
     '<p id="sugOk" style="color:var(--accent);font-weight:700"></p>' + list;
 }
 function favoritosHTML(){
@@ -1392,9 +1429,17 @@ function ajustesHTML(){
   const cur = store.get("ar1_accent","purpura");
   const sw = Object.keys(ACCENTS).map(k =>
     '<button class="swatch' + (cur === k ? " on" : "") + '" data-accent="' + k + '"><span class="dot" style="background:' + ACCENTS[k].a + '"></span>' + ACCENTS[k].name + "</button>").join("");
+  const fz = store.get("ar1_fontsize","normal");
+  const fbtn = (k,label) => '<button class="' + (fz===k?"on":"") + '" data-fontsize="' + k + '">' + label + "</button>";
   return head("Ajustes") +
     "<h2 class=\"sec\">Color principal</h2><div class=\"swatches\">" + sw + "</div>" +
-    '<p style="color:var(--muted);font-size:14.5px;margin-top:18px">Tus favoritos, notas, subrayados y sugerencias se guardan solo en este dispositivo.</p>';
+    "<h2 class=\"sec\">Tamaño de letra</h2><div class=\"fontbtns\">" + fbtn("normal","Normal") + fbtn("grande","Grande") + fbtn("muygrande","Muy grande") + "</div>" +
+    "<h2 class=\"sec\">Tus datos</h2>" +
+    '<p style="color:var(--muted);font-size:14.5px;margin:0 0 10px">Tus favoritos, notas, subrayados y sugerencias se guardan solo en este dispositivo. Puedes guardar una copia o restaurarla en otro teléfono.</p>' +
+    '<button class="primary" id="expBtn" style="margin-bottom:10px">⬇️ Exportar mis datos</button>' +
+    '<button class="primary" id="impBtn" style="background:#fff;color:var(--accent);border:1.5px solid var(--accent);margin-bottom:6px">⬆️ Importar datos</button>' +
+    '<input type="file" id="impFile" accept="application/json,.json" style="display:none">' +
+    '<p id="datOk" style="color:var(--accent);font-weight:700;font-size:14px"></p>';
 }
 /* Pensamiento elegido en la galería para verlo destacado; null = el
    de la semana. Al tocar una tarjeta de la galería se muestra arriba. */
@@ -1422,6 +1467,51 @@ function apoyoHTML(){
 
 /* ================= Enrutado ================= */
 const app = $("#app");
+
+/* ================= Buscador ================= */
+function normTxt(s){ return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function snippetAround(text, q){
+  const t = String(text||"").replace(/\s+/g," ").trim();
+  if(!t) return "";
+  const n = normTxt(t), nq = normTxt(q);
+  const idx = n.indexOf(nq);
+  if(idx===-1) return t.slice(0,160) + (t.length>160?"…":"");
+  const start = Math.max(0, idx-60), end = Math.min(t.length, idx+q.length+100);
+  return (start>0?"…":"") + t.slice(start,end) + (end<t.length?"…":"");
+}
+function buscarHTML(){
+  return head("Buscar") +
+    '<div class="searchbox"><input id="qInput" type="search" placeholder="Busca una palabra, referencia o tema…" autocomplete="off" enterkeyhint="search"></div>' +
+    '<div id="qRes"><div class="empty">Escribe para buscar en textos diarios, semanas, ilustraciones y pensamientos.</div></div>';
+}
+function doSearch(q){
+  const resEl = $("#qRes"); if(!resEl) return;
+  const query = String(q||"").trim();
+  if(query.length<2){ resEl.innerHTML = '<div class="empty">Escribe al menos 2 letras.</div>'; return; }
+  const nq = normTxt(query);
+  const out = [];
+  const add = (cat,title,text,route) => {
+    const hay = normTxt((title||"")+" "+(text||""));
+    if(hay.includes(nq)) out.push({cat,title: title||cat, snip: snippetAround(text||title||"", query), route});
+  };
+  (DATA.daily||[]).forEach(d => add("Texto diario", d.label+" · "+d.ref, (d.verse||"")+" "+(d.comment||"")+" "+(d.example||"")+" "+(d.lessons||""), "#/texto/"+d.date));
+  (WEEKS||[]).forEach((w,wi) => {
+    if(!wkVisible(w)) return;
+    if(w.tesoros) add("Tesoros de la Biblia", w.tesoros.title, (w.tesoros.objective||"")+" "+(w.tesoros.development||""), wkRoute("tesoros",wi));
+    (w.perlas||[]).forEach(p => add("Perlas escondidas", p.ref, p.comment, wkRoute("perlas",wi)));
+    if(w.vida) add("Nuestra vida cristiana", w.vida.title, (w.vida.sections||[]).map(s=>s.text).join(" "), wkRoute("vida",wi));
+    if(w.estudio) (w.estudio.items||[]).forEach(it => add("Estudio bíblico", w.estudio.chapter+" · Pregunta "+(it.n||""), (it.q||"")+" "+(it.a||""), wkRoute("estudio",wi)));
+    if(w.atalaya) (w.atalaya.paragraphs||[]).forEach(p => add("Estudio de La Atalaya", w.atalaya.title+" · Párrafo "+p.num, (p.q||"")+" "+(p.a||""), wkRoute("atalaya",wi)));
+  });
+  (DATA.illustrations||[]).forEach((x,i) => add("Ilustraciones", (x.num?"N.º "+x.num+" — ":"")+x.title, (x.bibleText||"")+" "+(x.teaching||"")+" "+(x.example||"")+" "+(x.explanation||"")+" "+(x.application||""), "#/ilustracion/"+i));
+  (DATA.pensamientos||[]).forEach(p => add("Pensamiento para meditar", p.tipo||"Pensamiento", (p.texto||"")+" "+(p.referencia||""), "#/pensamiento"));
+  if(!out.length){ resEl.innerHTML = '<div class="empty">No se encontraron resultados para “'+esc(query)+'”.</div>'; return; }
+  const show = out.slice(0,30);
+  resEl.innerHTML = '<div class="meta" style="margin:0 0 10px">'+show.length+' resultado'+(show.length===1?'':'s')+(out.length>30?' de '+out.length:'')+'</div><div class="card">' +
+    show.map(r => '<button class="row sres" data-go="'+esc(r.route)+'"><span><span class="k">'+esc(r.cat)+'</span><span class="t">'+esc(r.title)+'</span><span class="s">'+esc(r.snip)+'</span></span><span class="arr">›</span></button>').join("") + '</div>';
+  resEl.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
+}
+
 function render(){
   hideBar(); closeVerse();
   imgSeq = 0;
@@ -1437,6 +1527,7 @@ function render(){
   else if (r === "discurso"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = discursoHTML(wi); bind = () => bindScreen("discurso" + wkSuffix(wi),"Discurso público",wkRoute("discurso", wi)); }
   else if (r === "atalaya"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = atalayaHTML(wi); bind = () => bindScreen("atalaya" + wkSuffix(wi),"Estudio de La Atalaya",wkRoute("atalaya", wi)); }
   else if (r === "textos"){ html = textosHTML(); }
+  else if (r === "buscar"){ html = buscarHTML(); bind = () => { const inp = $("#qInput"); if(inp){ inp.focus(); let t; inp.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => doSearch(inp.value), 250); }); inp.addEventListener("keydown", e => { if(e.key==="Enter") doSearch(inp.value); }); } }; }
   else if (r === "texto"){ const d = DATA.daily.find(x => x.date === parts[1]); html = d ? textoHTML(d) : textosHTML(); if (d) bind = () => bindScreen("texto-" + d.date, "Texto diario — " + d.label, "#/texto/" + d.date); }
   else if (r === "ilustraciones"){ html = ilustracionesHTML(); }
   else if (r === "ilustracion"){ const i = parseInt(parts[1], 10); const x = DATA.illustrations[i]; html = x ? ilustracionHTML(x, i) : ilustracionesHTML(); if (x) bind = () => bindScreen("ilus-" + i, "Ilustración — " + x.title, "#/ilustracion/" + i); }
@@ -1446,6 +1537,13 @@ function render(){
         const sugs = store.get("ar1_sugs", []); sugs.push({text: txt, when: Date.now()});
         store.set("ar1_sugs", sugs); render();
         const ok = $("#sugOk"); if (ok) ok.textContent = "¡Gracias! Tu sugerencia quedó guardada.";
+      });
+      const wa = $("#sugWa");
+      if(wa) wa.addEventListener("click", (e) => {
+        e.preventDefault();
+        const ta = $("#sugTa"); const txt = ta ? ta.value.trim() : "";
+        const msg = txt ? ("Sugerencia para Ayudas para las Reuniones: " + txt) : "Sugerencia para Ayudas para las Reuniones: ";
+        window.open((SUPPORT_WHATSAPP_LINK||"") + "?text=" + encodeURIComponent(msg), "_blank");
       });
     }; }
   else if (r === "pensamiento"){ html = pensamientoHTML(); bind = () => {
@@ -1459,6 +1557,38 @@ function render(){
       app.querySelectorAll("[data-accent]").forEach(b => b.addEventListener("click", () => {
         store.set("ar1_accent", b.dataset.accent); applyAccent(); render();
       }));
+      app.querySelectorAll("[data-fontsize]").forEach(b => b.addEventListener("click", () => {
+        store.set("ar1_fontsize", b.dataset.fontsize); applyFontSize(); render();
+      }));
+      const expBtn = $("#expBtn");
+      if(expBtn) expBtn.addEventListener("click", () => {
+        const dump = {};
+        try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k && k.indexOf("ar1_")===0) dump[k]=localStorage.getItem(k); } }catch(e){}
+        const blob = new Blob([JSON.stringify({app:"Ayudas para las Reuniones", exported:new Date().toISOString(), data:dump}, null, 2)], {type:"application/json"});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a"); a.href=url; a.download="ayudas-respaldo.json"; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url), 1000);
+        const ok = $("#datOk"); if(ok) ok.textContent = "Respaldo descargado.";
+      });
+      const impBtn = $("#impBtn"), impFile = $("#impFile");
+      if(impBtn && impFile){
+        impBtn.addEventListener("click", () => impFile.click());
+        impFile.addEventListener("change", () => {
+          const f = impFile.files && impFile.files[0]; if(!f) return;
+          const rd = new FileReader();
+          rd.onload = () => {
+            try{
+              const j = JSON.parse(rd.result);
+              const dump = j.data || j;
+              let n=0;
+              Object.keys(dump).forEach(k => { if(k.indexOf("ar1_")===0){ localStorage.setItem(k, dump[k]); n++; } });
+              const ok = $("#datOk"); if(ok) ok.textContent = "Datos restaurados ("+n+"). Recargando…";
+              setTimeout(()=>location.reload(), 800);
+            }catch(e){ const ok = $("#datOk"); if(ok) ok.textContent = "No se pudo importar ese archivo."; }
+          };
+          rd.readAsText(f);
+        });
+      }
     }; }
   else { html = homeHTML(); }
   app.innerHTML = html;
@@ -1481,8 +1611,16 @@ $("#ttlHome").addEventListener("click", () => { location.hash = "#/"; });
 $("#favBtn").addEventListener("click", () => { location.hash = "#/favoritos"; });
 $("#setBtn").addEventListener("click", () => { location.hash = "#/ajustes"; });
 window.addEventListener("hashchange", render);
+  const sb = $("#searchBtn"); if(sb) sb.addEventListener("click", () => { location.hash = "#/buscar"; });
 applyAccent();
+applyFontSize();
 render();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js').catch(function(){}); });
+}
 </script>
 </body>
 </html>
