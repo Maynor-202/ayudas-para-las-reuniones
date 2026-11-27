@@ -82,15 +82,30 @@ button.primary:active{background:var(--accent-dark)}
 .swatch .dot{width:34px;height:34px;border-radius:50%}
 .swatch.on{border-color:var(--accent)}
 .empty{color:var(--muted);text-align:center;padding:26px 10px}
-#sheetWrap{position:fixed;inset:0;z-index:60;display:none}
+#sheetWrap{position:fixed;inset:0;z-index:60;display:none;pointer-events:none}
 #sheetWrap.open{display:block}
-#sheetBg{position:absolute;inset:0;background:rgba(10,16,30,.5)}
-#sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:18px 18px 26px;max-height:72vh;overflow:auto;max-width:720px;margin:0 auto;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
-#sheet .sref{font-weight:800;font-size:18px;color:var(--navy);padding-right:34px}
-#sheet .stext{margin-top:8px;font-size:17px}
-#sheet .close{position:absolute;top:10px;right:12px;background:#eef0f5;border:0;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer}
-#sheet a.wol{display:inline-block;margin-top:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px}
-#sheet .ssrc{margin-top:10px;font-size:13px;color:#8a8f9c}
+#sheetBg{position:absolute;inset:0;background:rgba(10,16,30,.22)}
+#vcard{position:absolute;left:50%;top:14%;transform:translateX(-50%);width:min(92vw,440px);max-height:84vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(10,16,30,.35),0 4px 14px rgba(10,16,30,.18);overflow:hidden;pointer-events:auto}
+#vcard.drag{box-shadow:0 26px 64px rgba(10,16,30,.42),0 6px 18px rgba(10,16,30,.2)}
+#vcardHead{background:var(--accent);color:#fff;display:flex;align-items:center;gap:10px;padding:12px 12px 12px 16px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;flex:none}
+#vcardHead:active{cursor:grabbing}
+#vcardHead .sref{font-weight:800;font-size:17.5px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+#sheetClose{background:rgba(255,255,255,.18);border:0;color:#fff;width:32px;height:32px;border-radius:50%;font-size:15px;line-height:1;cursor:pointer;flex:none}
+#sheetClose:active{background:rgba(255,255,255,.32)}
+#vcardBody{padding:16px 18px;overflow:auto}
+#sheetText{font-size:17px;line-height:1.55}
+#sheetText .vn{font-weight:800;color:var(--accent)}
+.vacts{display:flex;align-items:center;gap:10px;margin-top:14px}
+#vaudBtn{display:inline-flex;align-items:center;gap:9px;background:transparent;border:0;padding:2px 8px 2px 0;cursor:pointer;font:inherit;font-size:15.5px;font-weight:700;color:var(--navy)}
+#vaudBtn[hidden]{display:none}
+#vaudBtn .vplay{width:42px;height:42px;border-radius:50%;border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;color:var(--navy);flex:none}
+#vaudBtn .vplay svg{width:17px;height:17px;display:block}
+#vaudBtn:active .vplay{background:#eef1f7}
+#sheetLink{margin-left:auto;display:flex}
+a.wolmini{color:var(--accent);font-weight:700;text-decoration:none;font-size:15px;white-space:nowrap;padding:6px 2px}
+a.wol{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px}
+#sheetSrc{font-size:13px;color:#8a8f9c}
+#sheetSrc:not(:empty){margin-top:10px}
 #hlbar{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 7px;display:none;align-items:center;gap:3px;box-shadow:0 4px 16px rgba(20,30,60,.18);min-height:40px;box-sizing:border-box}
 #hlbar.open{display:flex}
 #hlbar .cdot{width:27px;height:27px;border-radius:50%;border:1px solid rgba(20,30,60,.20);cursor:pointer;padding:0;flex:none}
@@ -116,13 +131,22 @@ button.primary:active{background:var(--accent-dark)}
 
 <div id="sheetWrap">
   <div id="sheetBg"></div>
-  <div id="sheet">
-    <button class="close" id="sheetClose" aria-label="Cerrar">✕</button>
-    <div class="sref" id="sheetRef"></div>
-    <div class="stext" id="sheetText"></div>
-    <div id="sheetLink"></div>
-  </div>
+  <section id="vcard" aria-label="Pasaje bíblico citado">
+    <div id="vcardHead">
+      <div class="sref" id="sheetRef"></div>
+      <button id="sheetClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="vcardBody">
+      <div id="sheetText"></div>
+      <div class="vacts">
+        <button id="vaudBtn" type="button" hidden><span class="vplay" id="vaudIco"></span><span>Escuchar</span></button>
+        <span id="sheetLink"></span>
+      </div>
+      <div id="sheetSrc"></div>
+    </div>
+  </section>
 </div>
+<audio id="vaud" preload="none"></audio>
 
 <div id="hlbar"></div>
 
@@ -226,12 +250,102 @@ function verseCacheSet(canon, text){
   store.set(VCACHE_KEY, VCACHE);
 }
 let verseReqSeq = 0;
-function verseShowFallback(canon, apiUrl){
-  $("#sheetText").textContent = "Este versículo todavía no está guardado en la app.";
-  const href = apiUrl || ("https://wol.jw.org/es/wol/l/r4/lp-s?q=" + encodeURIComponent(canon));
-  $("#sheetLink").innerHTML = '<a class="wol" target="_blank" rel="noopener" href="' + esc(href) + '">Ver en JW.org</a>';
+/* --- Tarjeta flotante arrastrable (estilo «Pasaje bíblico citado» de JW.org) --- */
+const vcard = $("#vcard");
+const vhead = $("#vcardHead");
+function resetCardPos(){
+  vcard.style.left = ""; vcard.style.top = ""; vcard.style.transform = "";
+  const r = vcard.getBoundingClientRect();
+  vcard.style.transform = "none";
+  vcard.style.left = Math.max(8, Math.round(r.left)) + "px";
+  vcard.style.top = Math.max(8, Math.round(r.top)) + "px";
 }
-function fetchVerseOnline(canon, seq){
+let vdrag = null;
+vhead.addEventListener("pointerdown", e => {
+  if (e.target && e.target.closest && e.target.closest("#sheetClose")) return;
+  const r = vcard.getBoundingClientRect();
+  vdrag = { id: e.pointerId, dx: e.clientX - r.left, dy: e.clientY - r.top, w: r.width, h: r.height };
+  try{ vhead.setPointerCapture(e.pointerId); }catch(err){}
+  vcard.classList.add("drag");
+  e.preventDefault();
+});
+vhead.addEventListener("pointermove", e => {
+  if (!vdrag || e.pointerId !== vdrag.id) return;
+  vcard.style.left = Math.max(8, Math.min(e.clientX - vdrag.dx, window.innerWidth - vdrag.w - 8)) + "px";
+  vcard.style.top = Math.max(8, Math.min(e.clientY - vdrag.dy, window.innerHeight - vdrag.h - 8)) + "px";
+});
+function vdragEnd(e){
+  if (vdrag && e.pointerId === vdrag.id){ vdrag = null; vcard.classList.remove("drag"); }
+}
+vhead.addEventListener("pointerup", vdragEnd);
+vhead.addEventListener("pointercancel", vdragEnd);
+/* --- Audio en streaming del capítulo oficial (sin descargar ni almacenar) --- */
+const vaud = $("#vaud");
+const vaudBtn = $("#vaudBtn");
+const vaudIco = $("#vaudIco");
+const ICO_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
+const ICO_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" fill="currentColor"/><rect x="14" y="5" width="4" height="14" fill="currentColor"/></svg>';
+let vAudioData = null;  // {url, start, end} del pasaje abierto
+let vSeekTo = null;     // segundo al que saltar en cuanto el audio esté listo
+function audIcon(){ vaudIco.innerHTML = vaud.paused ? ICO_PLAY : ICO_PAUSE; }
+function stopVerseAudio(){
+  vSeekTo = null;
+  try{ vaud.pause(); }catch(e){}
+  audIcon();
+}
+function setVerseAudio(audio){
+  vAudioData = (audio && audio.url) ? audio : null;
+  vaudBtn.hidden = !vAudioData;
+  if (!vAudioData) stopVerseAudio(); else audIcon();
+}
+vaud.addEventListener("loadedmetadata", () => {
+  if (vSeekTo != null){ try{ vaud.currentTime = vSeekTo; }catch(e){} vSeekTo = null; }
+});
+vaud.addEventListener("play", audIcon);
+vaud.addEventListener("pause", audIcon);
+vaud.addEventListener("ended", audIcon);
+vaud.addEventListener("timeupdate", () => {
+  if (vAudioData && vAudioData.end != null && !vaud.paused && vaud.currentTime >= vAudioData.end) vaud.pause();
+});
+vaud.addEventListener("error", () => { vAudioData = null; vaudBtn.hidden = true; audIcon(); });
+vaudBtn.addEventListener("click", () => {
+  if (!vAudioData) return;
+  if (!vaud.paused){ vaud.pause(); return; }
+  const a = vAudioData, start = a.start || 0;
+  let abs = a.url;
+  try{ abs = new URL(a.url, window.location.href).href; }catch(e){}
+  if (vaud.src !== abs){
+    vSeekTo = start;
+    vaud.src = a.url;
+    try{ vaud.load(); }catch(e){}
+  } else if (vaud.ended || vaud.currentTime < start || (a.end != null && vaud.currentTime >= a.end)){
+    vSeekTo = null;
+    try{ vaud.currentTime = start; }catch(e){}
+  }
+  try{ const p = vaud.play(); if (p && p.catch) p.catch(() => {}); }catch(e){}
+});
+audIcon();
+/* --- Contenido de la tarjeta --- */
+function wolHref(canon, apiUrl){
+  return apiUrl || ("https://wol.jw.org/es/wol/l/r4/lp-s?q=" + encodeURIComponent(canon));
+}
+function versesHTML(j){
+  if (j && j.verses && j.verses.length){
+    return j.verses.map(v => (v.n ? '<span class="vn">' + esc(v.n) + "</span> " : "") + esc(v.text)).join(" ");
+  }
+  return esc(j && j.text ? j.text : "");
+}
+function verseShowMeta(canon, apiUrl){
+  $("#sheetSrc").textContent = "Traducción del Nuevo Mundo · JW.org";
+  $("#sheetLink").innerHTML = '<a class="wolmini" target="_blank" rel="noopener" href="' + esc(wolHref(canon, apiUrl)) + '">Ver en JW.org</a>';
+}
+function verseShowFallback(canon, apiUrl){
+  setVerseAudio(null);
+  $("#sheetText").textContent = "Este versículo todavía no está guardado en la app.";
+  $("#sheetSrc").textContent = "";
+  $("#sheetLink").innerHTML = '<a class="wol" target="_blank" rel="noopener" href="' + esc(wolHref(canon, apiUrl)) + '">Ver en JW.org</a>';
+}
+function fetchVerseOnline(canon, seq, bg){
   fetch("/api/texto?q=" + encodeURIComponent(canon)).then(r => {
     return r.json().catch(() => null).then(j => ({ ok: r.ok, j: j }));
   }).then(res => {
@@ -239,40 +353,44 @@ function fetchVerseOnline(canon, seq){
     if (res.ok && j && j.text) verseCacheSet(canon, j.text);
     if (seq !== verseReqSeq) return;
     if (res.ok && j && j.text){
-      $("#sheetText").textContent = j.text;
-      $("#sheetLink").innerHTML = '<div class="ssrc">Traducción del Nuevo Mundo · JW.org</div>';
-    } else {
+      if (!bg){ $("#sheetText").innerHTML = versesHTML(j); verseShowMeta(canon, j.url || ""); }
+      else if (j.verses && j.verses.length){ $("#sheetText").innerHTML = versesHTML(j); }
+      setVerseAudio(j.audio || null);
+    } else if (!bg) {
       verseShowFallback(canon, j && j.url ? j.url : "");
     }
   }).catch(() => {
     if (seq !== verseReqSeq) return;
-    verseShowFallback(canon, "");
+    if (!bg) verseShowFallback(canon, "");
   });
 }
 function openVerse(canon, disp){
   const seq = ++verseReqSeq;
+  stopVerseAudio();
+  vAudioData = null; vaudBtn.hidden = true;
   $("#sheetRef").textContent = disp || canon;
-  const txt = verseLookup(canon);
-  if (txt){
-    $("#sheetText").textContent = txt;
-    $("#sheetLink").innerHTML = "";
+  $("#sheetSrc").textContent = "";
+  $("#sheetLink").innerHTML = "";
+  const local = verseLookup(canon) || verseCacheGet(canon);
+  if (local){
+    $("#sheetText").textContent = local;
+    verseShowMeta(canon, "");
     $("#sheetWrap").classList.add("open");
-    return;
-  }
-  const cached = verseCacheGet(canon);
-  if (cached){
-    $("#sheetText").textContent = cached;
-    $("#sheetLink").innerHTML = "";
-    $("#sheetWrap").classList.add("open");
+    resetCardPos();
+    fetchVerseOnline(canon, seq, true);
     return;
   }
   $("#sheetText").textContent = "Buscando el texto…";
-  $("#sheetLink").innerHTML = "";
   $("#sheetWrap").classList.add("open");
-  fetchVerseOnline(canon, seq);
+  resetCardPos();
+  fetchVerseOnline(canon, seq, false);
 }
-function closeVerse(){ verseReqSeq++; $("#sheetWrap").classList.remove("open"); }
-$("#sheetBg").addEventListener("click", closeVerse);
+function closeVerse(){
+  verseReqSeq++;
+  stopVerseAudio();
+  vAudioData = null; vaudBtn.hidden = true;
+  $("#sheetWrap").classList.remove("open");
+}
 $("#sheetClose").addEventListener("click", closeVerse);
 
 /* ================= Bloques de texto y subrayado ================= */
