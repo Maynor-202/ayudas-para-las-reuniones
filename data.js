@@ -1794,6 +1794,826 @@ const DATA = {
      }
     ]
    }
+  },
+  {
+   "range": "9 al 15 de noviembre de 2026",
+   "tesoros": {
+    "title": "No seamos como Sedequías",
+    "reading": "Jeremías 51, 52",
+    "duration": "10 minutos",
+    "objective": "",
+    "development": "INTRODUCCIÓN\nSedequías fue el último rey de Judá antes de que Babilonia destruyera Jerusalén en el año 607 a.E.C. Aunque tuvo la oportunidad de obedecer a Jehová y salvar su vida, sus malas decisiones lo llevaron a la destrucción. En este discurso veremos qué errores cometió Sedequías y cómo podemos evitar ser como él.\n\n◇ 1. Sedequías desobedeció a Jehová\nSedequías fue puesto en el trono por Nabucodonosor, el rey de Babilonia, y se comprometió a ser leal a él. Sin embargo, Sedequías se rebeló contra Babilonia, desobedeciendo así el mandato de Jehová de someterse a Babilonia. Jehová había dejado claro que Babilonia era su instrumento para ejecutar juicio contra Judá, y que someterse a ella era la única manera de sobrevivir. Pero Sedequías no quiso escuchar. En lugar de obedecer a Jehová, buscó el apoyo de Egipto, pensando que podría resistir a Babilonia. Su desobediencia tuvo consecuencias terribles: Jerusalén fue sitiada, el templo fue destruido y miles de personas murieron o fueron llevadas al exilio.\n\n◇ 2. Sedequías tuvo miedo a los hombres\nUno de los mayores problemas de Sedequías fue su temor a los hombres. Aunque sabía que las palabras de Jeremías venían de Jehová, tenía miedo de lo que pensaran los príncipes de Judá. En varias ocasiones, Sedequías habló con Jeremías en secreto porque no quería que los príncipes supieran que estaba buscando la guía de Jehová. Cuando Jeremías le dijo que se rindiera a Babilonia para salvar su vida, Sedequías no lo hizo por miedo a que los judíos que ya se habían rendido se burlaran de él. Su temor a los hombres lo paralizó y lo llevó a tomar decisiones desastrosas. Nosotros también podemos caer en la trampa del temor a los hombres si nos preocupa más lo que piensen los demás que obedecer a Jehová.\n\n◇ 3. Sedequías no escuchó los consejos de Jehová\nJehová le dio a Sedequías múltiples oportunidades para cambiar. Le envió al profeta Jeremías una y otra vez con mensajes claros: si se rendía a Babilonia, viviría; si se resistía, Jerusalén sería destruida. Pero Sedequías no quiso escuchar. En vez de humillarse y obedecer, siguió los consejos de los falsos profetas y de los príncipes que le decían lo que quería oír. Como resultado, Babilonia destruyó Jerusalén, Sedequías fue capturado, vio cómo mataban a sus hijos y luego fue cegado y llevado encadenado a Babilonia, donde murió. Qué trágico final para alguien que tuvo tantas oportunidades de hacer lo correcto.\n\n◇ 4. Aprendamos de los errores de Sedequías\nEl ejemplo de Sedequías nos enseña varias lecciones importantes. Primero, debemos obedecer a Jehová aunque sus instrucciones no sean populares o parezcan difíciles. Segundo, no debemos permitir que el temor a los hombres nos impida hacer lo correcto. Tercero, debemos escuchar los consejos que Jehová nos da mediante su Palabra y su organización, aunque no sean lo que queremos oír. Si aprendemos de los errores de Sedequías, podremos evitar su mismo final y disfrutar de la aprobación de Jehová.\n\nCONCLUSIÓN\nSedequías tuvo la oportunidad de salvar su vida y la de su pueblo, pero su desobediencia, su temor a los hombres y su negativa a escuchar los consejos de Jehová lo llevaron a la destrucción. No seamos como Sedequías. Obedezcamos a Jehová, no temamos a los hombres y escuchemos con humildad los consejos que Jehová nos da. Si lo hacemos, Jehová nos bendecirá y nos protegerá.\n\nReferencia oficial: w21.02 25 párrs. 14-18"
+   },
+   "perlasIntro": "Esta semana, al leer sobre la caída de Jerusalén y la destrucción de Babilonia, aprendemos lecciones valiosas sobre la importancia de obedecer a Jehová y confiar en sus juicios. Los capítulos 51 y 52 de Jeremías nos muestran cómo Jehová cumplió sus promesas de juicio contra Babilonia y cómo protegió a su pueblo a pesar de las dificultades.",
+   "perlas": [
+    {
+     "ref": "Jeremías 51:5",
+     "comment": "Jehová aseguró que Israel y Judá no habían sido abandonados por su Dios. Esto me enseña que, aunque el pueblo de Jehová cometiera errores y sufriera las consecuencias, Jehová nunca los dejó por completo. Nosotros también podemos estar seguros de que, si nos arrepentimos y buscamos a Jehová, él no nos abandonará."
+    },
+    {
+     "ref": "Jeremías 51:6",
+     "comment": "Jehová instó a su pueblo a salir de Babilonia para salvar su vida. Esto me recuerda que debemos separarnos de este sistema y de sus prácticas. No podemos quedarnos en Babilonia la Grande ni participar en sus costumbres; debemos salir de ella y mantenernos limpios espiritualmente."
+    },
+    {
+     "ref": "Jeremías 51:7",
+     "comment": "Babilonia era como una copa de oro en la mano de Jehová que embriagaba a toda la tierra. Esto me enseña que Jehová puede usar a las naciones para cumplir sus propósitos, pero eso no significa que las apruebe. Babilonia fue un instrumento de juicio, pero luego ella misma sería juzgada por su arrogancia."
+    },
+    {
+     "ref": "Jeremías 51:8, 9",
+     "comment": "La caída repentina de Babilonia sorprendió a todos. Esto me recuerda que los sistemas humanos que parecen fuertes pueden caer de un momento a otro. Solo el Reino de Jehová es eterno y seguro; por eso, debemos poner nuestra confianza en él y no en gobiernos humanos."
+    },
+    {
+     "ref": "Jeremías 51:10",
+     "comment": "El pueblo de Jehová reconoció que Jehová había sacado a la luz su justicia. Esto me enseña que, aunque a veces parezca que la injusticia triunfa, Jehová siempre vindicará a su pueblo. Debemos confiar en que él hará justicia a su debido tiempo."
+    },
+    {
+     "ref": "Jeremías 51:15, 16",
+     "comment": "Jehová es el Creador de la tierra y de todo lo que hay en ella. Esto me recuerda su gran poder y sabiduría. Cuando enfrentamos problemas que parecen imposibles de resolver, podemos recordar que Jehová, que creó el universo, también puede ayudarnos a nosotros."
+    },
+    {
+     "ref": "Jeremías 51:17-19",
+     "comment": "Los ídolos de Babilonia eran inútiles y no podían proteger a la ciudad. Esto me enseña que confiar en ídolos o en cosas materiales es inútil. Solo Jehová es el Dios verdadero, y solo él puede protegernos y darnos vida eterna."
+    },
+    {
+     "ref": "Jeremías 51:20-23",
+     "comment": "Jehová describió a Babilonia como un mazo que usó para destruir naciones. Esto me enseña que Jehová puede usar a quien quiera para cumplir sus propósitos, pero eso no significa que esa persona o nación tenga su aprobación. Debemos asegurarnos de estar del lado de Jehová y de no convertirnos en instrumentos de injusticia."
+    },
+    {
+     "ref": "Jeremías 51:24",
+     "comment": "Jehová prometió pagar a Babilonia por todo el mal que había hecho a Sion. Esto me recuerda que Jehová es justo y que nadie puede hacer el mal impunemente. Aunque a veces parezca que los malvados prosperan, Jehová los juzgará a su debido tiempo."
+    },
+    {
+     "ref": "Jeremías 51:25, 26",
+     "comment": "Babilonia, que se consideraba una montaña poderosa, sería reducida a cenizas. Esto me enseña que el orgullo y la arrogancia siempre llevan a la caída. Debemos cultivar la humildad y reconocer que todo lo que tenemos viene de Jehová."
+    },
+    {
+     "ref": "Jeremías 51:33",
+     "comment": "Jehová comparó a Babilonia con una era que sería pisoteada. Esto me recuerda que los juicios de Jehová son seguros y que llegarán en el momento que él ha decidido. No debemos dudar de que Jehová cumplirá sus promesas, tanto las de bendición como las de juicio."
+    },
+    {
+     "ref": "Jeremías 51:36",
+     "comment": "Jehová prometió defender la causa de su pueblo y vengarlo. Esto me enseña que no necesitamos buscar venganza por nuestra cuenta; Jehová se encargará de hacer justicia. Nuestra responsabilidad es mantenernos fieles y dejar que Jehová actúe."
+    },
+    {
+     "ref": "Jeremías 51:39, 40",
+     "comment": "Babilonia, que se creía invencible, sería humillada. Esto me enseña que nadie puede desafiar a Jehová y salir victorioso. En lugar de confiar en nuestra propia fuerza, debemos humillarnos ante Jehová y buscar su protección."
+    },
+    {
+     "ref": "Jeremías 51:45",
+     "comment": "Jehová volvió a instar a su pueblo a salir de Babilonia. Esto me recuerda que debemos mantenernos separados de este sistema y no dejarnos contaminar por sus prácticas. La obediencia a Jehová nos protege y nos da vida."
+    },
+    {
+     "ref": "Jeremías 51:50",
+     "comment": "Los que escaparon de la espada debían recordar a Jehová desde lejos. Esto me enseña que, aunque estemos lejos de Jerusalén o de nuestros hermanos, debemos mantener a Jehová en nuestro corazón. La distancia no debe debilitarnos espiritualmente."
+    },
+    {
+     "ref": "Jeremías 51:59-64",
+     "comment": "Jeremías escribió en un rollo todas las calamidades que vendrían sobre Babilonia y ordenó que se atara a una piedra y se arrojara al Éufrates. Esto me enseña que las profecías de Jehová son seguras y que se cumplirán sin falta. Babilonia se hundiría y no se levantaría, tal como Jehová había dicho."
+    },
+    {
+     "ref": "Jeremías 52:4-6",
+     "comment": "El sitio de Jerusalén duró mucho tiempo y el hambre fue severa. Esto me recuerda que la desobediencia a Jehová tiene consecuencias graves. Cuando el pueblo desobedeció, sufrió hambre, destrucción y exilio. Debemos aprender de su ejemplo y obedecer a Jehová siempre."
+    },
+    {
+     "ref": "Jeremías 52:7-11",
+     "comment": "Sedequías huyó, pero fue capturado y sufrió un castigo terrible. Esto me enseña que no podemos escapar de las consecuencias de nuestras malas decisiones. Si desobedecemos a Jehová, tarde o temprano sufriremos las consecuencias. Es mejor obedecer desde el principio."
+    },
+    {
+     "ref": "Jeremías 52:12-14",
+     "comment": "Babilonia destruyó el templo y las casas de Jerusalén. Esto me recuerda que las cosas materiales, por muy valiosas que parezcan, pueden desaparecer en un momento. Debemos poner nuestro corazón en las cosas espirituales, que son eternas."
+    },
+    {
+     "ref": "Jeremías 52:31-34",
+     "comment": "El rey Joaquín fue liberado de la prisión y tratado con bondad por el rey de Babilonia. Esto me enseña que, incluso en las circunstancias más difíciles, Jehová puede mostrar misericordia. La liberación de Joaquín fue un recordatorio de que Jehová no había abandonado por completo a su pueblo."
+    }
+   ],
+   "perlasClosing": "Esta semana hemos aprendido que la desobediencia a Jehová trae consecuencias graves, pero que él nunca abandona por completo a su pueblo. La caída de Babilonia nos recuerda que Jehová es justo y que sus juicios se cumplen sin falta. Si obedecemos a Jehová, nos separamos de este sistema y confiamos en su justicia, él nos protegerá y nos dará un futuro lleno de esperanza.",
+   "vida": {
+    "title": "Nuestras donaciones le dan gloria al gran nombre de Jehová",
+    "subtitle": "Análisis con el auditorio",
+    "duration": "15 minutos",
+    "sections": [
+     {
+      "label": "Introducción",
+      "text": "¿Verdad que nos sentimos muy contentos cuando podemos dar algo a Jehová? ¿Por qué nos sentimos así? Porque Jehová es muy generoso con nosotros y nos da todo lo que necesitamos. En esta parte de la reunión veremos cómo nuestras donaciones le dan gloria al gran nombre de Jehová y cómo podemos seguir apoyando su obra con alegría.\n\nPon el VIDEO Nuestras donaciones le dan gloria a Jehová. Luego pregunta:"
+     },
+     {
+      "label": "¿De qué maneras nos anima Jehová a ser generosos?",
+      "text": "Jehová nos anima a ser generosos dándonos el ejemplo. Él es el Dador más generoso de todos, y nos ha dado la vida, la Tierra y todo lo que necesitamos. También nos anima mediante su Palabra, que nos recuerda que \"hay más felicidad en dar que en recibir\". Cuando vemos cómo Jehová bendice a quienes son generosos, nos sentimos motivados a imitarlo."
+     },
+     {
+      "label": "¿Qué donaciones podemos hacer para apoyar la obra de Jehová?",
+      "text": "Podemos hacer donaciones de tiempo, energías y recursos materiales. Nuestras donaciones económicas ayudan a construir y mantener Salones del Reino, a imprimir Biblias y publicaciones, y a apoyar a los hermanos que sirven en lugares de necesidad. También podemos donar nuestro tiempo participando en la predicación, en la construcción y en otras actividades teocráticas."
+     },
+     {
+      "label": "¿Cómo le dan gloria al gran nombre de Jehová nuestras donaciones?",
+      "text": "Nuestras donaciones le dan gloria a Jehová porque muestran que lo amamos y que confiamos en él. Cuando damos con alegría, demostramos que valoramos más las cosas espirituales que las materiales. Además, nuestras donaciones ayudan a que más personas conozcan el nombre de Jehová y aprendan la verdad, lo que trae gloria a su nombre."
+     },
+     {
+      "label": "Comentarios adicionales",
+      "text": "«Pero ¿quién soy yo y quién es mi pueblo para que podamos ofrecerle a Jehová todas estas contribuciones voluntarias? Porque todo viene de ti, y lo que te hemos dado viene de tu mano». (1 Crónicas 29:14)\n\n«Que la gente traiga un regalo a Aquel que inspira temor». (Salmo 76:11)\n\nLos ancianos y los siervos ministeriales pueden expresar gratitud a la congregación por su generosidad y recordarles que Jehová valora cada donación, sin importar su tamaño. También pueden mencionar cómo se usan las donaciones en la congregación y en la obra mundial.\n\nVideo completo disponible en jw.org/es/biblioteca/revistas/w2…"
+     }
+    ],
+    "image": "img/vida3.jpg",
+    "imageAfterSection": 4
+   },
+   "estudio": {
+    "book": "Seamos valientes",
+    "chapter": "Capítulo 16: Barac y Débora — \"Claro que iré contigo\"",
+    "reading": "Jueces 4-5",
+    "intro": "IDEA CENTRAL\nUn siervo de Jehová puede ser valiente aunque al principio dude y necesite apoyo.",
+    "items": [
+     {
+      "n": 1,
+      "q": "¿Qué diría? ¿Cómo respondió Barac cuando Débora le dijo que fuera a luchar contra Sísara?",
+      "a": "Barac le dijo a Débora que solo iría si ella iba con él. Débora aceptó ir, pero le advirtió que la gloria de la victoria no sería para él, sino para una mujer. Aun así, Barac fue y Jehová le dio la victoria sobre Sísara.",
+      "extra": "¿Qué nos enseña la respuesta de Barac sobre la humildad?\nNos enseña que Barac no era arrogante. Reconoció que necesitaba ayuda y no le importó que otra persona recibiera el reconocimiento. Su humildad nos ayuda a aceptar el apoyo de otros hermanos cuando lo necesitamos."
+     },
+     {
+      "group": "Investigue un poco más",
+      "sub": [
+       {
+        "q": "¿Quién era Débora y qué papel desempeñó en Israel?",
+        "a": "Débora era una profetisa que Jehová usaba para guiar a Israel. También actuaba como jueza, y los israelitas subían a verla para que les resolviera sus asuntos. Débora demostró ser una mujer valiente y fiel que confiaba plenamente en Jehová.\n\nLección: Jehová puede usar a cualquier persona fiel, sin importar su género o posición, para cumplir sus propósitos.\n\nReferencia: Jueces 4:4, 5"
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "q": "¿Qué hizo Débora para animar a Barac?",
+      "a": "Débora le recordó a Barac que Jehová le había ordenado ir a luchar y que él le daría la victoria. También le dijo que Jehová ya había entregado a Sísara en sus manos. Cuando llegó el momento de la batalla, Débora animó a Barac diciéndole que Jehová iba delante de él.",
+      "extra": "¿Cómo podemos animar a otros hermanos a ser valientes?\nPodemos recordarles las promesas de Jehová y cómo él los ha ayudado en el pasado. También podemos acompañarlos en momentos difíciles y expresarles nuestra confianza en que Jehová los ayudará."
+     },
+     {
+      "n": 3,
+      "q": "¿Cómo demostró valor Jael? Imagen A",
+      "a": "Jael demostró valor al recibir a Sísara en su tienda y, cuando él se durmió, matarlo con una estaca de tienda. Sísara era un comandante poderoso y peligroso, pero Jael no permitió que el miedo la paralizara. Actuó con decisión para ayudar al pueblo de Jehová.",
+      "extra": "¿Qué nos enseña el valor de Jael?\nNos enseña que el valor no significa no tener miedo, sino actuar a pesar del miedo cuando sabemos que algo es lo correcto. Jael arriesgó su vida para ayudar al pueblo de Jehová, y su ejemplo nos anima a ser valientes cuando tengamos que defender la verdad."
+     },
+     {
+      "n": 4,
+      "q": "¿Qué aprendemos de Débora, Barac y Jael?",
+      "a": "Aprendemos que Jehová puede usar a personas diferentes para cumplir sus propósitos. Débora animó a Barac, Barac dirigió al ejército y Jael derrotó a Sísara. Cada uno desempeñó un papel importante. Esto nos enseña que todos podemos contribuir a la obra de Jehová, sin importar nuestras circunstancias."
+     },
+     {
+      "group": "Piense en las lecciones",
+      "sub": [
+       {
+        "q": "¿De qué maneras demostró Débora que confiaba en Jehová? Imagen B",
+        "a": "Débora demostró que confiaba en Jehová al transmitir sus mensajes sin miedo, al animar a Barac y al acompañarlo a la batalla. También cantó una canción de alabanza a Jehová después de la victoria, reconociendo que él era quien había dado la victoria.\n\nLección adicional: La confianza en Jehová nos ayuda a ser valientes y a animar a otros.\n\nAplicación personal: ¿Cómo puedo demostrar más confianza en Jehová esta semana?"
+       },
+       {
+        "q": "¿Qué nos enseña el que Barac pidiera ayuda?",
+        "a": "Nos enseña que pedir ayuda no es una señal de debilidad, sino de humildad. Barac reconoció que necesitaba el apoyo de Débora, y eso no impidió que Jehová lo usara. Cuando necesitamos ayuda, no debemos tener miedo de pedirla."
+       },
+       {
+        "q": "¿Cómo podemos imitar el valor de Jael?",
+        "a": "Podemos imitar el valor de Jael estando dispuestos a actuar cuando sea necesario defender la verdad o ayudar a nuestros hermanos, aunque eso implique algún riesgo o sacrificio personal."
+       }
+      ]
+     },
+     {
+      "group": "Vea el cuadro completo",
+      "sub": [
+       {
+        "q": "¿Qué lección principal enseña el capítulo 16?",
+        "a": "Que la valentía no significa no tener miedo, sino confiar en Jehová y actuar a pesar del miedo. Débora, Barac y Jael demostraron valentía de diferentes maneras, y Jehová los bendijo."
+       },
+       {
+        "q": "¿Cómo nos ayuda este capítulo a confiar más en Jehová?",
+        "a": "Nos ayuda a ver que Jehová puede usar a cualquier persona para cumplir sus propósitos y que él da la victoria a quienes confían en él. No importa cuán grandes sean los obstáculos, Jehová siempre puede ayudarnos."
+       },
+       {
+        "q": "¿Qué cualidades necesitamos cultivar para ser valientes?",
+        "a": "Necesitamos cultivar la fe, la humildad y la disposición a pedir ayuda cuando la necesitamos. También necesitamos confiar en que Jehová estará con nosotros, tal como estuvo con Débora, Barac y Jael."
+       }
+      ]
+     },
+     {
+      "group": "Lecciones principales para recordar",
+      "a": "1. La valentía no es la ausencia de miedo, sino actuar a pesar de él confiando en Jehová.\n2. Pedir ayuda es una muestra de humildad, no de debilidad.\n3. Jehová puede usar a cualquier persona fiel para cumplir sus propósitos.\n4. Animar a otros es una manera importante de demostrar amor y fe.\n5. La confianza en Jehová nos da el valor para enfrentar cualquier desafío.\n6. Todos podemos contribuir a la obra de Jehová, cada uno según sus circunstancias."
+     },
+     {
+      "group": "Referencias para profundizar",
+      "a": "Jueces 4 y 5 (el relato completo de Débora, Barac y Jael)\nHebreos 11:32-34 (Barac mencionado entre los héroes de la fe)\nPerspicacia para comprender las Escrituras, volumen 1, págs. 261, 262 (\"Barac\") y págs. 653, 654 (\"Débora\")"
+     },
+     {
+      "group": "Comentario final para la reunión",
+      "a": "Qué animador es ver cómo Jehová usó a Débora, Barac y Jael para liberar a Israel. Ninguno de ellos era perfecto, pero todos confiaron en Jehová y actuaron con valentía. Nosotros también podemos ser valientes si confiamos en Jehová y estamos dispuestos a actuar cuando sea necesario. Recordemos que Jehová nunca abandona a quienes confían en él."
+     }
+    ]
+   },
+   "discurso": {
+    "title": "",
+    "duration": "",
+    "number": "",
+    "presidente": "",
+    "cancion": "",
+    "oracion": "",
+    "orador": "",
+    "note": "El desarrollo del discurso público de esta semana todavía no se ha publicado."
+   },
+   "atalaya": {
+    "dateLabel": "9 de noviembre de 2026",
+    "title": "Cómo cultivar \"un corazón obediente\"",
+    "themeText": "«Concédele a tu siervo un corazón obediente» (1 Reyes 3:9)\n\nTEMA: Qué nos ayudará a obedecer de corazón a Jehová.",
+    "paragraphs": [
+     {
+      "num": "1",
+      "q": "¿Qué le pidió Salomón a Jehová cuando era joven?",
+      "a": "Cuando Salomón era joven y acababa de ser nombrado rey de Israel, Jehová le dijo en un sueño que le pidiera lo que quisiera. En vez de pedir riquezas o una vida larga, Salomón le pidió a Jehová que le concediera \"un corazón obediente\" para poder juzgar a su pueblo y distinguir entre lo bueno y lo malo. Esta petición le agradó mucho a Jehová.",
+      "extraQ": "¿Por qué le agradó a Jehová la petición de Salomón?",
+      "extraA": "Le agradó porque Salomón demostró humildad y porque su deseo principal era obedecer a Jehová y cuidar bien de su pueblo. No pidió cosas egoístas, sino algo que lo ayudaría a cumplir bien con su responsabilidad.",
+      "extraQ2": "¿Qué podemos pedirle a Jehová en nuestras oraciones?",
+      "extraA2": "Podemos pedirle a Jehová que nos ayude a tener un corazón obediente y a tomar decisiones sabias. También podemos pedirle que nos dé discernimiento para distinguir entre lo bueno y lo malo, igual que hizo Salomón."
+     },
+     {
+      "num": "2",
+      "q": "¿Qué significa tener \"un corazón obediente\"?",
+      "a": "Tener un corazón obediente significa que deseamos de corazón hacer lo que Jehová nos pide. No obedecemos solo por obligación o por miedo al castigo, sino porque amamos a Jehová y confiamos en que sus mandatos son para nuestro bien. Un corazón obediente también implica que estamos dispuestos a escuchar la guía de Jehová y a aplicarla en nuestra vida.",
+      "extraQ": "¿Cuál es la diferencia entre obedecer de corazón y obedecer por obligación?",
+      "extraA": "Cuando obedecemos de corazón, lo hacemos porque queremos agradar a Jehová y porque confiamos en él. Cuando obedecemos solo por obligación, lo hacemos porque nos sentimos forzados, y eso no nos produce la misma felicidad.",
+      "extraQ2": "¿Cómo podemos saber si tenemos un corazón obediente?",
+      "extraA2": "Podemos saberlo examinando nuestras motivaciones. Si obedecemos a Jehová porque lo amamos y queremos agradarle, tenemos un corazón obediente. Si solo obedecemos cuando nos conviene o cuando otros nos están mirando, necesitamos cultivar más esta cualidad."
+     },
+     {
+      "num": "3",
+      "q": "¿Cómo nos ayuda el ejemplo de los israelitas en el monte Ebal?",
+      "a": "Cuando los israelitas entraron en la Tierra Prometida, Jehová les ordenó que construyeran un altar en el monte Ebal y que escribieran las palabras de la Ley en piedras. Los israelitas obedecieron a Jehová a pesar de las posibles represalias de los egipcios y de otras naciones enemigas. Su obediencia demostró que confiaban en Jehová y que estaban dispuestos a hacer lo que él les pedía, sin importar las consecuencias.",
+      "extraQ": "¿Qué riesgos enfrentaban los israelitas al obedecer a Jehová en el monte Ebal?",
+      "extraA": "Los israelitas estaban en un territorio rodeado de enemigos. Construir un altar y celebrar una ceremonia pública podía llamar la atención de las naciones vecinas y provocar un ataque. Aun así, obedecieron.",
+      "extraQ2": "¿Qué nos enseña el ejemplo de los israelitas?",
+      "extraA2": "Nos enseña que debemos obedecer a Jehová aunque eso implique riesgos o dificultades. Cuando confiamos en Jehová y obedecemos sus mandatos, él nos protege y nos bendice.",
+      "image": "img/atalaya3.jpg",
+      "imageCaption": "Los israelitas obedecieron a Jehová a pesar de las posibles represalias de los egipcios (mira el párrafo 3)"
+     },
+     {
+      "num": "4",
+      "q": "¿Por qué es importante que escuchemos la voz de Jehová?",
+      "a": "Es importante que escuchemos la voz de Jehová porque él sabe lo que es mejor para nosotros. Jehová nos habla mediante su Palabra, la Biblia, y mediante su organización. Cuando escuchamos su voz y obedecemos, demostramos que confiamos en él y que queremos mantener una buena relación con él.",
+      "extraQ": "¿Cómo nos habla Jehová en la actualidad?",
+      "extraA": "Jehová nos habla mediante la Biblia, las reuniones, las publicaciones y los consejos de los ancianos. También nos habla mediante nuestra conciencia entrenada por la Biblia.",
+      "extraQ2": "¿Qué pasa cuando no escuchamos la voz de Jehová?",
+      "extraA2": "Cuando no escuchamos la voz de Jehová, podemos tomar malas decisiones y alejarnos de él. Eso nos causa sufrimiento a nosotros y a quienes nos rodean."
+     },
+     {
+      "num": "5",
+      "q": "¿Qué nos ayudará a obedecer a Jehová de corazón?",
+      "a": "Nos ayudará amar a Jehová con todo nuestro corazón. Cuando amamos a Jehová, queremos obedecerlo porque sabemos que sus mandatos son para nuestro bien. También nos ayudará meditar en cómo Jehová nos ha bendecido cuando hemos obedecido en el pasado.",
+      "extraQ": "¿Cómo fortalece nuestro amor por Jehová el deseo de obedecerle?",
+      "extraA": "Cuando amamos a Jehová, obedecerle no nos parece una carga, sino un privilegio. Queremos hacer lo que le agrada porque lo amamos, igual que un hijo que ama a su padre quiere obedecerle.",
+      "extraQ2": "¿Qué papel desempeña la meditación en la obediencia?",
+      "extraA2": "La meditación nos ayuda a entender por qué los mandatos de Jehová son buenos para nosotros. Cuando meditamos en las bendiciones que hemos recibido por obedecer, nuestro deseo de seguir obedeciendo se fortalece."
+     },
+     {
+      "num": "6",
+      "q": "¿Cómo demostró Jesús que tenía un corazón obediente?",
+      "a": "Jesús demostró que tenía un corazón obediente durante toda su vida en la Tierra. Obedeció a Jehová incluso cuando eso significó sufrir y morir en un madero de tormento. Jesús dijo que había venido a hacer la voluntad de su Padre, no la suya propia, y cumplió con esa misión hasta el final.",
+      "extraQ": "¿Qué dificultades enfrentó Jesús al obedecer a Jehová?",
+      "extraA": "Jesús enfrentó la oposición de los líderes religiosos, la traición de uno de sus apóstoles y una muerte dolorosa. A pesar de todo, se mantuvo obediente hasta el final.",
+      "extraQ2": "¿Cómo nos ayuda el ejemplo de Jesús a obedecer?",
+      "extraA2": "El ejemplo de Jesús nos ayuda porque nos muestra que es posible obedecer a Jehová incluso en las circunstancias más difíciles. Jesús confió plenamente en su Padre, y nosotros podemos hacer lo mismo."
+     },
+     {
+      "num": "7",
+      "q": "¿Qué bendiciones recibimos cuando obedecemos a Jehová?",
+      "a": "Cuando obedecemos a Jehová, recibimos muchas bendiciones: tenemos una conciencia tranquila, disfrutamos de una buena relación con Jehová y con nuestros hermanos, y tenemos la esperanza de vivir para siempre en el Paraíso. Además, Jehová nos protege y nos guía en nuestra vida diaria.",
+      "extraQ": "¿Por qué nos da paz obedecer a Jehová?",
+      "extraA": "Nos da paz porque sabemos que estamos haciendo lo correcto y que Jehová está contento con nosotros. Una conciencia tranquila es una de las mayores bendiciones de la obediencia.",
+      "extraQ2": "¿Qué bendición futura nos espera si obedecemos a Jehová?",
+      "extraA2": "Si obedecemos a Jehová, tenemos la esperanza de vivir para siempre en un paraíso en la Tierra, sin enfermedad, sufrimiento ni muerte."
+     },
+     {
+      "num": "8",
+      "q": "¿Qué puede impedirnos obedecer a Jehová de corazón?",
+      "a": "Pueden impedirlo el orgullo, el deseo de hacer nuestra propia voluntad y la influencia de este mundo. Satanás quiere que desobedezcamos a Jehová, tal como hizo que Adán y Eva desobedecieran. Debemos estar alerta y no permitir que nada nos aleje de Jehová.",
+      "extraQ": "¿Cómo nos afecta el orgullo cuando intentamos obedecer?",
+      "extraA": "El orgullo puede hacernos pensar que sabemos más que Jehová o que sus mandatos no se aplican a nosotros. Eso nos lleva a desobedecer y a sufrir las consecuencias.",
+      "extraQ2": "¿Cómo podemos combatir la influencia del mundo?",
+      "extraA2": "Podemos combatirla manteniéndonos cerca de Jehová mediante la oración, el estudio y las reuniones, y eligiendo bien nuestras compañías y nuestro entretenimiento."
+     },
+     {
+      "num": "9",
+      "q": "¿Cómo nos ayuda la oración a cultivar un corazón obediente?",
+      "a": "La oración nos ayuda a cultivar un corazón obediente porque nos acerca a Jehová y nos permite pedirle que nos dé el deseo y la fuerza para obedecerle. Cuando oramos con regularidad, Jehová nos da su espíritu santo, que nos ayuda a hacer lo correcto.",
+      "extraQ": "¿Qué podemos pedir en oración relacionado con la obediencia?",
+      "extraA": "Podemos pedirle a Jehová que nos ayude a amar sus mandatos, a entender por qué son buenos para nosotros y a tener la fuerza para obedecerlos incluso cuando sea difícil.",
+      "extraQ2": "¿Cómo nos ayuda el espíritu santo a obedecer?",
+      "extraA2": "El espíritu santo nos da la fuerza para resistir las tentaciones y nos recuerda los principios de Jehová cuando tenemos que tomar decisiones."
+     },
+     {
+      "num": "10",
+      "q": "¿Qué papel desempeña el estudio de la Biblia en la obediencia?",
+      "a": "El estudio de la Biblia es esencial para cultivar un corazón obediente. Cuando estudiamos la Biblia, aprendemos lo que Jehová espera de nosotros y por qué sus mandatos son beneficiosos. También aprendemos de los ejemplos de siervos fieles que obedecieron a Jehová y fueron bendecidos.",
+      "extraQ": "¿Qué ejemplos bíblicos nos animan a obedecer?",
+      "extraA": "Los ejemplos de Noé, Abrahán, Moisés y muchos otros siervos de Jehová que obedecieron y fueron bendecidos. También el ejemplo de Jesús, que fue obediente hasta la muerte.",
+      "extraQ2": "¿Cómo podemos hacer que nuestro estudio sea más eficaz?",
+      "extraA2": "Podemos meditar en lo que estudiamos, buscar cómo aplicarlo en nuestra vida y orar a Jehová pidiéndole que nos ayude a poner en práctica lo aprendido."
+     },
+     {
+      "num": "11",
+      "q": "¿Cómo podemos obedecer a Jehová en la congregación?",
+      "a": "Podemos obedecer a Jehová en la congregación siguiendo las instrucciones de los ancianos y apoyando los arreglos de la organización. Cuando cooperamos con los ancianos y aceptamos sus consejos, demostramos que tenemos un corazón obediente.",
+      "extraQ": "¿Por qué debemos seguir las instrucciones de los ancianos?",
+      "extraA": "Porque Jehová ha nombrado a los ancianos para cuidar de la congregación. Cuando seguimos sus instrucciones, estamos obedeciendo a Jehová mismo.",
+      "extraQ2": "¿Qué hacemos si no entendemos una instrucción?",
+      "extraA2": "Podemos pedir una explicación con respeto y, mientras tanto, obedecerla, confiando en que Jehová está guiando a su organización."
+     },
+     {
+      "num": "12",
+      "q": "¿Cómo podemos obedecer a Jehová en la familia?",
+      "a": "Los esposos pueden obedecer a Jehová amando a sus esposas como Cristo amó a la congregación. Las esposas pueden obedecer respetando la jefatura de sus esposos. Los hijos pueden obedecer a sus padres, y los padres pueden criar a sus hijos en la disciplina de Jehová. Cuando cada miembro de la familia obedece a Jehová, la familia es feliz.",
+      "extraQ": "¿Cómo pueden los padres enseñar a sus hijos a obedecer?",
+      "extraA": "Los padres pueden enseñar a sus hijos a obedecer dándoles el ejemplo, explicándoles por qué los mandatos de Jehová son buenos y disciplinándolos con amor cuando es necesario.",
+      "extraQ2": "¿Por qué deben obedecer los hijos a sus padres?",
+      "extraA2": "Porque Jehová lo manda y porque la obediencia protege a los hijos y les enseña a respetar la autoridad, lo que les ayudará toda la vida."
+     },
+     {
+      "num": "13",
+      "q": "¿Cómo podemos obedecer a Jehová en el ministerio?",
+      "a": "Podemos obedecer a Jehová en el ministerio participando con regularidad en la predicación y enseñando la verdad a otros. Jehová nos ha encargado que hagamos discípulos, y cuando obedecemos este mandato, demostramos que tenemos un corazón obediente.",
+      "extraQ": "¿Por qué es un mandato de Jehová predicar?",
+      "extraA": "Porque Jehová quiere que todas las personas conozcan la verdad y tengan la oportunidad de salvarse. La predicación es una manera de demostrar amor a Jehová y al prójimo.",
+      "extraQ2": "¿Qué nos ayudará a ser constantes en el ministerio?",
+      "extraA2": "Nos ayudará recordar el amor que Jehová y Jesús nos han mostrado, y pensar en las personas que todavía necesitan conocer la verdad."
+     },
+     {
+      "num": "14",
+      "q": "¿Qué debemos hacer cuando obedecer a Jehová es difícil?",
+      "a": "Cuando obedecer a Jehová es difícil, debemos orar pidiendo fuerzas, recordar las bendiciones que hemos recibido por obedecer en el pasado y buscar el apoyo de nuestros hermanos. También debemos recordar que Jehová nunca nos pide algo que no podamos hacer.",
+      "extraQ": "¿Qué ejemplo nos ayuda cuando obedecer es difícil?",
+      "extraA": "El ejemplo de Jesús en el jardín de Getsemaní. Aunque le costaba mucho, Jesús oró y se sometió a la voluntad de su Padre. Jehová envió a un ángel para fortalecerlo.",
+      "extraQ2": "¿Cómo nos fortalecen los hermanos?",
+      "extraA2": "Los hermanos nos fortalecen con sus palabras de ánimo, sus oraciones y su ejemplo de fidelidad. Por eso es importante no aislarnos cuando enfrentamos dificultades."
+     },
+     {
+      "num": "15",
+      "q": "¿Cómo nos beneficia obedecer a Jehová ahora y en el futuro?",
+      "a": "Obedecer a Jehová ahora nos da paz, felicidad y una buena relación con él. En el futuro, si seguimos obedeciendo, disfrutaremos de la vida eterna en el Paraíso. Jehová promete bendecir abundantemente a quienes lo obedecen de corazón.",
+      "extraQ": "¿Qué bendiciones disfrutamos ahora por obedecer?",
+      "extraA": "Disfrutamos de una conciencia tranquila, de la amistad de Jehová, de una hermandad mundial que nos apoya y de la paz que solo Jehová puede dar.",
+      "extraQ2": "¿Qué esperanza tenemos para el futuro?",
+      "extraA2": "La esperanza de vivir para siempre en un paraíso en la Tierra, donde no habrá enfermedad, sufrimiento ni muerte, y donde todos obedecerán a Jehová con alegría."
+     },
+     {
+      "num": "16",
+      "q": "¿Qué promesas nos hace Jehová si le obedecemos?",
+      "a": "Jehová nos promete que nos bendecirá, que nos protegerá y que nos dará vida eterna. También nos promete que estará con nosotros siempre y que nunca nos abandonará. Estas promesas nos dan la seguridad de que obedecer a Jehová es lo mejor que podemos hacer.",
+      "extraQ": "¿Qué promesa de Jehová te anima más a obedecer?",
+      "extraA": "Cada hermano puede pensar en la promesa que más lo anima: la vida eterna, la resurrección de sus seres queridos o el fin del sufrimiento. Todas estas promesas nos motivan a seguir obedeciendo.",
+      "extraQ2": "¿Por qué podemos estar seguros de que Jehová cumplirá sus promesas?",
+      "extraA2": "Porque Jehová nunca miente y porque a lo largo de la historia ha cumplido todas sus promesas. Su historial nos da total confianza."
+     },
+     {
+      "num": "17",
+      "q": "¿Qué decisión debemos tomar respecto a la obediencia?",
+      "a": "Debemos decidir obedecer a Jehová de corazón en todo aspecto de nuestra vida. Esta decisión nos traerá bendiciones ahora y en el futuro. Como Salomón, pidámosle a Jehová que nos conceda un corazón obediente.",
+      "extraQ": "¿Qué cambios podemos hacer para obedecer más a Jehová?",
+      "extraA": "Cada uno puede examinar su vida y ver en qué aspecto necesita mejorar su obediencia: en la oración, en el ministerio, en la familia o en la congregación.",
+      "extraQ2": "¿Qué le pedirás a Jehová en tus oraciones esta semana?",
+      "extraA2": "Podemos pedirle a Jehová, igual que Salomón, que nos conceda un corazón obediente y el discernimiento para distinguir entre lo bueno y lo malo."
+     },
+     {
+      "num": "18",
+      "q": "¿Qué nos ayudará a obedecer de corazón a Jehová?",
+      "a": "Nos ayudará amar a Jehová con todo el corazón, orar con regularidad, estudiar la Biblia y meditar en ella, y recordar las bendiciones que recibimos cuando obedecemos. También nos ayudará seguir el ejemplo de Jesús, que fue obediente hasta la muerte.",
+      "heading": "¿Qué responderías?"
+     },
+     {
+      "num": "19",
+      "q": "¿Qué bendiciones recibimos cuando obedecemos a Jehová?",
+      "a": "Recibimos paz, felicidad, una conciencia tranquila, una buena relación con Jehová y la esperanza de vida eterna en el Paraíso. Jehová también nos protege y nos guía en nuestra vida diaria."
+     },
+     {
+      "num": "20",
+      "q": "¿Qué le pedirás a Jehová para cultivar un corazón obediente?",
+      "a": "Le pediré a Jehová que me ayude a amar sus mandatos, a tener el deseo de obedecerle en todo y a discernir entre lo bueno y lo malo, tal como hizo Salomón cuando le pidió \"un corazón obediente\"."
+     }
+    ]
+   }
+  },
+  {
+   "range": "2 al 8 de noviembre de 2026",
+   "perlasIntro": "Esta semana, al leer sobre los juicios contra las naciones vecinas de Israel, aprendemos lecciones importantes sobre la soberanía de Jehová y la importancia de confiar en él. Las naciones que se opusieron a Jehová y a su pueblo recibieron juicios, pero Jehová también mostró que su propósito se cumpliría sin falta.",
+   "perlas": [
+    {
+     "ref": "Jeremías 49:4",
+     "comment": "Jehová preguntó a Amón por qué se jactaba de sus valles y confiaba en sus tesoros. Esto me enseña que la riqueza y la prosperidad no garantizan la seguridad. Si confiamos en lo material en vez de en Jehová, podemos terminar decepcionados. Es mejor buscar primero el Reino y confiar en que Jehová nos dará lo que necesitamos."
+    },
+    {
+     "ref": "Jeremías 49:7",
+     "comment": "Edom era conocido por su sabiduría, pero Jehová dijo que su sabiduría había desaparecido. Esto me recuerda que la sabiduría humana tiene límites y no puede compararse con la sabiduría de Jehová. Debemos buscar la sabiduría que viene de Dios, que es verdadera y duradera, y no depender de nuestro propio entendimiento."
+    },
+    {
+     "ref": "Jeremías 49:11",
+     "comment": "Jehová prometió cuidar a los huérfanos y a las viudas de Edom. Esto me enseña que Jehová es un Dios compasivo que se preocupa por los más vulnerables. Nosotros también debemos mostrar compasión y ayudar a quienes lo necesitan, especialmente a los huérfanos y a las viudas de nuestra congregación."
+    },
+    {
+     "ref": "Jeremías 49:12",
+     "comment": "Jehová dijo que quienes no merecían beber la copa del juicio tendrían que beberla. Esto me recuerda que los juicios de Jehová son justos e imparciales. Nadie puede escapar de las consecuencias de sus acciones, pero Jehová siempre actúa con justicia y misericordia."
+    },
+    {
+     "ref": "Jeremías 49:16",
+     "comment": "Edom confiaba en su posición elevada entre las rocas, pero Jehová dijo que lo haría descender. Esto me enseña que el orgullo y la confianza en nuestra posición o en nuestras defensas humanas no nos protegerán. Solo Jehová puede darnos verdadera seguridad."
+    },
+    {
+     "ref": "Jeremías 49:19",
+     "comment": "Jehová preguntó quién podría compararse con él y quién podría desafiarlo. Esto me recuerda que Jehová es incomparable y que nadie puede oponerse a su voluntad. En lugar de cuestionar a Jehová, debemos confiar en su sabiduría y en su capacidad para cumplir sus propósitos."
+    },
+    {
+     "ref": "Jeremías 49:23, 24",
+     "comment": "Damasco, una ciudad importante, sería destruida y sus habitantes huirían llenos de miedo. Esto me enseña que incluso las ciudades más fuertes pueden caer cuando Jehová lo decide. No debemos poner nuestra confianza en sistemas humanos ni en estructuras que parecen estables, sino en Jehová."
+    },
+    {
+     "ref": "Jeremías 49:28-30",
+     "comment": "Jehová ordenó atacar a Cedar y a Hazor, naciones que vivían en paz y sin preocupaciones. Esto me recuerda que la tranquilidad aparente no es garantía de seguridad. Debemos estar siempre alertas y mantenernos cerca de Jehová, porque no sabemos cuándo llegará el día de su juicio."
+    },
+    {
+     "ref": "Jeremías 49:31",
+     "comment": "Jehová describió a las naciones que vivían sin puertas ni cerrojos, confiadas en su aislamiento. Esto me enseña que la independencia y la autosuficiencia no son protección verdadera. Necesitamos a Jehová y a su organización para estar seguros y guiados."
+    },
+    {
+     "ref": "Jeremías 49:38",
+     "comment": "Jehová dijo que pondría su trono en Elam y destruiría a sus reyes y príncipes. Esto me recuerda que Jehová es el Rey soberano y que ningún gobernante humano puede resistirse a su autoridad. Debemos reconocer la soberanía de Jehová y someternos a ella con humildad."
+    },
+    {
+     "ref": "Jeremías 49:39",
+     "comment": "A pesar del juicio contra Elam, Jehová prometió reunir a sus cautivos en el futuro. Esto me enseña que Jehová no solo ejecuta juicios, sino que también ofrece esperanza de restauración. Incluso cuando enfrentamos dificultades, podemos confiar en que Jehová nos dará un futuro mejor."
+    },
+    {
+     "ref": "Jeremías 50:2",
+     "comment": "Jehová ordenó que se anunciara la caída de Babilonia y la vergüenza de sus ídolos. Esto me recuerda que ningún poder humano ni sistema religioso falso puede resistir a Jehová. Al final, la verdad prevalecerá y Jehová será vindicado."
+    },
+    {
+     "ref": "Jeremías 50:4, 5",
+     "comment": "Los israelitas buscarían a Jehová con lágrimas y se unirían a él en un pacto permanente. Esto me enseña la importancia de arrepentirnos sinceramente y de comprometernos con Jehová de todo corazón. El arrepentimiento verdadero nos acerca a Jehová y nos ayuda a mantener una buena relación con él."
+    },
+    {
+     "ref": "Jeremías 50:6",
+     "comment": "El pueblo de Jehová era como ovejas perdidas que sus pastores habían extraviado. Esto me recuerda que los líderes tienen una gran responsabilidad. Debemos cuidar a las ovejas de Jehová con amor y guiarlas correctamente, y también debemos asegurarnos de seguir a los pastores que Jehová ha nombrado."
+    },
+    {
+     "ref": "Jeremías 50:7",
+     "comment": "Los enemigos de Israel decían que no eran culpables porque Israel había pecado contra Jehová. Esto me enseña que Jehová permite que su pueblo sufra las consecuencias de sus acciones, pero también que los enemigos no pueden usar eso como excusa para maltratarlos. Jehová siempre defiende a su pueblo."
+    },
+    {
+     "ref": "Jeremías 50:8",
+     "comment": "Jehová instó a su pueblo a salir de Babilonia. Esto me recuerda que debemos separarnos de este sistema y de sus prácticas. No podemos quedarnos en Babilonia la Grande ni participar en sus costumbres; debemos salir de ella y mantenernos limpios espiritualmente."
+    },
+    {
+     "ref": "Jeremías 50:17-19",
+     "comment": "Israel era como una oveja dispersa por leones, pero Jehová prometió reunirla y llevarla de vuelta a sus pastos. Esto me enseña que, aunque el pueblo de Jehová pueda sufrir y dispersarse, él siempre lo reunirá. Esto me da esperanza de que Jehová cuidará de su pueblo y lo restaurará."
+    },
+    {
+     "ref": "Jeremías 50:20",
+     "comment": "Jehová prometió perdonar a los que quedaran de Israel. Esto me enseña que el perdón de Jehová es completo y misericordioso. Si nos arrepentimos sinceramente, Jehová nos perdonará y nos dará una nueva oportunidad."
+    },
+    {
+     "ref": "Jeremías 50:34",
+     "comment": "Jehová es nuestro Defensor y Redentor, y él defenderá nuestra causa. Esto me recuerda que no necesitamos defendernos solos; Jehová peleará por nosotros. Cuando enfrentamos oposición, podemos confiar en que Jehová nos protegerá y defenderá."
+    },
+    {
+     "ref": "Jeremías 50:44",
+     "comment": "Jehová preguntó quién podría compararse con él y quién podría desafiar su autoridad. Esto me enseña que Jehová es el Soberano universal y que su poder es inigualable. Debemos reconocer su grandeza y someternos a su voluntad con humildad y respeto."
+    }
+   ],
+   "perlasClosing": "Esta semana hemos aprendido que Jehová es el Soberano universal y que ningún poder humano puede resistirse a su voluntad. Los juicios contra las naciones nos recuerdan que debemos confiar en Jehová y no en nuestras propias fuerzas. Al mismo tiempo, Jehová muestra misericordia y ofrece esperanza de restauración a quienes se arrepienten. Si mantenemos nuestra confianza en Jehová y nos separamos de este sistema, él nos protegerá y nos dará un futuro lleno de esperanza.",
+   "atalaya": {
+    "dateLabel": "2 de noviembre de 2026",
+    "title": "Confiemos en que Jehová nos protegerá",
+    "themeText": "«Tú dijiste \"Jehová es mi refugio\"» (Salmo 91:9)\n\nTEMA: Por qué podemos confiar en que Jehová nos protege ahora y lo hará en el futuro.",
+    "paragraphs": [
+     {
+      "num": "1, 2",
+      "q": "¿En qué situaciones necesitamos confiar en que Jehová nos protegerá?",
+      "a": "Necesitamos confiar en que Jehová nos protegerá cuando enfrentamos persecución, enfermedades, problemas económicos o cualquier otra dificultad. También necesitamos confiar en él cuando nos sentimos solos o desanimados. Jehová nos promete que estará con nosotros y que nos ayudará a superar cualquier prueba.",
+      "extraQ": "¿Qué nos promete Jehová en el Salmo 91?",
+      "extraA": "Jehová nos promete que, si hacemos de él nuestro refugio, nos protegerá de los peligros y nos dará paz. El Salmo 91 nos asegura que Jehová es nuestro refugio y nuestra fortaleza, y que podemos confiar en él en todo momento.",
+      "extraQ2": "¿Cómo nos ayuda el Salmo 91 a confiar en Jehová?",
+      "extraA2": "El Salmo 91 nos ayuda a confiar en Jehová porque nos recuerda que él es poderoso y que siempre está dispuesto a ayudarnos. Cuando meditamos en este salmo, nuestra fe se fortalece y podemos enfrentar las dificultades con valor."
+     },
+     {
+      "num": "3",
+      "q": "¿Qué nos enseña el Salmo 91:1, 2 sobre Jehová?",
+      "a": "El Salmo 91:1, 2 nos enseña que Jehová es nuestro refugio y nuestra fortaleza, y que podemos escondernos bajo sus alas. Esto significa que Jehová nos protege y nos cuida como un ave protege a sus polluelos. También nos enseña que podemos confiar en Jehová en todo momento, porque él siempre está con nosotros.",
+      "extraQ": "¿Qué significa que Jehová es nuestro refugio?",
+      "extraA": "Significa que Jehová es un lugar seguro al que podemos acudir cuando tenemos miedo o estamos en peligro. Como un refugio nos protege de una tormenta, Jehová nos protege de los peligros espirituales y físicos.",
+      "extraQ2": "¿Qué significa que Jehová es nuestra fortaleza?",
+      "extraA2": "Significa que Jehová nos da la fuerza que necesitamos para enfrentar las dificultades. Cuando nos sentimos débiles, Jehová nos fortalece y nos ayuda a seguir adelante."
+     },
+     {
+      "num": "4",
+      "q": "¿Cómo nos protege Jehová en la actualidad?",
+      "a": "Jehová nos protege en la actualidad de muchas maneras: nos da sabiduría para tomar buenas decisiones, nos ayuda a resistir las tentaciones y nos protege de los peligros espirituales. También nos protege mediante su organización y mediante nuestros hermanos, quienes nos animan y nos ayudan cuando lo necesitamos.",
+      "extraQ": "¿Cómo nos protege Jehová mediante su organización?",
+      "extraA": "Jehová nos protege mediante su organización dándonos la guía y la dirección que necesitamos. Por ejemplo, las publicaciones y las reuniones nos ayudan a mantenernos cerca de Jehová y a tomar buenas decisiones.",
+      "extraQ2": "¿Cómo nos protegen nuestros hermanos?",
+      "extraA2": "Nuestros hermanos nos protegen animándonos, orando por nosotros y ayudándonos cuando tenemos dificultades. Cuando estamos unidos, somos más fuertes y podemos enfrentar cualquier desafío."
+     },
+     {
+      "num": "5, 6",
+      "q": "¿Cómo nos ayuda el ejemplo de David a confiar en que Jehová nos protegerá?",
+      "a": "El ejemplo de David nos ayuda a confiar en que Jehová nos protegerá porque David enfrentó muchos peligros y Jehová siempre lo protegió. David escribió muchos salmos en los que expresó su confianza en Jehová, como el Salmo 91. Su ejemplo nos muestra que, aunque enfrentemos dificultades, Jehová estará con nosotros.",
+      "extraQ": "¿Qué peligros enfrentó David?",
+      "extraA": "David enfrentó muchos peligros: fue perseguido por el rey Saúl, luchó contra gigantes y enfrentó batallas. A pesar de todo, Jehová lo protegió y lo ayudó a salir victorioso.",
+      "extraQ2": "¿Qué podemos aprender del ejemplo de David?",
+      "extraA2": "Podemos aprender que Jehová protege a quienes confían en él, incluso en las situaciones más difíciles. David no era perfecto, pero Jehová lo protegió porque confiaba en él y lo obedecía."
+     },
+     {
+      "num": "7",
+      "q": "¿Qué nos enseña el Salmo 91:3, 4 sobre la protección de Jehová?",
+      "a": "El Salmo 91:3, 4 nos enseña que Jehová nos librará de las trampas y de las enfermedades. Esto significa que Jehová nos protege de los peligros que no podemos ver y de las enfermedades que podrían afectarnos. También nos enseña que Jehová nos cubre con sus plumas y que podemos refugiarnos bajo sus alas.",
+      "extraQ": "¿De qué trampas nos libra Jehová?",
+      "extraA": "Jehová nos libra de las trampas de Satanás, de las tentaciones y de las malas influencias. También nos libra de las situaciones que podrían perjudicarnos espiritualmente.",
+      "extraQ2": "¿Cómo nos protege Jehová de las enfermedades?",
+      "extraA2": "Jehová nos protege de las enfermedades dándonos principios sabios para cuidar nuestra salud. También nos da la fortaleza para enfrentar las enfermedades cuando las tenemos."
+     },
+     {
+      "num": "8, 9",
+      "q": "¿Cómo nos protege Jehová durante la gran tribulación?",
+      "a": "Jehová nos protegerá durante la gran tribulación de muchas maneras. Él nos dará la sabiduría para tomar buenas decisiones, nos protegerá de los peligros físicos y nos dará la fortaleza para mantenernos fieles. Aunque no sabemos exactamente cómo nos protegerá, podemos confiar en que él lo hará.",
+      "extraQ": "¿Qué nos ayudará a mantenernos fieles durante la gran tribulación?",
+      "extraA": "Nos ayudará mantener una buena relación con Jehová, estudiar la Biblia con regularidad y asistir a las reuniones. También nos ayudará estar unidos a nuestros hermanos y seguir las instrucciones de la organización de Jehová.",
+      "extraQ2": "¿Por qué podemos confiar en que Jehová nos protegerá durante la gran tribulación?",
+      "extraA2": "Porque Jehová ha prometido que protegerá a su pueblo y porque ya nos ha protegido en el pasado. Cuando recordamos cómo Jehová nos ha ayudado antes, nuestra confianza en él se fortalece."
+     },
+     {
+      "num": "10",
+      "q": "¿Qué nos enseña el Salmo 91:5, 6 sobre la protección de Jehová?",
+      "a": "El Salmo 91:5, 6 nos enseña que no debemos tener miedo de los peligros de la noche ni de las enfermedades que atacan durante el día. Jehová nos protegerá de los terrores nocturnos y de las plagas que azotan a la humanidad. Esto nos da paz y nos ayuda a no vivir con miedo.",
+      "extraQ": "¿Qué son los terrores nocturnos?",
+      "extraA": "Los terrores nocturnos son los miedos y las preocupaciones que nos afectan cuando estamos solos o en la oscuridad. Jehová nos ayuda a superar estos miedos recordándonos que él está con nosotros.",
+      "extraQ2": "¿Qué son las plagas que azotan durante el día?",
+      "extraA2": "Las plagas son las enfermedades y los problemas que afectan a la humanidad. Jehová nos protege de estas plagas dándonos sabiduría y fortaleza."
+     },
+     {
+      "num": "11",
+      "q": "¿Qué nos enseña el Salmo 91:7, 8 sobre la protección de Jehová?",
+      "a": "El Salmo 91:7, 8 nos enseña que, aunque miles caigan a nuestro alrededor, Jehová nos protegerá. Esto significa que, aunque el mundo esté en caos, Jehová cuidará de su pueblo. También nos enseña que veremos cómo Jehová ejecuta sus juicios contra los malvados.",
+      "extraQ": "¿Qué significa que miles caerán a nuestro lado?",
+      "extraA": "Significa que muchas personas sufrirán las consecuencias de sus malas decisiones y de los juicios de Jehová. Sin embargo, Jehová protegerá a su pueblo y no permitirá que suframos lo mismo.",
+      "extraQ2": "¿Qué veremos cuando Jehová ejecute sus juicios?",
+      "extraA2": "Veremos cómo Jehová hace justicia y cómo los malvados reciben su castigo. Esto nos dará paz y nos confirmará que Jehová es justo."
+     },
+     {
+      "num": "12, 13",
+      "q": "¿Qué nos enseña el Salmo 91:9, 10 sobre la protección de Jehová?",
+      "a": "El Salmo 91:9, 10 nos enseña que, si hacemos de Jehová nuestro refugio, ninguna calamidad nos sobrevendrá ni ninguna plaga se acercará a nuestra tienda. Esto significa que Jehová nos protegerá de los peligros y nos dará paz, incluso en medio de las dificultades.",
+      "extraQ": "¿Qué significa hacer de Jehová nuestro refugio?",
+      "extraA": "Significa que confiamos en Jehová por encima de todo y que lo consideramos nuestra principal fuente de seguridad. No ponemos nuestra confianza en cosas materiales ni en sistemas humanos, sino en Jehová.",
+      "extraQ2": "¿Qué nos promete Jehová si hacemos de él nuestro refugio?",
+      "extraA2": "Jehová nos promete que nos protegerá y que nos dará paz. También nos promete que estará con nosotros en todo momento y que nos ayudará a superar cualquier dificultad."
+     },
+     {
+      "num": "14",
+      "q": "¿Qué nos enseña el Salmo 91:11, 12 sobre la protección de Jehová?",
+      "a": "El Salmo 91:11, 12 nos enseña que Jehová enviará a sus ángeles para que nos protejan en todos nuestros caminos. Esto significa que Jehová usa a sus ángeles para cuidarnos y guiarnos. Los ángeles nos protegen de los peligros y nos ayudan a tomar buenas decisiones.",
+      "extraQ": "¿Cómo nos protegen los ángeles?",
+      "extraA": "Los ángeles nos protegen guiándonos, dándonos sabiduría y protegiéndonos de los peligros físicos y espirituales. Aunque no los veamos, los ángeles están trabajando para ayudarnos.",
+      "extraQ2": "¿Qué ejemplo muestra cómo los ángeles protegen a los siervos de Jehová?",
+      "extraA2": "El ejemplo de Daniel en el foso de los leones muestra cómo los ángeles protegen a los siervos de Jehová. Jehová envió a su ángel para cerrar la boca de los leones y proteger a Daniel."
+     },
+     {
+      "num": "15",
+      "q": "¿Qué nos enseña el Salmo 91:13 sobre la protección de Jehová?",
+      "a": "El Salmo 91:13 nos enseña que Jehová nos dará el poder para vencer a nuestros enemigos, como leones y serpientes. Esto significa que Jehová nos dará la fortaleza para enfrentar cualquier desafío y salir victoriosos.",
+      "extraQ": "¿Qué simbolizan el león y la serpiente?",
+      "extraA": "El león simboliza a los enemigos poderosos y la serpiente simboliza a Satanás y a sus demonios. Jehová nos dará el poder para vencer a ambos.",
+      "extraQ2": "¿Cómo nos da Jehová el poder para vencer?",
+      "extraA2": "Jehová nos da el poder para vencer mediante su espíritu santo, su Palabra y su organización. Cuando confiamos en Jehová, él nos fortalece y nos ayuda a resistir las tentaciones."
+     },
+     {
+      "num": "16",
+      "q": "¿Qué nos enseña el Salmo 91:14 sobre la protección de Jehová?",
+      "a": "El Salmo 91:14 nos enseña que Jehová protegerá a quienes lo aman y conocen su nombre. Esto significa que, si amamos a Jehová y conocemos su nombre, él nos protegerá y nos cuidará. También nos enseña que Jehová escucha nuestras oraciones y responde a ellas.",
+      "extraQ": "¿Qué significa conocer el nombre de Jehová?",
+      "extraA": "Significa conocer a Jehová como persona, entender sus cualidades y confiar en él. No se trata solo de saber cómo se escribe su nombre, sino de tener una relación personal con él.",
+      "extraQ2": "¿Cómo nos protege Jehová cuando lo amamos?",
+      "extraA2": "Jehová nos protege dándonos su espíritu santo, guiándonos y ayudándonos a tomar buenas decisiones. También nos protege de los peligros espirituales y físicos."
+     },
+     {
+      "num": "17",
+      "q": "¿Qué nos enseña el Salmo 91:15 sobre la protección de Jehová?",
+      "a": "El Salmo 91:15 nos enseña que Jehová nos responderá cuando lo llamemos y que estará con nosotros en la angustia. Esto significa que Jehová siempre escucha nuestras oraciones y que nos ayudará cuando lo necesitemos. También nos enseña que Jehová nos librará y nos honrará.",
+      "extraQ": "¿Cómo nos responde Jehová cuando lo llamamos?",
+      "extraA": "Jehová nos responde mediante su Palabra, su espíritu santo y su organización. También nos responde mediante nuestros hermanos, quienes nos animan y nos ayudan.",
+      "extraQ2": "¿Qué significa que Jehová estará con nosotros en la angustia?",
+      "extraA2": "Significa que Jehová no nos abandonará cuando enfrentemos dificultades. Él estará con nosotros, nos dará fortaleza y nos ayudará a superar cualquier prueba."
+     },
+     {
+      "num": "18",
+      "q": "¿Qué nos enseña el Salmo 91:16 sobre la protección de Jehová?",
+      "a": "El Salmo 91:16 nos enseña que Jehová nos dará una vida larga y nos mostrará su salvación. Esto significa que Jehová nos bendecirá con una vida plena y con la esperanza de la vida eterna. También nos enseña que Jehová cumplirá sus promesas y nos dará la salvación.",
+      "extraQ": "¿Qué significa que Jehová nos dará una vida larga?",
+      "extraA": "Significa que Jehová nos bendecirá con una vida plena y con la esperanza de vivir para siempre en el Paraíso. En el nuevo mundo, disfrutaremos de una vida sin enfermedades ni muerte.",
+      "extraQ2": "¿Qué significa que Jehová nos mostrará su salvación?",
+      "extraA2": "Significa que Jehová nos liberará de todos nuestros problemas y nos dará la vida eterna. Veremos cómo Jehová cumple sus promesas y nos lleva a un futuro mejor."
+     },
+     {
+      "num": "19, 20",
+      "q": "¿Cómo podemos demostrar que confiamos en que Jehová nos protegerá?",
+      "a": "Podemos demostrar que confiamos en que Jehová nos protegerá manteniendo una buena relación con él, estudiando la Biblia con regularidad y asistiendo a las reuniones. También podemos demostrar nuestra confianza obedeciendo a Jehová y siguiendo las instrucciones de su organización. Cuando confiamos en Jehová, él nos protege y nos bendice.",
+      "extraQ": "¿Qué debemos hacer para mantener nuestra confianza en Jehová?",
+      "extraA": "Debemos orar con regularidad, estudiar la Biblia y meditar en las promesas de Jehová. También debemos recordar cómo Jehová nos ha ayudado en el pasado y confiar en que seguirá haciéndolo en el futuro.",
+      "extraQ2": "¿Qué nos asegura 2 Pedro 2:9?",
+      "extraA2": "Jehová sabe librar de prueba a"
+     }
+    ]
+   }
+  },
+  {
+   "range": "26 de octubre al 1 de noviembre de 2026",
+   "perlasIntro": "Esta semana, al leer sobre los juicios contra Filistea y Moab, podemos encontrar lecciones valiosas sobre la humildad, la obediencia y la importancia de mantener una buena relación con Jehová. Aunque los filisteos y los moabitas eran naciones poderosas que se creían seguras, la realidad es que todos dependemos de Jehová.",
+   "perlas": [
+    {
+     "ref": "Jeremías 47:2",
+     "comment": "Jehová describió a Filistea como un río que se desborda e inunda la tierra. Esto me enseña que, cuando una persona se llena de orgullo, sus palabras y acciones pueden afectar a quienes lo rodean. Por eso, es importante que cada uno de nosotros cultivemos la humildad y evitemos la arrogancia, que puede arrastrarnos y también afectar a los demás."
+    },
+    {
+     "ref": "Jeremías 47:3",
+     "comment": "La profecía menciona el sonido de los cascos de los caballos y el estruendo de los carros de guerra. Esto me recuerda que, aunque los enemigos de Jehová puedan parecer poderosos y amenazantes, su poder es temporal y limitado. Jehová siempre tiene el control, y al final sus propósitos se cumplirán."
+    },
+    {
+     "ref": "Jeremías 47:4",
+     "comment": "Jehová anunció que los filisteos no recibirían ayuda de nadie. Esto me enseña que no debemos poner nuestra confianza en alianzas humanas ni en apoyos que no vienen de Jehová. Nuestra seguridad no depende de personas ni de sistemas humanos, sino de nuestra relación con Jehová y de su protección."
+    },
+    {
+     "ref": "Jeremías 47:5",
+     "comment": "El versículo dice que Gaza se quedará calva y Asquelón será silenciada. Esto me enseña que, cuando Jehová decide ejecutar un juicio, nadie puede impedirlo. La riqueza o el poder de una nación no son garantía de seguridad; solo quienes confían en Jehová pueden encontrar verdadera protección."
+    },
+    {
+     "ref": "Jeremías 47:6, 7",
+     "comment": "La espada de Jehová fue enviada contra Asquelón y la costa del mar. Esto me recuerda que Jehová no actúa de manera arbitraria; sus juicios son justos y tienen un propósito. Cuando vemos que las naciones sufren las consecuencias de su desobediencia, podemos reflexionar sobre la importancia de mantenernos leales a Jehová."
+    },
+    {
+     "ref": "Jeremías 48:6",
+     "comment": "Jehová aconsejó a los moabitas que huyeran para salvar su vida. Esto me enseña que, aunque Jehová es un Dios de juicio, también muestra misericordia y advierte a las personas antes de actuar. Hoy, de manera similar, Jehová nos advierte y nos da la oportunidad de arrepentirnos antes de que llegue el día de su juicio."
+    },
+    {
+     "ref": "Jeremías 48:7",
+     "comment": "Moab confió en sus obras y en sus tesoros, pero eso no lo protegería. Esto me enseña que no debemos confiar en nuestras posesiones ni en nuestra posición social. La verdadera seguridad viene de una buena relación con Jehová, no de lo que acumulamos en este mundo."
+    },
+    {
+     "ref": "Jeremías 48:10",
+     "comment": "Jehová maldijo a quien hiciera su obra con negligencia. Esto me recuerda que Jehová espera que le sirvamos con diligencia y entusiasmo. No debemos hacer las cosas a medias ni con desgana; más bien, debemos esforzarnos por darle lo mejor a Jehová en todo lo que hacemos."
+    },
+    {
+     "ref": "Jeremías 48:11",
+     "comment": "Moab era como un vino que nunca se había trasvasado y que se había quedado en sus sedimentos. Esto me enseña que, si no nos esforzamos por mejorar y crecer espiritualmente, podemos estancarnos. Jehová quiere que sigamos progresando, aprendiendo y aplicando sus principios en nuestra vida."
+    },
+    {
+     "ref": "Jeremías 48:12",
+     "comment": "Jehová dijo que enviaría a personas que vaciarían a Moab como se vacía un recipiente. Esto me recuerda que la disciplina de Jehová puede ser incómoda, pero tiene un propósito: ayudarnos a cambiar y a mejorar. Cuando enfrentamos dificultades, podemos verlas como una oportunidad para reflexionar y fortalecer nuestra fe."
+    },
+    {
+     "ref": "Jeremías 48:13",
+     "comment": "Moab sería avergonzado por confiar en su dios Quemos. Esto me enseña que ningún ídolo ni creencia falsa puede ofrecer verdadera protección. Solo Jehová es el Dios verdadero, y confiar en cualquier otra cosa nos llevará a la decepción."
+    },
+    {
+     "ref": "Jeremías 48:14-16",
+     "comment": "Los moabitas se jactaban de ser guerreros valientes, pero su destrucción estaba cerca. Esto me enseña que la confianza en la propia fuerza es engañosa. En lugar de presumir de nuestras capacidades, debemos reconocer que todo lo que tenemos viene de Jehová y que necesitamos su ayuda para enfrentar cualquier desafío."
+    },
+    {
+     "ref": "Jeremías 48:26",
+     "comment": "Jehová dijo que Moab se revolcaría en su propio vómito como castigo por su arrogancia. Esto me enseña que el orgullo tiene consecuencias humillantes. Si queremos evitar esa vergüenza, debemos cultivar la humildad y reconocer nuestras limitaciones ante Jehová."
+    },
+    {
+     "ref": "Jeremías 48:27",
+     "comment": "Moab se había burlado de Israel, y ahora sufriría las consecuencias. Esto me recuerda que Jehová ve cómo tratamos a su pueblo. Si alguien se burla o maltrata a los siervos de Jehová, tendrá que rendir cuentas. Esto me anima a tratar con respeto y bondad a mis hermanos."
+    },
+    {
+     "ref": "Jeremías 48:28",
+     "comment": "Jehová aconsejó a los moabitas que abandonaran las ciudades y vivieran como palomas en las hendiduras de las rocas. Esto me enseña que, cuando enfrentamos dificultades, a veces necesitamos hacer cambios en nuestra vida para protegernos. La prudencia y la disposición a adaptarnos son cualidades valiosas para un cristiano."
+    },
+    {
+     "ref": "Jeremías 48:29, 30",
+     "comment": "Moab era conocido por su arrogancia, su orgullo y su altivez. Esto me enseña que Jehová detesta el orgullo y que no hay lugar para él en su pueblo. Debemos esforzarnos por ser humildes y por no creernos superiores a los demás."
+    },
+    {
+     "ref": "Jeremías 48:31",
+     "comment": "Jeremías expresó su tristeza por la destrucción de Moab. Esto me enseña que, aunque Jehová ejecuta juicios justos, sus siervos sienten compasión por quienes sufren. Nosotros también debemos cultivar la compasión y no alegrarnos del sufrimiento de otros, incluso de quienes se oponen a Jehová."
+    },
+    {
+     "ref": "Jeremías 48:36",
+     "comment": "Jeremías comparó su lamento por Moab con el sonido de una flauta. Esto me recuerda que la tristeza por la destrucción de otros es natural y refleja el amor de Jehová. Aunque sabemos que los juicios de Jehová son justos, también debemos sentir empatía por quienes no conocen a Jehová."
+    },
+    {
+     "ref": "Jeremías 48:42",
+     "comment": "Moab sería destruido por haberse engrandecido contra Jehová. Esto me enseña que nadie puede oponerse a Jehová y salir victorioso. En lugar de resistirnos a su voluntad, debemos someternos a ella con humildad y obediencia."
+    },
+    {
+     "ref": "Jeremías 48:47",
+     "comment": "A pesar del juicio contra Moab, Jehová prometió que reuniría a sus cautivos en el futuro. Esto me enseña que Jehová es un Dios de esperanza. Aunque ejecute juicios, siempre deja abierta la posibilidad de restauración para quienes se arrepienten y buscan su aprobación."
+    }
+   ],
+   "perlasClosing": "Esta semana hemos visto cómo el orgullo y la confianza en cosas humanas conducen a la destrucción, mientras que la humildad y la confianza en Jehová nos protegen. Los juicios contra Filistea y Moab nos recuerdan que debemos mantenernos leales y no dejarnos llevar por la arrogancia. Si cultivamos la humildad y confiamos en Jehová, él nos protegerá y nos dará esperanza para el futuro."
+  },
+  {
+   "range": "19 al 25 de octubre de 2026",
+   "perlasIntro": "Esta semana aprenderemos dos lecciones importantes: no permitir que las circunstancias nos hagan buscar grandes cosas para nosotros mismos, y confiar en que Jehová puede cuidar de sus siervos incluso cuando las naciones y los gobiernos parecen tener mucho poder. Baruc necesitaba ajustar su manera de ver las cosas, y la profecía contra Egipto nos recuerda que el poder humano tiene límites.",
+   "perlas": [
+    {
+     "ref": "Jeremías 45:3",
+     "comment": "Me llama la atención que Baruc dijera que estaba agotado de tanto suspirar y que no encontraba alivio. Aunque era un siervo fiel de Jehová, estaba sufriendo emocionalmente. Esto me recuerda que servir a Jehová no significa que nunca nos sentiremos desanimados. Si alguna vez nos sentimos así, podemos hablar con Jehová en oración y buscar su ayuda en vez de pensar que tenemos que soportarlo todo solos."
+    },
+    {
+     "ref": "Jeremías 45:3",
+     "comment": "Baruc estaba tan preocupado por su situación que su dolor parecía ocupar toda su atención. Esto me enseña que, cuando atravesamos una etapa difícil, debemos cuidar nuestra manera de pensar. Si solo nos concentramos en lo que nos falta o en lo que nos duele, podemos perder de vista las cosas buenas que Jehová todavía nos permite disfrutar."
+    },
+    {
+     "ref": "Jeremías 45:4",
+     "comment": "Jehová le recordó a Baruc que iba a derrumbar lo que había edificado y arrancar lo que había plantado. En otras palabras, se acercaba un cambio muy grande para Judá. Esto me enseña que, cuando el mundo que nos rodea atraviesa cambios o dificultades, no debemos aferrarnos demasiado a la estabilidad material. Lo más importante es mantener una buena relación con Jehová."
+    },
+    {
+     "ref": "Jeremías 45:5",
+     "comment": "Jehová le dijo a Baruc que dejara de buscar cosas grandes para sí mismo. Esto me hace pensar en nuestras metas. Es bueno esforzarnos por mejorar, pero no queremos que el deseo de tener más reconocimiento, dinero o comodidades nos quite la paz. La satisfacción no depende de tener todo lo que deseamos, sino de valorar lo que Jehová nos permite tener y hacer."
+    },
+    {
+     "ref": "Jeremías 45:5",
+     "comment": "Aunque Jehová no prometió que Baruc tendría una vida fácil, sí le aseguró que conservaría su vida. Me gusta esta lección: Jehová no siempre elimina las dificultades, pero puede darnos lo necesario para seguir adelante. Por eso, en vez de medir su apoyo por cuánto sufrimiento nos evita, podemos fijarnos en cómo nos fortalece para soportarlo."
+    },
+    {
+     "ref": "Jeremías 46:2",
+     "comment": "La profecía menciona la derrota del ejército del faraón Nekó en Carquemis a manos de Nabucodonosor. Egipto parecía una potencia importante, pero no pudo evitar la derrota. Esto me recuerda que ningún gobierno ni poder humano es invencible. Nuestra confianza principal no debe estar en las potencias de este mundo, sino en Jehová y en el Reino que él ha establecido."
+    },
+    {
+     "ref": "Jeremías 46:3, 4",
+     "comment": "Estos versículos describen a los soldados preparando escudos, caballos, cascos y lanzas. Todo parecía indicar que estaban listos para vencer. Sin embargo, estar bien equipados no les garantizaba la victoria. Esto me enseña que la preparación humana tiene límites. En sentido espiritual, no basta con tener conocimientos o experiencia; necesitamos la guía y la aprobación de Jehová."
+    },
+    {
+     "ref": "Jeremías 46:5",
+     "comment": "Jehová describió a los guerreros egipcios aterrados y huyendo. Qué contraste con la seguridad que transmitían sus preparativos militares. Esto me recuerda que el valor humano puede desvanecerse cuando llega una crisis. Por eso necesitamos fortalecer nuestra fe desde ahora, antes de que aparezcan las pruebas, mediante la oración, el estudio y las reuniones."
+    },
+    {
+     "ref": "Jeremías 46:6",
+     "comment": "Jehová indicó que ni los veloces podrían huir ni los guerreros escapar. Esto me enseña que, cuando Jehová determina que algo suceda, ninguna capacidad humana puede frustrar su propósito. Me ayuda a confiar en sus promesas, aunque las circunstancias parezcan indicar que las fuerzas humanas tienen todas las ventajas."
+    },
+    {
+     "ref": "Jeremías 46:7, 8",
+     "comment": "Egipto se comparó con aguas que subían y cubrían la tierra. La imagen transmite la sensación de que su ejército avanzaría con una fuerza arrolladora. Sin embargo, esa aparente superioridad no lo protegería de la sentencia de Jehová. Esto me enseña a no dejarme impresionar demasiado por quienes parecen poderosos; lo importante es recordar que Jehová está por encima de cualquier poder humano."
+    },
+    {
+     "ref": "Jeremías 46:9, 10",
+     "comment": "Los soldados y sus armas se mencionan en medio de una profecía de derrota. El versículo 10 explica que aquel día pertenecía al Señor Soberano Jehová de los ejércitos. Esto me recuerda que Jehová tiene autoridad sobre las naciones y que sus decisiones siempre se cumplen. Por eso, no necesitamos vivir aterrorizados por las noticias o los conflictos internacionales."
+    },
+    {
+     "ref": "Jeremías 46:11, 12",
+     "comment": "Egipto buscaría remedios en Galaad, pero su herida no se curaría; además, su vergüenza se conocería entre las naciones. Esto me enseña que los recursos humanos no siempre pueden solucionar un problema profundo. Cuando tenemos una dificultad espiritual o emocional, no debemos depender únicamente de nuestras propias soluciones; necesitamos buscar la guía de Jehová y aplicar sus consejos."
+    },
+    {
+     "ref": "Jeremías 46:13",
+     "comment": "Jehová anunció que Nabucodonosor atacaría Egipto. Esto demuestra que sus palabras no eran simples advertencias sin fundamento. Jehová sabía lo que iba a ocurrir y podía comunicarlo de antemano. Esta certeza fortalece mi confianza en las profecías bíblicas que todavía esperamos ver cumplidas."
+    },
+    {
+     "ref": "Jeremías 46:15, 16",
+     "comment": "La profecía pregunta por qué los dioses de Egipto habían sido derrotados y describe a sus soldados tropezando y cayendo. Los egipcios confiaban en sus dioses y en su fuerza militar, pero nada de eso pudo salvarlos. Esto me recuerda que no debemos depositar nuestra confianza en cosas que parecen seguras, pero que no pueden ofrecernos verdadera protección espiritual."
+    },
+    {
+     "ref": "Jeremías 46:17",
+     "comment": "El faraón fue descrito como alguien que había dejado pasar la oportunidad. Su poder y sus declaraciones no pudieron cambiar el resultado. Esto me enseña que la fama, la posición o las palabras de una persona no garantizan el éxito. En la congregación, lo importante no es aparentar fortaleza, sino ser humildes y demostrar confianza en Jehová."
+    },
+    {
+     "ref": "Jeremías 46:18",
+     "comment": "Jehová comparó al conquistador con el Tabor entre las montañas y el Carmelo junto al mar. Estas montañas eran conocidas por su prominencia. La comparación destacaba la importancia del conquistador que vendría contra Egipto. Esto me recuerda que las profecías de Jehová no son vagas: él puede cumplir con precisión lo que anuncia y debemos tomar en serio su palabra."
+    },
+    {
+     "ref": "Jeremías 46:19",
+     "comment": "A Egipto se le dijo que preparara su equipaje para el destierro. La nación que había parecido poderosa tendría que afrontar una situación humillante. Esto me enseña que la seguridad basada en la riqueza, las posesiones o el prestigio es frágil. Por eso, quiero dedicar mis mejores esfuerzos a cosas que tengan valor duradero para Jehová."
+    },
+    {
+     "ref": "Jeremías 46:22",
+     "comment": "¿Por qué dice que Egipto sonaría \"como una serpiente que se arrastra\"? Según la obra Perspicacia para comprender las Escrituras, la comparación probablemente alude al sonido de una serpiente que silba al retirarse después de una derrota, o a la voz humillada de Egipto tras la calamidad. También podía destacar que la supuesta protección de la diosa serpiente de los faraones era inútil. Esto me enseña que ningún símbolo religioso ni creencia falsa puede proteger a alguien contra el juicio de Jehová."
+    },
+    {
+     "ref": "Jeremías 46:25, 26",
+     "comment": "Jehová anunció que Egipto y los que confiaban en el faraón serían entregados en manos de Nabucodonosor. Esto me hace pensar en la importancia de elegir bien en quién ponemos nuestra confianza. Si una persona basa su seguridad en dirigentes, sistemas o promesas humanas, puede terminar decepcionada. En cambio, Jehová nunca falla en cumplir su palabra."
+    },
+    {
+     "ref": "Jeremías 46:27, 28",
+     "comment": "Después de anunciar la derrota de Egipto, Jehová les dijo a sus siervos Jacob e Israel que no tuvieran miedo, porque él estaría con ellos. También les aseguró que los disciplinaría, pero no los exterminaría. Qué reconfortante: Jehová puede corregir a su pueblo y, al mismo tiempo, seguir amándolo. Cuando recibimos disciplina basada en la Biblia, no debemos verla como un rechazo, sino como una oportunidad para corregir el rumbo y seguir disfrutando de su aprobación."
+    },
+    {
+     "ref": "Jeremías 45:5",
+     "comment": "No permitir que la búsqueda de cosas grandes nos robe la alegría de servir a Jehová.",
+     "summary": true
+    },
+    {
+     "ref": "Jeremías 46:6",
+     "comment": "Ninguna capacidad humana puede impedir que se cumpla el propósito de Jehová.",
+     "summary": true
+    },
+    {
+     "ref": "Jeremías 46:22",
+     "comment": "Las creencias falsas y los símbolos religiosos no ofrecen protección verdadera.",
+     "summary": true
+    },
+    {
+     "ref": "Jeremías 46:27, 28",
+     "comment": "Jehová puede disciplinar a sus siervos sin dejar de amarlos.",
+     "summary": true
+    }
+   ],
+   "perlasClosing": "La idea que conecta ambos capítulos es esta: aunque las circunstancias cambien y las personas poderosas parezcan tener el control, nuestra esperanza debe estar en Jehová. Si mantenemos esa esperanza y aprendemos a estar contentos con lo que tenemos, podremos seguir sirviéndole con alegría."
   }
  ]
 };

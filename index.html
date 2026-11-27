@@ -292,6 +292,7 @@ function paintAllBlocks(root){
    por valor hex ({s, e, c} en ar1_highlights), así que renovar la paleta
    no altera el color de los subrayados ya guardados. */
 let pendingSel = null;
+let suppressedSel = null; // selección cerrada con ✕: no reabrir la barra para ella
 let lastColor = HL_COLORS[0][1];
 let barMode = "new", barRect = null;
 const ICON_TRASH = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9.5 7V4.8A.8.8 0 0 1 10.3 4h3.4a.8.8 0 0 1 .8.8V7"/><path d="M6.5 7l.9 12.2A1 1 0 0 0 8.4 20h7.2a1 1 0 0 0 1-.8L17.5 7"/><path d="M10 11v5.5M14 11v5.5"/></svg>';
@@ -348,7 +349,7 @@ function renderBarCompact(){
   $("#hlColorBtn").addEventListener("click", showPalette);
   const rm = $("#hlRemove"); if (rm) rm.addEventListener("click", removeHighlight);
   $("#hlCopy").addEventListener("click", copyPendingText);
-  $("#hlCancel").addEventListener("click", hideBar);
+  $("#hlCancel").addEventListener("click", cancelBar);
 }
 function showPalette(){
   const bar = $("#hlbar");
@@ -377,6 +378,14 @@ function copyPendingText(){
   } else { fallbackCopy(txt); hideBar(); }
 }
 function hideBar(){ $("#hlbar").classList.remove("open"); pendingSel = null; }
+function cancelBar(){
+  // Al cerrar con ✕: recuerda la selección y quítala, para que el chequeo
+  // pendiente (mouseup/selectionchange) no vuelva a mostrar la barra al
+  // soltar el clic con el texto aún seleccionado.
+  if (pendingSel) suppressedSel = pendingSel;
+  const sel = window.getSelection(); if (sel) sel.removeAllRanges();
+  hideBar();
+}
 function saveHL(){ store.set("ar1_highlights", HL); }
 function applyColor(c){
   if (!pendingSel) return;
@@ -413,7 +422,13 @@ function checkSelection(){
   pre.selectNodeContents(b1);
   pre.setEnd(range.startContainer, range.startOffset);
   const s = pre.toString().length, e = s + range.toString().length;
-  if (e > s){ pendingSel = {bid: b1.dataset.bid, s, e}; showBar("new", range.getBoundingClientRect()); }
+  if (e > s){
+    if (suppressedSel){
+      const sup = suppressedSel; suppressedSel = null;
+      if (sup.bid === b1.dataset.bid && sup.s === s && sup.e === e) return; // misma selección cerrada con ✕
+    }
+    pendingSel = {bid: b1.dataset.bid, s, e}; showBar("new", range.getBoundingClientRect());
+  }
 }
 let selTimer = null;
 document.addEventListener("selectionchange", () => { clearTimeout(selTimer); selTimer = setTimeout(checkSelection, 350); });
@@ -536,16 +551,27 @@ function weeksListHTML(section, wi, icon, smallFn){
   return '<h2 class="sec">Semanas anteriores</h2><div class="card">' + rows + "</div>";
 }
 
+/* Semanas parciales: las secciones que una semana no trae en data.js
+   muestran una nota sencilla, sin errores, con la lista de semanas. */
+function sinContenidoHTML(section, wi, icon, title, smallFn){
+  const wk = WEEKS[wi], id = section + wkSuffix(wi);
+  return screenBar(id, title, wkRoute(section, wi)) +
+    head(title, chips([wk.range])) +
+    '<div class="empty">Sin contenido para esta semana.</div>' +
+    weeksListHTML(section, wi, icon, smallFn) +
+    noteBox(id);
+}
 function tesorosHTML(wi){
   wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
   const wk = WEEKS[wi], t = wk.tesoros, p = wkPrefix(wi), id = "tesoros" + wkSuffix(wi);
+  if (!t) return sinContenidoHTML("tesoros", wi, "📖", "Tesoros de la Biblia", w2 => w2.tesoros ? w2.tesoros.title : "Sin contenido");
   return screenBar(id, "Tesoros de la Biblia", wkRoute("tesoros", wi)) +
     head("Tesoros de la Biblia", chips([wk.range, "Lectura: " + t.reading, t.duration])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(t.title) + "</h1>" +
     (t.image ? imgHTML(t.image, t.title) : "") +
     (t.objective ? "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, p + "tesoros-obj") : "") +
     "<h2 class=\"sec\">Desarrollo</h2>" + blocks(t.development, p + "tesoros-dev") +
-    weeksListHTML("tesoros", wi, "📖", w2 => w2.tesoros.title) +
+    weeksListHTML("tesoros", wi, "📖", w2 => w2.tesoros ? w2.tesoros.title : "Sin contenido") +
     noteBox(id);
 }
 /* Semanas disponibles para Perlas: si data.js trae un arreglo «weeks» se usa
@@ -558,9 +584,23 @@ function perlasHTML(wi){
   wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
   const wk = WEEKS[wi];
   const list = wk.perlas || [];
-  const items = list.map((p,i) =>
-    '<div class="pearl"><div class="pref">' + linkify(esc(p.ref)) + "</div>" +
-    blocks(p.comment, (wi === 0 ? "perla-" : "perla-w" + wi + "-") + i) + "</div>").join("");
+  const base = (wi === 0 ? "perla-" : "perla-w" + wi + "-");
+  let items = "";
+  /* Texto introductorio de la semana (solo semanas que lo traen en data.js):
+     va arriba de la lista, en la misma tarjeta .pearl. */
+  if (wk.perlasIntro) items += '<div class="pearl">' + blocks(wk.perlasIntro, base + "intro") + "</div>";
+  let summaryHeadDone = false;
+  items += list.map((p,i) => {
+    let h = "";
+    /* Las perlas marcadas «summary» son los comentarios de resumen: llevan
+       su propio encabezado la primera vez que aparecen (al final). */
+    if (p.summary && !summaryHeadDone){ h += '<h2 class="sec">Comentarios de resumen</h2>'; summaryHeadDone = true; }
+    h += '<div class="pearl"><div class="pref">' + linkify(esc(p.ref)) + "</div>" +
+      blocks(p.comment, base + i) + "</div>";
+    return h;
+  }).join("");
+  /* Párrafo de cierre de la semana, al final, en la misma tarjeta .pearl. */
+  if (wk.perlasClosing) items += '<div class="pearl">' + blocks(wk.perlasClosing, base + "cierre") + "</div>";
   return screenBar("perlas","Busquemos perlas escondidas","#/perlas") +
     head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + items +
     weeksListHTML("perlas", wi, "💎", w2 => (w2.perlas ? w2.perlas.length : 0) + " perlas") +
@@ -569,6 +609,7 @@ function perlasHTML(wi){
 function vidaHTML(wi){
   wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
   const wk = WEEKS[wi], v = wk.vida, p = wkPrefix(wi), id = "vida" + wkSuffix(wi);
+  if (!v) return sinContenidoHTML("vida", wi, "👥", "Nuestra vida cristiana", w2 => w2.vida ? w2.vida.title : "Sin contenido");
   let h = screenBar(id, "Nuestra vida cristiana", wkRoute("vida", wi)) +
     head("Nuestra vida cristiana", chips([wk.range, v.subtitle, v.duration])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>";
@@ -578,11 +619,12 @@ function vidaHTML(wi){
     if (v.image && v.imageAfterSection === i) sh += imgHTML(v.image, v.title);
     return sh;
   }).join("");
-  return h + weeksListHTML("vida", wi, "👥", w2 => w2.vida.title) + noteBox(id);
+  return h + weeksListHTML("vida", wi, "👥", w2 => w2.vida ? w2.vida.title : "Sin contenido") + noteBox(id);
 }
 function estudioHTML(wi){
   wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
   const wk = WEEKS[wi], e0 = wk.estudio, p = wkPrefix(wi), id = "estudio" + wkSuffix(wi);
+  if (!e0) return sinContenidoHTML("estudio", wi, "🎓", "Estudio bíblico de la congregación", w2 => w2.estudio ? w2.estudio.chapter : "Sin contenido");
   const items = e0.items.map((it, i) => {
     const key = it.n != null ? it.n : "x" + i;
     let h = "";
@@ -601,12 +643,13 @@ function estudioHTML(wi){
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(e0.book) + " — " + esc(e0.chapter) + "</h1>" +
     (e0.intro ? blocks(e0.intro, p + "est-intro") : "") +
     (e0.image ? imgHTML(e0.image, e0.chapter) : "") + items +
-    weeksListHTML("estudio", wi, "🎓", w2 => w2.estudio.chapter) +
+    weeksListHTML("estudio", wi, "🎓", w2 => w2.estudio ? w2.estudio.chapter : "Sin contenido") +
     noteBox(id);
 }
 function discursoHTML(wi){
   wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
   const wk = WEEKS[wi], d = wk.discurso, p = wkPrefix(wi), id = "discurso" + wkSuffix(wi);
+  if (!d) return sinContenidoHTML("discurso", wi, "🎤", "Discurso público", w2 => (w2.discurso && w2.discurso.title) || "Sin contenido publicado");
   const kv = (label, val) => val ? '<div class="kvrow"><span class="kvl">' + label + '</span><span class="kvv">' + esc(val) + "</span></div>" : "";
   const rows = kv("Presidente", d.presidente || d.president) +
     kv("Canción", d.cancion || d.song) +
@@ -622,12 +665,13 @@ function discursoHTML(wi){
     (metaChips.length ? '<div class="meta">' + chips(metaChips) + "</div>" : "") +
     (d.textRef ? blocks("Texto bíblico: " + d.textRef, p + "discurso-ref") : "") +
     (d.note ? '<div class="extrabox"><div class="k">Nota</div>' + blocks(d.note, p + "discurso-nota") + "</div>" : "") +
-    weeksListHTML("discurso", wi, "🎤", w2 => w2.discurso.title || "Sin contenido publicado") +
+    weeksListHTML("discurso", wi, "🎤", w2 => (w2.discurso && w2.discurso.title) || "Sin contenido publicado") +
     noteBox(id);
 }
 function atalayaHTML(wi){
   wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
   const wk = WEEKS[wi], a0 = wk.atalaya, bp = wkPrefix(wi), id = "atalaya" + wkSuffix(wi);
+  if (!a0) return sinContenidoHTML("atalaya", wi, "📚", "Estudio de La Atalaya", w2 => w2.atalaya ? w2.atalaya.title : "Sin contenido");
   const ps = a0.paragraphs.map(p => {
     let h = "";
     if (p.heading) h += "<h2 class=\"sec\">" + esc(p.heading) + "</h2>";
@@ -639,13 +683,19 @@ function atalayaHTML(wi){
         '<div class="qline" style="margin-top:4px">' + linkify(esc(p.extraQ)) + "</div>" +
         blocks(p.extraA, bp + "ata-" + p.num.replace(/\s/g,"") + "-ea") + "</div>";
     }
+    /* Segunda pregunta adicional (solo semanas que la traen en data.js). */
+    if (p.extraQ2){
+      h += '<div class="extrabox"><div class="k">Pregunta adicional</div>' +
+        '<div class="qline" style="margin-top:4px">' + linkify(esc(p.extraQ2)) + "</div>" +
+        blocks(p.extraA2, bp + "ata-" + p.num.replace(/\s/g,"") + "-ea2") + "</div>";
+    }
     return h;
   }).join("");
   return screenBar(id, "Estudio de La Atalaya", wkRoute("atalaya", wi)) +
     head("Estudio de La Atalaya", chips([a0.dateLabel])) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(a0.title) + "</h1>" +
     blocks(a0.themeText, bp + "ata-tema") + ps +
-    weeksListHTML("atalaya", wi, "📚", w2 => w2.atalaya.title) +
+    weeksListHTML("atalaya", wi, "📚", w2 => w2.atalaya ? w2.atalaya.title : "Sin contenido") +
     noteBox(id);
 }
 function textosHTML(){
