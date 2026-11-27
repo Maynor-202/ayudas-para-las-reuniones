@@ -85,10 +85,13 @@ button.primary:active{background:var(--accent-dark)}
 #sheet .stext{margin-top:8px;font-size:17px}
 #sheet .close{position:absolute;top:10px;right:12px;background:#eef0f5;border:0;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer}
 #sheet a.wol{display:inline-block;margin-top:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px}
-#hlbar{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:70;background:#20293e;color:#fff;border-radius:999px;padding:9px 12px;display:none;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:96vw;flex-wrap:wrap;justify-content:center}
+#hlbar{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 8px;display:none;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(20,30,60,.18)}
 #hlbar.open{display:flex}
-#hlbar .cdot{width:27px;height:27px;border-radius:50%;border:2px solid rgba(255,255,255,.65);cursor:pointer;padding:0}
-#hlbar button.txt{background:transparent;border:0;color:#fff;font-weight:700;font-size:14px;cursor:pointer;padding:4px 6px}
+#hlbar .cdot{width:22px;height:22px;border-radius:50%;border:1px solid rgba(20,30,60,.20);cursor:pointer;padding:0;flex:none}
+#hlact{position:fixed;z-index:70;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 5px;display:none;align-items:center;gap:2px;box-shadow:0 4px 16px rgba(20,30,60,.18)}
+#hlact.open{display:flex}
+#hlact button{background:transparent;border:0;color:var(--ink);font-weight:700;font-size:13.5px;cursor:pointer;padding:5px 9px;border-radius:999px}
+#hlact button:active{background:#f1e9f6}
 ::selection{background:rgba(123,45,139,.25)}
 </style>
 </head>
@@ -112,6 +115,7 @@ button.primary:active{background:var(--accent-dark)}
 </div>
 
 <div id="hlbar"></div>
+<div id="hlact"></div>
 
 <script src="data.js"></script>
 <script>
@@ -270,20 +274,48 @@ function paintBlock(el){
 function paintAllBlocks(root){
   (root || document).querySelectorAll(".blk").forEach(paintBlock);
 }
-/* Barra flotante de colores */
+/* Barra flotante de colores (§9): barrita blanca pequeña, 9 colores pastel
+   en una sola fila, círculos pequeños sin nombres, junto al texto elegido.
+   La barra de acciones («Quitar», «✕») es un elemento independiente (#hlact). */
 let pendingSel = null;
-function showBar(mode){
-  const bar = $("#hlbar");
-  bar.innerHTML = HL_COLORS.map(([name,hex]) =>
-    '<button class="cdot" data-c="' + hex + '" title="' + name + '" style="background:' + hex + '" aria-label="' + name + '"></button>').join("") +
-    (mode === "edit" ? '<button class="txt" id="hlRemove">Quitar</button>' : "") +
-    '<button class="txt" id="hlCancel">✕</button>';
-  bar.classList.add("open");
+function hlDotsHTML(){
+  return HL_COLORS.map(([name,hex]) =>
+    '<button class="cdot" data-c="' + hex + '" style="background:' + hex + '" aria-label="' + name + '"></button>').join("");
+}
+function placeNear(el, cx, top){
+  const w = el.offsetWidth || 0;
+  let left = Math.round(cx - w / 2);
+  left = Math.max(6, Math.min(left, window.innerWidth - w - 6));
+  el.style.transform = "";
+  el.style.left = left + "px";
+  el.style.top = Math.round(top) + "px";
+  el.style.bottom = "auto";
+}
+function showBar(mode, rect){
+  const bar = $("#hlbar"), act = $("#hlact");
+  bar.innerHTML = hlDotsHTML();
+  act.innerHTML = (mode === "edit" ? '<button id="hlRemove">Quitar</button>' : "") +
+    '<button id="hlCancel" aria-label="Cerrar">✕</button>';
+  bar.classList.add("open"); act.classList.add("open");
   bar.querySelectorAll(".cdot").forEach(b => b.addEventListener("click", () => applyColor(b.dataset.c)));
   const rm = $("#hlRemove"); if (rm) rm.addEventListener("click", removeHighlight);
   $("#hlCancel").addEventListener("click", hideBar);
+  if (rect){
+    const cx = rect.left + rect.width / 2;
+    const bh = bar.offsetHeight || 34, ah = act.offsetHeight || 32, gap = 6, m = 8;
+    if (rect.top - m - gap - ah - bh >= 4){
+      placeNear(bar, cx, rect.top - m - bh);
+      placeNear(act, cx, rect.top - m - bh - gap - ah);
+    } else {
+      placeNear(bar, cx, rect.bottom + m);
+      placeNear(act, cx, rect.bottom + m + bh + gap);
+    }
+  } else {
+    bar.style.left = "50%"; bar.style.transform = "translateX(-50%)"; bar.style.top = "auto"; bar.style.bottom = "64px";
+    act.style.left = "50%"; act.style.transform = "translateX(-50%)"; act.style.top = "auto"; act.style.bottom = "14px";
+  }
 }
-function hideBar(){ $("#hlbar").classList.remove("open"); pendingSel = null; }
+function hideBar(){ $("#hlbar").classList.remove("open"); $("#hlact").classList.remove("open"); pendingSel = null; }
 function saveHL(){ store.set("ar1_highlights", HL); }
 function applyColor(c){
   if (!pendingSel) return;
@@ -320,7 +352,7 @@ function checkSelection(){
   pre.selectNodeContents(b1);
   pre.setEnd(range.startContainer, range.startOffset);
   const s = pre.toString().length, e = s + range.toString().length;
-  if (e > s){ pendingSel = {bid: b1.dataset.bid, s, e}; showBar("new"); }
+  if (e > s){ pendingSel = {bid: b1.dataset.bid, s, e}; showBar("new", range.getBoundingClientRect()); }
 }
 let selTimer = null;
 document.addEventListener("selectionchange", () => { clearTimeout(selTimer); selTimer = setTimeout(checkSelection, 350); });
@@ -328,7 +360,7 @@ document.addEventListener("mouseup", () => setTimeout(checkSelection, 10));
 document.addEventListener("touchend", () => setTimeout(checkSelection, 80));
 document.addEventListener("click", e => {
   const t = e.target;
-  if (t.closest && t.closest("#hlbar")) return;
+  if (t.closest && (t.closest("#hlbar") || t.closest("#hlact"))) return;
   const mark = t.closest ? t.closest("mark.hl") : null;
   if (mark){
     e.preventDefault();
@@ -337,7 +369,7 @@ document.addEventListener("click", e => {
     pre.selectNodeContents(blk); pre.setEndBefore(mark);
     const s = pre.toString().length;
     pendingSel = {bid: blk.dataset.bid, s, e: s + mark.textContent.length};
-    showBar("edit");
+    showBar("edit", mark.getBoundingClientRect());
     return;
   }
   const a = t.closest ? t.closest("a.ref") : null;
@@ -379,7 +411,7 @@ let homeTab = store.get("ar1_tab", "entre");
 const TABS = {
   entre: {label:"Entre semana", icon:"📖", rows:[
     ["#/tesoros","📖","Tesoros de la Biblia", W.tesoros.title],
-    ["#/perlas","💎","Busquemos perlas escondidas","20 perlas · " + W.range],
+    ["#/perlas","💎","Busquemos perlas escondidas", W.perlas.length + " perlas · " + W.range],
     ["#/vida","👥","Nuestra vida cristiana", W.vida.title],
     ["#/estudio","🎓","Estudio bíblico de la congregación", W.estudio.chapter]
   ]},
@@ -424,11 +456,28 @@ function tesorosHTML(){
     "<h2 class=\"sec\">Desarrollo</h2>" + blocks(t.development, "tesoros-dev") +
     noteBox("tesoros");
 }
-function perlasHTML(){
-  const items = W.perlas.map((p,i) =>
-    '<div class="pearl"><div class="pref">' + linkify(esc(p.ref)) + "</div>" + blocks(p.comment, "perla-" + i) + "</div>").join("");
+/* Semanas disponibles para Perlas: si data.js trae un arreglo «weeks» se usa
+   ese; si no, la semana única actual (DATA.week). La primera es la actual.
+   Los bloques de la semana actual conservan sus ids «perla-N» de siempre
+   para no perder los subrayados guardados; las demás semanas usan
+   «perla-w<semana>-N» para que sus subrayados no se crucen. */
+const WEEKS = (Array.isArray(DATA.weeks) && DATA.weeks.length) ? DATA.weeks : [W];
+function perlasHTML(wi){
+  wi = (wi >= 0 && wi < WEEKS.length) ? wi : 0;
+  const wk = WEEKS[wi];
+  const list = wk.perlas || [];
+  const items = list.map((p,i) =>
+    '<div class="pearl"><div class="pref">' + linkify(esc(p.ref)) + "</div>" +
+    blocks(p.comment, (wi === 0 ? "perla-" : "perla-w" + wi + "-") + i) + "</div>").join("");
+  const hist = WEEKS.map((w2,i2) =>
+    '<button class="row" data-go="#/perlas/' + i2 + '"><span class="ric">💎</span><span>' + esc(w2.range) +
+    "<small>" + (w2.perlas ? w2.perlas.length : 0) + " perlas" +
+    (i2 === 0 ? " · Semana actual" : "") + (i2 === wi ? " · Viendo ahora" : "") +
+    '</small></span><span class="arr">›</span></button>').join("");
   return screenBar("perlas","Busquemos perlas escondidas","#/perlas") +
-    head("Busquemos perlas escondidas", chips([W.range, "20 perlas"])) + items + noteBox("perlas");
+    head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + items +
+    '<h2 class="sec">Semanas anteriores</h2><div class="card">' + hist + "</div>" +
+    noteBox("perlas");
 }
 function vidaHTML(){
   const v = W.vida;
@@ -577,7 +626,7 @@ function render(){
   let html = "", bind = null;
   if (r === "" ) { html = homeHTML(); }
   else if (r === "tesoros"){ html = tesorosHTML(); bind = () => bindScreen("tesoros","Tesoros de la Biblia","#/tesoros"); }
-  else if (r === "perlas"){ html = perlasHTML(); bind = () => bindScreen("perlas","Busquemos perlas escondidas","#/perlas"); }
+  else if (r === "perlas"){ const wi = parseInt(parts[1], 10) || 0; html = perlasHTML(wi); bind = () => bindScreen("perlas","Busquemos perlas escondidas","#/perlas"); }
   else if (r === "vida"){ html = vidaHTML(); bind = () => bindScreen("vida","Nuestra vida cristiana","#/vida"); }
   else if (r === "estudio"){ html = estudioHTML(); bind = () => bindScreen("estudio","Estudio bíblico de la congregación","#/estudio"); }
   else if (r === "discurso"){ html = discursoHTML(); bind = () => bindScreen("discurso","Discurso público","#/discurso"); }
