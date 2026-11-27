@@ -3362,5 +3362,111 @@ const DATA = {
     }
    ]
   }
- ]
+ ],
+ "pensamientos": [
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 1,
+  "referencia": null,
+  "texto": "A veces hacemos cosas buenas por los demás y quizás nadie se dé cuenta. Tal vez ayudamos a un hermano, dedicamos tiempo a nuestra familia o animamos a alguien que está pasando por dificultades. Aunque esos esfuerzos parezcan pequeños, Jehová los valora. Por eso, sigamos haciendo el bien con amor, sin esperar reconocimiento, seguros de que nuestro Padre celestial no olvida lo que hacemos.",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 2,
+  "referencia": "Salmo 65:2.",
+  "texto": "Nunca pensemos que nuestras oraciones son demasiado sencillas o que nuestros problemas son demasiado pequeños para contárselos a Jehová. Él se interesa profundamente por nosotros. Podemos hablarle con confianza, abrirle nuestro corazón y estar seguros de que escucha nuestras súplicas. ¡Qué bonito es saber que nunca estamos solos!",
+  "tipo": "Texto bíblico"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 3,
+  "referencia": null,
+  "texto": "A veces no podemos cambiar las circunstancias que estamos viviendo, pero sí podemos decidir en quién confiar. Cuando acudimos a Jehová en oración y seguimos sus consejos, encontramos las fuerzas para continuar. Nunca olvidemos que, aunque otros no comprendan lo que sentimos, Jehová conoce nuestro corazón y está dispuesto a ayudarnos.",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": "Una persona contemplando tranquilamente su reflejo en un espejo, en un ambiente sereno y con luz natural, transmitiendo la importancia de examinar el corazón y cultivar cualidades que agraden a Jehová.",
+  "image": "img/pensamiento.jpg",
+  "orden": 4,
+  "referencia": "1 Samuel 16:7; Proverbios 4:23.",
+  "texto": "Las personas suelen fijarse en nuestra apariencia, nuestras palabras o lo que hacemos delante de ellas. Pero Jehová ve mucho más: conoce nuestras intenciones, nuestros sentimientos y los motivos que nos impulsan a actuar. Él sabe quiénes somos realmente en nuestro interior.",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": "img/pens-5.jpg",
+  "orden": 5,
+  "referencia": "Isaías 41:10.",
+  "texto": "Cuando sentimos que las fuerzas nos faltan, recordemos que no tenemos que enfrentar las dificultades solos. Jehová conoce nuestras luchas, escucha nuestras oraciones y nos ofrece su ayuda. Acercarnos a él cada día nos dará fuerzas para seguir adelante, incluso en los momentos más difíciles.",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": "Un hermoso paisaje de paz y tranquilidad, que representa las condiciones que Jehová promete para el futuro.",
+  "image": "img/pens-6.jpg",
+  "orden": 6,
+  "referencia": "Salmo 37:10, 11.",
+  "texto": "Aunque hoy enfrentemos preocupaciones, podemos mirar al futuro con esperanza. Jehová promete que los mansos disfrutarán de abundante paz. ¡Qué tranquilidad nos da saber que él siempre cumple sus promesas!",
+  "tipo": "Texto bíblico"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 7,
+  "referencia": null,
+  "texto": "«No siempre podemos cambiar las circunstancias, pero sí podemos elegir qué actitud tendremos ante ellas».",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 8,
+  "referencia": null,
+  "texto": "«El que es paciente tiene mucho discernimiento».\nProverbios 14:29",
+  "tipo": "Texto bíblico"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 9,
+  "referencia": null,
+  "texto": "«La verdadera sabiduría comienza cuando aprendemos a mirar más allá de lo evidente»",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 10,
+  "referencia": null,
+  "texto": "«A veces, los pasos más pequeños son los que nos llevan a los cambios más grandes».",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 11,
+  "referencia": null,
+  "texto": "«La grandeza de una persona no se mide por cuántos la admiran, sino por cuántos se sienten mejor después de haberla conocido».",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 12,
+  "referencia": null,
+  "texto": "«Quien aprende a valorar las pequeñas bendiciones descubre que la felicidad no siempre está en las grandes cosas».",
+  "tipo": "Reflexión"
+ },
+ {
+  "descripcion": null,
+  "image": null,
+  "orden": 13,
+  "referencia": null,
+  "texto": "«La verdadera fortaleza no consiste en nunca caer, sino en encontrar el valor para levantarse cada vez».",
+  "tipo": "Reflexión"
+ }
+]
 };

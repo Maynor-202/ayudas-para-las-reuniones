@@ -21,12 +21,15 @@
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:16.5px;line-height:1.55}
-header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;gap:6px;padding:10px 12px;box-shadow:0 2px 8px rgba(10,20,40,.25)}
-header .ttl{font-weight:700;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;display:flex;align-items:center;gap:8px;cursor:pointer}
-header .ttl .home-ic{color:#cfa6e8;font-size:20px}
-header button.icobtn{background:transparent;border:0;color:#fff;font-size:21px;padding:6px 8px;cursor:pointer;border-radius:8px}
+header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;gap:4px;padding:10px;box-shadow:0 2px 8px rgba(10,20,40,.25)}
+header .ttl{font-weight:700;font-size:16.5px;flex:1;min-width:0;display:flex;align-items:center;gap:8px;cursor:pointer}
+header .ttl .ttl-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+header .ttl .home-ic{color:#cfa6e8;flex:none;display:flex;align-items:center}
+header .ttl .home-ic svg{width:20px;height:20px;display:block}
+header button.icobtn{background:transparent;border:0;color:#fff;font-size:20px;width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;border-radius:10px}
+header button.icobtn svg{width:21px;height:21px;display:block}
 header button.icobtn:active{background:rgba(255,255,255,.15)}
-main{max-width:720px;margin:0 auto;padding:14px 12px 90px}
+main{max-width:720px;margin:0 auto;padding:16px 16px 90px}
 .hero{background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;border-radius:16px;padding:18px 18px 16px;margin-bottom:14px;box-shadow:0 4px 14px rgba(20,35,70,.18)}
 .hero .k{color:#cfa6e8;font-weight:700;letter-spacing:.06em;font-size:13.5px;text-transform:uppercase}
 .hero p{margin:6px 0 0;font-size:17px;color:#eef1f8}
@@ -35,7 +38,7 @@ main{max-width:720px;margin:0 auto;padding:14px 12px 90px}
 .tabs button .tic{font-size:21px}
 .tabs button.on{border-color:var(--accent);color:var(--ink);background:#fbf7fd}
 .tabs button.on .tic{color:var(--accent)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(20,35,70,.05)}
 .row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid var(--line);padding:16px 14px;font-size:16.5px;font-weight:600;color:var(--ink);cursor:pointer}
 .row:last-child{border-bottom:0}
 .row .ric{width:38px;height:38px;border-radius:50%;background:#f1e9f6;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
@@ -44,14 +47,19 @@ main{max-width:720px;margin:0 auto;padding:14px 12px 90px}
 .thought{padding:16px}
 .thought .k{color:var(--muted);font-weight:700;letter-spacing:.05em;font-size:13px;text-transform:uppercase}
 .thought .q{font-size:18.5px;font-style:italic;margin:10px 0 8px}
-img.cimg{display:block;width:100%;height:auto;border-radius:12px}
+img.cimg{display:block;width:100%;height:auto;border-radius:16px}
 figure.cfig{margin:12px 0}
 figure.cfig figcaption{font-size:13.5px;color:var(--muted);margin-top:6px}
 .jwlink{display:inline-block;padding:9px 16px;border:1.5px solid var(--accent);color:var(--accent);border-radius:999px;font-weight:600;font-size:14.5px;text-decoration:none;background:#fff}
 .jwlink:active{background:#f1e9f6}
 .imglinks{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
 .thought img.cimg{margin-bottom:12px}
-.ilthumb{width:58px;height:58px;object-fit:cover;border-radius:10px;flex:none}
+.ilthumb{width:58px;height:58px;object-fit:cover;border-radius:12px;flex:none}
+.newscat{display:block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:1px}
+.pensref{font-size:14.5px;color:var(--muted);font-weight:600;margin:0 0 8px}
+.penssoft{background:#f7f3fa}
+.tag.penswk{background:#e6f4ea;color:#1e7a34}
+div[data-pens]{cursor:pointer}
 .tag{display:inline-block;background:#e8f0fe;color:#2b5aa6;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
 .foot{color:var(--muted);font-size:13.5px;text-align:center;margin:18px 0 4px}
 h1.screen{font-size:23px;line-height:1.3;margin:2px 0 6px}
@@ -61,7 +69,7 @@ h4.subh{font-size:15.5px;text-transform:uppercase;letter-spacing:.04em;color:var
 .meta{margin:6px 0 4px}
 .blk{margin:7px 0}
 .qline{font-weight:700;margin:14px 0 4px}
-.extrabox{background:#f7f3fa;border:1px solid #e6dcf0;border-radius:12px;padding:10px 12px;margin:10px 0}
+.extrabox{background:#f7f3fa;border:1px solid #e6dcf0;border-radius:14px;padding:10px 12px;margin:10px 0}
 .extrabox .k{font-weight:700;color:var(--accent-dark);font-size:14px;text-transform:uppercase;letter-spacing:.04em}
 .pearl{border-bottom:1px solid var(--line);padding:12px 2px}
 .pearl:last-child{border-bottom:0}
@@ -72,14 +80,14 @@ mark.hl{color:inherit;padding:0 .5px;border-radius:2px;cursor:pointer}
 .screenbar .sp{flex:1}
 button.bmk{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14.5px;font-weight:600;cursor:pointer;color:var(--ink)}
 button.bmk.on{border-color:var(--accent);color:var(--accent);background:#fbf7fd}
-.notebox{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.notebox{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 1px 3px rgba(20,35,70,.05)}
 .notebox label{font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
 .notebox textarea{width:100%;border:0;resize:vertical;min-height:74px;font:inherit;font-size:15.5px;margin-top:6px;outline:none;background:transparent;color:var(--ink)}
 .notebox .saved{font-size:12.5px;color:#8a94a6}
 textarea.inp, input.inp{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
 button.primary{background:var(--accent);color:#fff;border:0;border-radius:12px;padding:13px 18px;font-size:16px;font-weight:700;cursor:pointer;width:100%}
 button.primary:active{background:var(--accent-dark)}
-.kv{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2px 14px;margin:10px 0}
+.kv{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:2px 14px;margin:10px 0;box-shadow:0 1px 3px rgba(20,35,70,.05)}
 .kvrow{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .kvrow:last-child{border-bottom:0}
 .kvl{flex:none;width:118px;font-weight:700;color:var(--accent-dark);font-size:13.5px;text-transform:uppercase;letter-spacing:.03em;padding-top:2px}
@@ -135,7 +143,7 @@ a.wol{display:inline-block;background:var(--accent);color:#fff;text-decoration:n
 ::selection{background:rgba(120,120,140,.25)}
 ::-moz-selection{background:rgba(120,120,140,.25)}
 /* Botón «Escuchar» de publicaciones y barra de reproductor (estilo JW.org) */
-.listenbtn{display:flex;align-items:center;gap:10px;width:100%;background:var(--navy);color:#fff;border:0;border-radius:12px;padding:13px 16px;font-size:16px;font-weight:700;cursor:pointer;margin:0 0 14px;text-align:left}
+.listenbtn{display:flex;align-items:center;gap:10px;width:100%;background:var(--navy);color:#fff;border:0;border-radius:14px;padding:13px 16px;font-size:16px;font-weight:700;cursor:pointer;margin:0 0 14px;text-align:left}
 .listenbtn svg{width:22px;height:22px;flex:none}
 .listenbtn:active{background:var(--navy2)}
 #pubbar{position:fixed;left:0;right:0;bottom:0;z-index:65;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(10,20,40,.18);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
@@ -160,9 +168,9 @@ body.pubopen main{padding-bottom:180px}
 <body>
 <header>
   <button class="icobtn" id="backBtn" aria-label="Atrás" style="display:none">←</button>
-  <div class="ttl" id="ttlHome"><span class="home-ic">⌂</span><span>Ayudas para las Reuniones</span></div>
-  <button class="icobtn" id="favBtn" aria-label="Favoritos" title="Favoritos">🔖</button>
-  <button class="icobtn" id="setBtn" aria-label="Ajustes" title="Ajustes">⚙️</button>
+  <div class="ttl" id="ttlHome"><span class="home-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span><span class="ttl-txt">Ayudas para las Reuniones</span></div>
+  <button class="icobtn" id="favBtn" aria-label="Favoritos" title="Favoritos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg></button>
+  <button class="icobtn" id="setBtn" aria-label="Ajustes" title="Ajustes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/><circle cx="12" cy="12" r="3"/></svg></button>
 </header>
 <main id="app"></main>
 
@@ -213,9 +221,40 @@ body.pubopen main{padding-bottom:180px}
 "use strict";
 /* ================= Configuración ================= */
 const SUPPORT_WHATSAPP_LINK = "https://wa.me/527224248895"; // Enlace de WhatsApp para «Apoyo voluntario» (déjalo vacío para ocultar el botón de contacto).
-const THOUGHTS = [
-  {text:"La verdadera fortaleza no consiste en nunca caer, sino en encontrar el valor para levantarse cada vez", tag:"Reflexión", image:"img/pensamiento.jpg"}
-];
+/* ============ Pensamiento para meditar: rotación semanal ============
+   Los 13 pensamientos viven en DATA.pensamientos (orden 1–13). La
+   rotación es la de Base44: el lunes 2026-11-23 está activo el Orden 4
+   y cada lunes avanza uno, volviendo al 1 después del 13. Se calcula
+   con la fecha local del dispositivo, como el resto de la app. */
+function pensOrdenEn(fechaISO){
+  const a = String(fechaISO).split("-").map(Number);
+  const dias = Math.round((Date.UTC(a[0], a[1] - 1, a[2]) - Date.UTC(2026, 10, 23)) / 86400000);
+  const sem = Math.floor(dias / 7);
+  return ((3 + sem) % 13 + 13) % 13 + 1;
+}
+function pensActivo(){
+  const o = pensOrdenEn(TODAY);
+  return DATA.pensamientos.find(p => p.orden === o) || DATA.pensamientos[0];
+}
+/* Texto del pensamiento ya escapado y con sus comillas: los textos que
+   ya traen «» (frases cortas) se muestran tal cual; los demás se
+   envuelven en «» como se ha hecho siempre en esta tarjeta. */
+function pensQuote(t){
+  const s = String(t == null ? "" : t).trim();
+  if (s.charAt(0) === "«") return esc(s).replace(/\n/g, "<br>");
+  return "«" + esc(/[.!?…]$/.test(s) ? s : s + ".") + "»";
+}
+function pensCardHTML(p, feat){
+  const isAct = p.orden === pensActivo().orden;
+  return '<div class="card thought' + (p.image ? "" : " penssoft") + '">' +
+    (p.image ? imgHTML(p.image, p.descripcion || "Un pensamiento para meditar") : "") +
+    (feat ? '<div class="k">✦ Un pensamiento para meditar</div>' : "") +
+    '<div class="q">' + pensQuote(p.texto) + "</div>" +
+    (p.referencia ? '<div class="pensref">' + esc(p.referencia) + "</div>" : "") +
+    '<span class="tag">' + esc(p.tipo) + "</span>" +
+    (isAct ? ' <span class="tag penswk">Esta semana</span>' : "") +
+    "</div>";
+}
 /* ================= Utilidades ================= */
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -957,6 +996,56 @@ const TABS = {
     ["#/configuracion","⚙️","Configuración","Color principal de la aplicación"]
   ]}
 };
+/* ============ «Lo nuevo» del Inicio ============
+   Como en la app original NO es un módulo de avisos: es un feed
+   automático de lo más reciente, generado desde los datos y
+   respetando la visibilidad por fecha (semanas visibles y textos
+   diarios hasta hoy). Orden: texto diario más reciente, el anterior,
+   Perlas/Tesoros/Estudio/Vida/Atalaya de la semana actual, las dos
+   ilustraciones más recientes y las mismas secciones de la semana
+   anterior visible; se salta lo que no tenga contenido. En Inicio se
+   ven las primeras 6 tarjetas y «Ver todas» despliega el resto. */
+let newsAll = false;
+function newsItems(){
+  const items = [];
+  const push = (cat, title, line, route, img) => { if (title) items.push({cat:cat, title:title, line:line, route:route, img:img || null}); };
+  const ds = DATA.daily.filter(d => d.date <= TODAY).slice()
+    .sort((a, b) => a.date < b.date ? 1 : -1);
+  ds.slice(0, 2).forEach(d => push("Texto diario", d.ref, d.weekday + " · " + d.label,
+    "#/texto/" + d.date, d.images && d.images.length ? imgSrc(d.images[0]) : null));
+  const addWeek = wi => {
+    const w = WEEKS[wi]; if (!w) return;
+    if (w.perlas && w.perlas.length) push("Perlas escondidas", "Busquemos perlas escondidas", w.range, wkRoute("perlas", wi), w.perlasImage);
+    if (w.tesoros) push("Tesoros de la Biblia", w.tesoros.title, w.range, wkRoute("tesoros", wi), w.tesoros.image);
+    if (w.estudio) push("Estudio del libro", w.estudio.chapter, w.range, wkRoute("estudio", wi), w.estudio.image);
+    if (w.vida) push("Nuestra vida cristiana", w.vida.title, w.range, wkRoute("vida", wi), w.vida.image);
+    if (w.atalaya) push("Estudio de La Atalaya", w.atalaya.title, w.range, wkRoute("atalaya", wi), w.atalaya.image || w.perlasImage);
+  };
+  addWeek(CUR);
+  ["La reconciliación es más importante que tener la razón", "No todo lo que parece bueno nos conviene"].forEach(t => {
+    const i = DATA.illustrations.findIndex(x => x.title.toLowerCase() === t.toLowerCase());
+    if (i >= 0){ const x = DATA.illustrations[i];
+      push("Ilustraciones", x.title, x.bibleText || "Ilustración", "#/ilustracion/" + i,
+        x.images && x.images.length ? imgSrc(x.images[0]) : null); }
+  });
+  if (VISIBLE.length > 1) addWeek(VISIBLE[1]);
+  return items.slice(0, 14);
+}
+function newsCardHTML(it){
+  return '<button class="row" data-go="' + it.route + '">' +
+    (it.img ? '<img class="ilthumb" src="' + esc(it.img) + '" alt="" loading="lazy">' : "") +
+    '<span><span class="newscat">' + esc(it.cat) + "</span>" + esc(it.title) +
+    "<small>" + esc(it.line) + '</small></span><span class="arr">›</span></button>';
+}
+function newsHTML(){
+  const items = newsItems();
+  if (!items.length) return "";
+  const show = newsAll ? items : items.slice(0, 6);
+  let h = '<h2 class="sec">Lo nuevo</h2><div class="card">' + show.map(newsCardHTML).join("") + "</div>";
+  if (!newsAll && items.length > 6)
+    h += '<button class="primary" data-news="all" style="margin-bottom:14px">Ver todas</button>';
+  return h;
+}
 function homeHTML(){
   const tabs = Object.keys(TABS).map(k =>
     '<button data-tab="' + k + '"' + (homeTab === k ? ' class="on"' : "") + '><span class="tic">' + TABS[k].icon + "</span>" + TABS[k].label + "</button>").join("");
@@ -982,10 +1071,8 @@ function homeHTML(){
     "<p>Prepara y consulta el contenido de las reuniones, el texto diario y las ilustraciones.</p></div>" +
     '<div class="tabs">' + tabs + "</div>" +
     '<div class="card">' + rows + "</div>" +
-    '<div class="card thought">' + (THOUGHTS[0].image ? imgHTML(THOUGHTS[0].image, "Un pensamiento para meditar") : "") +
-    '<div class="k">✦ Un pensamiento para meditar</div>' +
-    '<div class="q">«' + esc(THOUGHTS[0].text) + '».</div>' +
-    '<span class="tag">' + esc(THOUGHTS[0].tag) + '</span></div>' +
+    pensCardHTML(pensActivo(), true) +
+    newsHTML() +
     '<div class="foot">Fuentes oficiales: JW.ORG y la Biblioteca en Línea Watchtower</div>';
 }
 function head(title, sub){
@@ -1309,12 +1396,17 @@ function ajustesHTML(){
     "<h2 class=\"sec\">Color principal</h2><div class=\"swatches\">" + sw + "</div>" +
     '<p style="color:var(--muted);font-size:14.5px;margin-top:18px">Tus favoritos, notas, subrayados y sugerencias se guardan solo en este dispositivo.</p>';
 }
+/* Pensamiento elegido en la galería para verlo destacado; null = el
+   de la semana. Al tocar una tarjeta de la galería se muestra arriba. */
+let pensSel = null;
 function pensamientoHTML(){
-  const cards = THOUGHTS.map(t =>
-    '<div class="card thought">' + (t.image ? imgHTML(t.image, "Un pensamiento para meditar") : "") +
-    '<div class="q">«' + esc(t.text) + '».</div>' +
-    (t.tag ? '<span class="tag">' + esc(t.tag) + "</span>" : "") + "</div>").join("");
-  return head("Un pensamiento para meditar") + cards;
+  const activo = pensActivo();
+  const feat = (pensSel != null ? DATA.pensamientos.find(p => p.orden === pensSel) : null) || activo;
+  const gal = DATA.pensamientos.map(p =>
+    '<div data-pens="' + p.orden + '">' + pensCardHTML(p, false) + "</div>").join("");
+  return head("Un pensamiento para meditar") +
+    pensCardHTML(feat, true) +
+    '<h2 class="sec">Todos los pensamientos</h2>' + gal;
 }
 function apoyoHTML(){
   let h = head("Apoyo voluntario") +
@@ -1356,7 +1448,11 @@ function render(){
         const ok = $("#sugOk"); if (ok) ok.textContent = "¡Gracias! Tu sugerencia quedó guardada.";
       });
     }; }
-  else if (r === "pensamiento"){ html = pensamientoHTML(); }
+  else if (r === "pensamiento"){ html = pensamientoHTML(); bind = () => {
+      app.querySelectorAll("[data-pens]").forEach(el => el.addEventListener("click", () => {
+        pensSel = parseInt(el.dataset.pens, 10); render();
+      }));
+    }; }
   else if (r === "apoyo"){ html = apoyoHTML(); }
   else if (r === "favoritos"){ html = favoritosHTML(); }
   else if (r === "ajustes" || r === "configuracion"){ html = ajustesHTML(); bind = () => {
@@ -1375,6 +1471,7 @@ function render(){
     else playPubAudio(w2.audioGuia, "Guía de actividades — " + w2.range);
   }));
   app.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { homeTab = b.dataset.tab; store.set("ar1_tab", homeTab); render(); }));
+  app.querySelectorAll("[data-news]").forEach(b => b.addEventListener("click", () => { newsAll = true; render(); }));
   if (bind) bind();
   paintAllBlocks(app);
   window.scrollTo(0, 0);
