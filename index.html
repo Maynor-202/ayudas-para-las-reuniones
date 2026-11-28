@@ -1019,6 +1019,8 @@ try{
   if (_panelOv && typeof _panelOv === "object"){
     if (Array.isArray(_panelOv.weeks) && _panelOv.weeks.length) DATA.weeks = _panelOv.weeks;
     if (Array.isArray(_panelOv.daily) && _panelOv.daily.length) DATA.daily = _panelOv.daily;
+    if (Array.isArray(_panelOv.illustrations) && _panelOv.illustrations.length) DATA.illustrations = _panelOv.illustrations;
+    if (Array.isArray(_panelOv.pensamientos) && _panelOv.pensamientos.length) DATA.pensamientos = _panelOv.pensamientos;
   }
 }catch(e){}
 
@@ -1500,6 +1502,8 @@ function apoyoHTML(){
 /* ================= Panel para publicar ================= */
 let panelWi = (typeof CUR !== "undefined" ? CUR : 0);
 let panelDailyIdx = 0;
+let panelIllIdx = 0;
+let panelPensIdx = 0;
 function panelStatus(msg){ const el=$("#panelStatus"); if(el) el.textContent=msg||""; }
 function panelWeek(){ return WEEKS[panelWi] || WEEKS[0]; }
 function panelEnsureWeekShape(w){
@@ -1576,7 +1580,32 @@ function panelHTML(){
   '<label class="panellabel">Lecciones</label><textarea class="paneltextarea" id="pdaily_lessons"></textarea>' +
   '<label class="panellabel">Enlace oficial</label><input class="panelinput" id="pdaily_link">' +
   '</div>' +
-  '<div class="panelbox"><h3>10. Guardar y publicar</h3>' +
+  '<div class="panelbox"><h3>10. Ilustraciones</h3>' +
+  '<p class="panelhint">Elige una ilustración para editarla. La imagen debe ser una de las que ya están en la app (por ejemplo img/il-2.jpg). Subir imágenes nuevas desde aquí lo dejamos para después.</p>' +
+  '<label class="panellabel">Elige una ilustración</label><select class="panelselect" id="panelIllSelect"></select>' +
+  '<div class="panelrow"><button class="panelbtn" id="panelNewIll">➕ Nueva ilustración</button><button class="panelbtn" id="panelViewIll">👁️ Ver ilustraciones</button></div>' +
+  '<label class="panellabel">Número</label><input class="panelinput" id="pill_num" type="number">' +
+  '<label class="panellabel">Título</label><input class="panelinput" id="pill_title">' +
+  '<label class="panellabel">Texto bíblico</label><input class="panelinput" id="pill_bibleText">' +
+  '<label class="panellabel">Enseñanza</label><textarea class="paneltextarea" id="pill_teaching"></textarea>' +
+  '<label class="panellabel">Ejemplo</label><textarea class="paneltextarea" id="pill_example"></textarea>' +
+  '<label class="panellabel">Explicación</label><textarea class="paneltextarea" id="pill_explanation"></textarea>' +
+  '<label class="panellabel">Aplicación</label><textarea class="paneltextarea" id="pill_application"></textarea>' +
+  '<label class="panellabel">Imagen (ruta)</label><input class="panelinput" id="pill_imgSrc" placeholder="img/il-2.jpg">' +
+  '<label class="panellabel">Texto alternativo de la imagen</label><input class="panelinput" id="pill_imgAlt">' +
+  '</div>' +
+  '<div class="panelbox"><h3>11. Pensamientos para meditar</h3>' +
+  '<p class="panelhint">Elige un pensamiento para editarlo. El orden decide cuál se muestra cada semana.</p>' +
+  '<label class="panellabel">Elige un pensamiento</label><select class="panelselect" id="panelPensSelect"></select>' +
+  '<div class="panelrow"><button class="panelbtn" id="panelNewPens">➕ Nuevo pensamiento</button><button class="panelbtn" id="panelViewPens">👁️ Ver pensamientos</button></div>' +
+  '<label class="panellabel">Orden</label><input class="panelinput" id="ppens_orden" type="number">' +
+  '<label class="panellabel">Tipo</label><input class="panelinput" id="ppens_tipo" placeholder="Reflexión">' +
+  '<label class="panellabel">Referencia</label><input class="panelinput" id="ppens_referencia">' +
+  '<label class="panellabel">Texto</label><textarea class="paneltextarea big" id="ppens_texto"></textarea>' +
+  '<label class="panellabel">Descripción</label><textarea class="paneltextarea" id="ppens_descripcion"></textarea>' +
+  '<label class="panellabel">Imagen (ruta, opcional)</label><input class="panelinput" id="ppens_image" placeholder="img/... o déjalo vacío">' +
+  '</div>' +
+  '<div class="panelbox"><h3>12. Guardar y publicar</h3>' +
   '<p class="panelhint">“Aplicar en este dispositivo” muestra los cambios solo aquí. Para que lo vean todos, usa “Exportar data.js” y envía ese archivo para publicarlo en el mismo enlace.</p>' +
   '<div class="panelrow"><button class="panelbtn" id="panelSaveDraft">💾 Guardar borrador</button><button class="panelbtn" id="panelLoadDraft">📂 Cargar borrador</button></div>' +
   '<div class="panelrow"><button class="panelbtn primary" id="panelApplyLocal">✅ Aplicar en este dispositivo</button><button class="panelbtn" id="panelExport">⬇️ Exportar data.js</button></div>' +
@@ -1644,6 +1673,42 @@ function panelRenderAtalaya(){
   box.innerHTML = (w.atalaya.paragraphs||[]).map((p,i)=>'<div class="panelitem" data-panel-atalaya="'+i+'"><button class="del" data-del-atalaya="'+i+'">Quitar</button><label class="panellabel">Párrafo</label><input class="panelinput pa_num" value="'+esc(p.num==null?'':p.num)+'"><label class="panellabel">Pregunta</label><textarea class="paneltextarea pa_q">'+esc(p.q||'')+'</textarea><label class="panellabel">Respuesta</label><textarea class="paneltextarea pa_a">'+esc(p.a||'')+'</textarea><label class="panellabel">Pregunta extra</label><textarea class="paneltextarea pa_eq">'+esc(p.extraQ||'')+'</textarea><label class="panellabel">Respuesta extra</label><textarea class="paneltextarea pa_ea">'+esc(p.extraA||'')+'</textarea></div>').join("") || '<p class="panelhint">Sin párrafos todavía.</p>';
   box.querySelectorAll("[data-del-atalaya]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); w.atalaya.paragraphs.splice(parseInt(b.dataset.delAtalaya,10),1); panelRenderAtalaya(); }));
 }
+
+function panelIllOptions(){
+  const sel=$("#panelIllSelect"); if(!sel) return;
+  sel.innerHTML = (DATA.illustrations||[]).map((x,i)=>'<option value="'+i+'"'+(i===panelIllIdx?' selected':'')+'>'+esc((x.num!=null?x.num:(i+1))+' — '+(x.title||'Sin título'))+'</option>').join("");
+}
+function panelPensOptions(){
+  const sel=$("#panelPensSelect"); if(!sel) return;
+  const arr=(DATA.pensamientos||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0));
+  // keep original index mapping via orden lookup
+  sel.innerHTML = arr.map(p=>{ const idx=(DATA.pensamientos||[]).findIndex(x=>x.orden===p.orden); return '<option value="'+idx+'"'+(idx===panelPensIdx?' selected':'')+'>'+esc((p.orden||'')+' — '+(p.tipo||'Pensamiento'))+'</option>'; }).join("");
+}
+function panelLoadIll(){
+  panelIllOptions();
+  const x=(DATA.illustrations||[])[panelIllIdx]||{};
+  panelSetVal("#pill_num", x.num); panelSetVal("#pill_title", x.title); panelSetVal("#pill_bibleText", x.bibleText); panelSetVal("#pill_teaching", x.teaching); panelSetVal("#pill_example", x.example); panelSetVal("#pill_explanation", x.explanation); panelSetVal("#pill_application", x.application);
+  const img=(x.images&&x.images[0])||{};
+  panelSetVal("#pill_imgSrc", img.src); panelSetVal("#pill_imgAlt", img.alt);
+}
+function panelSaveIll(){
+  const x=(DATA.illustrations||[])[panelIllIdx]; if(!x) return;
+  x.num = panelGetVal("#pill_num") ? parseInt(panelGetVal("#pill_num"),10) : x.num;
+  x.title = panelGetVal("#pill_title").trim(); x.bibleText = panelGetVal("#pill_bibleText").trim(); x.teaching = panelGetVal("#pill_teaching"); x.example = panelGetVal("#pill_example"); x.explanation = panelGetVal("#pill_explanation"); x.application = panelGetVal("#pill_application");
+  const src=panelGetVal("#pill_imgSrc").trim(); const alt=panelGetVal("#pill_imgAlt");
+  if(src){ x.images=[{src:src, alt:alt}]; }
+}
+function panelLoadPens(){
+  panelPensOptions();
+  const x=(DATA.pensamientos||[])[panelPensIdx]||{};
+  panelSetVal("#ppens_orden", x.orden); panelSetVal("#ppens_tipo", x.tipo); panelSetVal("#ppens_referencia", x.referencia); panelSetVal("#ppens_texto", x.texto); panelSetVal("#ppens_descripcion", x.descripcion); panelSetVal("#ppens_image", x.image);
+}
+function panelSavePens(){
+  const x=(DATA.pensamientos||[])[panelPensIdx]; if(!x) return;
+  x.orden = panelGetVal("#ppens_orden") ? parseInt(panelGetVal("#ppens_orden"),10) : x.orden;
+  x.tipo = panelGetVal("#ppens_tipo").trim(); x.referencia = panelGetVal("#ppens_referencia").trim(); x.texto = panelGetVal("#ppens_texto"); x.descripcion = panelGetVal("#ppens_descripcion"); x.image = panelGetVal("#ppens_image").trim() || null;
+}
+
 function panelAutoFill(){
   const txt = panelGetVal("#panelPaste"); if(!txt.trim()){ panelStatus("Pega primero el texto de Dola o ChatGPT."); return; }
   const w = panelEnsureWeekShape(panelWeek());
@@ -1678,11 +1743,15 @@ function panelAutoFill(){
   if(dis){ w.discurso.note = dis; const first=dis.split("\n").map(x=>x.trim()).find(x=>x.length>3&&x.length<140); if(first&&!w.discurso.title) w.discurso.title=first; filled++; }
   const ata = sectionAfter("estudio de la atalaya") || sectionAfter("atalaya");
   if(ata){ if(!w.atalaya.paragraphs.length) w.atalaya.paragraphs.push({num:1,q:"",a:ata,extraQ:"",extraA:""}); else w.atalaya.paragraphs[0].a=ata; const first=ata.split("\n").map(x=>x.trim()).find(x=>x.length>3&&x.length<140); if(first&&!w.atalaya.title) w.atalaya.title=first; filled++; }
-  panelLoadWeek();
+  const illSec = sectionAfter("ilustración") || sectionAfter("ilustracion");
+  if(illSec){ const x=(DATA.illustrations||[])[panelIllIdx]; if(x){ x.example = illSec; const first=illSec.split("\n").map(z=>z.trim()).find(z=>z.length>3&&z.length<140); if(first&&!x.title) x.title=first; filled++; } }
+  const pensSec = sectionAfter("pensamiento para meditar") || sectionAfter("pensamiento");
+  if(pensSec){ const x=(DATA.pensamientos||[])[panelPensIdx]; if(x){ x.texto=pensSec; filled++; } }
+  panelLoadWeek(); panelLoadIll(); panelLoadPens();
   panelStatus(filled?("Listo: rellené "+filled+" sección(es). Revisa y corrige antes de publicar."):"No reconocí secciones claras. Revisa el texto pegado o llena los campos a mano.");
 }
 function panelExport(){
-  panelSaveWeek(); panelSaveDaily();
+  panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens();
   const out = {week: DATA.week, daily: DATA.daily, illustrations: DATA.illustrations, verses: DATA.verses, weeks: WEEKS, pensamientos: DATA.pensamientos};
   const blob = new Blob(["const DATA = "+JSON.stringify(out,null,2)+";\n"], {type:"text/javascript"});
   const url = URL.createObjectURL(blob);
@@ -1691,7 +1760,7 @@ function panelExport(){
   panelStatus("data.js exportado. Envíalo para publicarlo en el mismo enlace.");
 }
 function panelBind(){
-  panelLoadWeek(); panelLoadDaily();
+  panelLoadWeek(); panelLoadDaily(); panelLoadIll(); panelLoadPens();
   const ws=$("#panelWeekSelect"); if(ws) ws.addEventListener("change",()=>{ panelSaveWeek(); panelSaveDaily(); panelWi=parseInt(ws.value,10)||0; panelLoadWeek(); panelStatus("Semana cargada."); });
   const nw=$("#panelNewWeek"); if(nw) nw.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); const tpl=JSON.parse(JSON.stringify(panelEnsureWeekShape(panelWeek()))); tpl.range=""; tpl.startDate=""; tpl.endDate=""; tpl.perlas=[]; tpl.tesoros={title:"",reading:"",duration:"",objective:"",development:"",image:"",imageCaption:""}; tpl.vida={title:"",subtitle:"",duration:"",sections:[],image:""}; tpl.estudio={book:"",chapter:"",reading:"",items:[],image:""}; tpl.discurso={title:"",number:"",duration:"",textRef:"",note:""}; tpl.atalaya={dateLabel:"",title:"",themeText:"",paragraphs:[]}; WEEKS.push(tpl); panelWi=WEEKS.length-1; render(); });
   const pv=$("#panelPreviewWeek"); if(pv) pv.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); location.hash="#/"; });
@@ -1702,12 +1771,18 @@ function panelBind(){
   const aa=$("#panelAddAtalaya"); if(aa) aa.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); w.atalaya.paragraphs.push({num:(w.atalaya.paragraphs.length+1),q:"",a:"",extraQ:"",extraA:""}); panelRenderAtalaya(); });
   const ds=$("#panelDailySelect"); if(ds) ds.addEventListener("change",()=>{ panelSaveDaily(); panelDailyIdx=parseInt(ds.value,10)||0; panelLoadDaily(); });
   const nd=$("#panelNewDaily"); if(nd) nd.addEventListener("click",()=>{ panelSaveDaily(); DATA.daily.unshift({date:"",label:"",weekday:"",ref:"",verse:"",comment:"",example:"",lessons:"",images:[],link:""}); panelDailyIdx=0; render(); });
-  const sd=$("#panelSaveDraft"); if(sd) sd.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); store.set("ar1_panel_draft",{weeks:WEEKS,daily:DATA.daily,when:Date.now()}); panelStatus("Borrador guardado en este dispositivo."); });
-  const ld=$("#panelLoadDraft"); if(ld) ld.addEventListener("click",()=>{ const d=store.get("ar1_panel_draft",null); if(!d||!Array.isArray(d.weeks)){ panelStatus("No hay borrador guardado."); return; } DATA.weeks=d.weeks; DATA.daily=d.daily||DATA.daily; WEEKS.splice(0,WEEKS.length,...DATA.weeks); panelWi=Math.min(panelWi,WEEKS.length-1); render(); });
-  const al=$("#panelApplyLocal"); if(al) al.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); store.set("ar1_panel_published",{weeks:WEEKS,daily:DATA.daily,when:Date.now()}); panelStatus("Aplicado en este dispositivo. Recargando…"); setTimeout(()=>location.reload(),600); });
+  const sd=$("#panelSaveDraft"); if(sd) sd.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); store.set("ar1_panel_draft",{weeks:WEEKS,daily:DATA.daily,illustrations:DATA.illustrations,pensamientos:DATA.pensamientos,when:Date.now()}); panelStatus("Borrador guardado en este dispositivo."); });
+  const ld=$("#panelLoadDraft"); if(ld) ld.addEventListener("click",()=>{ const d=store.get("ar1_panel_draft",null); if(!d||!Array.isArray(d.weeks)){ panelStatus("No hay borrador guardado."); return; } DATA.weeks=d.weeks; DATA.daily=d.daily||DATA.daily; if(Array.isArray(d.illustrations)) DATA.illustrations=d.illustrations; if(Array.isArray(d.pensamientos)) DATA.pensamientos=d.pensamientos; WEEKS.splice(0,WEEKS.length,...DATA.weeks); panelWi=Math.min(panelWi,WEEKS.length-1); render(); });
+  const al=$("#panelApplyLocal"); if(al) al.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); store.set("ar1_panel_published",{weeks:WEEKS,daily:DATA.daily,illustrations:DATA.illustrations,pensamientos:DATA.pensamientos,when:Date.now()}); panelStatus("Aplicado en este dispositivo. Recargando…"); setTimeout(()=>location.reload(),600); });
   const ex=$("#panelExport"); if(ex) ex.addEventListener("click",panelExport);
   const wa=$("#panelWhatsApp"); if(wa) wa.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); const msg="Hola, quiero publicar una semana en Ayudas para las Reuniones. Semana: "+(w.range||"")+". Ya preparé el contenido en el panel y puedo enviar el archivo data.js."; window.open((SUPPORT_WHATSAPP_LINK||"")+"?text="+encodeURIComponent(msg),"_blank"); });
   const cl=$("#panelClearLocal"); if(cl) cl.addEventListener("click",()=>{ localStorage.removeItem("ar1_panel_published"); panelStatus("Cambios locales quitados. Recargando…"); setTimeout(()=>location.reload(),600); });
+  const illSel=$("#panelIllSelect"); if(illSel) illSel.addEventListener("change",()=>{ panelSaveIll(); panelIllIdx=parseInt(illSel.value,10)||0; panelLoadIll(); });
+  const newIll=$("#panelNewIll"); if(newIll) newIll.addEventListener("click",()=>{ panelSaveIll(); panelSavePens(); const n=(DATA.illustrations||[]).length+1; DATA.illustrations.push({num:n,title:"",bibleText:"",teaching:"",example:"",explanation:"",application:"",images:[]}); panelIllIdx=DATA.illustrations.length-1; render(); });
+  const viewIll=$("#panelViewIll"); if(viewIll) viewIll.addEventListener("click",()=>{ panelSaveIll(); location.hash="#/ilustraciones"; });
+  const pensSel=$("#panelPensSelect"); if(pensSel) pensSel.addEventListener("change",()=>{ panelSavePens(); panelPensIdx=parseInt(pensSel.value,10)||0; panelLoadPens(); });
+  const newPens=$("#panelNewPens"); if(newPens) newPens.addEventListener("click",()=>{ panelSavePens(); panelSaveIll(); const maxOrd=(DATA.pensamientos||[]).reduce((m,x)=>Math.max(m,x.orden||0),0); DATA.pensamientos.push({orden:maxOrd+1,tipo:"Reflexión",referencia:null,texto:"",descripcion:null,image:null}); panelPensIdx=DATA.pensamientos.length-1; render(); });
+  const viewPens=$("#panelViewPens"); if(viewPens) viewPens.addEventListener("click",()=>{ panelSavePens(); location.hash="#/pensamiento"; });
 }
 
 
