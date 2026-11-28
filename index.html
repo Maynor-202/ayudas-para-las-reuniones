@@ -194,6 +194,23 @@ body.pubopen main{padding-bottom:180px}
 .panelhint{font-size:13.5px;color:var(--muted);line-height:1.45;margin:6px 0}
 .panelstatus{font-weight:700;color:var(--accent-dark);font-size:14.5px;min-height:20px;margin-top:8px}
 
+
+/* Panel v2 tabs + TTS */
+.paneltabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.paneltabs button{flex:1 1 110px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;font-weight:700;cursor:pointer;color:var(--muted);font-size:13.5px}
+.paneltabs button.on{border-color:var(--accent);color:var(--accent-dark);background:#fbf7fd}
+.panel-tab{display:none}
+.panel-tab.on{display:block}
+.pastebox{background:#f7f3fa;border:1.5px dashed var(--accent);border-radius:14px;padding:12px;margin:10px 0}
+.pastebox textarea{min-height:140px}
+#ttsbar{position:fixed;left:0;right:0;bottom:0;z-index:66;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(10,20,40,.18);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:none}
+#ttsbar.show{display:block}
+#ttsbar .tts-top{display:flex;align-items:center;gap:10px}
+#ttsTitle{flex:1;font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ttsbtn{background:var(--accent);color:#fff;border:0;border-radius:999px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.ttsbtn.sec{background:#eef0f5;color:var(--ink)}
+body.ttsopen main{padding-bottom:170px}
+
 </style>
 </head>
 <body>
@@ -1175,14 +1192,11 @@ function weeksListHTML(section, wi, icon, smallFn){
 
 /* Botones «Escuchar» del reproductor de publicaciones: solo aparecen
    cuando la semana trae la referencia de audio en data.js. */
-function guiaBtnHTML(wk, wi){
-  if (!wk.audioGuia) return "";
-  return '<button class="listenbtn" data-pubaudio="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la guía de esta semana</span></button>";
+function helpAudioBtnHTML(label){
+  return '<button class="listenbtn" data-helpaudio="1">' + ICO_HEADPHONES + '<span>' + esc(label || "Escuchar esta ayuda") + '</span></button>';
 }
-function atalayaBtnHTML(wk, wi){
-  if (!wk.audioAtalaya) return "";
-  return '<button class="listenbtn" data-pubaudio="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar el artículo</span></button>";
-}
+function guiaBtnHTML(wk, wi){ return helpAudioBtnHTML("Escuchar esta ayuda"); }
+function atalayaBtnHTML(wk, wi){ return helpAudioBtnHTML("Escuchar esta ayuda"); }
 /* Semanas parciales: las secciones que una semana no trae en data.js
    muestran una nota sencilla, sin errores, con la lista de semanas. */
 function sinContenidoHTML(section, wi, icon, title, smallFn){
@@ -1519,99 +1533,46 @@ function panelEnsureWeekShape(w){
   w.atalaya.paragraphs = Array.isArray(w.atalaya.paragraphs) ? w.atalaya.paragraphs : [];
   return w;
 }
+
+let panelTab = "tesoros";
 function panelHTML(){
   const opts = WEEKS.map((w,i)=>'<option value="'+i+'"'+(i===panelWi?' selected':'')+'>'+esc((w.range||('Semana '+(i+1)))+' · '+(w.startDate||''))+'</option>').join("");
   const dailyOpts = (DATA.daily||[]).map((d,i)=>'<option value="'+i+'"'+(i===panelDailyIdx?' selected':'')+'>'+esc((d.date||'')+' · '+(d.ref||''))+'</option>').join("");
+  const illOpts = (DATA.illustrations||[]).map((x,i)=>'<option value="'+i+'">'+esc((x.num!=null?x.num:(i+1))+' — '+(x.title||'Sin título'))+'</option>').join("");
+  const pensOpts = (DATA.pensamientos||[]).slice().sort((a,b)=>(a.orden||0)-(b.orden||0)).map(p=>{ const idx=(DATA.pensamientos||[]).findIndex(x=>x.orden===p.orden); return '<option value="'+idx+'">'+esc((p.orden||'')+' — '+(p.tipo||'Pensamiento'))+'</option>'; }).join("");
+  const tabs = [["semana","📅 Semana"],["tesoros","📖 Tesoros"],["perlas","💎 Perlas"],["vida","👥 Vida"],["estudio","🎓 Estudio"],["discurso","🎤 Discurso"],["atalaya","📚 Atalaya"],["diario","📆 Texto diario"],["ilustracion","🖼️ Ilustración"],["pensamiento","💭 Pensamiento"],["publicar","✅ Publicar"]];
+  const tabBtns = tabs.map(t=>'<button data-paneltab="'+t[0]+'" class="'+(panelTab===t[0]?'on':'')+'">'+t[1]+'</button>').join("");
+  function pasteBox(id, label, hint){
+    return '<div class="pastebox"><h3>'+label+'</h3><p class="panelhint">'+hint+'</p><textarea class="paneltextarea big" id="'+id+'" placeholder="Pega aquí todo el texto de esta asignación…"></textarea><div class="panelrow"><button class="panelbtn primary" data-autofill="'+id+'">✨ Separar automáticamente</button></div></div>';
+  }
+  function imgBox(prefix, label){
+    return '<div class="panelbox"><h3>'+label+'</h3><label class="panellabel">Subir imagen</label><input type="file" accept="image/*" class="panelinput" id="pimg_file_'+prefix+'"><label class="panellabel">Dónde ponerla</label><select class="panelselect" id="pimg_pos_'+prefix+'"><option value="arriba">Arriba del texto</option><option value="abajo">Abajo del texto</option><option value="despues-1">Después del párrafo 1</option><option value="despues-2">Después del párrafo 2</option><option value="despues-3">Después del párrafo 3</option></select><p class="panelhint" id="pimg_status_'+prefix+'"></p><img id="pimg_preview_'+prefix+'" style="display:none;max-width:100%;border-radius:12px;margin-top:8px"></div>';
+  }
   return head("Panel para publicar") +
-  '<p class="panelhint">Aquí puedes preparar la próxima semana sin tocar código. Guarda un borrador en este teléfono, aplícalo aquí para verlo, o exporta <b>data.js</b> y envíalo para publicarlo en el mismo enlace. Tus notas, favoritos y subrayados no se tocan.</p>' +
-  '<div class="panelbox"><h3>1. Semana a editar</h3>' +
-  '<label class="panellabel">Elige una semana</label><select class="panelselect" id="panelWeekSelect">'+opts+'</select>' +
-  '<div class="panelrow"><button class="panelbtn" id="panelNewWeek">➕ Nueva semana</button><button class="panelbtn" id="panelPreviewWeek">👁️ Ver semana</button></div>' +
-  '<label class="panellabel">Rango</label><input class="panelinput" id="pw_range" placeholder="30 de noviembre al 6 de diciembre de 2026">' +
-  '<div class="panelrow"><div style="flex:1;min-width:130px"><label class="panellabel">Fecha inicio</label><input class="panelinput" id="pw_start" type="date"></div><div style="flex:1;min-width:130px"><label class="panellabel">Fecha fin</label><input class="panelinput" id="pw_end" type="date"></div></div>' +
-  '</div>' +
-  '<div class="panelbox"><h3>2. Pegar desde Dola IA o ChatGPT</h3>' +
-  '<p class="panelhint">Pega aquí el texto que te dio la IA y toca “Rellenar automáticamente”. Luego revisa y corrige los campos. No copies texto extenso con derechos de autor; usa resúmenes y citas cortas.</p>' +
-  '<textarea class="paneltextarea big" id="panelPaste" placeholder="Pega aquí: Tesoros…, Perlas…, Vida cristiana…, Estudio…, Atalaya…"></textarea>' +
-  '<div class="panelrow"><button class="panelbtn primary" id="panelAutoFill">✨ Rellenar automáticamente</button></div>' +
-  '</div>' +
-  '<div class="panelbox"><h3>3. Tesoros de la Biblia</h3>' +
-  '<label class="panellabel">Título</label><input class="panelinput" id="pt_title">' +
-  '<label class="panellabel">Lectura</label><input class="panelinput" id="pt_reading">' +
-  '<label class="panellabel">Duración</label><input class="panelinput" id="pt_duration">' +
-  '<label class="panellabel">Objetivo</label><textarea class="paneltextarea" id="pt_objective"></textarea>' +
-  '<label class="panellabel">Desarrollo</label><textarea class="paneltextarea big" id="pt_development"></textarea>' +
-  '</div>' +
-  '<div class="panelbox"><h3>4. Busquemos perlas escondidas</h3><div id="panelPerlasList"></div><div class="panelrow"><button class="panelbtn" id="panelAddPerla">➕ Agregar perla</button></div></div>' +
-  '<div class="panelbox"><h3>5. Nuestra vida cristiana</h3>' +
-  '<label class="panellabel">Título</label><input class="panelinput" id="pv_title">' +
-  '<label class="panellabel">Subtítulo</label><input class="panelinput" id="pv_subtitle">' +
-  '<label class="panellabel">Duración</label><input class="panelinput" id="pv_duration">' +
-  '<div id="panelVidaList"></div><div class="panelrow"><button class="panelbtn" id="panelAddVida">➕ Agregar parte</button></div>' +
-  '</div>' +
-  '<div class="panelbox"><h3>6. Estudio bíblico</h3>' +
-  '<label class="panellabel">Libro</label><input class="panelinput" id="pe_book">' +
-  '<label class="panellabel">Capítulo / tema</label><input class="panelinput" id="pe_chapter">' +
-  '<label class="panellabel">Lectura</label><input class="panelinput" id="pe_reading">' +
-  '<div id="panelEstudioList"></div><div class="panelrow"><button class="panelbtn" id="panelAddEstudio">➕ Agregar pregunta</button></div>' +
-  '</div>' +
-  '<div class="panelbox"><h3>7. Discurso público</h3>' +
-  '<label class="panellabel">Título</label><input class="panelinput" id="pd_title">' +
-  '<div class="panelrow"><div style="flex:1;min-width:110px"><label class="panellabel">Número</label><input class="panelinput" id="pd_number"></div><div style="flex:1;min-width:110px"><label class="panellabel">Duración</label><input class="panelinput" id="pd_duration"></div></div>' +
-  '<label class="panellabel">Texto base</label><input class="panelinput" id="pd_textRef">' +
-  '<label class="panellabel">Nota</label><textarea class="paneltextarea" id="pd_note"></textarea>' +
-  '</div>' +
-  '<div class="panelbox"><h3>8. Estudio de La Atalaya</h3>' +
-  '<label class="panellabel">Fecha</label><input class="panelinput" id="pa_dateLabel">' +
-  '<label class="panellabel">Título</label><input class="panelinput" id="pa_title">' +
-  '<label class="panellabel">Texto tema</label><input class="panelinput" id="pa_themeText">' +
-  '<div id="panelAtalayaList"></div><div class="panelrow"><button class="panelbtn" id="panelAddAtalaya">➕ Agregar párrafo</button></div>' +
-  '</div>' +
-  '<div class="panelbox"><h3>9. Texto diario</h3>' +
-  '<label class="panellabel">Elige un día</label><select class="panelselect" id="panelDailySelect">'+dailyOpts+'</select>' +
-  '<div class="panelrow"><button class="panelbtn" id="panelNewDaily">➕ Nuevo día</button></div>' +
-  '<label class="panellabel">Fecha (AAAA-MM-DD)</label><input class="panelinput" id="pdaily_date" type="date">' +
-  '<label class="panellabel">Etiqueta</label><input class="panelinput" id="pdaily_label" placeholder="28 de noviembre de 2026">' +
-  '<label class="panellabel">Día de la semana</label><input class="panelinput" id="pdaily_weekday">' +
-  '<label class="panellabel">Referencia</label><input class="panelinput" id="pdaily_ref">' +
-  '<label class="panellabel">Versículo</label><textarea class="paneltextarea" id="pdaily_verse"></textarea>' +
-  '<label class="panellabel">Comentario</label><textarea class="paneltextarea" id="pdaily_comment"></textarea>' +
-  '<label class="panellabel">Ejemplo</label><textarea class="paneltextarea" id="pdaily_example"></textarea>' +
-  '<label class="panellabel">Lecciones</label><textarea class="paneltextarea" id="pdaily_lessons"></textarea>' +
-  '<label class="panellabel">Enlace oficial</label><input class="panelinput" id="pdaily_link">' +
-  '</div>' +
-  '<div class="panelbox"><h3>10. Ilustraciones</h3>' +
-  '<p class="panelhint">Elige una ilustración para editarla. La imagen debe ser una de las que ya están en la app (por ejemplo img/il-2.jpg). Subir imágenes nuevas desde aquí lo dejamos para después.</p>' +
-  '<label class="panellabel">Elige una ilustración</label><select class="panelselect" id="panelIllSelect"></select>' +
-  '<div class="panelrow"><button class="panelbtn" id="panelNewIll">➕ Nueva ilustración</button><button class="panelbtn" id="panelViewIll">👁️ Ver ilustraciones</button></div>' +
-  '<label class="panellabel">Número</label><input class="panelinput" id="pill_num" type="number">' +
-  '<label class="panellabel">Título</label><input class="panelinput" id="pill_title">' +
-  '<label class="panellabel">Texto bíblico</label><input class="panelinput" id="pill_bibleText">' +
-  '<label class="panellabel">Enseñanza</label><textarea class="paneltextarea" id="pill_teaching"></textarea>' +
-  '<label class="panellabel">Ejemplo</label><textarea class="paneltextarea" id="pill_example"></textarea>' +
-  '<label class="panellabel">Explicación</label><textarea class="paneltextarea" id="pill_explanation"></textarea>' +
-  '<label class="panellabel">Aplicación</label><textarea class="paneltextarea" id="pill_application"></textarea>' +
-  '<label class="panellabel">Imagen (ruta)</label><input class="panelinput" id="pill_imgSrc" placeholder="img/il-2.jpg">' +
-  '<label class="panellabel">Texto alternativo de la imagen</label><input class="panelinput" id="pill_imgAlt">' +
-  '</div>' +
-  '<div class="panelbox"><h3>11. Pensamientos para meditar</h3>' +
-  '<p class="panelhint">Elige un pensamiento para editarlo. El orden decide cuál se muestra cada semana.</p>' +
-  '<label class="panellabel">Elige un pensamiento</label><select class="panelselect" id="panelPensSelect"></select>' +
-  '<div class="panelrow"><button class="panelbtn" id="panelNewPens">➕ Nuevo pensamiento</button><button class="panelbtn" id="panelViewPens">👁️ Ver pensamientos</button></div>' +
-  '<label class="panellabel">Orden</label><input class="panelinput" id="ppens_orden" type="number">' +
-  '<label class="panellabel">Tipo</label><input class="panelinput" id="ppens_tipo" placeholder="Reflexión">' +
-  '<label class="panellabel">Referencia</label><input class="panelinput" id="ppens_referencia">' +
-  '<label class="panellabel">Texto</label><textarea class="paneltextarea big" id="ppens_texto"></textarea>' +
-  '<label class="panellabel">Descripción</label><textarea class="paneltextarea" id="ppens_descripcion"></textarea>' +
-  '<label class="panellabel">Imagen (ruta, opcional)</label><input class="panelinput" id="ppens_image" placeholder="img/... o déjalo vacío">' +
-  '</div>' +
-  '<div class="panelbox"><h3>12. Guardar y publicar</h3>' +
-  '<p class="panelhint">“Aplicar en este dispositivo” muestra los cambios solo aquí. Para que lo vean todos, usa “Exportar data.js” y envía ese archivo para publicarlo en el mismo enlace.</p>' +
-  '<div class="panelrow"><button class="panelbtn" id="panelSaveDraft">💾 Guardar borrador</button><button class="panelbtn" id="panelLoadDraft">📂 Cargar borrador</button></div>' +
-  '<div class="panelrow"><button class="panelbtn primary" id="panelApplyLocal">✅ Aplicar en este dispositivo</button><button class="panelbtn" id="panelExport">⬇️ Exportar data.js</button></div>' +
-  '<div class="panelrow"><button class="panelbtn" id="panelWhatsApp">💬 Pedir publicación por WhatsApp</button><button class="panelbtn warn" id="panelClearLocal">🧹 Quitar cambios locales</button></div>' +
-  '<p class="panelstatus" id="panelStatus"></p>' +
-  '</div>';
+  '<p class="panelhint">Cada asignación se prepara por separado. Elige una pestaña, pega todo el texto en el cuadro grande y toca <b>Separar automáticamente</b>. Revisa los campos, agrega imagen si quieres, y al final ve a <b>Publicar</b>.</p>' +
+  '<div class="paneltabs">'+tabBtns+'</div>' +
+  // SEMANA
+  '<div class="panel-tab'+(panelTab==="semana"?" on":"")+'" data-tabpanel="semana"><div class="panelbox"><h3>Semana a editar</h3><label class="panellabel">Elige una semana</label><select class="panelselect" id="panelWeekSelect">'+opts+'</select><div class="panelrow"><button class="panelbtn" id="panelNewWeek">➕ Nueva semana</button><button class="panelbtn" id="panelPreviewWeek">👁️ Ver semana</button></div><label class="panellabel">Rango</label><input class="panelinput" id="pw_range" placeholder="30 de noviembre al 6 de diciembre de 2026"><div class="panelrow"><div style="flex:1;min-width:130px"><label class="panellabel">Fecha inicio</label><input class="panelinput" id="pw_start" type="date"></div><div style="flex:1;min-width:130px"><label class="panellabel">Fecha fin</label><input class="panelinput" id="pw_end" type="date"></div></div></div></div>' +
+  // TESOROS
+  '<div class="panel-tab'+(panelTab==="tesoros"?" on":"")+'" data-tabpanel="tesoros">' + pasteBox("paste_tesoros","Pegar Tesoros","Pega título, lectura, duración, objetivo y desarrollo. Se separará por párrafos.") + '<div class="panelbox"><h3>Tesoros de la Biblia</h3><label class="panellabel">Título</label><input class="panelinput" id="pt_title"><label class="panellabel">Lectura</label><input class="panelinput" id="pt_reading"><label class="panellabel">Duración</label><input class="panelinput" id="pt_duration"><label class="panellabel">Objetivo</label><textarea class="paneltextarea" id="pt_objective"></textarea><label class="panellabel">Desarrollo (por párrafos)</label><textarea class="paneltextarea big" id="pt_development"></textarea></div>' + imgBox("tesoros","Imagen de Tesoros") + '</div>' +
+  // PERLAS
+  '<div class="panel-tab'+(panelTab==="perlas"?" on":"")+'" data-tabpanel="perlas">' + pasteBox("paste_perlas","Pegar Perlas","Pega referencias con su comentario. Se separará cada perla.") + '<div class="panelbox"><h3>Busquemos perlas escondidas</h3><div id="panelPerlasList"></div><div class="panelrow"><button class="panelbtn" id="panelAddPerla">➕ Agregar perla</button></div></div></div>' +
+  // VIDA
+  '<div class="panel-tab'+(panelTab==="vida"?" on":"")+'" data-tabpanel="vida">' + pasteBox("paste_vida","Pegar Vida cristiana / Seamos mejores maestros","Pega título, subtítulo, duración y partes. Se separará por párrafos y apartados.") + '<div class="panelbox"><h3>Nuestra vida cristiana</h3><label class="panellabel">Título</label><input class="panelinput" id="pv_title"><label class="panellabel">Subtítulo</label><input class="panelinput" id="pv_subtitle"><label class="panellabel">Duración</label><input class="panelinput" id="pv_duration"><div id="panelVidaList"></div><div class="panelrow"><button class="panelbtn" id="panelAddVida">➕ Agregar parte</button></div></div>' + imgBox("vida","Imagen de Vida") + '</div>' +
+  // ESTUDIO
+  '<div class="panel-tab'+(panelTab==="estudio"?" on":"")+'" data-tabpanel="estudio">' + pasteBox("paste_estudio","Pegar Estudio bíblico","Pega libro, capítulo, lectura y preguntas con respuestas. Se separará pregunta/respuesta y adicionales.") + '<div class="panelbox"><h3>Estudio bíblico</h3><label class="panellabel">Libro</label><input class="panelinput" id="pe_book"><label class="panellabel">Capítulo / tema</label><input class="panelinput" id="pe_chapter"><label class="panellabel">Lectura</label><input class="panelinput" id="pe_reading"><div id="panelEstudioList"></div><div class="panelrow"><button class="panelbtn" id="panelAddEstudio">➕ Agregar pregunta</button></div></div>' + imgBox("estudio","Imagen de Estudio") + '</div>' +
+  // DISCURSO
+  '<div class="panel-tab'+(panelTab==="discurso"?" on":"")+'" data-tabpanel="discurso">' + pasteBox("paste_discurso","Pegar Discurso público","Pega título, número, duración, texto base y nota.") + '<div class="panelbox"><h3>Discurso público</h3><label class="panellabel">Título</label><input class="panelinput" id="pd_title"><div class="panelrow"><div style="flex:1;min-width:110px"><label class="panellabel">Número</label><input class="panelinput" id="pd_number"></div><div style="flex:1;min-width:110px"><label class="panellabel">Duración</label><input class="panelinput" id="pd_duration"></div></div><label class="panellabel">Texto base</label><input class="panelinput" id="pd_textRef"><label class="panellabel">Nota</label><textarea class="paneltextarea" id="pd_note"></textarea></div></div>' +
+  // ATALAYA
+  '<div class="panel-tab'+(panelTab==="atalaya"?" on":"")+'" data-tabpanel="atalaya">' + pasteBox("paste_atalaya","Pegar Atalaya","Pega fecha, título, texto tema y párrafos con pregunta, respuesta y preguntas adicionales. Se separará por párrafos.") + '<div class="panelbox"><h3>Estudio de La Atalaya</h3><label class="panellabel">Fecha</label><input class="panelinput" id="pa_dateLabel"><label class="panellabel">Título</label><input class="panelinput" id="pa_title"><label class="panellabel">Texto tema</label><input class="panelinput" id="pa_themeText"><div id="panelAtalayaList"></div><div class="panelrow"><button class="panelbtn" id="panelAddAtalaya">➕ Agregar párrafo</button></div></div>' + imgBox("atalaya","Imagen de Atalaya") + '</div>' +
+  // DIARIO
+  '<div class="panel-tab'+(panelTab==="diario"?" on":"")+'" data-tabpanel="diario">' + pasteBox("paste_diario","Pegar Texto diario","Pega fecha, referencia, versículo, comentario, ejemplo y lecciones. Se separará por campos.") + '<div class="panelbox"><h3>Texto diario</h3><label class="panellabel">Elige un día</label><select class="panelselect" id="panelDailySelect">'+dailyOpts+'</select><div class="panelrow"><button class="panelbtn" id="panelNewDaily">➕ Nuevo día</button></div><label class="panellabel">Fecha (AAAA-MM-DD)</label><input class="panelinput" id="pdaily_date" type="date"><label class="panellabel">Etiqueta</label><input class="panelinput" id="pdaily_label"><label class="panellabel">Día de la semana</label><input class="panelinput" id="pdaily_weekday"><label class="panellabel">Referencia</label><input class="panelinput" id="pdaily_ref"><label class="panellabel">Versículo</label><textarea class="paneltextarea" id="pdaily_verse"></textarea><label class="panellabel">Comentario</label><textarea class="paneltextarea" id="pdaily_comment"></textarea><label class="panellabel">Ejemplo</label><textarea class="paneltextarea" id="pdaily_example"></textarea><label class="panellabel">Lecciones</label><textarea class="paneltextarea" id="pdaily_lessons"></textarea><label class="panellabel">Enlace oficial</label><input class="panelinput" id="pdaily_link"></div></div>' +
+  // ILUSTRACION
+  '<div class="panel-tab'+(panelTab==="ilustracion"?" on":"")+'" data-tabpanel="ilustracion">' + pasteBox("paste_ilustracion","Pegar Ilustración","Pega título, texto bíblico, enseñanza, ejemplo, explicación y aplicación.") + '<div class="panelbox"><h3>Ilustración</h3><label class="panellabel">Elige una ilustración</label><select class="panelselect" id="panelIllSelect">'+illOpts+'</select><div class="panelrow"><button class="panelbtn" id="panelNewIll">➕ Nueva ilustración</button><button class="panelbtn" id="panelViewIll">👁️ Ver ilustraciones</button></div><label class="panellabel">Número</label><input class="panelinput" id="pill_num" type="number"><label class="panellabel">Título</label><input class="panelinput" id="pill_title"><label class="panellabel">Texto bíblico</label><input class="panelinput" id="pill_bibleText"><label class="panellabel">Enseñanza</label><textarea class="paneltextarea" id="pill_teaching"></textarea><label class="panellabel">Ejemplo</label><textarea class="paneltextarea" id="pill_example"></textarea><label class="panellabel">Explicación</label><textarea class="paneltextarea" id="pill_explanation"></textarea><label class="panellabel">Aplicación</label><textarea class="paneltextarea" id="pill_application"></textarea><label class="panellabel">Imagen (ruta)</label><input class="panelinput" id="pill_imgSrc"><label class="panellabel">Texto alternativo</label><input class="panelinput" id="pill_imgAlt"></div>' + imgBox("ilustracion","Subir imagen de ilustración") + '</div>' +
+  // PENSAMIENTO
+  '<div class="panel-tab'+(panelTab==="pensamiento"?" on":"")+'" data-tabpanel="pensamiento">' + pasteBox("paste_pensamiento","Pegar Pensamiento para meditar","Pega tipo, referencia y texto del pensamiento.") + '<div class="panelbox"><h3>Pensamiento para meditar</h3><label class="panellabel">Elige un pensamiento</label><select class="panelselect" id="panelPensSelect">'+pensOpts+'</select><div class="panelrow"><button class="panelbtn" id="panelNewPens">➕ Nuevo pensamiento</button><button class="panelbtn" id="panelViewPens">👁️ Ver pensamientos</button></div><label class="panellabel">Orden</label><input class="panelinput" id="ppens_orden" type="number"><label class="panellabel">Tipo</label><input class="panelinput" id="ppens_tipo"><label class="panellabel">Referencia</label><input class="panelinput" id="ppens_referencia"><label class="panellabel">Texto</label><textarea class="paneltextarea big" id="ppens_texto"></textarea><label class="panellabel">Descripción</label><textarea class="paneltextarea" id="ppens_descripcion"></textarea><label class="panellabel">Imagen (ruta, opcional)</label><input class="panelinput" id="ppens_image"></div></div>' +
+  // PUBLICAR
+  '<div class="panel-tab'+(panelTab==="publicar"?" on":"")+'" data-tabpanel="publicar"><div class="panelbox"><h3>Guardar y publicar</h3><p class="panelhint">“Aplicar en este dispositivo” muestra los cambios solo aquí. Para que lo vean todos, usa “Exportar data.js” y envía ese archivo para publicarlo en el mismo enlace.</p><div class="panelrow"><button class="panelbtn" id="panelSaveDraft">💾 Guardar borrador</button><button class="panelbtn" id="panelLoadDraft">📂 Cargar borrador</button></div><div class="panelrow"><button class="panelbtn primary" id="panelApplyLocal">✅ Aplicar en este dispositivo</button><button class="panelbtn" id="panelExport">⬇️ Exportar data.js</button></div><div class="panelrow"><button class="panelbtn" id="panelWhatsApp">💬 Pedir publicación por WhatsApp</button><button class="panelbtn warn" id="panelClearLocal">🧹 Quitar cambios locales</button></div><p class="panelstatus" id="panelStatus"></p></div></div>';
 }
 function panelSetVal(id, v){ const el=$(id); if(el) el.value = v==null?"":v; }
 function panelGetVal(id){ const el=$(id); return el ? el.value : ""; }
@@ -1751,7 +1712,7 @@ function panelAutoFill(){
   panelStatus(filled?("Listo: rellené "+filled+" sección(es). Revisa y corrige antes de publicar."):"No reconocí secciones claras. Revisa el texto pegado o llena los campos a mano.");
 }
 function panelExport(){
-  panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens();
+  panelApplyUploadedImages(); panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens();
   const out = {week: DATA.week, daily: DATA.daily, illustrations: DATA.illustrations, verses: DATA.verses, weeks: WEEKS, pensamientos: DATA.pensamientos};
   const blob = new Blob(["const DATA = "+JSON.stringify(out,null,2)+";\n"], {type:"text/javascript"});
   const url = URL.createObjectURL(blob);
@@ -1759,8 +1720,237 @@ function panelExport(){
   setTimeout(()=>URL.revokeObjectURL(url),1000);
   panelStatus("data.js exportado. Envíalo para publicarlo en el mismo enlace.");
 }
+
+/* ===== Panel v2: pestañas, pegado por asignación, imágenes ===== */
+let panelUploadedImages = {}; // prefix -> {src, pos}
+function panelShowTab(tab){
+  panelTab = tab;
+  app.querySelectorAll("[data-paneltab]").forEach(b=>b.classList.toggle("on", b.dataset.paneltab===tab));
+  app.querySelectorAll("[data-tabpanel]").forEach(d=>d.classList.toggle("on", d.dataset.tabpanel===tab));
+}
+function splitParagraphs(txt){
+  if(!txt) return [];
+  const t=String(txt).trim();
+  // Separar por párrafos numerados o por líneas en blanco
+  if(/\n\s*\d+\s*[.)]/.test(t)){
+    const parts=t.split(/\n\s*(?=\d+\s*[.)])/).map(x=>x.trim()).filter(Boolean);
+    if(parts.length>1) return parts;
+  }
+  return t.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
+}
+function firstLines(txt, n){
+  return String(txt||"").split("\n").map(x=>x.trim()).filter(Boolean).slice(0,n||2);
+}
+function parseTesorosPaste(txt){
+  const w=panelEnsureWeekShape(panelWeek());
+  const lines=firstLines(txt,6);
+  // Título: primera línea corta
+  if(lines[0] && lines[0].length<140 && !/minutos|min\./i.test(lines[0])) w.tesoros.title=lines[0];
+  // Lectura: línea con referencia bíblica o "Lectura:"
+  const lectLine=lines.find(l=>/lectura|jueces|ezequiel|salmo|mateo|lucas|juan|hechos|romanos|1 |2 /i.test(l));
+  if(lectLine) w.tesoros.reading=lectLine.replace(/lectura\s*:\s*/i,"");
+  const durLine=lines.find(l=>/minutos|min\./i.test(l));
+  if(durLine) w.tesoros.duration=durLine.match(/\d+\s*minutos?/i)?.[0]||durLine;
+  // Desarrollo: todo el texto, dividido por párrafos, quitando título/lectura/duración iniciales si se detectan
+  let body=txt;
+  // Objetivo: buscar sección "Objetivo"
+  const objMatch=txt.match(/objetivo\s*:\s*([\s\S]*?)(?:\n\s*\n|desarrollo\s*:|$)/i);
+  if(objMatch) w.tesoros.objective=objMatch[1].trim();
+  w.tesoros.development=splitParagraphs(body).join("\n\n");
+  panelLoadWeek();
+  panelStatus("Tesoros separado por párrafos. Revisa y corrige.");
+}
+function parsePerlasPaste(txt){
+  const w=panelEnsureWeekShape(panelWeek());
+  const refRe=/(Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Jueces|Rut|1 Samuel|2 Samuel|1 Reyes|2 Reyes|1 Crónicas|2 Crónicas|Esdras|Nehemías|Ester|Job|Salmo|Salmos|Proverbios|Eclesiastés|Cantares|Isaías|Jeremías|Lamentaciones|Ezequiel|Daniel|Oseas|Joel|Amós|Abdías|Jonás|Miqueas|Nahúm|Habacuc|Sofonías|Hageo|Zacarías|Malaquías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|1 Corintios|2 Corintios|Gálatas|Efesios|Filipenses|Colosenses|1 Tesalonicenses|2 Tesalonicenses|1 Timoteo|2 Timoteo|Tito|Filemón|Hebreos|Santiago|1 Pedro|2 Pedro|1 Juan|2 Juan|3 Juan|Judas|Apocalipsis)\s+\d+:\d+(?:[-–]\d+)?/g;
+  const matches=[...txt.matchAll(refRe)];
+  if(matches.length){
+    const arr=[]; matches.forEach((m,i)=>{ const start=m.index; const end=(i+1<matches.length?matches[i+1].index:txt.length); const comment=txt.slice(start+m[0].length,end).trim(); arr.push({ref:m[0],comment:comment,summary:false}); });
+    w.perlas=arr;
+  } else {
+    w.perlas=[{ref:"",comment:txt,summary:false}];
+  }
+  panelLoadWeek();
+  panelStatus("Perlas separadas: "+w.perlas.length+". Revisa.");
+}
+function parseVidaPaste(txt){
+  const w=panelEnsureWeekShape(panelWeek());
+  const lines=firstLines(txt,6);
+  if(lines[0] && lines[0].length<140) w.vida.title=lines[0];
+  if(lines[1] && lines[1].length<140 && !/minutos/i.test(lines[1])) w.vida.subtitle=lines[1];
+  const dur=lines.find(l=>/minutos/i.test(l)); if(dur) w.vida.duration=dur.match(/\d+\s*minutos?/i)?.[0]||dur;
+  const paras=splitParagraphs(txt);
+  // Si hay apartados conocidos, dividir por ellos
+  const heads=["Iniciar conversación","Hacer discípulos","Explicar sus creencias","Necesidades locales","Estudio bíblico","Discurso"];
+  let sections=[];
+  paras.forEach(pa=>{
+    const head=heads.find(h=>pa.toLowerCase().includes(h.toLowerCase()));
+    sections.push({label:head||"",text:pa});
+  });
+  if(sections.length) w.vida.sections=sections;
+  panelLoadWeek();
+  panelStatus("Vida separada en "+sections.length+" parte(s). Revisa etiquetas.");
+}
+function parseEstudioPaste(txt){
+  const w=panelEnsureWeekShape(panelWeek());
+  const lines=firstLines(txt,6);
+  if(lines[0] && lines[0].length<140) w.estudio.chapter=lines[0];
+  if(lines[1] && /capítulo|tema|adoración/i.test(lines[1])) w.estudio.chapter=lines[1];
+  // Preguntas: buscar patrones "1." "Pregunta" "¿"
+  const items=[];
+  // Dividir por números de pregunta o por "Pregunta"
+  const qSplit=txt.split(/(?:\n\s*(?:Pregunta\s*)?\d+\s*[.)]\s*|\n\s*Pregunta\s+\d+\s*[:.]\s*)/i).map(x=>x.trim()).filter(Boolean);
+  if(qSplit.length>1){
+    qSplit.forEach((chunk,i)=>{
+      const qMatch=chunk.match(/^([^\n?]{5,200}\?)/);
+      let q=qMatch?qMatch[1].trim():"";
+      let rest=q?chunk.slice(q.length).trim():chunk;
+      // Extra: "Investigue un poco más:"
+      let extra="";
+      const exMatch=rest.match(/investigue un poco más\s*:\s*([\s\S]*?)(?:\n|$)/i);
+      if(exMatch){ extra=exMatch[1].trim(); rest=rest.replace(exMatch[0],"").trim(); }
+      items.push({n:i+1,q:q,a:rest,extra:extra});
+    });
+  } else {
+    items.push({n:1,q:"",a:txt,extra:""});
+  }
+  w.estudio.items=items;
+  panelLoadWeek();
+  panelStatus("Estudio separado en "+items.length+" pregunta(s). Revisa.");
+}
+function parseDiscursoPaste(txt){
+  const w=panelEnsureWeekShape(panelWeek());
+  const lines=firstLines(txt,6);
+  if(lines[0] && lines[0].length<160) w.discurso.title=lines[0];
+  const numLine=lines.find(l=>/n\.?°?\s*\d+|conferencia pública/i.test(l));
+  if(numLine){ const m=numLine.match(/\d+/); if(m) w.discurso.number=m[0]; }
+  const dur=lines.find(l=>/minutos/i.test(l)); if(dur) w.discurso.duration=dur.match(/\d+\s*minutos?/i)?.[0]||dur;
+  const refLine=lines.find(l=>/(Salmo|Mateo|Juan|Hechos|Romanos|1 |2 |Isaías|Daniel)\s+\d+/i.test(l));
+  if(refLine) w.discurso.textRef=refLine;
+  w.discurso.note=txt;
+  panelLoadWeek();
+  panelStatus("Discurso separado. Revisa título y nota.");
+}
+function parseAtalayaPaste(txt){
+  const w=panelEnsureWeekShape(panelWeek());
+  const lines=firstLines(txt,6);
+  if(lines[0] && lines[0].length<140) w.atalaya.title=lines[0];
+  const dateLine=lines.find(l=>/de\s+\d{4}|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre/i.test(l));
+  if(dateLine) w.atalaya.dateLabel=dateLine;
+  const themeLine=lines.find(l=>/«.*»|\(.*\d+:\d+.*\)/);
+  if(themeLine) w.atalaya.themeText=themeLine;
+  // Párrafos numerados
+  const paras=[];
+  const pSplit=txt.split(/\n\s*(?=\d+\s*[.)])/).map(x=>x.trim()).filter(Boolean);
+  const chunks = pSplit.length>1 ? pSplit : splitParagraphs(txt);
+  chunks.forEach((chunk,i)=>{
+    const numMatch=chunk.match(/^(\d+)\s*[.)]\s*/);
+    const num=numMatch?parseInt(numMatch[1],10):(i+1);
+    let body=numMatch?chunk.slice(numMatch[0].length):chunk;
+    // Pregunta: primera oración con ?
+    const qMatch=body.match(/^([^\n]{5,220}\?)/);
+    let q=qMatch?qMatch[1].trim():"";
+    let rest=q?body.slice(q.length).trim():body;
+    let extraQ="", extraA="";
+    const exMatch=rest.match(/pregunta adicional\s*:\s*([^\n]+\?)\s*([\s\S]*)$/i);
+    if(exMatch){ extraQ=exMatch[1].trim(); extraA=exMatch[2].trim(); rest=rest.slice(0,exMatch.index).trim(); }
+    paras.push({num:num,q:q,a:rest,extraQ:extraQ,extraA:extraA});
+  });
+  if(paras.length) w.atalaya.paragraphs=paras;
+  panelLoadWeek();
+  panelStatus("Atalaya separada en "+paras.length+" párrafo(s) con pregunta/respuesta. Revisa adicionales.");
+}
+function parseDiarioPaste(txt){
+  const d=(DATA.daily||[])[panelDailyIdx]||{};
+  const lines=firstLines(txt,8);
+  // Fecha
+  const dateMatch=txt.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if(dateMatch) d.date=dateMatch[0];
+  const refMatch=txt.match(/((?:1 |2 |3 )?(?:Génesis|Éxodo|Salmo|Proverbios|Isaías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|1 Corintios|2 Corintios|Gálatas|Efesios|Filipenses|Colosenses|1 Tesalonicenses|2 Tesalonicenses|1 Timoteo|2 Timoteo|Tito|Hebreos|Santiago|1 Pedro|2 Pedro|1 Juan|Judas|Apocalipsis|Josué|Jueces|Rut|Job|Ezequiel|Daniel|Oseas|Joel|Amós|Jonás|Miqueas|Nahúm|Habacuc|Sofonías|Hageo|Zacarías|Malaquías|Levítico|Números|Deuteronomio|1 Samuel|2 Samuel|1 Reyes|2 Reyes|1 Crónicas|2 Crónicas|Esdras|Nehemías|Ester|Eclesiastés|Cantares|Jeremías|Lamentaciones|Abdías)\s+\d+:\d+(?:[-–]\d+)?)/);
+  if(refMatch) d.ref=refMatch[1];
+  // Campos por etiquetas
+  function after(label){ const m=txt.match(new RegExp(label+"\\s*:\\s*([\\s\\S]*?)(?:\\n\\s*(?:Versículo|Comentario|Ejemplo|Lecciones|Referencia|Fecha|Enlace)\\s*:|$)","i")); return m?m[1].trim():""; }
+  const verse=after("Versículo")||after("Texto");
+  if(verse) d.verse=verse;
+  const com=after("Comentario"); if(com) d.comment=com;
+  const ex=after("Ejemplo"); if(ex) d.example=ex;
+  const les=after("Lecciones"); if(les) d.lessons=les;
+  if(!d.verse && lines.length>1) d.verse=lines[1];
+  if(!d.comment && lines.length>2) d.comment=lines.slice(2).join("\n\n");
+  if(!DATA.daily[panelDailyIdx]) DATA.daily[panelDailyIdx]=d;
+  panelLoadDaily();
+  panelStatus("Texto diario separado. Revisa fecha y referencia.");
+}
+function parseIlustracionPaste(txt){
+  const x=(DATA.illustrations||[])[panelIllIdx]; if(!x) return;
+  const lines=firstLines(txt,8);
+  if(lines[0] && lines[0].length<140) x.title=lines[0];
+  const refMatch=txt.match(/((?:1 |2 )?(?:Génesis|Éxodo|Salmo|Proverbios|Mateo|Lucas|Juan|Hechos|Romanos|Efesios|Hebreos|Santiago|Isaías|Jeremías|Ezequiel|Daniel)\s+\d+:\d+(?:[-–]\d+)?)/);
+  if(refMatch) x.bibleText=refMatch[1];
+  function after(label){ const m=txt.match(new RegExp(label+"\\s*:\\s*([\\s\\S]*?)(?:\\n\\s*(?:Enseñanza|Ejemplo|Explicación|Aplicación|Texto bíblico|Título)\\s*:|$)","i")); return m?m[1].trim():""; }
+  x.teaching=after("Enseñanza")||x.teaching;
+  x.example=after("Ejemplo")||x.example;
+  x.explanation=after("Explicación")||x.explanation;
+  x.application=after("Aplicación")||x.application;
+  if(!x.example && lines.length>2) x.example=lines.slice(2).join("\n\n");
+  panelLoadIll();
+  panelStatus("Ilustración separada. Revisa campos.");
+}
+function parsePensamientoPaste(txt){
+  const x=(DATA.pensamientos||[])[panelPensIdx]; if(!x) return;
+  const lines=firstLines(txt,6);
+  if(lines[0] && lines[0].length<60) x.tipo=lines[0];
+  const refMatch=txt.match(/((?:1 |2 )?(?:Génesis|Salmo|Proverbios|Mateo|Lucas|Juan|Hechos|Romanos|Efesios|Hebreos|Santiago|Isaías|Jeremías|Ezequiel|Daniel)\s+\d+:\d+(?:[-–]\d+)?)/);
+  if(refMatch) x.referencia=refMatch[1];
+  x.texto=txt;
+  panelLoadPens();
+  panelStatus("Pensamiento separado. Revisa texto.");
+}
+function panelAutoFillFor(pasteId){
+  const el=$( "#"+pasteId); if(!el) return;
+  const txt=el.value.trim(); if(!txt){ panelStatus("Pega primero el texto en ese cuadro."); return; }
+  panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens();
+  if(pasteId==="paste_tesoros") parseTesorosPaste(txt);
+  else if(pasteId==="paste_perlas") parsePerlasPaste(txt);
+  else if(pasteId==="paste_vida") parseVidaPaste(txt);
+  else if(pasteId==="paste_estudio") parseEstudioPaste(txt);
+  else if(pasteId==="paste_discurso") parseDiscursoPaste(txt);
+  else if(pasteId==="paste_atalaya") parseAtalayaPaste(txt);
+  else if(pasteId==="paste_diario") parseDiarioPaste(txt);
+  else if(pasteId==="paste_ilustracion") parseIlustracionPaste(txt);
+  else if(pasteId==="paste_pensamiento") parsePensamientoPaste(txt);
+  else panelStatus("No reconozco ese cuadro.");
+}
+function panelHandleImage(prefix){
+  const fileEl=$("#pimg_file_"+prefix); const posEl=$("#pimg_pos_"+prefix); const statusEl=$("#pimg_status_"+prefix); const prevEl=$("#pimg_preview_"+prefix);
+  if(!fileEl || !fileEl.files || !fileEl.files[0]) return;
+  const file=fileEl.files[0];
+  if(file.size>2*1024*1024){ if(statusEl) statusEl.textContent="La imagen es muy grande (máx 2 MB)."; return; }
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const pos=posEl?posEl.value:"arriba";
+    panelUploadedImages[prefix]={src:reader.result,pos:pos};
+    if(prevEl){ prevEl.src=reader.result; prevEl.style.display="block"; }
+    if(statusEl) statusEl.textContent="Imagen lista ("+pos+"). Se guardará al exportar/publicar.";
+  };
+  reader.readAsDataURL(file);
+}
+function panelApplyUploadedImages(){
+  const w=panelEnsureWeekShape(panelWeek());
+  if(panelUploadedImages.tesoros){ w.tesoros.image=panelUploadedImages.tesoros.src; w.tesoros.imagePos=panelUploadedImages.tesoros.pos; }
+  if(panelUploadedImages.vida){ w.vida.image=panelUploadedImages.vida.src; w.vida.imagePos=panelUploadedImages.vida.pos; if(panelUploadedImages.vida.pos.startsWith("despues-")){ const n=parseInt(panelUploadedImages.vida.pos.split("-")[1],10); if(!isNaN(n)) w.vida.imageAfterSection=n-1; } }
+  if(panelUploadedImages.estudio){ w.estudio.image=panelUploadedImages.estudio.src; w.estudio.imagePos=panelUploadedImages.estudio.pos; }
+  if(panelUploadedImages.atalaya){ w.atalaya.image=panelUploadedImages.atalaya.src; w.atalaya.imagePos=panelUploadedImages.atalaya.pos; }
+  if(panelUploadedImages.ilustracion){ const x=(DATA.illustrations||[])[panelIllIdx]; if(x){ x.images=[{src:panelUploadedImages.ilustracion.src, alt:x.title||""}]; } }
+}
+
 function panelBind(){
   panelLoadWeek(); panelLoadDaily(); panelLoadIll(); panelLoadPens();
+  app.querySelectorAll("[data-paneltab]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); panelShowTab(b.dataset.paneltab); }));
+  app.querySelectorAll("[data-autofill]").forEach(b=>b.addEventListener("click",()=>panelAutoFillFor(b.dataset.autofill)));
+  ["tesoros","vida","estudio","atalaya","ilustracion"].forEach(prefix=>{
+    const f=$("#pimg_file_"+prefix); if(f) f.addEventListener("change",()=>panelHandleImage(prefix));
+  });
   const ws=$("#panelWeekSelect"); if(ws) ws.addEventListener("change",()=>{ panelSaveWeek(); panelSaveDaily(); panelWi=parseInt(ws.value,10)||0; panelLoadWeek(); panelStatus("Semana cargada."); });
   const nw=$("#panelNewWeek"); if(nw) nw.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); const tpl=JSON.parse(JSON.stringify(panelEnsureWeekShape(panelWeek()))); tpl.range=""; tpl.startDate=""; tpl.endDate=""; tpl.perlas=[]; tpl.tesoros={title:"",reading:"",duration:"",objective:"",development:"",image:"",imageCaption:""}; tpl.vida={title:"",subtitle:"",duration:"",sections:[],image:""}; tpl.estudio={book:"",chapter:"",reading:"",items:[],image:""}; tpl.discurso={title:"",number:"",duration:"",textRef:"",note:""}; tpl.atalaya={dateLabel:"",title:"",themeText:"",paragraphs:[]}; WEEKS.push(tpl); panelWi=WEEKS.length-1; render(); });
   const pv=$("#panelPreviewWeek"); if(pv) pv.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); location.hash="#/"; });
@@ -1771,9 +1961,9 @@ function panelBind(){
   const aa=$("#panelAddAtalaya"); if(aa) aa.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); w.atalaya.paragraphs.push({num:(w.atalaya.paragraphs.length+1),q:"",a:"",extraQ:"",extraA:""}); panelRenderAtalaya(); });
   const ds=$("#panelDailySelect"); if(ds) ds.addEventListener("change",()=>{ panelSaveDaily(); panelDailyIdx=parseInt(ds.value,10)||0; panelLoadDaily(); });
   const nd=$("#panelNewDaily"); if(nd) nd.addEventListener("click",()=>{ panelSaveDaily(); DATA.daily.unshift({date:"",label:"",weekday:"",ref:"",verse:"",comment:"",example:"",lessons:"",images:[],link:""}); panelDailyIdx=0; render(); });
-  const sd=$("#panelSaveDraft"); if(sd) sd.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); store.set("ar1_panel_draft",{weeks:WEEKS,daily:DATA.daily,illustrations:DATA.illustrations,pensamientos:DATA.pensamientos,when:Date.now()}); panelStatus("Borrador guardado en este dispositivo."); });
+  const sd=$("#panelSaveDraft"); if(sd) sd.addEventListener("click",()=>{ panelApplyUploadedImages(); panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); store.set("ar1_panel_draft",{weeks:WEEKS,daily:DATA.daily,illustrations:DATA.illustrations,pensamientos:DATA.pensamientos,when:Date.now()}); panelStatus("Borrador guardado en este dispositivo."); });
   const ld=$("#panelLoadDraft"); if(ld) ld.addEventListener("click",()=>{ const d=store.get("ar1_panel_draft",null); if(!d||!Array.isArray(d.weeks)){ panelStatus("No hay borrador guardado."); return; } DATA.weeks=d.weeks; DATA.daily=d.daily||DATA.daily; if(Array.isArray(d.illustrations)) DATA.illustrations=d.illustrations; if(Array.isArray(d.pensamientos)) DATA.pensamientos=d.pensamientos; WEEKS.splice(0,WEEKS.length,...DATA.weeks); panelWi=Math.min(panelWi,WEEKS.length-1); render(); });
-  const al=$("#panelApplyLocal"); if(al) al.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); store.set("ar1_panel_published",{weeks:WEEKS,daily:DATA.daily,illustrations:DATA.illustrations,pensamientos:DATA.pensamientos,when:Date.now()}); panelStatus("Aplicado en este dispositivo. Recargando…"); setTimeout(()=>location.reload(),600); });
+  const al=$("#panelApplyLocal"); if(al) al.addEventListener("click",()=>{ panelApplyUploadedImages(); panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); store.set("ar1_panel_published",{weeks:WEEKS,daily:DATA.daily,illustrations:DATA.illustrations,pensamientos:DATA.pensamientos,when:Date.now()}); panelStatus("Aplicado en este dispositivo. Recargando…"); setTimeout(()=>location.reload(),600); });
   const ex=$("#panelExport"); if(ex) ex.addEventListener("click",panelExport);
   const wa=$("#panelWhatsApp"); if(wa) wa.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); const msg="Hola, quiero publicar una semana en Ayudas para las Reuniones. Semana: "+(w.range||"")+". Ya preparé el contenido en el panel y puedo enviar el archivo data.js."; window.open((SUPPORT_WHATSAPP_LINK||"")+"?text="+encodeURIComponent(msg),"_blank"); });
   const cl=$("#panelClearLocal"); if(cl) cl.addEventListener("click",()=>{ localStorage.removeItem("ar1_panel_published"); panelStatus("Cambios locales quitados. Recargando…"); setTimeout(()=>location.reload(),600); });
@@ -1833,8 +2023,56 @@ function doSearch(q){
   resEl.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
 }
 
+
+/* ===== Audio que lee la ayuda publicada (no la guía oficial) ===== */
+let ttsChunks=[], ttsIdx=0, ttsPlaying=false;
+function ttsCleanText(txt){
+  return String(txt||"").replace(/\s+/g," ").replace(/🔖|💬|⬇️|⬆️|📖|💎|👥|🎓|🎤|📚|🖼️|💭|✅|🛠️|✨|➕|👁️|💾|📂|🧹/g,"").trim();
+}
+function ttsSpeakChunk(){
+  if(!ttsPlaying || ttsIdx>=ttsChunks.length){ ttsStop(); return; }
+  const u=new SpeechSynthesisUtterance(ttsChunks[ttsIdx]);
+  u.lang="es-MX"; u.rate=0.95; u.pitch=1;
+  u.onend=()=>{ ttsIdx++; ttsSpeakChunk(); };
+  u.onerror=()=>{ ttsIdx++; ttsSpeakChunk(); };
+  speechSynthesis.speak(u);
+}
+function ttsStop(){
+  try{ speechSynthesis.cancel(); }catch(e){}
+  ttsPlaying=false; ttsChunks=[]; ttsIdx=0;
+  const bar=$("#ttsbar"); if(bar) bar.classList.remove("show");
+  document.body.classList.remove("ttsopen");
+}
+function ttsTogglePause(){
+  if(!ttsPlaying) return;
+  if(speechSynthesis.paused){ speechSynthesis.resume(); const b=$("#ttsPause"); if(b) b.textContent="⏸️"; }
+  else { speechSynthesis.pause(); const b=$("#ttsPause"); if(b) b.textContent="▶️"; }
+}
+function startHelpAudio(){
+  if(!("speechSynthesis" in window)){ alert("Tu navegador no tiene lectura de voz."); return; }
+  const appEl=$("#app"); if(!appEl) return;
+  // Tomar solo el contenido principal, sin botones de navegación
+  let txt = appEl.innerText || "";
+  txt = ttsCleanText(txt);
+  // Quitar líneas de navegación comunes
+  txt = txt.replace(/Guardar|Favoritos|Ajustes|Buscar|Semanas anteriores|Escuchar esta ayuda/g,"");
+  if(txt.length<20){ alert("No hay texto para leer en esta pantalla."); return; }
+  ttsStop();
+  // Dividir en fragmentos de ~180 caracteres por frases
+  const sentences = txt.match(/[^.!?]+[.!?]+/g) || [txt];
+  ttsChunks=[]; let cur="";
+  sentences.forEach(sent=>{ if((cur+sent).length>180){ if(cur) ttsChunks.push(cur.trim()); cur=sent; } else cur+=sent; });
+  if(cur.trim()) ttsChunks.push(cur.trim());
+  ttsIdx=0; ttsPlaying=true;
+  const bar=$("#ttsbar"); if(bar) bar.classList.add("show");
+  document.body.classList.add("ttsopen");
+  const titleEl=$("#ttsTitle"); if(titleEl) titleEl.textContent="Escuchando la ayuda…";
+  const pauseBtn=$("#ttsPause"); if(pauseBtn) pauseBtn.textContent="⏸️";
+  ttsSpeakChunk();
+}
+
 function render(){
-  hideBar(); closeVerse();
+  hideBar(); closeVerse(); try{ ttsStop(); }catch(e){}
   imgSeq = 0;
   const h = location.hash || "#/";
   const parts = h.replace(/^#\/?/, "").split("/");
@@ -1917,12 +2155,15 @@ function render(){
   app.innerHTML = html;
   $("#backBtn").style.display = (r === "") ? "none" : "";
   app.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
+  app.querySelectorAll("[data-helpaudio]").forEach(b => b.addEventListener("click", startHelpAudio));
   app.querySelectorAll("[data-pubaudio]").forEach(b => b.addEventListener("click", () => {
     const w2 = WEEKS[parseInt(b.dataset.wi, 10)];
     if (!w2) return;
     if (b.dataset.pubaudio === "atalaya") playPubAudio(w2.audioAtalaya, "La Atalaya — " + w2.range);
     else playPubAudio(w2.audioGuia, "Guía de actividades — " + w2.range);
   }));
+  const _ttsPause=$("#ttsPause"); if(_ttsPause) _ttsPause.onclick=ttsTogglePause;
+  const _ttsStop=$("#ttsStop"); if(_ttsStop) _ttsStop.onclick=ttsStop;
   app.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { homeTab = b.dataset.tab; store.set("ar1_tab", homeTab); render(); }));
   app.querySelectorAll("[data-news]").forEach(b => b.addEventListener("click", () => { newsAll = true; render(); }));
   if (bind) bind();
@@ -1945,5 +2186,8 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js').catch(function(){}); });
 }
 </script>
+
+<div id="ttsbar"><div class="tts-top"><div id="ttsTitle">Escuchando…</div><button class="ttsbtn sec" id="ttsPause" aria-label="Pausar">⏸️</button><button class="ttsbtn sec" id="ttsStop" aria-label="Detener">⏹️</button></div></div>
+
 </body>
 </html>

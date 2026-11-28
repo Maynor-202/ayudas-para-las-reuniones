@@ -5,7 +5,7 @@
    - API (/api/*): solo red (no se cachea audio/texto)
    - Navegación: network-first, fallback a index cacheado
 */
-const CACHE = 'ayudas-v3';
+const CACHE = 'ayudas-v4';
 const CORE = [
   '/',
   '/index.html',
