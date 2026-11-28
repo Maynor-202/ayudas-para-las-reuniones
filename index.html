@@ -1192,11 +1192,14 @@ function weeksListHTML(section, wi, icon, smallFn){
 
 /* Botones «Escuchar» del reproductor de publicaciones: solo aparecen
    cuando la semana trae la referencia de audio en data.js. */
-function helpAudioBtnHTML(label){
-  return '<button class="listenbtn" data-helpaudio="1">' + ICO_HEADPHONES + '<span>' + esc(label || "Escuchar esta ayuda") + '</span></button>';
+function guiaBtnHTML(wk, wi){
+  if (!wk.audioGuia) return "";
+  return '<button class="listenbtn" data-pubaudio="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la guía de esta semana</span></button>";
 }
-function guiaBtnHTML(wk, wi){ return helpAudioBtnHTML("Escuchar esta ayuda"); }
-function atalayaBtnHTML(wk, wi){ return helpAudioBtnHTML("Escuchar esta ayuda"); }
+function atalayaBtnHTML(wk, wi){
+  if (!wk.audioAtalaya) return "";
+  return '<button class="listenbtn" data-pubaudio="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar el artículo</span></button>";
+}
 /* Semanas parciales: las secciones que una semana no trae en data.js
    muestran una nota sencilla, sin errores, con la lista de semanas. */
 function sinContenidoHTML(section, wi, icon, title, smallFn){
@@ -1550,7 +1553,7 @@ function panelHTML(){
   }
   return head("Panel para publicar") +
   '<p class="panelhint">Cada asignación se prepara por separado. Elige una pestaña, pega todo el texto en el cuadro grande y toca <b>Separar automáticamente</b>. Revisa los campos, agrega imagen si quieres, y al final ve a <b>Publicar</b>.</p>' +
-  '<div class="paneltabs">'+tabBtns+'</div>' +
+  '<div class="paneltabs">'+tabBtns+'</div>' + '<div class="panelbox" style="padding:10px 14px"><span class="panel-date-badge">📅 Semana: </span></div>' +
   // SEMANA
   '<div class="panel-tab'+(panelTab==="semana"?" on":"")+'" data-tabpanel="semana"><div class="panelbox"><h3>Semana a editar</h3><label class="panellabel">Elige una semana</label><select class="panelselect" id="panelWeekSelect">'+opts+'</select><div class="panelrow"><button class="panelbtn" id="panelNewWeek">➕ Nueva semana</button><button class="panelbtn" id="panelPreviewWeek">👁️ Ver semana</button></div><label class="panellabel">Rango</label><input class="panelinput" id="pw_range" placeholder="30 de noviembre al 6 de diciembre de 2026"><div class="panelrow"><div style="flex:1;min-width:130px"><label class="panellabel">Fecha inicio</label><input class="panelinput" id="pw_start" type="date"></div><div style="flex:1;min-width:130px"><label class="panellabel">Fecha fin</label><input class="panelinput" id="pw_end" type="date"></div></div></div></div>' +
   // TESOROS
@@ -1906,10 +1909,61 @@ function parsePensamientoPaste(txt){
   panelLoadPens();
   panelStatus("Pensamiento separado. Revisa texto.");
 }
+
+function panelParseDatesFromText(txt){
+  const w=panelWeek();
+  if(!w) return false;
+  let changed=false;
+  const months={enero:1,febrero:2,marzo:3,abril:4,mayo:5,junio:6,julio:7,agosto:8,septiembre:9,octubre:10,noviembre:11,diciembre:12};
+  // Rango: "30 de noviembre al 6 de diciembre de 2026" o "23 al 29 de noviembre de 2026"
+  const rangeMatch=txt.match(/(\d{1,2})\s*(?:de\s+([a-záéíóú]+))?\s+al\s+(\d{1,2})\s+de\s+([a-záéíóú]+)\s+de\s+(\d{4})/i);
+  if(rangeMatch){
+    const year=parseInt(rangeMatch[5],10);
+    const endMonth=months[rangeMatch[4].toLowerCase()]||1;
+    const startMonth=rangeMatch[2]? (months[rangeMatch[2].toLowerCase()]||endMonth) : endMonth;
+    const startDay=parseInt(rangeMatch[1],10), endDay=parseInt(rangeMatch[3],10);
+    const pad=n=>String(n).padStart(2,"0");
+    const startISO=year+"-"+pad(startMonth)+"-"+pad(startDay);
+    const endISO=year+"-"+pad(endMonth)+"-"+pad(endDay);
+    // Actualizar campos de semana si existen en DOM
+    const rangeEl=$("#pw_range"), startEl=$("#pw_start"), endEl=$("#pw_end");
+    if(rangeEl) rangeEl.value=rangeMatch[0];
+    if(startEl) startEl.value=startISO;
+    if(endEl) endEl.value=endISO;
+    w.range=rangeMatch[0]; w.startDate=startISO; w.endDate=endISO;
+    changed=true;
+  } else {
+    // Fecha suelta: "28 de noviembre de 2026" o "2026-11-28"
+    const isoMatch=txt.match(/(\d{4})-(\d{2})-(\d{2})/);
+    if(isoMatch){
+      const dEl=$("#pdaily_date"); if(dEl && !dEl.value) dEl.value=isoMatch[0];
+      changed=true;
+    } else {
+      const singleMatch=txt.match(/(\d{1,2})\s+de\s+([a-záéíóú]+)\s+de\s+(\d{4})/i);
+      if(singleMatch){
+        const day=parseInt(singleMatch[1],10), mon=months[singleMatch[2].toLowerCase()]||1, yr=parseInt(singleMatch[3],10);
+        const pad=n=>String(n).padStart(2,"0");
+        const iso=yr+"-"+pad(mon)+"-"+pad(day);
+        const dEl=$("#pdaily_date"); if(dEl && !dEl.value) dEl.value=iso;
+        // Si es Atalaya, poner como dateLabel
+        const paEl=$("#pa_dateLabel"); if(paEl && !paEl.value) paEl.value=singleMatch[0];
+        changed=true;
+      }
+    }
+  }
+  return changed;
+}
+function panelUpdateDateBadges(){
+  const w=panelWeek(); if(!w) return;
+  const label=(w.range||"") + (w.startDate?(" · "+w.startDate):"") + (w.endDate?(" al "+w.endDate):"");
+  app.querySelectorAll(".panel-date-badge").forEach(el=>{ el.textContent="📅 Semana: "+label; });
+}
+
 function panelAutoFillFor(pasteId){
   const el=$( "#"+pasteId); if(!el) return;
   const txt=el.value.trim(); if(!txt){ panelStatus("Pega primero el texto en ese cuadro."); return; }
   panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens();
+  const _dateChanged=panelParseDatesFromText(txt);
   if(pasteId==="paste_tesoros") parseTesorosPaste(txt);
   else if(pasteId==="paste_perlas") parsePerlasPaste(txt);
   else if(pasteId==="paste_vida") parseVidaPaste(txt);
@@ -1920,6 +1974,8 @@ function panelAutoFillFor(pasteId){
   else if(pasteId==="paste_ilustracion") parseIlustracionPaste(txt);
   else if(pasteId==="paste_pensamiento") parsePensamientoPaste(txt);
   else panelStatus("No reconozco ese cuadro.");
+  panelUpdateDateBadges();
+  if(_dateChanged) panelStatus("Fechas separadas y asignadas a la semana. Revisa los campos.");
 }
 function panelHandleImage(prefix){
   const fileEl=$("#pimg_file_"+prefix); const posEl=$("#pimg_pos_"+prefix); const statusEl=$("#pimg_status_"+prefix); const prevEl=$("#pimg_preview_"+prefix);
@@ -1945,7 +2001,7 @@ function panelApplyUploadedImages(){
 }
 
 function panelBind(){
-  panelLoadWeek(); panelLoadDaily(); panelLoadIll(); panelLoadPens();
+  panelLoadWeek(); panelLoadDaily(); panelLoadIll(); panelLoadPens(); panelUpdateDateBadges();
   app.querySelectorAll("[data-paneltab]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); panelSaveIll(); panelSavePens(); panelShowTab(b.dataset.paneltab); }));
   app.querySelectorAll("[data-autofill]").forEach(b=>b.addEventListener("click",()=>panelAutoFillFor(b.dataset.autofill)));
   ["tesoros","vida","estudio","atalaya","ilustracion"].forEach(prefix=>{
@@ -2024,55 +2080,8 @@ function doSearch(q){
 }
 
 
-/* ===== Audio que lee la ayuda publicada (no la guía oficial) ===== */
-let ttsChunks=[], ttsIdx=0, ttsPlaying=false;
-function ttsCleanText(txt){
-  return String(txt||"").replace(/\s+/g," ").replace(/🔖|💬|⬇️|⬆️|📖|💎|👥|🎓|🎤|📚|🖼️|💭|✅|🛠️|✨|➕|👁️|💾|📂|🧹/g,"").trim();
-}
-function ttsSpeakChunk(){
-  if(!ttsPlaying || ttsIdx>=ttsChunks.length){ ttsStop(); return; }
-  const u=new SpeechSynthesisUtterance(ttsChunks[ttsIdx]);
-  u.lang="es-MX"; u.rate=0.95; u.pitch=1;
-  u.onend=()=>{ ttsIdx++; ttsSpeakChunk(); };
-  u.onerror=()=>{ ttsIdx++; ttsSpeakChunk(); };
-  speechSynthesis.speak(u);
-}
-function ttsStop(){
-  try{ speechSynthesis.cancel(); }catch(e){}
-  ttsPlaying=false; ttsChunks=[]; ttsIdx=0;
-  const bar=$("#ttsbar"); if(bar) bar.classList.remove("show");
-  document.body.classList.remove("ttsopen");
-}
-function ttsTogglePause(){
-  if(!ttsPlaying) return;
-  if(speechSynthesis.paused){ speechSynthesis.resume(); const b=$("#ttsPause"); if(b) b.textContent="⏸️"; }
-  else { speechSynthesis.pause(); const b=$("#ttsPause"); if(b) b.textContent="▶️"; }
-}
-function startHelpAudio(){
-  if(!("speechSynthesis" in window)){ alert("Tu navegador no tiene lectura de voz."); return; }
-  const appEl=$("#app"); if(!appEl) return;
-  // Tomar solo el contenido principal, sin botones de navegación
-  let txt = appEl.innerText || "";
-  txt = ttsCleanText(txt);
-  // Quitar líneas de navegación comunes
-  txt = txt.replace(/Guardar|Favoritos|Ajustes|Buscar|Semanas anteriores|Escuchar esta ayuda/g,"");
-  if(txt.length<20){ alert("No hay texto para leer en esta pantalla."); return; }
-  ttsStop();
-  // Dividir en fragmentos de ~180 caracteres por frases
-  const sentences = txt.match(/[^.!?]+[.!?]+/g) || [txt];
-  ttsChunks=[]; let cur="";
-  sentences.forEach(sent=>{ if((cur+sent).length>180){ if(cur) ttsChunks.push(cur.trim()); cur=sent; } else cur+=sent; });
-  if(cur.trim()) ttsChunks.push(cur.trim());
-  ttsIdx=0; ttsPlaying=true;
-  const bar=$("#ttsbar"); if(bar) bar.classList.add("show");
-  document.body.classList.add("ttsopen");
-  const titleEl=$("#ttsTitle"); if(titleEl) titleEl.textContent="Escuchando la ayuda…";
-  const pauseBtn=$("#ttsPause"); if(pauseBtn) pauseBtn.textContent="⏸️";
-  ttsSpeakChunk();
-}
-
 function render(){
-  hideBar(); closeVerse(); try{ ttsStop(); }catch(e){}
+  hideBar(); closeVerse();
   imgSeq = 0;
   const h = location.hash || "#/";
   const parts = h.replace(/^#\/?/, "").split("/");
@@ -2155,15 +2164,12 @@ function render(){
   app.innerHTML = html;
   $("#backBtn").style.display = (r === "") ? "none" : "";
   app.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
-  app.querySelectorAll("[data-helpaudio]").forEach(b => b.addEventListener("click", startHelpAudio));
   app.querySelectorAll("[data-pubaudio]").forEach(b => b.addEventListener("click", () => {
     const w2 = WEEKS[parseInt(b.dataset.wi, 10)];
     if (!w2) return;
     if (b.dataset.pubaudio === "atalaya") playPubAudio(w2.audioAtalaya, "La Atalaya — " + w2.range);
     else playPubAudio(w2.audioGuia, "Guía de actividades — " + w2.range);
   }));
-  const _ttsPause=$("#ttsPause"); if(_ttsPause) _ttsPause.onclick=ttsTogglePause;
-  const _ttsStop=$("#ttsStop"); if(_ttsStop) _ttsStop.onclick=ttsStop;
   app.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { homeTab = b.dataset.tab; store.set("ar1_tab", homeTab); render(); }));
   app.querySelectorAll("[data-news]").forEach(b => b.addEventListener("click", () => { newsAll = true; render(); }));
   if (bind) bind();
@@ -2187,7 +2193,7 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-<div id="ttsbar"><div class="tts-top"><div id="ttsTitle">Escuchando…</div><button class="ttsbtn sec" id="ttsPause" aria-label="Pausar">⏸️</button><button class="ttsbtn sec" id="ttsStop" aria-label="Detener">⏹️</button></div></div>
+<!-- ttsbar removido: se usa voz original de jw.org -->
 
 </body>
 </html>
