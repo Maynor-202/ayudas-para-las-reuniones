@@ -522,9 +522,9 @@ function playPubAudio(ref, fallbackTitle){
     document.body.classList.add("pubopen");
     pubReady = false; pubControls(false); pubShowMsg("");
     pbTitle.textContent = ref.title || fallbackTitle || "Audio";
-    pbCur.textContent = "0:00"; pbDur.textContent = ref.duration ? fmtT(ref.duration) : "0:00";
+    pbCur.textContent = "0:00"; pbDur.textContent = ref.duration ? fmtTime(ref.duration) : "0:00";
     pbSeek.max = ref.duration || 0; pbSeek.value = 0; pubIcon();
-    pubAudio.src = ref.url; pubAudio.play().catch(()=>{});
+    paud.src = ref.url; paud.play().catch(()=>{});
     return;
   }
   stopVerseAudio();            // coordinación: un solo audio a la vez
@@ -1206,11 +1206,11 @@ function weeksListHTML(section, wi, icon, smallFn){
    cuando la semana trae la referencia de audio en data.js. */
 function guiaBtnHTML(wk, wi, label){
   if (!wk.audioGuia) return "";
-  return '<button class="listenbtn" data-pubaudio="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>" + esc(label || "Escuchar la guía (voz jw.org)") + "</span></button>";
+  return '<button class="listenbtn" data-paud="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>" + esc(label || "Escuchar la guía (voz jw.org)") + "</span></button>";
 }
 function atalayaBtnHTML(wk, wi){
   if (!wk.audioAtalaya) return "";
-  return '<button class="listenbtn" data-pubaudio="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la Atalaya (voz jw.org)</span></button>";
+  return '<button class="listenbtn" data-paud="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la Atalaya (voz jw.org)</span></button>";
 }
 function libroBtnHTML(wk, wi){
   if (!wk.audioLibro) return "";
@@ -2180,10 +2180,10 @@ function render(){
   app.innerHTML = html;
   $("#backBtn").style.display = (r === "") ? "none" : "";
   app.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { location.hash = b.dataset.go; }));
-  app.querySelectorAll("[data-pubaudio]").forEach(b => b.addEventListener("click", () => {
+  app.querySelectorAll("[data-paud]").forEach(b => b.addEventListener("click", () => {
     const w2 = WEEKS[parseInt(b.dataset.wi, 10)];
     if (!w2) return;
-    if (b.dataset.pubaudio === "atalaya") playPubAudio(w2.audioAtalaya, "La Atalaya — " + w2.range);
+    if (b.dataset.paud === "atalaya") playPubAudio(w2.audioAtalaya, "La Atalaya — " + w2.range);
     else playPubAudio(w2.audioGuia, "Guía de actividades — " + w2.range);
   }));
   app.querySelectorAll("[data-libroaudio]").forEach(b => b.addEventListener("click", () => {
