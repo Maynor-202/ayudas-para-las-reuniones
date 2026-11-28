@@ -176,6 +176,24 @@ body.pubopen main{padding-bottom:180px}
 .fontbtns button{flex:1;min-width:90px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 8px;font-weight:600;cursor:pointer;color:var(--ink)}
 .fontbtns button.on{border-color:var(--accent);background:#fbf7fd;color:var(--accent-dark)}
 
+
+/* Panel para publicar */
+.panelbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 1px 3px rgba(20,35,70,.05)}
+.panelbox h3{margin:0 0 8px;font-size:16px;color:var(--navy)}
+.panellabel{display:block;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:10px 0 4px}
+.panelinput, .paneltextarea, .panelselect{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;font-size:15.5px;background:#fff;color:var(--ink);outline:none;box-sizing:border-box}
+.paneltextarea{min-height:110px;resize:vertical}
+.paneltextarea.big{min-height:220px}
+.panelselect{appearance:none}
+.panelrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.panelbtn{flex:1;min-width:130px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 10px;font-weight:700;cursor:pointer;color:var(--ink);font-size:14.5px}
+.panelbtn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.panelbtn.warn{background:#fff;color:#b03a2e;border-color:#e8b4ae}
+.panelitem{border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;background:#fbfbfe}
+.panelitem .del{float:right;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:13px}
+.panelhint{font-size:13.5px;color:var(--muted);line-height:1.45;margin:6px 0}
+.panelstatus{font-weight:700;color:var(--accent-dark);font-size:14.5px;min-height:20px;margin-top:8px}
+
 </style>
 </head>
 <body>
@@ -994,6 +1012,16 @@ function bindScreen(id, title, route){
 }
 
 /* ================= Pantallas ================= */
+
+/* Panel: aplicar contenido publicado solo en este dispositivo (no toca notas/favoritos) */
+try{
+  const _panelOv = store.get("ar1_panel_published", null);
+  if (_panelOv && typeof _panelOv === "object"){
+    if (Array.isArray(_panelOv.weeks) && _panelOv.weeks.length) DATA.weeks = _panelOv.weeks;
+    if (Array.isArray(_panelOv.daily) && _panelOv.daily.length) DATA.daily = _panelOv.daily;
+  }
+}catch(e){}
+
 const W = DATA.week;
 let homeTab = store.get("ar1_tab", "entre");
 const TABS = {
@@ -1439,6 +1467,9 @@ function ajustesHTML(){
     '<button class="primary" id="expBtn" style="margin-bottom:10px">⬇️ Exportar mis datos</button>' +
     '<button class="primary" id="impBtn" style="background:#fff;color:var(--accent);border:1.5px solid var(--accent);margin-bottom:6px">⬆️ Importar datos</button>' +
     '<input type="file" id="impFile" accept="application/json,.json" style="display:none">' +
+    '<h2 class="sec">Para publicar contenido</h2>' +
+    '<p style="color:var(--muted);font-size:14.5px;margin:0 0 10px">Edita la semana, pega el texto de Dola o ChatGPT, guarda un borrador y exporta el archivo listo para publicar en el mismo enlace.</p>' +
+    '<button class="primary" id="panelBtn" style="margin-bottom:10px">🛠️ Abrir panel para publicar</button>' +
     '<p id="datOk" style="color:var(--accent);font-weight:700;font-size:14px"></p>';
 }
 /* Pensamiento elegido en la galería para verlo destacado; null = el
@@ -1464,6 +1495,221 @@ function apoyoHTML(){
   if (SUPPORT_WHATSAPP_LINK) h += '<a class="wabtn" href="' + esc(SUPPORT_WHATSAPP_LINK) + '" target="_blank" rel="noopener">💬 Contactar por WhatsApp</a>';
   return h;
 }
+
+
+/* ================= Panel para publicar ================= */
+let panelWi = (typeof CUR !== "undefined" ? CUR : 0);
+let panelDailyIdx = 0;
+function panelStatus(msg){ const el=$("#panelStatus"); if(el) el.textContent=msg||""; }
+function panelWeek(){ return WEEKS[panelWi] || WEEKS[0]; }
+function panelEnsureWeekShape(w){
+  if(!w) return w;
+  w.tesoros = w.tesoros || {title:"",reading:"",duration:"",objective:"",development:"",image:"",imageCaption:""};
+  w.perlas = Array.isArray(w.perlas) ? w.perlas : [];
+  w.vida = w.vida || {title:"",subtitle:"",duration:"",sections:[],image:""};
+  w.vida.sections = Array.isArray(w.vida.sections) ? w.vida.sections : [];
+  w.estudio = w.estudio || {book:"",chapter:"",reading:"",items:[],image:""};
+  w.estudio.items = Array.isArray(w.estudio.items) ? w.estudio.items : [];
+  w.discurso = w.discurso || {title:"",number:"",duration:"",textRef:"",note:""};
+  w.atalaya = w.atalaya || {dateLabel:"",title:"",themeText:"",paragraphs:[]};
+  w.atalaya.paragraphs = Array.isArray(w.atalaya.paragraphs) ? w.atalaya.paragraphs : [];
+  return w;
+}
+function panelHTML(){
+  const opts = WEEKS.map((w,i)=>'<option value="'+i+'"'+(i===panelWi?' selected':'')+'>'+esc((w.range||('Semana '+(i+1)))+' · '+(w.startDate||''))+'</option>').join("");
+  const dailyOpts = (DATA.daily||[]).map((d,i)=>'<option value="'+i+'"'+(i===panelDailyIdx?' selected':'')+'>'+esc((d.date||'')+' · '+(d.ref||''))+'</option>').join("");
+  return head("Panel para publicar") +
+  '<p class="panelhint">Aquí puedes preparar la próxima semana sin tocar código. Guarda un borrador en este teléfono, aplícalo aquí para verlo, o exporta <b>data.js</b> y envíalo para publicarlo en el mismo enlace. Tus notas, favoritos y subrayados no se tocan.</p>' +
+  '<div class="panelbox"><h3>1. Semana a editar</h3>' +
+  '<label class="panellabel">Elige una semana</label><select class="panelselect" id="panelWeekSelect">'+opts+'</select>' +
+  '<div class="panelrow"><button class="panelbtn" id="panelNewWeek">➕ Nueva semana</button><button class="panelbtn" id="panelPreviewWeek">👁️ Ver semana</button></div>' +
+  '<label class="panellabel">Rango</label><input class="panelinput" id="pw_range" placeholder="30 de noviembre al 6 de diciembre de 2026">' +
+  '<div class="panelrow"><div style="flex:1;min-width:130px"><label class="panellabel">Fecha inicio</label><input class="panelinput" id="pw_start" type="date"></div><div style="flex:1;min-width:130px"><label class="panellabel">Fecha fin</label><input class="panelinput" id="pw_end" type="date"></div></div>' +
+  '</div>' +
+  '<div class="panelbox"><h3>2. Pegar desde Dola IA o ChatGPT</h3>' +
+  '<p class="panelhint">Pega aquí el texto que te dio la IA y toca “Rellenar automáticamente”. Luego revisa y corrige los campos. No copies texto extenso con derechos de autor; usa resúmenes y citas cortas.</p>' +
+  '<textarea class="paneltextarea big" id="panelPaste" placeholder="Pega aquí: Tesoros…, Perlas…, Vida cristiana…, Estudio…, Atalaya…"></textarea>' +
+  '<div class="panelrow"><button class="panelbtn primary" id="panelAutoFill">✨ Rellenar automáticamente</button></div>' +
+  '</div>' +
+  '<div class="panelbox"><h3>3. Tesoros de la Biblia</h3>' +
+  '<label class="panellabel">Título</label><input class="panelinput" id="pt_title">' +
+  '<label class="panellabel">Lectura</label><input class="panelinput" id="pt_reading">' +
+  '<label class="panellabel">Duración</label><input class="panelinput" id="pt_duration">' +
+  '<label class="panellabel">Objetivo</label><textarea class="paneltextarea" id="pt_objective"></textarea>' +
+  '<label class="panellabel">Desarrollo</label><textarea class="paneltextarea big" id="pt_development"></textarea>' +
+  '</div>' +
+  '<div class="panelbox"><h3>4. Busquemos perlas escondidas</h3><div id="panelPerlasList"></div><div class="panelrow"><button class="panelbtn" id="panelAddPerla">➕ Agregar perla</button></div></div>' +
+  '<div class="panelbox"><h3>5. Nuestra vida cristiana</h3>' +
+  '<label class="panellabel">Título</label><input class="panelinput" id="pv_title">' +
+  '<label class="panellabel">Subtítulo</label><input class="panelinput" id="pv_subtitle">' +
+  '<label class="panellabel">Duración</label><input class="panelinput" id="pv_duration">' +
+  '<div id="panelVidaList"></div><div class="panelrow"><button class="panelbtn" id="panelAddVida">➕ Agregar parte</button></div>' +
+  '</div>' +
+  '<div class="panelbox"><h3>6. Estudio bíblico</h3>' +
+  '<label class="panellabel">Libro</label><input class="panelinput" id="pe_book">' +
+  '<label class="panellabel">Capítulo / tema</label><input class="panelinput" id="pe_chapter">' +
+  '<label class="panellabel">Lectura</label><input class="panelinput" id="pe_reading">' +
+  '<div id="panelEstudioList"></div><div class="panelrow"><button class="panelbtn" id="panelAddEstudio">➕ Agregar pregunta</button></div>' +
+  '</div>' +
+  '<div class="panelbox"><h3>7. Discurso público</h3>' +
+  '<label class="panellabel">Título</label><input class="panelinput" id="pd_title">' +
+  '<div class="panelrow"><div style="flex:1;min-width:110px"><label class="panellabel">Número</label><input class="panelinput" id="pd_number"></div><div style="flex:1;min-width:110px"><label class="panellabel">Duración</label><input class="panelinput" id="pd_duration"></div></div>' +
+  '<label class="panellabel">Texto base</label><input class="panelinput" id="pd_textRef">' +
+  '<label class="panellabel">Nota</label><textarea class="paneltextarea" id="pd_note"></textarea>' +
+  '</div>' +
+  '<div class="panelbox"><h3>8. Estudio de La Atalaya</h3>' +
+  '<label class="panellabel">Fecha</label><input class="panelinput" id="pa_dateLabel">' +
+  '<label class="panellabel">Título</label><input class="panelinput" id="pa_title">' +
+  '<label class="panellabel">Texto tema</label><input class="panelinput" id="pa_themeText">' +
+  '<div id="panelAtalayaList"></div><div class="panelrow"><button class="panelbtn" id="panelAddAtalaya">➕ Agregar párrafo</button></div>' +
+  '</div>' +
+  '<div class="panelbox"><h3>9. Texto diario</h3>' +
+  '<label class="panellabel">Elige un día</label><select class="panelselect" id="panelDailySelect">'+dailyOpts+'</select>' +
+  '<div class="panelrow"><button class="panelbtn" id="panelNewDaily">➕ Nuevo día</button></div>' +
+  '<label class="panellabel">Fecha (AAAA-MM-DD)</label><input class="panelinput" id="pdaily_date" type="date">' +
+  '<label class="panellabel">Etiqueta</label><input class="panelinput" id="pdaily_label" placeholder="28 de noviembre de 2026">' +
+  '<label class="panellabel">Día de la semana</label><input class="panelinput" id="pdaily_weekday">' +
+  '<label class="panellabel">Referencia</label><input class="panelinput" id="pdaily_ref">' +
+  '<label class="panellabel">Versículo</label><textarea class="paneltextarea" id="pdaily_verse"></textarea>' +
+  '<label class="panellabel">Comentario</label><textarea class="paneltextarea" id="pdaily_comment"></textarea>' +
+  '<label class="panellabel">Ejemplo</label><textarea class="paneltextarea" id="pdaily_example"></textarea>' +
+  '<label class="panellabel">Lecciones</label><textarea class="paneltextarea" id="pdaily_lessons"></textarea>' +
+  '<label class="panellabel">Enlace oficial</label><input class="panelinput" id="pdaily_link">' +
+  '</div>' +
+  '<div class="panelbox"><h3>10. Guardar y publicar</h3>' +
+  '<p class="panelhint">“Aplicar en este dispositivo” muestra los cambios solo aquí. Para que lo vean todos, usa “Exportar data.js” y envía ese archivo para publicarlo en el mismo enlace.</p>' +
+  '<div class="panelrow"><button class="panelbtn" id="panelSaveDraft">💾 Guardar borrador</button><button class="panelbtn" id="panelLoadDraft">📂 Cargar borrador</button></div>' +
+  '<div class="panelrow"><button class="panelbtn primary" id="panelApplyLocal">✅ Aplicar en este dispositivo</button><button class="panelbtn" id="panelExport">⬇️ Exportar data.js</button></div>' +
+  '<div class="panelrow"><button class="panelbtn" id="panelWhatsApp">💬 Pedir publicación por WhatsApp</button><button class="panelbtn warn" id="panelClearLocal">🧹 Quitar cambios locales</button></div>' +
+  '<p class="panelstatus" id="panelStatus"></p>' +
+  '</div>';
+}
+function panelSetVal(id, v){ const el=$(id); if(el) el.value = v==null?"":v; }
+function panelGetVal(id){ const el=$(id); return el ? el.value : ""; }
+function panelLoadWeek(){
+  const w = panelEnsureWeekShape(panelWeek());
+  panelSetVal("#pw_range", w.range); panelSetVal("#pw_start", w.startDate); panelSetVal("#pw_end", w.endDate);
+  panelSetVal("#pt_title", w.tesoros.title); panelSetVal("#pt_reading", w.tesoros.reading); panelSetVal("#pt_duration", w.tesoros.duration); panelSetVal("#pt_objective", w.tesoros.objective); panelSetVal("#pt_development", w.tesoros.development);
+  panelSetVal("#pv_title", w.vida.title); panelSetVal("#pv_subtitle", w.vida.subtitle); panelSetVal("#pv_duration", w.vida.duration);
+  panelSetVal("#pe_book", w.estudio.book); panelSetVal("#pe_chapter", w.estudio.chapter); panelSetVal("#pe_reading", w.estudio.reading);
+  panelSetVal("#pd_title", w.discurso.title); panelSetVal("#pd_number", w.discurso.number); panelSetVal("#pd_duration", w.discurso.duration); panelSetVal("#pd_textRef", w.discurso.textRef); panelSetVal("#pd_note", w.discurso.note);
+  panelSetVal("#pa_dateLabel", w.atalaya.dateLabel); panelSetVal("#pa_title", w.atalaya.title); panelSetVal("#pa_themeText", w.atalaya.themeText);
+  panelRenderPerlas(); panelRenderVida(); panelRenderEstudio(); panelRenderAtalaya();
+}
+function panelSaveWeek(){
+  const w = panelEnsureWeekShape(panelWeek());
+  w.range = panelGetVal("#pw_range").trim(); w.startDate = panelGetVal("#pw_start"); w.endDate = panelGetVal("#pw_end");
+  w.tesoros.title = panelGetVal("#pt_title").trim(); w.tesoros.reading = panelGetVal("#pt_reading").trim(); w.tesoros.duration = panelGetVal("#pt_duration").trim(); w.tesoros.objective = panelGetVal("#pt_objective"); w.tesoros.development = panelGetVal("#pt_development");
+  w.vida.title = panelGetVal("#pv_title").trim(); w.vida.subtitle = panelGetVal("#pv_subtitle").trim(); w.vida.duration = panelGetVal("#pv_duration").trim();
+  w.estudio.book = panelGetVal("#pe_book").trim(); w.estudio.chapter = panelGetVal("#pe_chapter").trim(); w.estudio.reading = panelGetVal("#pe_reading").trim();
+  w.discurso.title = panelGetVal("#pd_title").trim(); w.discurso.number = panelGetVal("#pd_number").trim(); w.discurso.duration = panelGetVal("#pd_duration").trim(); w.discurso.textRef = panelGetVal("#pd_textRef").trim(); w.discurso.note = panelGetVal("#pd_note");
+  w.atalaya.dateLabel = panelGetVal("#pa_dateLabel").trim(); w.atalaya.title = panelGetVal("#pa_title").trim(); w.atalaya.themeText = panelGetVal("#pa_themeText").trim();
+  // perlas
+  const pl=[]; app.querySelectorAll("[data-panel-perla]").forEach((el,i)=>{ const ref=el.querySelector(".pp_ref").value.trim(); const com=el.querySelector(".pp_com").value; const sum=el.querySelector(".pp_sum").checked; if(ref||com) pl.push({ref:ref,comment:com,summary:!!sum}); });
+  w.perlas = pl;
+  const vl=[]; app.querySelectorAll("[data-panel-vida]").forEach(el=>{ const lab=el.querySelector(".pv_lab").value.trim(); const txt=el.querySelector(".pv_txt").value; if(lab||txt) vl.push({label:lab,text:txt}); });
+  w.vida.sections = vl;
+  const elist=[]; app.querySelectorAll("[data-panel-estudio]").forEach(el=>{ const n=el.querySelector(".pe_n").value.trim(); const q=el.querySelector(".pe_q").value; const a=el.querySelector(".pe_a").value; const ex=el.querySelector(".pe_ex").value; if(q||a) elist.push({n:n?parseInt(n,10)||n:n,q:q,a:a,extra:ex}); });
+  w.estudio.items = elist;
+  const alist=[]; app.querySelectorAll("[data-panel-atalaya]").forEach(el=>{ const num=el.querySelector(".pa_num").value.trim(); const q=el.querySelector(".pa_q").value; const a=el.querySelector(".pa_a").value; const eq=el.querySelector(".pa_eq").value; const ea=el.querySelector(".pa_ea").value; if(q||a) alist.push({num:num?parseInt(num,10)||num:num,q:q,a:a,extraQ:eq,extraA:ea}); });
+  w.atalaya.paragraphs = alist;
+  DATA.weeks = WEEKS;
+  return w;
+}
+function panelSaveDaily(){
+  const d = (DATA.daily||[])[panelDailyIdx]; if(!d) return;
+  d.date = panelGetVal("#pdaily_date"); d.label = panelGetVal("#pdaily_label").trim(); d.weekday = panelGetVal("#pdaily_weekday").trim(); d.ref = panelGetVal("#pdaily_ref").trim(); d.verse = panelGetVal("#pdaily_verse"); d.comment = panelGetVal("#pdaily_comment"); d.example = panelGetVal("#pdaily_example"); d.lessons = panelGetVal("#pdaily_lessons"); d.link = panelGetVal("#pdaily_link").trim();
+}
+function panelLoadDaily(){
+  const d = (DATA.daily||[])[panelDailyIdx] || {};
+  panelSetVal("#pdaily_date", d.date); panelSetVal("#pdaily_label", d.label); panelSetVal("#pdaily_weekday", d.weekday); panelSetVal("#pdaily_ref", d.ref); panelSetVal("#pdaily_verse", d.verse); panelSetVal("#pdaily_comment", d.comment); panelSetVal("#pdaily_example", d.example); panelSetVal("#pdaily_lessons", d.lessons); panelSetVal("#pdaily_link", d.link);
+}
+function panelRenderPerlas(){
+  const w=panelEnsureWeekShape(panelWeek()); const box=$("#panelPerlasList"); if(!box) return;
+  box.innerHTML = (w.perlas||[]).map((p,i)=>'<div class="panelitem" data-panel-perla="'+i+'"><button class="del" data-del-perla="'+i+'">Quitar</button><label class="panellabel">Referencia</label><input class="panelinput pp_ref" value="'+esc(p.ref||'')+'"><label class="panellabel">Comentario</label><textarea class="paneltextarea pp_com">'+esc(p.comment||'')+'</textarea><label style="font-size:14px"><input type="checkbox" class="pp_sum"'+(p.summary?' checked':'')+'> Resumen</label></div>').join("") || '<p class="panelhint">Sin perlas todavía. Agrega una.</p>';
+  box.querySelectorAll("[data-del-perla]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); w.perlas.splice(parseInt(b.dataset.delPerla,10),1); panelRenderPerlas(); }));
+}
+function panelRenderVida(){
+  const w=panelEnsureWeekShape(panelWeek()); const box=$("#panelVidaList"); if(!box) return;
+  box.innerHTML = (w.vida.sections||[]).map((s,i)=>'<div class="panelitem" data-panel-vida="'+i+'"><button class="del" data-del-vida="'+i+'">Quitar</button><label class="panellabel">Etiqueta</label><input class="panelinput pv_lab" value="'+esc(s.label||'')+'"><label class="panellabel">Texto</label><textarea class="paneltextarea pv_txt">'+esc(s.text||'')+'</textarea></div>').join("") || '<p class="panelhint">Sin partes todavía.</p>';
+  box.querySelectorAll("[data-del-vida]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); w.vida.sections.splice(parseInt(b.dataset.delVida,10),1); panelRenderVida(); }));
+}
+function panelRenderEstudio(){
+  const w=panelEnsureWeekShape(panelWeek()); const box=$("#panelEstudioList"); if(!box) return;
+  box.innerHTML = (w.estudio.items||[]).map((it,i)=>'<div class="panelitem" data-panel-estudio="'+i+'"><button class="del" data-del-estudio="'+i+'">Quitar</button><label class="panellabel">Número</label><input class="panelinput pe_n" value="'+esc(it.n==null?'':it.n)+'"><label class="panellabel">Pregunta</label><textarea class="paneltextarea pe_q">'+esc(it.q||'')+'</textarea><label class="panellabel">Respuesta / desarrollo</label><textarea class="paneltextarea pe_a">'+esc(it.a||'')+'</textarea><label class="panellabel">Extra</label><textarea class="paneltextarea pe_ex">'+esc(it.extra||'')+'</textarea></div>').join("") || '<p class="panelhint">Sin preguntas todavía.</p>';
+  box.querySelectorAll("[data-del-estudio]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); w.estudio.items.splice(parseInt(b.dataset.delEstudio,10),1); panelRenderEstudio(); }));
+}
+function panelRenderAtalaya(){
+  const w=panelEnsureWeekShape(panelWeek()); const box=$("#panelAtalayaList"); if(!box) return;
+  box.innerHTML = (w.atalaya.paragraphs||[]).map((p,i)=>'<div class="panelitem" data-panel-atalaya="'+i+'"><button class="del" data-del-atalaya="'+i+'">Quitar</button><label class="panellabel">Párrafo</label><input class="panelinput pa_num" value="'+esc(p.num==null?'':p.num)+'"><label class="panellabel">Pregunta</label><textarea class="paneltextarea pa_q">'+esc(p.q||'')+'</textarea><label class="panellabel">Respuesta</label><textarea class="paneltextarea pa_a">'+esc(p.a||'')+'</textarea><label class="panellabel">Pregunta extra</label><textarea class="paneltextarea pa_eq">'+esc(p.extraQ||'')+'</textarea><label class="panellabel">Respuesta extra</label><textarea class="paneltextarea pa_ea">'+esc(p.extraA||'')+'</textarea></div>').join("") || '<p class="panelhint">Sin párrafos todavía.</p>';
+  box.querySelectorAll("[data-del-atalaya]").forEach(b=>b.addEventListener("click",()=>{ panelSaveWeek(); w.atalaya.paragraphs.splice(parseInt(b.dataset.delAtalaya,10),1); panelRenderAtalaya(); }));
+}
+function panelAutoFill(){
+  const txt = panelGetVal("#panelPaste"); if(!txt.trim()){ panelStatus("Pega primero el texto de Dola o ChatGPT."); return; }
+  const w = panelEnsureWeekShape(panelWeek());
+  const low = txt.toLowerCase();
+  function sectionAfter(keyword){
+    const idx = low.indexOf(keyword);
+    if(idx===-1) return "";
+    const rest = txt.slice(idx+keyword.length);
+    const stops = ["tesoros de la biblia","busquemos perlas","nuestra vida cristiana","seamos mejores maestros","estudio bíblico","estudio biblico","discurso público","discurso publico","estudio de la atalaya","atalaya","texto diario"];
+    let end = rest.length;
+    const rlow = rest.toLowerCase();
+    stops.forEach(s=>{ if(s===keyword) return; const j=rlow.indexOf(s); if(j>5 && j<end) end=j; });
+    return rest.slice(0,end).trim();
+  }
+  let filled=0;
+  const tes = sectionAfter("tesoros de la biblia") || sectionAfter("tesoros");
+  if(tes){ w.tesoros.development = tes; const first = tes.split("\n").map(x=>x.trim()).find(x=>x.length>3 && x.length<140); if(first && !w.tesoros.title) w.tesoros.title = first.replace(/^[^:]*:\s*/,""); filled++; }
+  const per = sectionAfter("busquemos perlas") || sectionAfter("perlas");
+  if(per){
+    const refRe = /(Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Jueces|Rut|1 Samuel|2 Samuel|1 Reyes|2 Reyes|1 Crónicas|2 Crónicas|Esdras|Nehemías|Ester|Job|Salmo|Salmos|Proverbios|Eclesiastés|Cantares|Isaías|Jeremías|Lamentaciones|Ezequiel|Daniel|Oseas|Joel|Amós|Abdías|Jonás|Miqueas|Nahúm|Habacuc|Sofonías|Hageo|Zacarías|Malaquías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|1 Corintios|2 Corintios|Gálatas|Efesios|Filipenses|Colosenses|1 Tesalonicenses|2 Tesalonicenses|1 Timoteo|2 Timoteo|Tito|Filemón|Hebreos|Santiago|1 Pedro|2 Pedro|1 Juan|2 Juan|3 Juan|Judas|Apocalipsis)\s+\d+:\d+(?:[-–]\d+)?/g;
+    const matches=[...per.matchAll(refRe)];
+    if(matches.length){
+      const arr=[]; matches.forEach((m,i)=>{ const start=m.index; const end=(i+1<matches.length?matches[i+1].index:per.length); const comment=per.slice(start+m[0].length,end).trim(); arr.push({ref:m[0],comment:comment,summary:false}); });
+      w.perlas=arr; filled++;
+    } else { w.perlas.push({ref:"",comment:per,summary:false}); filled++; }
+  }
+  const vidaSec = sectionAfter("vida cristiana") || sectionAfter("seamos mejores maestros");
+  if(vidaSec){ if(!w.vida.sections.length) w.vida.sections.push({label:"",text:vidaSec}); else w.vida.sections[0].text=vidaSec; filled++; }
+  const est = sectionAfter("estudio bíblico") || sectionAfter("estudio biblico");
+  if(est){ if(!w.estudio.items.length) w.estudio.items.push({n:1,q:"",a:est,extra:""}); else w.estudio.items[0].a=est; filled++; }
+  const dis = sectionAfter("discurso público") || sectionAfter("discurso publico");
+  if(dis){ w.discurso.note = dis; const first=dis.split("\n").map(x=>x.trim()).find(x=>x.length>3&&x.length<140); if(first&&!w.discurso.title) w.discurso.title=first; filled++; }
+  const ata = sectionAfter("estudio de la atalaya") || sectionAfter("atalaya");
+  if(ata){ if(!w.atalaya.paragraphs.length) w.atalaya.paragraphs.push({num:1,q:"",a:ata,extraQ:"",extraA:""}); else w.atalaya.paragraphs[0].a=ata; const first=ata.split("\n").map(x=>x.trim()).find(x=>x.length>3&&x.length<140); if(first&&!w.atalaya.title) w.atalaya.title=first; filled++; }
+  panelLoadWeek();
+  panelStatus(filled?("Listo: rellené "+filled+" sección(es). Revisa y corrige antes de publicar."):"No reconocí secciones claras. Revisa el texto pegado o llena los campos a mano.");
+}
+function panelExport(){
+  panelSaveWeek(); panelSaveDaily();
+  const out = {week: DATA.week, daily: DATA.daily, illustrations: DATA.illustrations, verses: DATA.verses, weeks: WEEKS, pensamientos: DATA.pensamientos};
+  const blob = new Blob(["const DATA = "+JSON.stringify(out,null,2)+";\n"], {type:"text/javascript"});
+  const url = URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=url; a.download="data.js"; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  panelStatus("data.js exportado. Envíalo para publicarlo en el mismo enlace.");
+}
+function panelBind(){
+  panelLoadWeek(); panelLoadDaily();
+  const ws=$("#panelWeekSelect"); if(ws) ws.addEventListener("change",()=>{ panelSaveWeek(); panelSaveDaily(); panelWi=parseInt(ws.value,10)||0; panelLoadWeek(); panelStatus("Semana cargada."); });
+  const nw=$("#panelNewWeek"); if(nw) nw.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); const tpl=JSON.parse(JSON.stringify(panelEnsureWeekShape(panelWeek()))); tpl.range=""; tpl.startDate=""; tpl.endDate=""; tpl.perlas=[]; tpl.tesoros={title:"",reading:"",duration:"",objective:"",development:"",image:"",imageCaption:""}; tpl.vida={title:"",subtitle:"",duration:"",sections:[],image:""}; tpl.estudio={book:"",chapter:"",reading:"",items:[],image:""}; tpl.discurso={title:"",number:"",duration:"",textRef:"",note:""}; tpl.atalaya={dateLabel:"",title:"",themeText:"",paragraphs:[]}; WEEKS.push(tpl); panelWi=WEEKS.length-1; render(); });
+  const pv=$("#panelPreviewWeek"); if(pv) pv.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); location.hash="#/"; });
+  const af=$("#panelAutoFill"); if(af) af.addEventListener("click",panelAutoFill);
+  const ap=$("#panelAddPerla"); if(ap) ap.addEventListener("click",()=>{ panelSaveWeek(); panelWeek().perlas.push({ref:"",comment:"",summary:false}); panelRenderPerlas(); });
+  const av=$("#panelAddVida"); if(av) av.addEventListener("click",()=>{ panelSaveWeek(); panelWeek().vida.sections.push({label:"",text:""}); panelRenderVida(); });
+  const ae=$("#panelAddEstudio"); if(ae) ae.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); w.estudio.items.push({n:(w.estudio.items.length+1),q:"",a:"",extra:""}); panelRenderEstudio(); });
+  const aa=$("#panelAddAtalaya"); if(aa) aa.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); w.atalaya.paragraphs.push({num:(w.atalaya.paragraphs.length+1),q:"",a:"",extraQ:"",extraA:""}); panelRenderAtalaya(); });
+  const ds=$("#panelDailySelect"); if(ds) ds.addEventListener("change",()=>{ panelSaveDaily(); panelDailyIdx=parseInt(ds.value,10)||0; panelLoadDaily(); });
+  const nd=$("#panelNewDaily"); if(nd) nd.addEventListener("click",()=>{ panelSaveDaily(); DATA.daily.unshift({date:"",label:"",weekday:"",ref:"",verse:"",comment:"",example:"",lessons:"",images:[],link:""}); panelDailyIdx=0; render(); });
+  const sd=$("#panelSaveDraft"); if(sd) sd.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); store.set("ar1_panel_draft",{weeks:WEEKS,daily:DATA.daily,when:Date.now()}); panelStatus("Borrador guardado en este dispositivo."); });
+  const ld=$("#panelLoadDraft"); if(ld) ld.addEventListener("click",()=>{ const d=store.get("ar1_panel_draft",null); if(!d||!Array.isArray(d.weeks)){ panelStatus("No hay borrador guardado."); return; } DATA.weeks=d.weeks; DATA.daily=d.daily||DATA.daily; WEEKS.splice(0,WEEKS.length,...DATA.weeks); panelWi=Math.min(panelWi,WEEKS.length-1); render(); });
+  const al=$("#panelApplyLocal"); if(al) al.addEventListener("click",()=>{ panelSaveWeek(); panelSaveDaily(); store.set("ar1_panel_published",{weeks:WEEKS,daily:DATA.daily,when:Date.now()}); panelStatus("Aplicado en este dispositivo. Recargando…"); setTimeout(()=>location.reload(),600); });
+  const ex=$("#panelExport"); if(ex) ex.addEventListener("click",panelExport);
+  const wa=$("#panelWhatsApp"); if(wa) wa.addEventListener("click",()=>{ panelSaveWeek(); const w=panelWeek(); const msg="Hola, quiero publicar una semana en Ayudas para las Reuniones. Semana: "+(w.range||"")+". Ya preparé el contenido en el panel y puedo enviar el archivo data.js."; window.open((SUPPORT_WHATSAPP_LINK||"")+"?text="+encodeURIComponent(msg),"_blank"); });
+  const cl=$("#panelClearLocal"); if(cl) cl.addEventListener("click",()=>{ localStorage.removeItem("ar1_panel_published"); panelStatus("Cambios locales quitados. Recargando…"); setTimeout(()=>location.reload(),600); });
+}
+
 
 /* ================= Enrutado ================= */
 const app = $("#app");
@@ -1526,6 +1772,7 @@ function render(){
   else if (r === "estudio"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = estudioHTML(wi); bind = () => bindScreen("estudio" + wkSuffix(wi),"Estudio bíblico de la congregación",wkRoute("estudio", wi)); }
   else if (r === "discurso"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = discursoHTML(wi); bind = () => bindScreen("discurso" + wkSuffix(wi),"Discurso público",wkRoute("discurso", wi)); }
   else if (r === "atalaya"){ const wi = parts[1] === undefined ? CUR : resolveWi(parseInt(parts[1], 10)); html = atalayaHTML(wi); bind = () => bindScreen("atalaya" + wkSuffix(wi),"Estudio de La Atalaya",wkRoute("atalaya", wi)); }
+  else if (r === "panel"){ html = panelHTML(); bind = panelBind; }
   else if (r === "textos"){ html = textosHTML(); }
   else if (r === "buscar"){ html = buscarHTML(); bind = () => { const inp = $("#qInput"); if(inp){ inp.focus(); let t; inp.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => doSearch(inp.value), 250); }); inp.addEventListener("keydown", e => { if(e.key==="Enter") doSearch(inp.value); }); } }; }
   else if (r === "texto"){ const d = DATA.daily.find(x => x.date === parts[1]); html = d ? textoHTML(d) : textosHTML(); if (d) bind = () => bindScreen("texto-" + d.date, "Texto diario — " + d.label, "#/texto/" + d.date); }
@@ -1560,6 +1807,7 @@ function render(){
       app.querySelectorAll("[data-fontsize]").forEach(b => b.addEventListener("click", () => {
         store.set("ar1_fontsize", b.dataset.fontsize); applyFontSize(); render();
       }));
+      const panelBtn = $("#panelBtn"); if(panelBtn) panelBtn.addEventListener("click", () => { location.hash = "#/panel"; });
       const expBtn = $("#expBtn");
       if(expBtn) expBtn.addEventListener("click", () => {
         const dump = {};
