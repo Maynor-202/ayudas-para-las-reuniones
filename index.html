@@ -196,8 +196,8 @@ body.pubopen main{padding-bottom:180px}
 
 
 /* Panel v2 tabs + TTS */
-.paneltabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.paneltabs button{flex:1 1 110px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;font-weight:700;cursor:pointer;color:var(--muted);font-size:13.5px}
+.paneltabs{display:flex;gap:6px;flex-wrap:nowrap;margin:10px 0;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.paneltabs button{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;font-weight:700;cursor:pointer;color:var(--muted);font-size:13.5px}
 .paneltabs button.on{border-color:var(--accent);color:var(--accent-dark);background:#fbf7fd}
 .panel-tab{display:none}
 .panel-tab.on{display:block}
@@ -515,6 +515,18 @@ function closePubPlayer(){
 }
 function playPubAudio(ref, fallbackTitle){
   if (!ref) return;
+  if (ref.url){
+    stopVerseAudio();
+    const seq = ++pubSeq;
+    pubbar.hidden = false;
+    document.body.classList.add("pubopen");
+    pubReady = false; pubControls(false); pubShowMsg("");
+    pbTitle.textContent = ref.title || fallbackTitle || "Audio";
+    pbCur.textContent = "0:00"; pbDur.textContent = ref.duration ? fmtT(ref.duration) : "0:00";
+    pbSeek.max = ref.duration || 0; pbSeek.value = 0; pubIcon();
+    pubAudio.src = ref.url; pubAudio.play().catch(()=>{});
+    return;
+  }
   stopVerseAudio();            // coordinación: un solo audio a la vez
   const seq = ++pubSeq;
   pubbar.hidden = false;
@@ -1192,13 +1204,17 @@ function weeksListHTML(section, wi, icon, smallFn){
 
 /* Botones «Escuchar» del reproductor de publicaciones: solo aparecen
    cuando la semana trae la referencia de audio en data.js. */
-function guiaBtnHTML(wk, wi){
+function guiaBtnHTML(wk, wi, label){
   if (!wk.audioGuia) return "";
-  return '<button class="listenbtn" data-pubaudio="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la guía de esta semana</span></button>";
+  return '<button class="listenbtn" data-pubaudio="guia" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>" + esc(label || "Escuchar la guía (voz jw.org)") + "</span></button>";
 }
 function atalayaBtnHTML(wk, wi){
   if (!wk.audioAtalaya) return "";
-  return '<button class="listenbtn" data-pubaudio="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar el artículo</span></button>";
+  return '<button class="listenbtn" data-pubaudio="atalaya" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar la Atalaya (voz jw.org)</span></button>";
+}
+function libroBtnHTML(wk, wi){
+  if (!wk.audioLibro) return "";
+  return '<button class="listenbtn" data-libroaudio="1" data-wi="' + wi + '">' + ICO_HEADPHONES + "<span>Escuchar el libro (voz jw.org)</span></button>";
 }
 /* Semanas parciales: las secciones que una semana no trae en data.js
    muestran una nota sencilla, sin errores, con la lista de semanas. */
@@ -1206,7 +1222,7 @@ function sinContenidoHTML(section, wi, icon, title, smallFn){
   const wk = WEEKS[wi], id = section + wkSuffix(wi);
   return screenBar(id, title, wkRoute(section, wi)) +
     head(title, chips([wk.range])) +
-    (section !== "atalaya" ? guiaBtnHTML(wk, wi) : "") +
+    (section === "estudio" ? libroBtnHTML(wk, wi) : (section !== "atalaya" ? guiaBtnHTML(wk, wi, "Escuchar la guía (voz jw.org)") : "")) +
     '<div class="empty">Sin contenido para esta semana.</div>' +
     weeksListHTML(section, wi, icon, smallFn) +
     noteBox(id);
@@ -1217,7 +1233,7 @@ function tesorosHTML(wi){
   if (!t) return sinContenidoHTML("tesoros", wi, "📖", "Tesoros de la Biblia", w2 => w2.tesoros ? w2.tesoros.title : "Sin contenido");
   return screenBar(id, "Tesoros de la Biblia", wkRoute("tesoros", wi)) +
     head("Tesoros de la Biblia", chips([wk.range, "Lectura: " + t.reading, t.duration])) +
-    guiaBtnHTML(wk, wi) +
+    guiaBtnHTML(wk, wi, "Escuchar Tesoros (voz jw.org)") +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(t.title) + "</h1>" +
     (t.image ? oneImg(t.image, t.imageCaption, t.title) : "") +
     (t.objective ? "<h2 class=\"sec\">Objetivo</h2>" + blocks(t.objective, p + "tesoros-obj") : "") +
@@ -1286,7 +1302,7 @@ function perlasHTML(wi){
   /* Párrafo de cierre de la semana, al final, en la misma tarjeta .pearl. */
   if (wk.perlasClosing) items += '<div class="pearl">' + blocks(wk.perlasClosing, base + "cierre") + "</div>";
   return screenBar("perlas","Busquemos perlas escondidas","#/perlas") +
-    head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + guiaBtnHTML(wk, wi) + items +
+    head("Busquemos perlas escondidas", chips([wk.range, list.length + " perlas"])) + guiaBtnHTML(wk, wi, "Escuchar Perlas (voz jw.org)") + items +
     weeksListHTML("perlas", wi, "💎", w2 => (w2.perlas ? w2.perlas.length : 0) + " perlas") +
     noteBox("perlas");
 }
@@ -1296,7 +1312,7 @@ function vidaHTML(wi){
   if (!v) return sinContenidoHTML("vida", wi, "👥", "Nuestra vida cristiana", w2 => w2.vida ? w2.vida.title : "Sin contenido");
   let h = screenBar(id, "Nuestra vida cristiana", wkRoute("vida", wi)) +
     head("Nuestra vida cristiana", chips([wk.range, v.subtitle, v.duration])) +
-    guiaBtnHTML(wk, wi) +
+    guiaBtnHTML(wk, wi, "Escuchar Vida cristiana (voz jw.org)") +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(v.title) + "</h1>";
   if (v.image && v.imageAfterSection == null) h += oneImg(v.image, v.imageCaption, v.imageAlt || v.title);
   h += v.sections.map((s,i) => {
@@ -1325,7 +1341,7 @@ function estudioHTML(wi){
   }).join("");
   return screenBar(id, "Estudio bíblico de la congregación", wkRoute("estudio", wi)) +
     head("Estudio bíblico de la congregación", chips([wk.range, "Lectura: " + e0.reading])) +
-    guiaBtnHTML(wk, wi) +
+    libroBtnHTML(wk, wi) +
     "<h1 class=\"screen\" style=\"font-size:20px\">" + esc(e0.book) + " — " + esc(e0.chapter) + "</h1>" +
     (e0.intro ? blocks(e0.intro, p + "est-intro") : "") +
     (e0.image ? imgHTML(e0.image, e0.chapter) : "") + items +
@@ -1553,7 +1569,7 @@ function panelHTML(){
   }
   return head("Panel para publicar") +
   '<p class="panelhint">Cada asignación se prepara por separado. Elige una pestaña, pega todo el texto en el cuadro grande y toca <b>Separar automáticamente</b>. Revisa los campos, agrega imagen si quieres, y al final ve a <b>Publicar</b>.</p>' +
-  '<div class="paneltabs">'+tabBtns+'</div>' + '<div class="panelbox" style="padding:10px 14px"><span class="panel-date-badge">📅 Semana: </span></div>' +
+  '<div class="paneltabs">'+tabBtns+'</div>' + '<div class="panel-date-badge" style="font-size:13px;color:#555;margin:6px 2px">📅 Semana: </div>' +
   // SEMANA
   '<div class="panel-tab'+(panelTab==="semana"?" on":"")+'" data-tabpanel="semana"><div class="panelbox"><h3>Semana a editar</h3><label class="panellabel">Elige una semana</label><select class="panelselect" id="panelWeekSelect">'+opts+'</select><div class="panelrow"><button class="panelbtn" id="panelNewWeek">➕ Nueva semana</button><button class="panelbtn" id="panelPreviewWeek">👁️ Ver semana</button></div><label class="panellabel">Rango</label><input class="panelinput" id="pw_range" placeholder="30 de noviembre al 6 de diciembre de 2026"><div class="panelrow"><div style="flex:1;min-width:130px"><label class="panellabel">Fecha inicio</label><input class="panelinput" id="pw_start" type="date"></div><div style="flex:1;min-width:130px"><label class="panellabel">Fecha fin</label><input class="panelinput" id="pw_end" type="date"></div></div></div></div>' +
   // TESOROS
@@ -2169,6 +2185,12 @@ function render(){
     if (!w2) return;
     if (b.dataset.pubaudio === "atalaya") playPubAudio(w2.audioAtalaya, "La Atalaya — " + w2.range);
     else playPubAudio(w2.audioGuia, "Guía de actividades — " + w2.range);
+  }));
+  app.querySelectorAll("[data-libroaudio]").forEach(b => b.addEventListener("click", () => {
+    const w2 = WEEKS[parseInt(b.dataset.wi, 10)];
+    if (!w2 || !w2.audioLibro) return;
+    if (w2.audioLibro.url) playPubAudio({pub:"", issue:"", track:"", url:w2.audioLibro.url, title:w2.audioLibro.title, duration:w2.audioLibro.duration}, "El libro — " + w2.range);
+    else playPubAudio(w2.audioLibro, "El libro — " + w2.range);
   }));
   app.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { homeTab = b.dataset.tab; store.set("ar1_tab", homeTab); render(); }));
   app.querySelectorAll("[data-news]").forEach(b => b.addEventListener("click", () => { newsAll = true; render(); }));
